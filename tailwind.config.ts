@@ -15,6 +15,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [require("tailwindcss-radix")],
+} satisfies Config;
 export default config;
