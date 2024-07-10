@@ -20,13 +20,6 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "endOfLine": "auto"
-      }
-    ],
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
     "eol-last": ["error", "always"]
@@ -55,13 +48,6 @@
       "rules": {
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
-        "prettier/prettier": [
-          "error",
-          {
-            "singleQuote": true,
-            "endOfLine": "auto"
-          }
-        ],
         "no-unused-vars": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
         "tailwindcss/no-custom-classname": "warn",

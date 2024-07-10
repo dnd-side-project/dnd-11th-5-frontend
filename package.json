@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "cz": "cz",
+    "formatting": "prettier --write '**/*.{ts,tsx}' --ignore-unknown",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

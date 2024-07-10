@@ -9,7 +9,7 @@ module.exports = {
     },
     {
       value: "♻️ refactor",
-      name: "♻️ refactor: 버그 수정이나 새로운 기능 추가가 아닌 코드 변경",
+      name: "♻️ refactor:  버그 수정이나 새로운 기능 추가가 아닌 코드 변경",
     },
     {
       value: "⚡️ perf",
@@ -23,7 +23,7 @@ module.exports = {
       value: "🔧 chore",
       name: "🔧 chore:    빌드 프로세스 또는 보조 도구 및 라이브러리 변경 (문서 생성 등)",
     },
-    { value: "🔨 settings", name: "🔨 Settings:  세팅 관련 커밋" },
+    { value: "🔨 settings", name: "🔨 Settings: 세팅 관련 커밋" },
   ],
 
   allowCustomScopes: false,
