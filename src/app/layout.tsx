@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import RadixThemeProvider from "@/provider/RadixThemeProvider";
-import ReactQueryClientProvider from "@/provider/ReactQueryClientProvider";
+import ReactQueryProvider from "@/provider/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={inter.className}>
-        <ReactQueryClientProvider>
+        <ReactQueryProvider>
           <RadixThemeProvider>{children}</RadixThemeProvider>
-        </ReactQueryClientProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
