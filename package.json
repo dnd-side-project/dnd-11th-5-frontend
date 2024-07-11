@@ -9,9 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "cz": "cz",
-    "formatting": "prettier --write '**/*.{ts,tsx}' --ignore-unknown",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "formatting": "prettier --write '**/*.{ts,tsx}' --ignore-unknown"
   },
   "dependencies": {
     "@radix-ui/themes": "^3.1.1",
@@ -24,16 +22,6 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.6.1",
-    "@storybook/addon-console": "^3.0.0",
-    "@storybook/addon-essentials": "^8.1.11",
-    "@storybook/addon-interactions": "^8.1.11",
-    "@storybook/addon-links": "^8.1.11",
-    "@storybook/addon-onboarding": "^8.1.11",
-    "@storybook/blocks": "^8.1.11",
-    "@storybook/nextjs": "^8.1.11",
-    "@storybook/react": "^8.1.11",
-    "@storybook/test": "^8.1.11",
     "@tanstack/eslint-plugin-query": "^5.50.1",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -48,13 +36,11 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-unused-imports": "^4.0.0",
     "husky": "^9.0.11",
     "postcss": "^8",
     "prettier": "^3.3.2",
-    "storybook": "^8.1.11",
     "tailwindcss": "^3.4.4",
     "typescript": "^5"
   },

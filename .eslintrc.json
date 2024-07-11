@@ -2,8 +2,6 @@
   "plugins": ["unused-imports"],
   "extends": [
     "next/core-web-vitals",
-    "plugin:storybook/recommended",
-    "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended"
