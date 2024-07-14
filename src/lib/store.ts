@@ -1,6 +1,4 @@
 /*eslint no-unused-vars: "off"*/
-
-import { v4 as uuid } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -36,7 +34,7 @@ export const useTaskStore = create<State & Actions>()(
         set((state) => ({
           tasks: [
             ...state.tasks,
-            { id: uuid(), title, description, status: Status.TODO },
+            { id: String(new Date()), title, description, status: Status.TODO },
           ],
         })),
       dragTask: (id: string | null) => set({ draggedTask: id }),
