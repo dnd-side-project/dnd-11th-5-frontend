@@ -1,0 +1,75 @@
+/*eslint no-unused-vars: "off"*/
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+export enum Status {
+  TODO = "TODO",
+  DONE = "DONE",
+}
+
+export type Task = {
+  id: string;
+  title: string;
+  description?: string;
+  status: Status;
+};
+
+export type State = {
+  tasks: Task[];
+  draggedTask: string | null;
+};
+
+export type Actions = {
+  addTask: (title: string, description?: string) => void;
+  removeTask: (id: string) => void;
+  updateTask: (title: string, status: Status) => void;
+};
+
+export const usePersistTaskStore = create<State & Actions>()(
+  persist(
+    (set) => ({
+      tasks: [],
+      draggedTask: null,
+      addTask: (title: string, description?: string) =>
+        set((state) => ({
+          tasks: [
+            ...state.tasks,
+            { id: String(new Date()), title, description, status: Status.TODO },
+          ],
+        })),
+      removeTask: (id: string) =>
+        set((state) => ({
+          tasks: state.tasks.filter((task) => task.id !== id),
+        })),
+      updateTask: (id: string, status: Status) =>
+        set((state) => ({
+          tasks: state.tasks.map((task) =>
+            task.id === id ? { ...task, status } : task,
+          ),
+        })),
+    }),
+    { name: "task-store", skipHydration: true },
+  ),
+);
+
+export const useTaskStore = create<State & Actions>()((set) => ({
+  tasks: [],
+  draggedTask: null,
+  addTask: (title: string, description?: string) =>
+    set((state) => ({
+      tasks: [
+        ...state.tasks,
+        { id: String(new Date()), title, description, status: Status.TODO },
+      ],
+    })),
+  removeTask: (id: string) =>
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== id),
+    })),
+  updateTask: (id: string, status: Status) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === id ? { ...task, status } : task,
+      ),
+    })),
+}));
