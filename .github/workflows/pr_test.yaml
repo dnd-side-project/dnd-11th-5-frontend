@@ -1,0 +1,12 @@
+name: "PR Test"
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [main]
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yaml
+    with:
+      NODE_VERSION: 20.x
