@@ -3,7 +3,7 @@ name: "PR Test"
 on:
   pull_request:
     types: [opened, reopened]
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   build:
