@@ -23,6 +23,7 @@ const Link = ({
     <NM.Link asChild active={isActive}>
       <NextLink
         href={href}
+        prefetch
         className={` ${isActive ? "text-red-600" : ""}`}
         {...props}
       />
