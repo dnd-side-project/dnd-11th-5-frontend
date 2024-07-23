@@ -31,11 +31,8 @@ const Link = ({
 };
 
 const MobileBottomNavBar = () => {
-  const pathname = usePathname();
-  console.log(pathname);
-
   return (
-    <NM.Root className="items-between fixed bottom-0 flex min-h-[50px] w-full max-w-screen-m-lg flex-col justify-center bg-slate-400 px-4">
+    <NM.Root className="items-between fixed bottom-0 flex min-h-btm-nav-bar w-full max-w-screen-m-lg flex-col justify-center bg-slate-400 px-4">
       <NM.List className="flex h-full w-full items-center justify-between">
         {navigations.map((nav) => (
           <NM.Item key={nav.name}>

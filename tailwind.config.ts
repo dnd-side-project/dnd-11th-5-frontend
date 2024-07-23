@@ -16,10 +16,16 @@ const config: Config = {
       "m-lg": "450px",
     },
     extend: {
+      margin: {
+        "btm-nav-bar": "50px",
+      },
       minWidth: {
         "m-sm": "320px",
         "m-md": "375px",
         "m-lg": "450px",
+      },
+      minHeight: {
+        "btm-nav-bar": "50px",
       },
     },
   },
