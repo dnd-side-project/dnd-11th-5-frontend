@@ -1,5 +1,3 @@
-import React from "react";
-
 import MobileBottomNavBar from "./MobileBottomNavBar";
 
 const MobileLayout = ({ children }: { children: React.ReactNode }) => {
