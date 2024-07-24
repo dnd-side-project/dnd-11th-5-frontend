@@ -4,7 +4,8 @@ import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import MobileLayout from "@/layout/Mobile/MobileLayout";
+import ReactQueryProvider from "@/lib/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+    <html lang="ko">
+      <body className={`${inter.className}`} suppressHydrationWarning>
+        <ReactQueryProvider>
+          <MobileLayout>{children}</MobileLayout>
+        </ReactQueryProvider>
       </body>
     </html>
   );

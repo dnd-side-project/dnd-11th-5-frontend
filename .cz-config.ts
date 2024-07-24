@@ -1,3 +1,5 @@
+// https://kjm99d.tistory.com/20
+
 module.exports = {
   types: [
     { value: "✨ feat", name: "✨ feat:     새로운 기능 추가" },
@@ -10,6 +12,10 @@ module.exports = {
     {
       value: "♻️ refactor",
       name: "♻️ refactor:  버그 수정이나 새로운 기능 추가가 아닌 코드 변경",
+    },
+    {
+      value: "👷 cicd",
+      name: "👷 cicd:     CICD 관련 수정",
     },
     {
       value: "⚡️ perf",
