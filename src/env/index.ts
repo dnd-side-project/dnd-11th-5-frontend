@@ -1,23 +1,24 @@
 // https://env.t3.gg/docs/nextjs
 
 import { createEnv } from "@t3-oss/env-nextjs";
-import { ZodError } from "zod";
+import { z, ZodError } from "zod";
 
 export const env = createEnv({
-  server: {},
+  server: {
+    NEXT_AUTH_SECRET: z.string().base64("NEXT_AUTH_SECRET Should be Base64"),
+  },
 
   client: {
     // NEXT_PUBLIC_twitterUrl: z.string().min(1),
   },
 
   runtimeEnv: {
-    // NEXT_PUBLIC_twitterUrl: process.env.twitterUrl,
+    NEXT_AUTH_SECRET: process.env.NEXT_AUTH_SECRET,
   },
 
   onValidationError: (error: ZodError) => {
-    console.error(
-      "❌ 유효하지 않은 환경변수들 입니다:",
-      error.flatten().fieldErrors,
+    error.issues.forEach((v) =>
+      console.error("환경변수 유효성 검사 에러메시지 :", v.message),
     );
     throw new Error("Invalid environment variables");
   },
