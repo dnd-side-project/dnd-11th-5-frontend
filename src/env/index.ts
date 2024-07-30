@@ -5,7 +5,9 @@ import { z, ZodError } from "zod";
 
 export const env = createEnv({
   server: {
-    NEXT_AUTH_SECRET: z.string().base64("NEXT_AUTH_SECRET Should be Base64"),
+    AUTH_SECRET: z.string().base64("AUTH_SECRET should be base64"),
+    AUTH_KAKAO_ID: z.string(),
+    AUTH_KAKAO_SECRET: z.string().base64("AUTH_KAKAO_SECRET should be base64"),
   },
 
   client: {
@@ -13,14 +15,16 @@ export const env = createEnv({
   },
 
   runtimeEnv: {
-    NEXT_AUTH_SECRET: process.env.NEXT_AUTH_SECRET,
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    AUTH_KAKAO_ID: process.env.AUTH_KAKAO_ID,
+    AUTH_KAKAO_SECRET: process.env.AUTH_KAKAO_SECRET,
   },
 
   onValidationError: (error: ZodError) => {
-    error.issues.forEach((v) =>
-      console.error("환경변수 유효성 검사 에러메시지 :", v.message),
+    console.table(
+      error.issues.map((v) => ({ name: v.path[0], message: v.message })),
     );
-    throw new Error("Invalid environment variables");
+    throw new Error("환경변수 유효성 검사 에러");
   },
   // Called when server variables are accessed on the client.
   onInvalidAccess: (variable: string) => {
