@@ -13,7 +13,14 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
-  staticDirs: ["../public", "../src/app/layout"],
+  // TODO: 폰트가 먹여졌는지 의문
+  staticDirs: [
+    "../public",
+    {
+      from: "../src/app/fonts",
+      to: "src/app/fonts",
+    },
+  ],
   features: {
     experimentalRSC: true,
   },
