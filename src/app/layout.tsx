@@ -1,10 +1,12 @@
 import "../styles/reset.css";
+import "@radix-ui/themes/styles.css";
 import "../styles/globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
+import RadixThemeProvider from "@/lib/RadixThemeProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +25,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${inter.className}`} suppressHydrationWarning>
         <ReactQueryProvider>
-          <MobileLayout>{children}</MobileLayout>
+          <RadixThemeProvider>
+            <MobileLayout>{children}</MobileLayout>
+          </RadixThemeProvider>
         </ReactQueryProvider>
       </body>
     </html>

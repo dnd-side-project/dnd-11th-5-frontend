@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color-01: #8478ff;
+  --primary-color-02: #9b91fa;
+  --primary-color-03: #9b91fa;
+  --primary-color-04: #e4e1ff;
+  --primary-color-05: #edebfe;
+  --gray-scale-0: #ffffff;
+  --gray-scale-50: #fafafa;
+  --gray-scale-100: #f5f5f5;
+  --gray-scale-200: #e5e5e5;
+  --gray-scale-300: #d4d4d4;
+  --gray-scale-400: #a3a3a3;
+  --gray-scale-500: #737373;
+  --gray-scale-600: #525252;
+  --gray-scale-700: #404040;
+  --gray-scale-800: #262626;
+  --gray-scale-900: #171717;
+  --secondary-color-pink: #ffafed;
+  --secondary-color-orange: #ff7e6a;
+  --secondary-color-yellow: #ffe88a;
+  --secondary-color-green: #aafacf;
+  --secondary-color-blue: #a1ddff;
+  --secondary-color-pink-bg: #ffeffb;
+  --secondary-color-orange-bg: #fff1ef;
+  --secondary-color-yellow-bg: #fffcee;
+  --secondary-color-green-bg: #e2ffef;
+  --secondary-color-blue-bg: #e5f4fe;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
