@@ -17,7 +17,6 @@ const config: Config = {
     },
     extend: {
       colors: {
-        "primary-color": "var(--primary-color)",
         "primary-color-01": "var(--primary-color-01)",
         "primary-color-02": "var(--primary-color-02)",
         "primary-color-03": "var(--primary-color-03)",
