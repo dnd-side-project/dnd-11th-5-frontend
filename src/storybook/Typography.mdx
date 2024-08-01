@@ -1,0 +1,185 @@
+import { Meta, Typeset } from "@storybook/blocks";
+
+<Meta title="Typography" />
+
+export const typography = {
+  type: {
+    primary: 'Pretendard, "Helvetica Neue", Helvetica, Arial, sans-serif',
+  },
+  weight: {
+    regular: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
+  },
+  size: {
+    s1: 10,
+    s2: 11,
+    s3: 12,
+    m1: 14,
+    m2: 16,
+    m3: 18,
+    l1: 20,
+    l2: 24,
+  },
+};
+
+export const SampleText = "The quick brown fox jumps over the lazy dog";
+
+# Typography
+
+**Font:** Pretendard
+
+**Weights:** 400(regular), 500(medium), 600(semibold), 700(bold)
+
+## Label / semibold
+
+<Typeset
+  fontSizes={[Number(typography.size.m3)]}
+  fontWeight={typography.weight.semibold}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+## Title / bold
+
+<Typeset
+  fontSizes={[Number(typography.size.l1), Number(typography.size.l2)]}
+  fontWeight={typography.weight.bold}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## SubTitle / medium semibold bold
+
+<Typeset
+  fontSizes={[Number(typography.size.m2)]}
+  fontWeight={typography.weight.medium}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m2)]}
+  fontWeight={typography.weight.semibold}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m2)]}
+  fontWeight={typography.weight.bold}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Body 1 / regular medium
+
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m2)]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={typography.weight.medium}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Body 2 / regular medium semibold bold
+
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.regular]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.medium]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.semibold]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.bold]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Caption 1 / regular medium
+
+<Typeset
+  fontSizes={[Number(typography.size.s3)]}
+  fontWeight={[typography.weight.regular]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.s3)]}
+  fontWeight={[typography.weight.medium]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Caption 1 / medium-small, medium-na, ( medium )
+
+<Typeset
+  fontSizes={[Number(typography.size.s1), Number(typography.size.s2)]}
+  fontWeight={[typography.weight.medium]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Caption 2 / regular medium
+
+<Typeset
+  fontSizes={[Number(typography.size.s1)]}
+  fontWeight={[typography.weight.regular]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.regular]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.medium]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+
+## Button 1 / regular medium semibold
+
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.regular]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m1)]}
+  fontWeight={[typography.weight.medium]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={[Number(typography.size.m2)]}
+  fontWeight={[typography.weight.semibold]}
+  sampleText={SampleText}
+  fontFamily={typography.type.primary}
+/>
