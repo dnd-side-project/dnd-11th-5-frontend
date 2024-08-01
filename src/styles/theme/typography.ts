@@ -3,7 +3,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "18px",
     OPTIONS: {
       fontWeight: 600,
-      lineHeight: "18px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -11,7 +11,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "20px",
     OPTIONS: {
       fontWeight: 700,
-      lineHeight: "20px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -19,7 +19,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "16px",
     OPTIONS: {
       fontWeight: 700,
-      lineHeight: "16px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -27,7 +27,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "16px",
     OPTIONS: {
       fontWeight: 600,
-      lineHeight: "16px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -35,7 +35,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "16px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "16px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -43,7 +43,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "16px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "16px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -51,7 +51,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 400,
-      lineHeight: "24px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -59,7 +59,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -67,7 +67,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 400,
-      lineHeight: "20px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -75,7 +75,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 600,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -83,7 +83,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 700,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -91,7 +91,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "12px",
     OPTIONS: {
       fontWeight: 400,
-      lineHeight: "12px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -99,7 +99,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "12px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "12px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -107,7 +107,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "11px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "11px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -115,7 +115,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "10px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "10px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -123,7 +123,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 400,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -131,7 +131,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -139,7 +139,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "16px",
     OPTIONS: {
       fontWeight: 600,
-      lineHeight: "16px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -147,7 +147,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 500,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
@@ -155,7 +155,7 @@ export const TYPOGRAPHY = {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 400,
-      lineHeight: "14px",
+      lineHeight: "1.5",
       letterSpacing: "0",
     },
   },
