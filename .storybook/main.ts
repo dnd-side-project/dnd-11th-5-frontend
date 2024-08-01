@@ -13,10 +13,16 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
+  // TODO: 폰트가 먹여졌는지 의문
   staticDirs: ["../public"],
-
+  features: {
+    experimentalRSC: true,
+  },
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
+  previewHead: (head) => `
+    ${head}'<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />'
+  `,
 };
 export default config;

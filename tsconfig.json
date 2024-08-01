@@ -19,9 +19,17 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@env": ["./src/env/index.ts"]
+      "@env": ["./src/env/index.ts"],
+      "@font": ["./src/app/fonts/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "include",
+    ".storybook/*.{tsx, ts}"
+  ],
   "exclude": ["node_modules"]
 }

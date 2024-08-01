@@ -1,15 +1,16 @@
-import "../styles/reset.css";
 import "@radix-ui/themes/styles.css";
 import "../styles/globals.css";
+import "../styles/reset.css";
+import "../styles/theme.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import RadixThemeProvider from "@/lib/RadixThemeProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
+import { cn } from "@/utils/cn";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Pretendard } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`${inter.className}`} suppressHydrationWarning>
+    <html lang="ko" className={Pretendard.variable}>
+      <body className={cn(Pretendard.className)} suppressHydrationWarning>
         <ReactQueryProvider>
           <RadixThemeProvider>
             <MobileLayout>{children}</MobileLayout>

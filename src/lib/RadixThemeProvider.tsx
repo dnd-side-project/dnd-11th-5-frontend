@@ -1,11 +1,14 @@
 "use client";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme, ThemeProps } from "@radix-ui/themes";
+import { PropsWithChildren } from "react";
 
-function RadixThemeProvider({ children }: React.PropsWithChildren) {
+interface Props extends ThemeProps, PropsWithChildren {}
+
+function RadixThemeProvider({ children, ...props }: Props) {
   return (
-    <Theme>
+    <Theme {...props}>
       {children}
-      <ThemePanel />
+      {/* <ThemePanel /> */}
     </Theme>
   );
 }
