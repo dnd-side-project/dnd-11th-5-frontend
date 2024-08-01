@@ -15,6 +15,11 @@ const meta: Meta<typeof SquareTabButton> = {
         type: "boolean",
       },
     },
+    label: {
+      control: {
+        type: "text",
+      },
+    },
   },
 };
 
@@ -24,5 +29,6 @@ type Story = StoryObj<typeof meta>;
 export const Typographys: Story = {
   args: {
     active: false,
+    label: "Text",
   },
 };
