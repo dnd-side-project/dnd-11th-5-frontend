@@ -16,8 +16,7 @@ const preview: Preview = {
     },
     decorators: [
       (Story) => (
-        // TODO: 스토리북 전체에 폰트적용이 안됨. 방법을 찾아야함
-        <div className={cn(Pretendard.variable, "font-pretendard")}>
+        <div>
           <Story />
         </div>
       ),
