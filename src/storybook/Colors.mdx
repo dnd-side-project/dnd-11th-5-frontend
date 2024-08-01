@@ -1,0 +1,83 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs";
+
+<Meta title="Colors" />
+
+export const COLORS = {
+  PRIMARY_01: "#8478ff",
+  PRIMARY_02: "#9b91fa",
+  PRIMARY_03: "#9b91fa",
+  PRIMARY_04: "#e4e1ff",
+  PRIMARY_05: "#edebfe",
+  GRAY_SCALE_0: "#ffffff",
+  GRAY_SCALE_50: "#fafafa",
+  GRAY_SCALE_100: "#f5f5f5",
+  GRAY_SCALE_200: "#e5e5e5",
+  GRAY_SCALE_300: "#d4d4d4",
+  GRAY_SCALE_400: "#a3a3a3",
+  GRAY_SCALE_500: "#737373",
+  GRAY_SCALE_600: "#525252",
+  GRAY_SCALE_700: "#404040",
+  GRAY_SCALE_800: "#262626",
+  GRAY_SCALE_900: "#171717",
+  GRAY_SCALE_900_OPACITY_50: "rgba(23, 23, 23, 0.5)",
+  SECONDARY_PINK: "#ffafed",
+  SECONDARY_ORANGE: "#ff7e6a",
+  SECONDARY_YELLOW: "#ffe88a",
+  SECONDARY_GREEN: "#aafacf",
+  SECONDARY_BLUE: "#a1ddff",
+  SECONDARY_PINK_BG: "#ffeffb",
+  SECONDARY_ORANGE_BG: "#fff1ef",
+  SECONDARY_YELLOW_BG: "#fffcee",
+  SECONDARY_GREEN_BG: "#e2ffef",
+  SECONDARY_BLUE_BG: "#e5f4fe",
+};
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    colors={{
+      "01": COLORS.PRIMARY_01,
+      "02": COLORS.PRIMARY_02,
+      "03": COLORS.PRIMARY_03,
+      "04": COLORS.PRIMARY_04,
+      "05": COLORS.PRIMARY_05,
+    }}
+  />
+  <ColorItem
+    title="Greyscale"
+    colors={{
+      "0": COLORS.GRAY_SCALE_0,
+      "50": COLORS.GRAY_SCALE_50,
+      "100": COLORS.GRAY_SCALE_100,
+      "200": COLORS.GRAY_SCALE_200,
+      "300": COLORS.GRAY_SCALE_300,
+      "400": COLORS.GRAY_SCALE_400,
+      "500": COLORS.GRAY_SCALE_500,
+      "600": COLORS.GRAY_SCALE_600,
+      "700": COLORS.GRAY_SCALE_700,
+      "800": COLORS.GRAY_SCALE_800,
+      "900": COLORS.GRAY_SCALE_900,
+      "900-50%": COLORS.GRAY_SCALE_900_OPACITY_50,
+    }}
+  />
+  <ColorItem
+    title="Secondary Character"
+    colors={{
+      PINK: COLORS.SECONDARY_PINK,
+      ORANGE: COLORS.SECONDARY_ORANGE,
+      YELLOW: COLORS.SECONDARY_YELLOW,
+      GREEN: COLORS.SECONDARY_GREEN,
+      BLUE: COLORS.SECONDARY_BLUE,
+    }}
+  />
+  <ColorItem
+    title="Secondary Character Background"
+    colors={{
+      PINK_BG: COLORS.SECONDARY_PINK_BG,
+      ORANGE_BG: COLORS.SECONDARY_ORANGE_BG,
+      YELLOW_BG: COLORS.SECONDARY_YELLOW_BG,
+      GREEN_BG: COLORS.SECONDARY_GREEN_BG,
+      BLUE_BG: COLORS.SECONDARY_BLUE_BG,
+    }}
+  />
+</ColorPalette>
