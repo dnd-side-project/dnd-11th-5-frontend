@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import RegisterButton from "./RegisterButton";
 
 const meta: Meta<typeof RegisterButton> = {
-  title: "Button/RegisterButton",
+  title: "Core/Button/RegisterButton",
   component: RegisterButton,
   parameters: {
     layout: "centered",

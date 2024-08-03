@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import KakaoButton from "./KakaoButton";
 
 const meta: Meta<typeof KakaoButton> = {
-  title: "Button/KakaoButton",
+  title: "Core/Button/KakaoButton",
   component: KakaoButton,
   parameters: {
     layout: "centered",

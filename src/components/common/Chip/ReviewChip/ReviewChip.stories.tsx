@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import ReviewChip from "./ReviewChip";
 
 const meta: Meta<typeof ReviewChip> = {
-  title: "Chip/ReviewChip",
+  title: "Core/Chip/ReviewChip",
   component: ReviewChip,
   parameters: {
     layout: "centered",

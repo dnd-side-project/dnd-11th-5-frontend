@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import RectangleTabButton from "./RectangleTabButton";
 
 const meta: Meta<typeof RectangleTabButton> = {
-  title: "Button/RectangleTabButton",
+  title: "Core/Button/RectangleTabButton",
   component: RectangleTabButton,
   parameters: {
     layout: "centered",

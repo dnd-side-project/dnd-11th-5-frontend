@@ -5,7 +5,7 @@ import { CameraIcon } from "@/components/icons";
 import IconButton from "./IconButton";
 
 const meta: Meta<typeof IconButton> = {
-  title: "Button/IconButton",
+  title: "Core/Button/IconButton",
   component: IconButton,
   parameters: {
     layout: "centered",

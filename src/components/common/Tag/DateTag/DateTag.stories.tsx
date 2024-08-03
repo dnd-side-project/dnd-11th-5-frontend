@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import DateTag from "./DateTag";
 
 const meta: Meta<typeof DateTag> = {
-  title: "Tag/DateTag",
+  title: "Core/Tag/DateTag",
   component: DateTag,
   parameters: {
     layout: "centered",

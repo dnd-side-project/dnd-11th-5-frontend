@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import ReviewTag from "./ReviewTag";
 
 const meta: Meta<typeof ReviewTag> = {
-  title: "Tag/ReviewTag",
+  title: "Core/Tag/ReviewTag",
   component: ReviewTag,
   parameters: {
     layout: "centered",

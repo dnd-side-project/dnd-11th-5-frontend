@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import RecommedFestivalTag from "./RecommedFestivalTag";
 
 const meta: Meta<typeof RecommedFestivalTag> = {
-  title: "Tag/RecommedFestivalTag",
+  title: "Core/Tag/RecommedFestivalTag",
   component: RecommedFestivalTag,
   parameters: {
     layout: "centered",
