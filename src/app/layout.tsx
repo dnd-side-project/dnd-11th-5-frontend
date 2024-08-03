@@ -1,12 +1,9 @@
-import "@radix-ui/themes/styles.css";
 import "../styles/globals.css";
 import "../styles/reset.css";
-import "../styles/theme.css";
 
 import type { Metadata } from "next";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
-import RadixThemeProvider from "@/lib/RadixThemeProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 import { cn } from "@/utils/cn";
 
@@ -26,9 +23,7 @@ export default function RootLayout({
     <html lang="ko" className={Pretendard.variable}>
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
         <ReactQueryProvider>
-          <RadixThemeProvider>
-            <MobileLayout>{children}</MobileLayout>
-          </RadixThemeProvider>
+          <MobileLayout>{children}</MobileLayout>
         </ReactQueryProvider>
       </body>
     </html>
