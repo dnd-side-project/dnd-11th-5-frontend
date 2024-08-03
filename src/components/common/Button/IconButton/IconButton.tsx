@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 
 export interface Props
   extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
-  active: boolean;
+  active?: boolean;
   icon: React.ReactNode;
 }
 
