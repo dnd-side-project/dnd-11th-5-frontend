@@ -35,7 +35,9 @@ const ZustnadExample = () => {
 
   return (
     <div className="w-full">
-      <span className={`mb-4 px-4 py-2 text-lg font-bold`}>TODO List</span>
+      <span className={`mb-4 px-4 py-2 text-title-bold font-bold`}>
+        TODO List
+      </span>
       <div className={`space-y-2`}>
         <div className={`flex items-center space-x-2`}>
           <input
