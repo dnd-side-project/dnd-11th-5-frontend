@@ -50,6 +50,7 @@ const config: Config = {
         "secondary-yellow-bg": COLORS.SECONDARY_YELLOW_BG,
         "secondary-green-bg": COLORS.SECONDARY_GREEN_BG,
         "secondary-blue-bg": COLORS.SECONDARY_BLUE_BG,
+        kakao: "#FEE500",
       },
       margin: {
         "btm-nav-bar": "50px",

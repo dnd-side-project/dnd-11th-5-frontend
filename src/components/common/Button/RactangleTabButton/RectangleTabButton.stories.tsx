@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SquareTabButton from "./SquareTabButton";
+import RectangleTabButton from "./RectangleTabButton";
 
-const meta: Meta<typeof SquareTabButton> = {
-  title: "SquareTabButton",
-  component: SquareTabButton,
+const meta: Meta<typeof RectangleTabButton> = {
+  title: "Button/RectangleTabButton",
+  component: RectangleTabButton,
   parameters: {
     layout: "centered",
   },
@@ -26,9 +26,9 @@ const meta: Meta<typeof SquareTabButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Typographys: Story = {
+export const Rectangle: Story = {
   args: {
     active: false,
-    label: "Text",
+    label: "✅ Text",
   },
 };

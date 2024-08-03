@@ -1,16 +1,16 @@
-import { Button, ButtonProps } from "@radix-ui/themes";
-import { FC } from "react";
+import { FC, HtmlHTMLAttributes } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props extends Omit<ButtonProps, "children"> {
+export interface Props
+  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
   active: boolean;
   label: string;
 }
 
 const SquareTabButton: FC<Props> = ({ label, active = false, ...props }) => {
   return (
-    <Button
+    <button
       className={cn(
         "w-[108px] h-[108px] duration-300 rounded-[8px]",
         "flex flex-col items-center justify-center gap-[12px]",
@@ -28,7 +28,7 @@ const SquareTabButton: FC<Props> = ({ label, active = false, ...props }) => {
       <span className="max-w-[90px] truncate text-button2-medium text-gray-scale-700">
         {label}
       </span>
-    </Button>
+    </button>
   );
 };
 
