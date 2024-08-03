@@ -1,7 +1,17 @@
 import type { StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
-  staticDirs: ["../public"],
+  staticDirs: [
+    "../public",
+    {
+      from: "../public/images",
+      to: "/public/images",
+    },
+    {
+      from: "../public/fonts",
+      to: "/public/fonts",
+    },
+  ],
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-onboarding",
@@ -20,10 +30,6 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
-  previewHead: (head) => `
-  ${head}
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-`,
   webpackFinal: async (config) => {
     config.module?.rules?.forEach((rule) => {
       if (
