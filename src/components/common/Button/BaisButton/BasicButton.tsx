@@ -8,7 +8,7 @@ export interface Props
   label: string;
 }
 
-const SquareTabButton: FC<Props> = ({ label, active = false, ...props }) => {
+const BasicButton: FC<Props> = ({ label, active = false, ...props }) => {
   return (
     <button
       className={cn(
@@ -27,4 +27,4 @@ const SquareTabButton: FC<Props> = ({ label, active = false, ...props }) => {
   );
 };
 
-export default SquareTabButton;
+export default BasicButton;
