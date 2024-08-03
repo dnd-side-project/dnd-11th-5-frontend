@@ -6,6 +6,9 @@ import "../src/styles/theme.css";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "dark",
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
