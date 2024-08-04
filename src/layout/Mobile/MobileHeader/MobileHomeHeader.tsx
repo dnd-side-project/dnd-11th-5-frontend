@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 
 import { AlarmIcon, CameraIcon, SearchIcon } from "../../../components/icons";
@@ -6,7 +8,7 @@ interface Props {}
 
 const MobileHomeHeader: FC<Props> = ({}) => {
   return (
-    <header className="flex h-[44px] w-full items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900">
+    <header className="fixed top-0 flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
       <button type="button" onClick={() => {}}>
         <CameraIcon width={24} height={24} />
       </button>

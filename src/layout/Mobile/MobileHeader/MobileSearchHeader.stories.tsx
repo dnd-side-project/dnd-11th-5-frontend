@@ -10,13 +10,7 @@ const meta: Meta<typeof MobileSearchHeader> = {
     layout: "centered",
   },
 
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
@@ -28,7 +22,5 @@ export const Default: Story = {
       <MobileSearchHeader {...args} />
     </div>
   ),
-  args: {
-    label: "TEXT",
-  },
+  args: {},
 };
