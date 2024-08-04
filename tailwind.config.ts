@@ -14,9 +14,9 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      "m-sm": "320px",
-      "m-md": "375px",
-      "m-lg": "450px",
+      sm: "320px",
+      md: "375px",
+      lg: "450px",
     },
     fontSize: {
       "2xs": "10px",
