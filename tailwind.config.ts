@@ -84,8 +84,8 @@ const config: Config = {
           TYPOGRAPHY.SUBTITLE_SEMIBOLD.OPTIONS,
         ],
         "subtitle-medium": [
-          TYPOGRAPHY.SUBTITLE_BOLD.FONT_SIZE,
-          TYPOGRAPHY.SUBTITLE_BOLD.OPTIONS,
+          TYPOGRAPHY.SUBTITLE_MEDIUM.FONT_SIZE,
+          TYPOGRAPHY.SUBTITLE_MEDIUM.OPTIONS,
         ],
         "body1-medium": [
           TYPOGRAPHY.BODY1_MEDIUM.FONT_SIZE,
