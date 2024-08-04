@@ -16,5 +16,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SearchHistory: Story = {
+  render: (args) => (
+    <div className="flex w-[360px] items-center justify-center">
+      <SearchInput {...args} />
+    </div>
+  ),
   args: {},
 };
