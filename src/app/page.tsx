@@ -1,13 +1,14 @@
+import MobileHomeHeader from "@/layout/Mobile/MobileHeader/MobileHomeHeader";
+import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
+
+import HomeView from "./view";
+
 export default function Home() {
   return (
-    <main className="text-2xl flex flex-wrap gap-4 bg-indigo-300">
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-      <div className="h-[100px] w-full bg-red-200"></div>
-    </main>
+    <div className="mb-[60px] mt-[44px]">
+      <MobileHomeHeader />
+      <HomeView />
+      <NavigationBar />
+    </div>
   );
 }

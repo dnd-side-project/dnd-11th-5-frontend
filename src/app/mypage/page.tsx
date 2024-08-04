@@ -1,7 +1,12 @@
-import React from "react";
+import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
 
-const page = () => {
-  return <main className="bg-blue-400 text-title-bold">mypage</main>;
-};
+import MyPageView from "./view";
 
-export default page;
+export default function Map() {
+  return (
+    <div className="mb-[60px] ">
+      <MyPageView />
+      <NavigationBar />
+    </div>
+  );
+}
