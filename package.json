@@ -39,6 +39,7 @@
     "@storybook/nextjs": "^8.2.6",
     "@storybook/react": "^8.2.6",
     "@storybook/test": "^8.2.6",
+    "@svgr/webpack": "^8.1.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tanstack/eslint-plugin-query": "^5.50.1",
     "@types/node": "^20",

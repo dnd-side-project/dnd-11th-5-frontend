@@ -19,12 +19,11 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@env": ["./src/env/index.ts"],
       "@font": ["./src/app/fonts/index.ts"]
     }
   },
   "include": [
-    "next-env.d.ts",
+    "./types/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
