@@ -12,15 +12,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.NODE_VERSION }}
           cache: "pnpm"
+          cache-dependency-path: "**/pnpm-lock.yaml"
 
       - name: Install dependencies
-        run: |
-          pnpm install
+        run: pnpm install
       - name: build
-        run: |
-          pnpm run build
+        run: pnpm run build
