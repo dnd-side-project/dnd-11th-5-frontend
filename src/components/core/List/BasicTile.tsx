@@ -18,7 +18,7 @@ const BasicTile: FC<Props> = ({ active, label, ...props }) => {
         "flex items-center justify-center",
         active
           ? "border-[1px] border-primary-01 bg-primary-05"
-          : "bg-gray-scale-50",
+          : "bg-gray-scale-50 text-gray-scale-600",
         props.className,
       )}
       {...props}
