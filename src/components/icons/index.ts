@@ -9,6 +9,7 @@ export { default as CalendarCheckIcon } from "./CALENDAR_CHECK_ICON.svg";
 export { default as CameraIcon } from "./CAMERA_ICON.svg";
 export { default as ChatBubbleDotsIcon } from "./CHAT_BUBBLE_DOTS_ICON.svg";
 export { default as ChatBubbleIcon } from "./CHAT_BUBBLE_ICON.svg";
+export { default as CheckCircleIcon } from "./CHECK_CIRCLE_ICON.svg";
 export { default as CheckIcon } from "./CHECK_ICON.svg";
 export { default as ClockIcon } from "./CLOCK_ICON.svg";
 export { default as DotsIcon } from "./DOTS_ICON.svg";
