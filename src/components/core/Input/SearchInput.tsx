@@ -14,13 +14,8 @@ const SearchInput: FC<Props> = ({ onClick, ...props }) => {
         placeholder={props.placeholder ?? "페스티벌 명, 키워드 검색"}
         {...props}
       />
-      <button type="button">
-        <SearchIcon
-          width={20}
-          height={20}
-          className="text-primary-01"
-          onClick={onClick}
-        />
+      <button type="button" onClick={onClick}>
+        <SearchIcon width={20} height={20} className="text-primary-01" />
       </button>
     </div>
   );

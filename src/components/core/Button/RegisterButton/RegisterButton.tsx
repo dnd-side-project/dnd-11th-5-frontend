@@ -1,15 +1,15 @@
-import { FC, HtmlHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 import { PlusIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 export interface Props
-  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   icon?: React.ReactElement;
   label: string;
 }
 
-const SquareTabButton: FC<Props> = ({ label, icon, ...props }) => {
+const RegistorButton: FC<Props> = ({ label, icon, ...props }) => {
   return (
     <button
       className={cn(
@@ -26,4 +26,4 @@ const SquareTabButton: FC<Props> = ({ label, icon, ...props }) => {
   );
 };
 
-export default SquareTabButton;
+export default RegistorButton;
