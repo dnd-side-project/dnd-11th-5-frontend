@@ -1,8 +1,8 @@
-import { FC, HtmlHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-interface Props extends HtmlHTMLAttributes<HTMLDivElement> {}
+interface Props extends ButtonHTMLAttributes<HTMLDivElement> {}
 
 const MobileLayout: FC<Props> = ({ ...props }) => {
   return (

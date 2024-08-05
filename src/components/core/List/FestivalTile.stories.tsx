@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 
-import { HeartIcon } from "@/components/icons";
+import { ScrapIcon } from "@/components/icons";
 
 import IconButton from "../Button/IconButton/IconButton";
 import DateTag from "../Tag/DateTag/DateTag";
@@ -61,7 +60,7 @@ export const UnScrabedFestivalTile: Story = {
       dday: "D-2",
     },
     icon: (
-      <IconButton active={false} icon={<HeartIcon width={24} height={24} />} />
+      <IconButton active={false} icon={<ScrapIcon width={24} height={24} />} />
     ),
   },
 };
@@ -81,7 +80,7 @@ export const ScrabedFestivalTile: Story = {
       dday: "D-2",
     },
     icon: (
-      <IconButton active={true} icon={<HeartIcon width={24} height={24} />} />
+      <IconButton active={true} icon={<ScrapIcon width={24} height={24} />} />
     ),
   },
 };

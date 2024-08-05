@@ -1,10 +1,10 @@
-import { FC, HtmlHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 import { KakaoIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 export interface Props
-  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   label?: string;
 }
 

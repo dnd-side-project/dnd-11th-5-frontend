@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, HtmlHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
@@ -12,7 +12,7 @@ interface Festival {
 }
 
 export interface Props
-  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   festival: Festival;
   icon: React.ReactNode;
 }

@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { FC } from "react";
 
 // import { X_ICON } from "@/components/icons";
@@ -6,7 +6,7 @@ import { cn } from "@/utils/cn";
 
 export interface Props
   extends Omit<
-    HtmlHTMLAttributes<HTMLButtonElement>,
+    ButtonHTMLAttributes<HTMLButtonElement>,
     "children" | "className"
   > {
   className?: string;

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, HtmlHTMLAttributes } from "react";
+import { FC, HTMLAttributes } from "react";
 
 import Ratings from "@/components/rating/Ratings";
 import { cn } from "@/utils/cn";
@@ -16,7 +16,7 @@ interface FestivalReview {
 }
 
 export interface Props
-  extends Omit<HtmlHTMLAttributes<HTMLDivElement>, "children"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   festivalReview: FestivalReview;
 }
 

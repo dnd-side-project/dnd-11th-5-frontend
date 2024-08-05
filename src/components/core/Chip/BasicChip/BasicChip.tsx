@@ -1,14 +1,14 @@
-import { FC, HtmlHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
 export interface Props
-  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   active?: boolean;
   label: string;
 }
 
-const ReviewChip: FC<Props> = ({ active = false, label, ...props }) => {
+const BasicChip: FC<Props> = ({ active = false, label, ...props }) => {
   return (
     <button
       type="button"
@@ -27,4 +27,4 @@ const ReviewChip: FC<Props> = ({ active = false, label, ...props }) => {
   );
 };
 
-export default ReviewChip;
+export default BasicChip;
