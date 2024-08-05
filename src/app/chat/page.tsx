@@ -1,7 +1,12 @@
-import React from "react";
+import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
 
-const page = () => {
-  return <main className="bg-red-400 text-2xl">chat</main>;
-};
+import ChatView from "./view";
 
-export default page;
+export default function Map() {
+  return (
+    <div className="mb-[60px] ">
+      <ChatView />
+      <NavigationBar />
+    </div>
+  );
+}

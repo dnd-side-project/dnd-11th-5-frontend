@@ -12,11 +12,11 @@ const NavLink = ({
   const isActive = href === pathname;
 
   return (
-    <NM.Link asChild active={isActive}>
+    <NM.Link asChild active={isActive} className="flex flex-col">
       <NextLink
         href={href}
         prefetch
-        className={` ${isActive ? "text-red-600" : ""}`}
+        className={`flex flex-col items-center justify-center gap-[3px] ${isActive ? "text-gray-scale-900" : "text-gray-scale-400"}`}
         {...props}
       />
     </NM.Link>

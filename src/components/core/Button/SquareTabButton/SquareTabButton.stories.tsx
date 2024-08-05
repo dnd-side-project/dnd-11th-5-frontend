@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import SquareTabButton from "./SquareTabButton";
 
 const meta: Meta<typeof SquareTabButton> = {
-  title: "SquareTabButton",
+  title: "Core/Button/SquareTabButton",
   component: SquareTabButton,
   parameters: {
     layout: "centered",
@@ -15,14 +15,20 @@ const meta: Meta<typeof SquareTabButton> = {
         type: "boolean",
       },
     },
+    label: {
+      control: {
+        type: "text",
+      },
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Typographys: Story = {
+export const Square: Story = {
   args: {
     active: false,
+    label: "Text",
   },
 };

@@ -14,9 +14,9 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      "m-sm": "320px",
-      "m-md": "375px",
-      "m-lg": "450px",
+      sm: "320px",
+      md: "375px",
+      lg: "450px",
     },
     fontSize: {
       "2xs": "10px",
@@ -50,6 +50,7 @@ const config: Config = {
         "secondary-yellow-bg": COLORS.SECONDARY_YELLOW_BG,
         "secondary-green-bg": COLORS.SECONDARY_GREEN_BG,
         "secondary-blue-bg": COLORS.SECONDARY_BLUE_BG,
+        kakao: "#FEE500",
       },
       margin: {
         "btm-nav-bar": "50px",
@@ -83,8 +84,8 @@ const config: Config = {
           TYPOGRAPHY.SUBTITLE_SEMIBOLD.OPTIONS,
         ],
         "subtitle-medium": [
-          TYPOGRAPHY.SUBTITLE_BOLD.FONT_SIZE,
-          TYPOGRAPHY.SUBTITLE_BOLD.OPTIONS,
+          TYPOGRAPHY.SUBTITLE_MEDIUM.FONT_SIZE,
+          TYPOGRAPHY.SUBTITLE_MEDIUM.OPTIONS,
         ],
         "body1-medium": [
           TYPOGRAPHY.BODY1_MEDIUM.FONT_SIZE,
@@ -149,6 +150,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix")],
+  plugins: [require("tailwindcss-radix"), require("@tailwindcss/line-clamp")],
 };
 export default config;
