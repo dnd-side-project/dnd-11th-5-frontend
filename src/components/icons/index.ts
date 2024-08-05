@@ -14,6 +14,7 @@ export { default as ClockIcon } from "./CLOCK_ICON.svg";
 export { default as DotsIcon } from "./DOTS_ICON.svg";
 export { default as DownloadIcon } from "./DOWNLOAD_ICON.svg";
 export { default as FilterIcon } from "./FILTER_ICON.svg";
+export { default as HalfStarIcon } from "./HALF_STAR_ICON.svg";
 export { default as HeartIcon } from "./HEART_ICON.svg";
 export { default as HomeIcon } from "./HOME_ICON.svg";
 export { default as KakaoIcon } from "./KAKAO_ICON.svg";
