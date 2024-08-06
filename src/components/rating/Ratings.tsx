@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { StarIcon } from "../icons";
+import { HalfStarIcon, StarIcon } from "../icons";
 
 interface Props {
   rating: number;
@@ -22,14 +22,7 @@ const Ratings: FC<Props> = ({ rating }) => {
       );
     } else if (roundedRating >= i - 0.5) {
       // TODO: 반쪽 별로 아이콘 교체 필요
-      stars.push(
-        <StarIcon
-          key={i}
-          width="12px"
-          height="12px"
-          className="text-primary-02"
-        />,
-      );
+      stars.push(<HalfStarIcon key={i} width="12px" height="12px" />);
     } else {
       stars.push(
         <StarIcon

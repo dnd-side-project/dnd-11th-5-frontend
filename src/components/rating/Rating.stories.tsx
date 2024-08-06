@@ -26,23 +26,8 @@ export const FIVE: Story = {
     rating: 5,
   },
 };
-export const FOUR: Story = {
+export const FourPointFive: Story = {
   args: {
-    rating: 4,
-  },
-};
-export const THREE: Story = {
-  args: {
-    rating: 3,
-  },
-};
-export const TWO: Story = {
-  args: {
-    rating: 2,
-  },
-};
-export const ONE: Story = {
-  args: {
-    rating: 1,
+    rating: 4.5,
   },
 };
