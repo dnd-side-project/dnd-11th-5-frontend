@@ -10,11 +10,6 @@ const meta: Meta<typeof BasicButton> = {
   },
 
   argTypes: {
-    active: {
-      control: {
-        type: "boolean",
-      },
-    },
     label: {
       control: {
         type: "text",
@@ -28,7 +23,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    active: false,
     label: "다음 (0/2)",
   },
   decorators: [
@@ -42,7 +36,6 @@ export const Default: Story = {
 
 export const Active: Story = {
   args: {
-    active: true,
     label: "다음 (0/2)",
   },
   decorators: [
