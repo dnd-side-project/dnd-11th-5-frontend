@@ -5,7 +5,7 @@ import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import ProgressBar from "@/components/core/Progress/ProgressBar/ProgressBar";
-import MobileHeader from "@/layout/Mobile/MobileHeader/MobileHeader";
+import DefaultHeader from "@/layout/Mobile/MobileHeader/DefaultHeader/DefaultHeader";
 import {
   CategoryModel,
   CompanyModel,
@@ -91,7 +91,7 @@ const OnBoardingView: FC<Props> = ({
 
   return (
     <main className="mt-[92px] w-full">
-      <MobileHeader
+      <DefaultHeader
         showBackButton={currentStep !== ONBOARDING.INITIAL_STEP}
         onClick={handlePrevStep}
       />

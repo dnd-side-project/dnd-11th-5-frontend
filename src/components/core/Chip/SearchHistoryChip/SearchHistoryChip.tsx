@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes, FC } from "react";
 
+import { XIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
-
-import { XIcon } from "../../../icons";
 
 export interface Props
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {

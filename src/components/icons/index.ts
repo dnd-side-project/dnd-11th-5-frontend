@@ -35,3 +35,4 @@ export { default as TwinkleCircleIcon } from "./TWINKLE_CIRCLE_ICON.svg";
 export { default as UserIcon } from "./USER_ICON.svg";
 export { default as UserSquareIcon } from "./USER_SQUARE_ICON.svg";
 export { default as WarningTriangleIcon } from "./WARNING_TRIANGLE_ICON.svg";
+export { default as XIcon } from "./X_ICON.svg";

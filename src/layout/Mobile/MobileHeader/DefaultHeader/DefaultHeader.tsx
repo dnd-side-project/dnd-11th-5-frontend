@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { ArrowLeftSmallIcon } from "../../../components/icons";
+import { ArrowLeftSmallIcon } from "@/components/icons";
 
 interface Props {
   label?: string;
@@ -8,7 +8,11 @@ interface Props {
   showBackButton?: boolean;
 }
 
-const MobileHeader: FC<Props> = ({ label, onClick, showBackButton = true }) => {
+const DefaultHeader: FC<Props> = ({
+  label,
+  onClick,
+  showBackButton = true,
+}) => {
   return (
     <header className="fixed top-0 flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
       {showBackButton && (
@@ -23,4 +27,4 @@ const MobileHeader: FC<Props> = ({ label, onClick, showBackButton = true }) => {
   );
 };
 
-export default MobileHeader;
+export default DefaultHeader;
