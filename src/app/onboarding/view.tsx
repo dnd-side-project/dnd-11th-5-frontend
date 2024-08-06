@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -18,15 +17,10 @@ import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
 import OnBoardingButton from "./_components/OnBoardingButton";
 import OnBoardingCategories from "./_components/OnBoardingCategories";
+import OnBoardingCompanies from "./_components/OnBoardingCompanies";
+import OnBoardingMoods from "./_components/OnBoardingMoods";
+import OnBoardingPriorities from "./_components/OnBoardingPriorities";
 import { ONBOARDING } from "./_constants";
-
-const OnBoardingMoods = dynamic(() => import("./_components/OnBoardingMoods"));
-const OnBoardingCompanies = dynamic(
-  () => import("./_components/OnBoardingCompanies"),
-);
-const OnBoardingPriorities = dynamic(
-  () => import("./_components/OnBoardingPriorities"),
-);
 
 interface Props {
   categories: Array<CategoryModel>;
@@ -63,20 +57,36 @@ const OnBoardingView: FC<Props> = ({
     trigger();
   }, []);
 
-  const handlePrevStep = () => {
-    currentStep !== ONBOARDING.INITIAL_STEP
-      ? setCurrentStep((prev) => prev - 1)
-      : undefined;
+  const INITIAL_STEP = ONBOARDING.INITIAL_STEP;
+  const TOTAL_STEP = ONBOARDING.TOTAL_STEP;
+
+  const handleStepChange = (stepChange: number) => {
+    setCurrentStep((prev) => {
+      const newStep = prev + stepChange;
+      return newStep >= INITIAL_STEP && newStep <= TOTAL_STEP ? newStep : prev;
+    });
   };
 
-  const handleNextStep = () => {
-    if (currentStep < ONBOARDING.TOTAL_STEP) {
-      setCurrentStep((prev) => prev + 1);
-    }
-  };
+  const handlePrevStep = () => handleStepChange(-1);
+  const handleNextStep = () => handleStepChange(1);
 
   const onSubmit = (data: OnboardingModel) => {
     console.log(data);
+  };
+
+  const renderCurrentStep = () => {
+    switch (currentStep) {
+      case 1:
+        return <OnBoardingCategories categories={categories} />;
+      case 2:
+        return <OnBoardingMoods moods={moods} />;
+      case 3:
+        return <OnBoardingCompanies companies={companies} />;
+      case 4:
+        return <OnBoardingPriorities priorities={priorities} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -95,14 +105,7 @@ const OnBoardingView: FC<Props> = ({
           className="flex h-screen w-full flex-col items-center justify-between px-[16px]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          {currentStep === 1 && (
-            <OnBoardingCategories categories={categories} />
-          )}
-          {currentStep === 2 && <OnBoardingMoods moods={moods} />}
-          {currentStep === 3 && <OnBoardingCompanies companies={companies} />}
-          {currentStep === 4 && (
-            <OnBoardingPriorities priorities={priorities} />
-          )}
+          {renderCurrentStep()}
           <OnBoardingButton
             totalStep={ONBOARDING.TOTAL_STEP}
             currentStep={currentStep}
