@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ScrapIcon } from "@/components/icons";
+import { ScrabIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 import BasicButton from "../BasicButton/BasicButton";
@@ -32,7 +32,7 @@ const BookingButton: FC<Props> = ({
     >
       <BasicButton type="button" label={label} disabled={disabled} />
       <button className="flex flex-col items-center">
-        <ScrapIcon
+        <ScrabIcon
           width={30}
           height={30}
           className={isScrabed ? "text-gray-scale-700" : "text-gray-scale-200"}

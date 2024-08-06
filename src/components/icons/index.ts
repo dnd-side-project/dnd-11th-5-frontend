@@ -24,7 +24,7 @@ export { default as PencilIcon } from "./PENCIL_ICON.svg";
 export { default as PictureIcon } from "./PICTURE_ICON.svg";
 export { default as PinLocationIcon } from "./PIN_LOCATION_ICON.svg";
 export { default as PlusIcon } from "./PLUS_ICON.svg";
-export { default as ScrapIcon } from "./SCRAP_ICON.svg";
+export { default as ScrabIcon } from "./SCRAP_ICON.svg";
 export { default as SearchIcon } from "./SEARCH_ICON.svg";
 export { default as SettingIcon } from "./SETTING_ICON.svg";
 export { default as ShareIcon } from "./SHARE_ICON.svg";
