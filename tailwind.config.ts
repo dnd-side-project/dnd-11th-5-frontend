@@ -135,6 +135,10 @@ const config: Config = {
           TYPOGRAPHY.CAPTION2_MEDIUM.FONT_SIZE,
           TYPOGRAPHY.CAPTION2_MEDIUM.OPTIONS,
         ],
+        "button1-medium": [
+          TYPOGRAPHY.BUTTON1_MEDIUM.FONT_SIZE,
+          TYPOGRAPHY.BUTTON1_MEDIUM.OPTIONS,
+        ],
         "button1-semi": [
           TYPOGRAPHY.BUTTON1_SEMIBOLD.FONT_SIZE,
           TYPOGRAPHY.BUTTON1_SEMIBOLD.OPTIONS,
