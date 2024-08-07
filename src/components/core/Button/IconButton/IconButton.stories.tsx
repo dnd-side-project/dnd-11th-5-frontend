@@ -26,22 +26,24 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="w-[360px]">
-      <IconButton {...args} />
+      <IconButton {...args}>
+        <CameraIcon width={50} height={50} />
+      </IconButton>
     </div>
   ),
   args: {
     active: false,
-    icon: <CameraIcon width={50} height={50} />,
   },
 };
 export const Active: Story = {
   render: (args) => (
     <div className="w-[360px]">
-      <IconButton {...args} />
+      <IconButton {...args}>
+        <CameraIcon width={50} height={50} />
+      </IconButton>
     </div>
   ),
   args: {
     active: true,
-    icon: <CameraIcon width={50} height={50} />,
   },
 };

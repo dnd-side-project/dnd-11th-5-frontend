@@ -2,13 +2,11 @@ import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
-  icon: React.ReactNode;
 }
 
-const IconButton: FC<Props> = ({ icon, active = false, ...props }) => {
+const IconButton: FC<Props> = ({ active = false, ...props }) => {
   return (
     <button
       type="button"
@@ -20,7 +18,7 @@ const IconButton: FC<Props> = ({ icon, active = false, ...props }) => {
       )}
       {...props}
     >
-      {icon}
+      {props.children}
     </button>
   );
 };

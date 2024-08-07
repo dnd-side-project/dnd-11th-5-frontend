@@ -50,16 +50,15 @@ const TrendFestivalCard: FC<Props> = ({
             type="button"
             className="absolute right-[14px] top-[12px] flex size-[22px] items-center justify-center rounded-full bg-gray-scale-700"
             onClick={onScrab}
-            icon={
-              <ScrabIcon
-                width={14}
-                height={14}
-                className={cn(
-                  isScrabed ? "text-primary-01" : "text-gray-scale-0",
-                )}
-              />
-            }
-          />
+          >
+            <ScrabIcon
+              width={14}
+              height={14}
+              className={cn(
+                isScrabed ? "text-primary-01" : "text-gray-scale-0",
+              )}
+            />
+          </IconButton>
         )}
       </div>
 

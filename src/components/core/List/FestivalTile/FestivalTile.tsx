@@ -11,8 +11,7 @@ interface Festival {
   dday: string;
 }
 
-export interface Props
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   festival: Festival;
   icon: React.ReactNode;
 }
@@ -45,7 +44,7 @@ const FestivalTile: FC<Props> = ({ festival, icon, ...props }) => {
             {festival.duration}
           </span>
         </div>
-        {icon}
+        {props.children}
       </div>
     </button>
   );

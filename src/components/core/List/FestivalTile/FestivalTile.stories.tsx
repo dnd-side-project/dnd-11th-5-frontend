@@ -48,7 +48,11 @@ export const HomeFestivalTile: Story = {
 export const UnScrabedFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <IconButton active={false}>
+          <ScrabIcon width={24} height={24} />
+        </IconButton>
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -59,16 +63,17 @@ export const UnScrabedFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: (
-      <IconButton active={false} icon={<ScrabIcon width={24} height={24} />} />
-    ),
   },
 };
 
 export const ScrabedFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <IconButton active={true}>
+          <ScrabIcon width={24} height={24} />
+        </IconButton>
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -79,8 +84,5 @@ export const ScrabedFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: (
-      <IconButton active={true} icon={<ScrabIcon width={24} height={24} />} />
-    ),
   },
 };
