@@ -93,19 +93,18 @@ const Calendar = () => {
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-md">
-      <div className="mb-4 flex items-center justify-center gap-[10px]">
+    <div className="w-full max-w-none lg:max-w-[450px]">
+      <div className="flex w-full items-center justify-center gap-[10px]">
         <IconButton
-          icon={
-            <ArrowLeftSmallIcon
-              width={20}
-              height={20}
-              className="text-gray-scale-800"
-            />
-          }
           onClick={handlePrevMonth}
           className="text-lg rounded-full p-2 hover:bg-gray-200"
-        />
+        >
+          <ArrowLeftSmallIcon
+            width={20}
+            height={20}
+            className="text-gray-scale-800"
+          />
+        </IconButton>
 
         <span
           id="currentMonth"
@@ -114,22 +113,21 @@ const Calendar = () => {
           {currentDate.format("YYYY.MM")}
         </span>
         <IconButton
-          icon={
-            <ArrowRightSmallIcon
-              width={20}
-              height={20}
-              className="text-gray-scale-800"
-            />
-          }
           onClick={handleNextMonth}
           className="text-lg rounded-full p-2 hover:bg-gray-200"
-        />
+        >
+          <ArrowRightSmallIcon
+            width={20}
+            height={20}
+            className="text-gray-scale-800"
+          />
+        </IconButton>
       </div>
-      <div className="grid grid-cols-7">
+      <div className="grid w-full grid-cols-7">
         {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
           <div
             key={index}
-            className="flex h-12 w-12 items-center justify-center text-caption2-medium text-gray-scale-700"
+            className="flex h-[48px] w-full items-center justify-center text-caption2-medium text-gray-scale-700"
           >
             {day}
           </div>
@@ -139,20 +137,24 @@ const Calendar = () => {
             key={index}
             onClick={() => handleDayClick(day.date)}
             className={cn(
-              "w-12 h-12 flex justify-center items-center cursor-pointer relative",
+              "w-full h-[48px] flex justify-center items-center cursor-pointer relative",
               day.isCurrentMonth
                 ? "text-gray-scale-700"
                 : "text-gray-scale-500",
               day.isInRange ? "bg-primary-04" : "",
-              day.isStart ? "bg-primary-01 text-white rounded-full z-[99]" : "",
-              day.isEnd ? "bg-primary-01 text-white rounded-full z-[99]" : "",
+              day.isStart
+                ? "bg-primary-01 text-white rounded-full z-[99] w-[48px]"
+                : "",
+              day.isEnd
+                ? "bg-primary-01 text-white rounded-full z-[99] w-[48px]"
+                : "",
             )}
           >
             {day.date ? dayjs(day.date).date() : ""}
             {day.isStart && (
               <>
                 {!!startDate && !!endDate && (
-                  <div className="absolute right-0 top-0 z-[-1] h-[48px] w-[24px] bg-primary-04" />
+                  <div className="absolute right-0 top-0 z-[-1] h-[48px] w-[24px] bg-primary-04 md:right-[-24px] md:w-[40px]" />
                 )}
                 <div className="absolute right-0 top-0 z-[-1] h-[48px] w-[24px] rounded-br-full rounded-tr-full bg-primary-01" />
               </>
