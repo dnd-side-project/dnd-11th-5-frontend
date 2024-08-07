@@ -29,11 +29,10 @@ const OnBoardingCategories: FC<Props> = ({ companies }) => {
   };
 
   const handleCheckAllToggle = () => {
+    remove(fields.map((_, index) => index));
+
     if (fields.length < 5) {
-      remove(fields.map((_, index) => index));
-      companies.forEach((v) => append(v));
-    } else {
-      remove(fields.map((_, index) => index));
+      companies.forEach((companyItem) => append(companyItem));
     }
   };
 

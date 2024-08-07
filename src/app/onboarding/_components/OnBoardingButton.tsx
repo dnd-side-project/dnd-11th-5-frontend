@@ -3,6 +3,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 
 import { BasicButton } from "@/components/core/Button";
 import { OnboardingModel } from "@/model/onboarding";
+import { checkNumber } from "@/utils/checkNumber";
 
 interface Props {
   totalStep: number;
@@ -17,41 +18,37 @@ const OnBoardingButton: FC<Props> = ({ currentStep, totalStep, onNext }) => {
   } = useFormContext<OnboardingModel>();
   const fields = useWatch({ control });
 
-  const getLabel = (step: number) => {
-    switch (step) {
-      case 1:
-        return `다음 (${fields.categories?.length ?? 0}/2)`;
-      case 2:
-        return `다음 (${fields.moods?.length ?? 0}/3)`;
-      case 4:
-        return `다음 (${fields.priorities?.length ?? 0}/3)`;
-      default:
-        return `다음`;
-    }
-  };
+  const getCurrentStepData = (step: number) => {
+    const label: {
+      [key: number]: { label: string; isError: boolean };
+    } = {
+      1: {
+        label: `다음 (${checkNumber(fields.categories?.length)}/2)`,
+        isError: !!errors.categories,
+      },
+      2: {
+        label: `다음 (${checkNumber(fields.moods?.length)}/3)`,
+        isError: !!errors.moods,
+      },
+      3: {
+        label: `다음`,
+        isError: !!errors.companies,
+      },
+      4: {
+        label: `다음 (${checkNumber(fields.priorities?.length)}/3)`,
+        isError: !!errors.priorities,
+      },
+    };
 
-  const getIsError = (step: number) => {
-    switch (step) {
-      case 1:
-        return !!errors.categories;
-      case 2:
-        return !!errors.moods;
-      case 4:
-        return !!errors.priorities;
-      default:
-        return !!errors.companies;
-    }
+    return label[step] || { label: "다음", isError: false };
   };
-
-  const label = getLabel(currentStep);
-  const isError = getIsError(currentStep);
 
   return (
     <div className="fixed bottom-[8px] w-full max-w-none px-[16px] lg:max-w-[450px]">
       <BasicButton
         type={totalStep === currentStep ? "submit" : "button"}
-        disabled={isError}
-        label={label}
+        disabled={getCurrentStepData(currentStep).isError}
+        label={getCurrentStepData(currentStep).label}
         onClick={onNext}
       />
     </div>

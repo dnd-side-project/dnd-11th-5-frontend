@@ -22,9 +22,11 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
     isSelected: boolean,
     category: CategoryModel,
   ) => {
-    isSelected
-      ? replace(fields.filter((v) => v.categoryId !== category.categoryId))
-      : append(category);
+    if (isSelected) {
+      replace(fields.filter((v) => v.categoryId !== category.categoryId));
+      return;
+    }
+    append(category);
   };
 
   return (
