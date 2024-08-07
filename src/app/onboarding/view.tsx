@@ -15,11 +15,13 @@ import {
 } from "@/model/onboarding";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
-import OnBoardingButton from "./_components/OnBoardingButton";
-import OnBoardingCategories from "./_components/OnBoardingCategories";
-import OnBoardingCompanies from "./_components/OnBoardingCompanies";
-import OnBoardingMoods from "./_components/OnBoardingMoods";
-import OnBoardingPriorities from "./_components/OnBoardingPriorities";
+import {
+  OnBoardingButton,
+  OnBoardingCategories,
+  OnBoardingCompanies,
+  OnBoardingMoods,
+  OnBoardingPriorities,
+} from "./_components";
 import { ONBOARDING } from "./_constants";
 
 interface Props {

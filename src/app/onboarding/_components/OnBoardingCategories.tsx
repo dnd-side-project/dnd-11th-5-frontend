@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import SquareTabButton from "@/components/core/Button/SquareTabButton/SquareTabButton";
+import { SquareTabButton } from "@/components/core/Button";
 import { CategoryModel, OnboardingModel } from "@/model/onboarding";
 
 import { ONBOARDING } from "../_constants";
@@ -36,8 +36,7 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
         />
 
         <section className="grid h-auto w-full grid-cols-3 gap-x-[18px] gap-y-[20px]">
-          {categories.map((categoryItem) => {
-            const { categoryId, category } = categoryItem;
+          {categories.map(({ categoryId, category }) => {
             const isSelected = fields.some((c) => c.categoryId === categoryId);
             return (
               <SquareTabButton
@@ -46,7 +45,9 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
                 label={category}
                 active={isSelected}
                 disabled={fields.length === 2 && !isSelected}
-                onClick={() => handleCategoryToggle(isSelected, categoryItem)}
+                onClick={() =>
+                  handleCategoryToggle(isSelected, { categoryId, category })
+                }
               />
             );
           })}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 
-import BasicButton from "@/components/core/Button/BasicButton/BasicButton";
+import { BasicButton } from "@/components/core/Button";
 import { OnboardingModel } from "@/model/onboarding";
 
 interface Props {

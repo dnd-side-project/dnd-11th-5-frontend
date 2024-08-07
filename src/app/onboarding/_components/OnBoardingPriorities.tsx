@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import BasicTile from "@/components/core/List/BasicTile";
+import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
 import { OnboardingModel, PriorityModel } from "@/model/onboarding";
 
 import { ONBOARDING } from "../_constants";

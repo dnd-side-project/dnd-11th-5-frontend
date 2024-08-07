@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import BasicTile from "@/components/core/List/BasicTile";
+import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
 import { CheckCircleIcon } from "@/components/icons";
 import { CompanyModel, OnboardingModel } from "@/model/onboarding";
 import { cn } from "@/utils/cn";
