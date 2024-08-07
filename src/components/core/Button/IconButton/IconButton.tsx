@@ -11,6 +11,7 @@ export interface Props
 const IconButton: FC<Props> = ({ icon, active = false, ...props }) => {
   return (
     <button
+      type="button"
       className={cn(
         "w-auto h-auto duration-300",
         "flex items-center justify-center",
