@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { FC } from "react";
 
-import SearchInput from "@/components/core/Input/SearchInput";
+import SearchInput from "@/components/core/Input/SearchInput/SearchInput";
 
 import { ArrowLeftSmallIcon } from "../../../components/icons";
 

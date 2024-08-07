@@ -12,7 +12,7 @@ const ProgressUnit: FC<Props> = ({ active }) => {
       value={active ? 100 : 0}
     >
       <Progress.Indicator
-        className="h-full w-full rounded-full bg-gray-scale-0 transition-transform duration-[660ms]"
+        className="h-full w-full rounded-full bg-gray-scale-100 transition-transform duration-[660ms]"
         style={{
           transform: `translateX(${active ? 100 : 0}%)`,
         }}
