@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { ScrabIcon } from "@/components/icons";
 
-import IconButton from "../Button/IconButton/IconButton";
-import DateTag from "../Tag/DateTag/DateTag";
+import IconButton from "../../Button/IconButton/IconButton";
+import DateTag from "../../Tag/DateTag/DateTag";
 import FestivalTile from "./FestivalTile";
 
 const meta: Meta<typeof FestivalTile> = {

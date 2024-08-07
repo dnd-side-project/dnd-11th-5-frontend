@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import ProgressBar from "@/components/core/Progress/ProgressBar/ProgressBar";
@@ -15,11 +15,13 @@ import {
 } from "@/model/onboarding";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
-import OnBoardingButton from "./_components/OnBoardingButton";
-import OnBoardingCategories from "./_components/OnBoardingCategories";
-import OnBoardingCompanies from "./_components/OnBoardingCompanies";
-import OnBoardingMoods from "./_components/OnBoardingMoods";
-import OnBoardingPriorities from "./_components/OnBoardingPriorities";
+import {
+  OnBoardingButton,
+  OnBoardingCategories,
+  OnBoardingCompanies,
+  OnBoardingMoods,
+  OnBoardingPriorities,
+} from "./_components";
 import { ONBOARDING } from "./_constants";
 
 interface Props {
@@ -35,9 +37,8 @@ const OnBoardingView: FC<Props> = ({
   priorities,
   moods,
 }) => {
-  const [currentStep, setCurrentStep] = useState<number>(
-    ONBOARDING.INITIAL_STEP,
-  );
+  const { INITIAL_STEP, TOTAL_STEP } = ONBOARDING;
+  const [currentStep, setCurrentStep] = useState<number>(INITIAL_STEP);
 
   const methods = useForm<OnboardingModel>({
     mode: "onChange",
@@ -57,9 +58,6 @@ const OnBoardingView: FC<Props> = ({
     trigger();
   }, []);
 
-  const INITIAL_STEP = ONBOARDING.INITIAL_STEP;
-  const TOTAL_STEP = ONBOARDING.TOTAL_STEP;
-
   const handleStepChange = (stepChange: number) => {
     setCurrentStep((prev) => {
       const newStep = prev + stepChange;
@@ -74,19 +72,13 @@ const OnBoardingView: FC<Props> = ({
     console.log(data);
   };
 
-  const renderCurrentStep = () => {
-    switch (currentStep) {
-      case 1:
-        return <OnBoardingCategories categories={categories} />;
-      case 2:
-        return <OnBoardingMoods moods={moods} />;
-      case 3:
-        return <OnBoardingCompanies companies={companies} />;
-      case 4:
-        return <OnBoardingPriorities priorities={priorities} />;
-      default:
-        return null;
-    }
+  const renderCurrentStep: {
+    [key: number]: React.ReactElement;
+  } = {
+    1: <OnBoardingCategories categories={categories} />,
+    2: <OnBoardingMoods moods={moods} />,
+    3: <OnBoardingCompanies companies={companies} />,
+    4: <OnBoardingPriorities priorities={priorities} />,
   };
 
   return (
@@ -105,7 +97,7 @@ const OnBoardingView: FC<Props> = ({
           className="flex h-screen w-full flex-col items-center justify-between px-[16px]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          {renderCurrentStep()}
+          <>{renderCurrentStep[currentStep]}</>
           <OnBoardingButton
             totalStep={ONBOARDING.TOTAL_STEP}
             currentStep={currentStep}

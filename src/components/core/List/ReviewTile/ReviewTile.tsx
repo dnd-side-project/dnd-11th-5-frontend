@@ -4,7 +4,7 @@ import { FC, HTMLAttributes } from "react";
 import Ratings from "@/components/rating/Ratings";
 import { cn } from "@/utils/cn";
 
-import ReviewTag from "../Tag/ReviewTag/ReviewTag";
+import ReviewTag from "../../Tag/ReviewTag/ReviewTag";
 
 interface FestivalReview {
   src?: string;
