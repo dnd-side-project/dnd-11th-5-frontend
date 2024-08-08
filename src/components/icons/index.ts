@@ -12,6 +12,7 @@ export { default as ChatBubbleIcon } from "./CHAT_BUBBLE_ICON.svg";
 export { default as CheckCircleIcon } from "./CHECK_CIRCLE_ICON.svg";
 export { default as CheckIcon } from "./CHECK_ICON.svg";
 export { default as ClockIcon } from "./CLOCK_ICON.svg";
+export { default as DeleteIcon } from "./DELETE_ICON.svg";
 export { default as DotsIcon } from "./DOTS_ICON.svg";
 export { default as DownloadIcon } from "./DOWNLOAD_ICON.svg";
 export { default as FilterIcon } from "./FILTER_ICON.svg";
