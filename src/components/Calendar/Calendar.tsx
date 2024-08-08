@@ -3,7 +3,7 @@ import isBetween from "dayjs/plugin/isBetween";
 import isToday from "dayjs/plugin/isToday";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { cn } from "@/utils/cn";
 

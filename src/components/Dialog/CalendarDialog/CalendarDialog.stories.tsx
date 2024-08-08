@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import DialogWrapper from "./DialogWrapper";
+import CalendarDialog from "./CalendarDialog";
 
-const meta: Meta<typeof DialogWrapper> = {
-  title: "Dialog/DialogWrapper",
-  component: DialogWrapper,
+const meta: Meta<typeof CalendarDialog> = {
+  title: "Dialog/CalendarDialog",
+  component: CalendarDialog,
   parameters: {
     layout: "centered",
   },
@@ -15,6 +15,11 @@ const meta: Meta<typeof DialogWrapper> = {
         type: "boolean",
       },
     },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
   },
 };
 
@@ -22,11 +27,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
-    <DialogWrapper {...args}>
-      <main>This is Content</main>
-    </DialogWrapper>
-  ),
+  render: (args) => <CalendarDialog {...args} />,
   args: {
     open: false,
   },

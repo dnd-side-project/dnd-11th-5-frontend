@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import DialogCalendar from "./DialogCalendar";
+import FestivalPostCompleteDialog from "./FestivalPostCompleteDialog";
 
-const meta: Meta<typeof DialogCalendar> = {
-  title: "Dialog/DialogCalendar",
-  component: DialogCalendar,
+const meta: Meta<typeof FestivalPostCompleteDialog> = {
+  title: "Dialog/FestivalPostCompleteDialog",
+  component: FestivalPostCompleteDialog,
   parameters: {
     layout: "centered",
   },
@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <DialogCalendar {...args} />,
+  render: (args) => <FestivalPostCompleteDialog {...args} />,
   args: {
     open: false,
   },

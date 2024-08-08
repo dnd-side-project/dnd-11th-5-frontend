@@ -1,17 +1,19 @@
-import { DialogProps } from "@radix-ui/react-dialog";
-import React, { FC } from "react";
+import { AlertDialogProps } from "@radix-ui/react-alert-dialog";
+import { FC } from "react";
 
 import Calendar from "@/components/Calendar/Calendar";
 import { BasicButton, IconButton } from "@/components/core/Button";
 import { XIcon } from "@/components/icons";
 
-import DialogWrapper from "../DialogWrapper/DialogWrapper";
+import AlertDialogWrapper from "../AlertDialogWrapper/AlertDialogWrapper";
 
-interface Props extends DialogProps {}
+interface Props extends AlertDialogProps {
+  title: string;
+}
 
-const DialogCalendar: FC<Props> = ({ open, onOpenChange }) => {
+const CalendarDialog: FC<Props> = ({ open, onOpenChange, title }) => {
   return (
-    <DialogWrapper open={open} onOpenChange={onOpenChange}>
+    <AlertDialogWrapper open={open} onOpenChange={onOpenChange} title={title}>
       <section className="relative h-full w-full">
         <Calendar />
         <IconButton onClick={() => onOpenChange && onOpenChange(false)}>
@@ -26,8 +28,8 @@ const DialogCalendar: FC<Props> = ({ open, onOpenChange }) => {
           <BasicButton label={"선택완료"} className="max-w-[126px]" />
         </div>
       </section>
-    </DialogWrapper>
+    </AlertDialogWrapper>
   );
 };
 
-export default DialogCalendar;
+export default CalendarDialog;
