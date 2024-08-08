@@ -23,6 +23,15 @@ const config: Config = {
       "11px": "11px",
     },
     extend: {
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 350ms cubic-bezier(0.16, 1, 0.3, 1)",
+      },
       colors: {
         "primary-01": COLORS.PRIMARY_01,
         "primary-02": COLORS.PRIMARY_02,
@@ -154,6 +163,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix"), require("@tailwindcss/line-clamp")],
+  plugins: [require("tailwindcss-radix")],
 };
 export default config;
