@@ -1,17 +1,12 @@
-import { DialogProps } from "@radix-ui/react-dialog";
+import { AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import Link from "next/link";
 import { FC } from "react";
 
 import AlertDialogWrapper from "../AlertDialogWrapper/AlertDialogWrapper";
 
-interface Props extends DialogProps {}
+interface Props extends AlertDialogProps {}
 
-const FestivalPostCompleteDialog: FC<Props> = ({
-  open,
-  onOpenChange,
-  children,
-  ...props
-}) => {
+const FestivalPostCompleteDialog: FC<Props> = ({ open, onOpenChange }) => {
   return (
     <AlertDialogWrapper
       open={open}
