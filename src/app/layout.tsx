@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "../styles/reset.css";
 
 import type { Metadata } from "next";
+import { ReactNode } from "react";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="ko" className={Pretendard.variable}>

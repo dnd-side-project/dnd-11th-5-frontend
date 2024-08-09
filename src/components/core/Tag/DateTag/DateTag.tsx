@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { FC } from "react";
 
 // import { X_ICON } from "@/components/icons";

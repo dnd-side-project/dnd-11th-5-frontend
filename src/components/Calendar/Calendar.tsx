@@ -1,24 +1,16 @@
-import dayjs, { Dayjs } from "dayjs";
-import isBetween from "dayjs/plugin/isBetween";
-import isToday from "dayjs/plugin/isToday";
-import weekday from "dayjs/plugin/weekday";
-import weekOfYear from "dayjs/plugin/weekOfYear";
+import { Dayjs } from "dayjs";
 import { useState } from "react";
 
+import { dayjsWithExt } from "@/lib/dayjs";
 import { cn } from "@/utils/cn";
 
 import IconButton from "../core/Button/IconButton/IconButton";
 import { ArrowLeftSmallIcon, ArrowRightSmallIcon } from "../icons";
 
-dayjs.extend(weekday);
-dayjs.extend(weekOfYear);
-dayjs.extend(isToday);
-dayjs.extend(isBetween);
-
 const Calendar = () => {
-  const [currentDate, setCurrentDate] = useState(dayjs());
-  const [startDate, setStartDate] = useState<Dayjs | undefined>(undefined);
-  const [endDate, setEndDate] = useState<Dayjs | undefined>(undefined);
+  const [currentDate, setCurrentDate] = useState(dayjsWithExt());
+  const [startDate, setStartDate] = useState<Dayjs | null>(null);
+  const [endDate, setEndDate] = useState<Dayjs | null>(null);
 
   const generateCalendar = (date: Dayjs) => {
     const days = [];
@@ -80,14 +72,14 @@ const Calendar = () => {
 
   const handleDayClick = (date: string) => {
     if (!startDate || (startDate && endDate)) {
-      setStartDate(dayjs(date));
-      setEndDate(undefined);
+      setStartDate(dayjsWithExt(date));
+      setEndDate(null);
     } else if (startDate && !endDate) {
-      if (dayjs(date).isBefore(startDate)) {
+      if (dayjsWithExt(date).isBefore(startDate)) {
         setEndDate(startDate);
-        setStartDate(dayjs(date));
+        setStartDate(dayjsWithExt(date));
       } else {
-        setEndDate(dayjs(date));
+        setEndDate(dayjsWithExt(date));
       }
     }
   };
@@ -97,7 +89,7 @@ const Calendar = () => {
       <div className="flex w-full items-center justify-center gap-[10px]">
         <IconButton
           onClick={handlePrevMonth}
-          className="text-lg rounded-full p-2 hover:bg-gray-200"
+          className="rounded-full p-2 hover:bg-gray-200"
         >
           <ArrowLeftSmallIcon
             width={20}
@@ -114,7 +106,7 @@ const Calendar = () => {
         </span>
         <IconButton
           onClick={handleNextMonth}
-          className="text-lg rounded-full p-2 hover:bg-gray-200"
+          className="rounded-full p-2 hover:bg-gray-200"
         >
           <ArrowRightSmallIcon
             width={20}
@@ -150,7 +142,7 @@ const Calendar = () => {
                 : "",
             )}
           >
-            {day.date ? dayjs(day.date).date() : ""}
+            {day.date && dayjsWithExt(day.date).date()}
             {day.isStart && (
               <>
                 {!!startDate && !!endDate && (

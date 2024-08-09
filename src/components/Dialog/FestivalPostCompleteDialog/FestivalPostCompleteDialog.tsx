@@ -16,6 +16,7 @@ const FestivalPostCompleteDialog: FC<Props> = ({ open, onOpenChange }) => {
     >
       <div className="flex h-full w-full flex-col  items-center gap-[12px]">
         <div className="flex flex-col items-center gap-[16px]">
+          {/* // TODO: 브랜딩 끝나면 교체 */}
           {/* <Image
             width={87}
             height={87}
@@ -29,7 +30,7 @@ const FestivalPostCompleteDialog: FC<Props> = ({ open, onOpenChange }) => {
               페스티벌 등록 완료!
             </h1>
             <span className="text-caption1-regular text-gray-scale-600">
-              1-3일 후 피에스타에서 검토한 뒤 최종 등록될 예정이예요.{" "}
+              1-3일 후 피에스타에서 검토한 뒤 최종 등록될 예정이예요.
             </span>
           </div>
         </div>

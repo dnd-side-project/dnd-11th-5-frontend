@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentType } from "react";
 
 import TrendFestivalCard from "./TrendFestivalCard";
 
@@ -33,7 +34,7 @@ export const Default: Story = {
     },
   },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div className="w-[200px]">
         <Story />
       </div>

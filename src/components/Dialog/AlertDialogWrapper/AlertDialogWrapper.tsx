@@ -1,5 +1,5 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { cn } from "@/utils/cn";
 

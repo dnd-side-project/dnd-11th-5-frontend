@@ -22,7 +22,7 @@ export const env = createEnv({
     throw new Error("Invalid environment variables");
   },
   // Called when server variables are accessed on the client.
-  onInvalidAccess: (variable: string) => {
+  onInvalidAccess: (_variable: string) => {
     throw new Error(
       "❌ 클라이언트에서 서버 사이드 환경 변수에 접근을 시도했습니다",
     );

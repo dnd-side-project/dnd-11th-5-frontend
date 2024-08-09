@@ -1,11 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { FC, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import ProgressBar from "@/components/core/Progress/ProgressBar/ProgressBar";
-import DefaultHeader from "@/layout/Mobile/MobileHeader/DefaultHeader/DefaultHeader";
+import { ProgressBar } from "@/components/core/Progress";
+import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import {
   CategoryModel,
   CompanyModel,
@@ -73,7 +73,7 @@ const OnBoardingView: FC<Props> = ({
   };
 
   const renderCurrentStep: {
-    [key: number]: React.ReactElement;
+    [key: number]: ReactElement;
   } = {
     1: <OnBoardingCategories categories={categories} />,
     2: <OnBoardingMoods moods={moods} />,

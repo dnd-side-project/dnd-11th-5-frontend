@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentType } from "react";
 
 import ResetButton from "./ResetButton";
 
@@ -26,7 +27,7 @@ export const Disabled: Story = {
     disabled: true,
   },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "300px" }}>
         <Story />
       </div>
@@ -37,7 +38,7 @@ export const Disabled: Story = {
 export const Available: Story = {
   args: { disabled: false },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "300px" }}>
         <Story />
       </div>

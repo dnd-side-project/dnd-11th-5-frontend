@@ -1,5 +1,5 @@
-import DefaultHeader from "@/layout/Mobile/MobileHeader/DefaultHeader/DefaultHeader";
-import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
+import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
+import NavigationBar from "@/layout/Mobile/NavigationBar";
 
 import MapView from "./view";
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentType } from "react";
 
 import BookingButton from "./BookingButton";
 
@@ -27,7 +28,7 @@ export const BookingUnavailable: Story = {
     disabled: true,
   },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
         <Story />
       </div>
@@ -38,7 +39,7 @@ export const BookingUnavailable: Story = {
 export const BookingAvailable: Story = {
   args: { scrabCount: 210, disabled: false },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
         <Story />
       </div>
@@ -49,7 +50,7 @@ export const BookingAvailable: Story = {
 export const isScrabed: Story = {
   args: { scrabCount: 210, disabled: false, isScrabed: true },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
         <Story />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { SearchInput } from "@/components/core/Input";
 import { ArrowLeftSmallIcon } from "@/components/icons";

@@ -1,5 +1,5 @@
-import HomeHeader from "@/layout/Mobile/MobileHeader/HomeHeader/HomeHeader";
-import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
+import { HomeHeader } from "@/layout/Mobile/MobileHeader";
+import NavigationBar from "@/layout/Mobile/NavigationBar";
 
 import HomeView from "./view";
 

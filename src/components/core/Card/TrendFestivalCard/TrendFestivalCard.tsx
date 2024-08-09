@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
 
+import { IconButton } from "@/components/core/Button";
+import { DateTag } from "@/components/core/Tag";
 import { ScrabIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
-
-import IconButton from "../../Button/IconButton/IconButton";
-import DateTag from "../../Tag/DateTag/DateTag";
 
 type FestivalModel = {
   location: string;

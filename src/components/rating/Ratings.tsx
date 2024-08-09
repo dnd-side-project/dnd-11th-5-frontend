@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { HalfStarIcon, StarIcon } from "../icons";
 
@@ -8,7 +8,7 @@ interface Props {
 
 const Ratings: FC<Props> = ({ rating }) => {
   const roundedRating = Math.round(rating * 2) / 2;
-  const stars: React.JSX.Element[] = [];
+  const stars: JSX.Element[] = [];
 
   for (let i = 1; i <= 5; i++) {
     if (roundedRating >= i) {
