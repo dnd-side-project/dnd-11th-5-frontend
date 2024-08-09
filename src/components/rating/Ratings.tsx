@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
-import { StarIcon } from "../icons";
+import { HalfStarIcon, StarIcon } from "../icons";
 
 interface Props {
   rating: number;
@@ -8,7 +8,7 @@ interface Props {
 
 const Ratings: FC<Props> = ({ rating }) => {
   const roundedRating = Math.round(rating * 2) / 2;
-  const stars: React.JSX.Element[] = [];
+  const stars: JSX.Element[] = [];
 
   for (let i = 1; i <= 5; i++) {
     if (roundedRating >= i) {
@@ -22,14 +22,7 @@ const Ratings: FC<Props> = ({ rating }) => {
       );
     } else if (roundedRating >= i - 0.5) {
       // TODO: 반쪽 별로 아이콘 교체 필요
-      stars.push(
-        <StarIcon
-          key={i}
-          width="12px"
-          height="12px"
-          className="text-primary-02"
-        />,
-      );
+      stars.push(<HalfStarIcon key={i} width="12px" height="12px" />);
     } else {
       stars.push(
         <StarIcon

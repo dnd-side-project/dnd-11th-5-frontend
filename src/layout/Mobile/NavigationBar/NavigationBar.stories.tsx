@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import MobileLayout from "../MobileLayout";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from ".";
 
 const meta: Meta<typeof NavigationBar> = {
   title: "NavigationBar",

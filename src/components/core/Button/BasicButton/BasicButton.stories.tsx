@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentType } from "react";
 
 import BasicButton from "./BasicButton";
 
@@ -26,7 +27,7 @@ export const Default: Story = {
     label: "다음 (0/2)",
   },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "300px" }}>
         <Story />
       </div>
@@ -39,7 +40,7 @@ export const Active: Story = {
     label: "다음 (0/2)",
   },
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div style={{ width: "300px" }}>
         <Story />
       </div>

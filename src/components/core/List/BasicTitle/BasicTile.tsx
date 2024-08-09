@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes, FC } from "react";
 
-// import { X_ICON } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 export interface Props

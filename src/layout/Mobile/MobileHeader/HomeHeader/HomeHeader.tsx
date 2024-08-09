@@ -2,11 +2,11 @@
 
 import { FC } from "react";
 
-import { AlarmIcon, CameraIcon, SearchIcon } from "../../../components/icons";
+import { AlarmIcon, CameraIcon, SearchIcon } from "@/components/icons";
 
 interface Props {}
 
-const MobileHomeHeader: FC<Props> = ({}) => {
+const HomeHeader: FC<Props> = ({}) => {
   return (
     <header className="fixed top-0 flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
       <button type="button" onClick={() => {}}>
@@ -25,4 +25,4 @@ const MobileHomeHeader: FC<Props> = ({}) => {
   );
 };
 
-export default MobileHomeHeader;
+export default HomeHeader;

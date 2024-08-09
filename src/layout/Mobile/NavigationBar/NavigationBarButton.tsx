@@ -3,11 +3,9 @@
 import * as NM from "@radix-ui/react-navigation-menu";
 import NextLink, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
-const NavLink = ({
-  href,
-  ...props
-}: LinkProps & { children: React.ReactNode }) => {
+const NavLink = ({ href, ...props }: LinkProps & { children: ReactNode }) => {
   const pathname = usePathname();
   const isActive = href === pathname;
 

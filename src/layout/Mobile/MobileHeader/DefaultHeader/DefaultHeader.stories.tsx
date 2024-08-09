@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import MobileHeader from "./MobileHeader";
+import DefaultHeader from "./DefaultHeader";
 
-const meta: Meta<typeof MobileHeader> = {
+const meta: Meta<typeof DefaultHeader> = {
   title: "Header/DefaultHeader",
-  component: MobileHeader,
+  component: DefaultHeader,
   parameters: {
     layout: "centered",
   },
@@ -25,10 +25,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="w-[360px]">
-      <MobileHeader {...args} />
+      <DefaultHeader {...args} />
     </div>
   ),
   args: {
-    label: "TEXT",
+    label: "Text",
   },
 };

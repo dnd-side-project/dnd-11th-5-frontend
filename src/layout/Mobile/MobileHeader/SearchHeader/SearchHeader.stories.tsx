@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import MobileSearchHeader from "./MobileSearchHeader";
+import SearchHeader from "./SearchHeader";
 
-const meta: Meta<typeof MobileSearchHeader> = {
+const meta: Meta<typeof SearchHeader> = {
   title: "Header/SearchHeader",
-  component: MobileSearchHeader,
+  component: SearchHeader,
   parameters: {
     layout: "centered",
   },
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="w-[360px]">
-      <MobileSearchHeader {...args} />
+      <SearchHeader {...args} />
     </div>
   ),
   args: {},

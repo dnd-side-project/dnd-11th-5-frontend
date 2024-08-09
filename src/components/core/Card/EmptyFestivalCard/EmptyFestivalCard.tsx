@@ -1,5 +1,3 @@
-import React from "react";
-
 const EmptyFestivalCard = () => {
   return (
     <div className="flex h-[204px] w-full items-center rounded-[8px] bg-gray-scale-0">

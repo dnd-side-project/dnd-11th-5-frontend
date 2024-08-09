@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ComponentType } from "react";
 
 import EmptyFestivalCard from "./EmptyFestivalCard";
 
@@ -18,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
   decorators: [
-    (Story: React.ComponentType) => (
+    (Story: ComponentType) => (
       <div className="w-[360px]">
         <Story />
       </div>

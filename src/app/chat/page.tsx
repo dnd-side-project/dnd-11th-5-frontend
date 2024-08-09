@@ -1,4 +1,4 @@
-import NavigationBar from "@/layout/Mobile/NavigationBar/NavigationBar";
+import NavigationBar from "@/layout/Mobile/NavigationBar";
 
 import ChatView from "./view";
 

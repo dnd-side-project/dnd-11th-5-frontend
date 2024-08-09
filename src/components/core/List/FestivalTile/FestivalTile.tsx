@@ -11,8 +11,7 @@ interface Festival {
   dday: string;
 }
 
-export interface Props
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   festival: Festival;
   icon: React.ReactNode;
 }
@@ -34,7 +33,7 @@ const FestivalTile: FC<Props> = ({ festival, icon, ...props }) => {
       </div>
 
       <div className="flex w-full  items-start justify-between py-[8px]">
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start gap-[2px]">
           <span className="text-caption1-regular text-gray-scale-600">
             {festival.location}
           </span>
@@ -45,7 +44,7 @@ const FestivalTile: FC<Props> = ({ festival, icon, ...props }) => {
             {festival.duration}
           </span>
         </div>
-        {icon}
+        {props.children}
       </div>
     </button>
   );

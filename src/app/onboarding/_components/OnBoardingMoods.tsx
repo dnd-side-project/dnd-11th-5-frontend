@@ -12,7 +12,7 @@ interface Props {
 }
 
 const OnBoardingCategories: FC<Props> = ({ moods }) => {
-  const { control, trigger } = useFormContext<OnboardingModel>();
+  const { control } = useFormContext<OnboardingModel>();
   const { fields, replace, append } = useFieldArray({
     control: control,
     name: "moods",

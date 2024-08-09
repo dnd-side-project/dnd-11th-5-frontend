@@ -143,6 +143,14 @@ export const TYPOGRAPHY = {
       letterSpacing: "0",
     },
   },
+  BUTTON1_MEDIUM: {
+    FONT_SIZE: "16px",
+    OPTIONS: {
+      fontWeight: 500,
+      lineHeight: "1.2",
+      letterSpacing: "0",
+    },
+  },
   BUTTON2_MEDIUM: {
     FONT_SIZE: "14px",
     OPTIONS: {

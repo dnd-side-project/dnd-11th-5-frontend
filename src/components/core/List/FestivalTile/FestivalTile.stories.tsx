@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ScrapIcon } from "@/components/icons";
+import { ScrabIcon } from "@/components/icons";
 
 import IconButton from "../../Button/IconButton/IconButton";
 import DateTag from "../../Tag/DateTag/DateTag";
@@ -30,7 +30,9 @@ type Story = StoryObj<typeof meta>;
 export const HomeFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <DateTag label={"D-2"} />
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -41,14 +43,17 @@ export const HomeFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: <DateTag label="D-2" />,
   },
 };
 
 export const UnScrabedFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <IconButton active={false}>
+          <ScrabIcon width={24} height={24} />
+        </IconButton>
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -59,16 +64,17 @@ export const UnScrabedFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: (
-      <IconButton active={false} icon={<ScrapIcon width={24} height={24} />} />
-    ),
   },
 };
 
 export const ScrabedFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <IconButton active={true}>
+          <ScrabIcon width={24} height={24} />
+        </IconButton>
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -79,8 +85,5 @@ export const ScrabedFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: (
-      <IconButton active={true} icon={<ScrapIcon width={24} height={24} />} />
-    ),
   },
 };

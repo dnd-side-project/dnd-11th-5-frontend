@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes, FC, ReactElement } from "react";
 
 import { PlusIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 export interface Props
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
-  icon?: React.ReactElement;
+  icon?: ReactElement;
   label: string;
 }
 
