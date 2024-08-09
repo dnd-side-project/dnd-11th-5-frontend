@@ -30,7 +30,9 @@ type Story = StoryObj<typeof meta>;
 export const HomeFestivalTile: Story = {
   render: (args) => (
     <div className="w-[400px]">
-      <FestivalTile {...args} />
+      <FestivalTile {...args}>
+        <DateTag label={"D-2"} />
+      </FestivalTile>
     </div>
   ),
   args: {
@@ -41,7 +43,6 @@ export const HomeFestivalTile: Story = {
       duration: "8월 1일 ~ 8월 4일",
       dday: "D-2",
     },
-    icon: <DateTag label="D-2" />,
   },
 };
 

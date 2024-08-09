@@ -13,9 +13,10 @@ interface Festival {
 
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   festival: Festival;
+  icon: React.ReactNode;
 }
 
-const FestivalTile: FC<Props> = ({ festival, ...props }) => {
+const FestivalTile: FC<Props> = ({ festival, icon, ...props }) => {
   return (
     <button
       type="button"
