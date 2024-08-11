@@ -114,13 +114,21 @@ const config: Config = {
           TYPOGRAPHY.SUBTITLE_MEDIUM.FONT_SIZE,
           TYPOGRAPHY.SUBTITLE_MEDIUM.OPTIONS,
         ],
-        "body1-medium": [
-          TYPOGRAPHY.BODY1_MEDIUM.FONT_SIZE,
-          TYPOGRAPHY.BODY1_MEDIUM.OPTIONS,
-        ],
         "body1-regular": [
           TYPOGRAPHY.BODY1_REGULAR.FONT_SIZE,
           TYPOGRAPHY.BODY1_REGULAR.OPTIONS,
+        ],
+        "body1-regular-lg": [
+          TYPOGRAPHY.BODY1_REGULAR_LG.FONT_SIZE,
+          TYPOGRAPHY.BODY1_REGULAR_LG.OPTIONS,
+        ],
+        "body1-regular-lh-20": [
+          TYPOGRAPHY.BODY1_REGULAR_LH_20.FONT_SIZE,
+          TYPOGRAPHY.BODY1_REGULAR_LH_20.OPTIONS,
+        ],
+        "body1-medium": [
+          TYPOGRAPHY.BODY1_MEDIUM.FONT_SIZE,
+          TYPOGRAPHY.BODY1_MEDIUM.OPTIONS,
         ],
         "body2-medium": [
           TYPOGRAPHY.BODY2_MEDIUM.FONT_SIZE,
