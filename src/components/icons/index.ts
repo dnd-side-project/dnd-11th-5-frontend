@@ -6,6 +6,7 @@ export { default as ArrowLeftSmallIcon } from "./ARROW_LEFT_SMALL_ICON.svg";
 export { default as ArrowRightAndroidIcon } from "./ARROW_RIGHT_ANDROID_ICON.svg";
 export { default as ArrowRightSmallIcon } from "./ARROW_RIGHT_SMALL_ICON.svg";
 export { default as CalendarCheckIcon } from "./CALENDAR_CHECK_ICON.svg";
+export { default as CalendarIcon } from "./CALENDAR_ICON.svg";
 export { default as CameraIcon } from "./CAMERA_ICON.svg";
 export { default as ChatBubbleDotsIcon } from "./CHAT_BUBBLE_DOTS_ICON.svg";
 export { default as ChatBubbleIcon } from "./CHAT_BUBBLE_ICON.svg";
