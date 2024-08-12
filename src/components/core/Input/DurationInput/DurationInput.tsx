@@ -28,7 +28,16 @@ const DurationInput: FC<Props> = ({
   const handleConfirm = (startDate: string | null, endDate: string | null) => {
     const start = dayjsWithExt(startDate).isValid() ? startDate : null;
     const end = dayjsWithExt(endDate).isValid() ? endDate : null;
-    onConfirm(start, end);
+
+    if (!start && end) {
+      onConfirm(end, end);
+    }
+    if (start && !end) {
+      onConfirm(start, start);
+    }
+    if (start && end) {
+      onConfirm(start, end);
+    }
     setIsOpen(false);
   };
 

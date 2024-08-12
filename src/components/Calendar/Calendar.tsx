@@ -4,8 +4,7 @@ import { FC, useState } from "react";
 import { dayjsWithExt } from "@/lib/dayjs";
 import { cn } from "@/utils/cn";
 
-import { BasicButton } from "../core/Button";
-import IconButton from "../core/Button/IconButton/IconButton";
+import { BasicButton, IconButton } from "../core/Button";
 import { ArrowLeftSmallIcon, ArrowRightSmallIcon } from "../icons";
 
 interface Props {
@@ -20,7 +19,7 @@ const Calendar: FC<Props> = ({ onConfirm, startDay, endDay }) => {
     startDay ? dayjsWithExt(startDay) : null,
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    endDay ? dayjsWithExt(endDay) : null,
+    endDay && endDay !== startDay ? dayjsWithExt(endDay) : null,
   );
 
   const generateCalendar = (date: Dayjs) => {
