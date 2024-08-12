@@ -9,7 +9,7 @@ interface Props
     "type" | "maxlength" | "className"
   > {
   label: string;
-  maxlength: number;
+  maxlength?: number;
   currentLength?: number;
   className?: string;
   error?: string;

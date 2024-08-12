@@ -31,6 +31,7 @@ const AlertDialogWrapper: FC<Props> = ({
           )}
         >
           <AlertDialog.Title hidden>{title}</AlertDialog.Title>
+          <AlertDialog.Description hidden>{title}</AlertDialog.Description>
           {children}
         </AlertDialog.Content>
       </AlertDialog.Portal>
