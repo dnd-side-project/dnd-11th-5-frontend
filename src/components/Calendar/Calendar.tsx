@@ -1,16 +1,26 @@
 import { Dayjs } from "dayjs";
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import { dayjsWithExt } from "@/lib/dayjs";
 import { cn } from "@/utils/cn";
 
-import IconButton from "../core/Button/IconButton/IconButton";
+import { BasicButton, IconButton } from "../core/Button";
 import { ArrowLeftSmallIcon, ArrowRightSmallIcon } from "../icons";
 
-const Calendar = () => {
+interface Props {
+  startDay: string | null;
+  endDay: string | null;
+  onConfirm: (_startDate: string | null, _endDate: string | null) => void;
+}
+
+const Calendar: FC<Props> = ({ onConfirm, startDay, endDay }) => {
   const [currentDate, setCurrentDate] = useState(dayjsWithExt());
-  const [startDate, setStartDate] = useState<Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<Dayjs | null>(null);
+  const [startDate, setStartDate] = useState<Dayjs | null>(
+    startDay ? dayjsWithExt(startDay) : null,
+  );
+  const [endDate, setEndDate] = useState<Dayjs | null>(
+    endDay && endDay !== startDay ? dayjsWithExt(endDay) : null,
+  );
 
   const generateCalendar = (date: Dayjs) => {
     const days = [];
@@ -43,7 +53,6 @@ const Calendar = () => {
 
     // ? 항상 달력에 6줄을 보장함.
     const totalDays = days.length;
-    // const weeks = Math.ceil(totalDays / 7);
     const extraDays = 6 * 7 - totalDays;
 
     for (let i = 0; i < extraDays; i++) {
@@ -71,6 +80,12 @@ const Calendar = () => {
   };
 
   const handleDayClick = (date: string) => {
+    const clickedDate = dayjsWithExt(date);
+
+    if (startDate && clickedDate.isSame(startDate, "day")) {
+      return;
+    }
+
     if (!startDate || (startDate && endDate)) {
       setStartDate(dayjsWithExt(date));
       setEndDate(null);
@@ -82,6 +97,13 @@ const Calendar = () => {
         setEndDate(dayjsWithExt(date));
       }
     }
+  };
+
+  const handleOnConfirm = () => {
+    onConfirm(
+      !startDate ? null : (startDate as Dayjs).format("YYYY/MM/DD"),
+      !endDate ? null : (endDate as Dayjs).format("YYYY/MM/DD"),
+    );
   };
 
   return (
@@ -161,6 +183,13 @@ const Calendar = () => {
             )}
           </div>
         ))}
+      </div>
+      <div className="flex w-full justify-end">
+        <BasicButton
+          label={"선택완료"}
+          className="max-w-[126px]"
+          onClick={handleOnConfirm}
+        />
       </div>
     </div>
   );

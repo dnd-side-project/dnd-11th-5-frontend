@@ -39,18 +39,34 @@ export const TYPOGRAPHY = {
       letterSpacing: "0",
     },
   },
-  BODY1_MEDIUM: {
-    FONT_SIZE: "16px",
-    OPTIONS: {
-      fontWeight: 500,
-      lineHeight: "1.2",
-      letterSpacing: "0",
-    },
-  },
   BODY1_REGULAR: {
     FONT_SIZE: "14px",
     OPTIONS: {
       fontWeight: 400,
+      lineHeight: "1.2",
+      letterSpacing: "0",
+    },
+  },
+  BODY1_REGULAR_LH_20: {
+    FONT_SIZE: "14px",
+    OPTIONS: {
+      fontWeight: 400,
+      lineHeight: "20px",
+      letterSpacing: "0",
+    },
+  },
+  BODY1_REGULAR_LG: {
+    FONT_SIZE: "16px",
+    OPTIONS: {
+      fontWeight: 400,
+      lineHeight: "1.2",
+      letterSpacing: "0",
+    },
+  },
+  BODY1_MEDIUM: {
+    FONT_SIZE: "16px",
+    OPTIONS: {
+      fontWeight: 500,
       lineHeight: "1.2",
       letterSpacing: "0",
     },
