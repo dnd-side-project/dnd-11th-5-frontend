@@ -2,13 +2,13 @@ import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
-import { OnboardingModel, PriorityModel } from "@/model/onboarding";
+import { FestivalPriority, OnboardingModel } from "@/model/onboarding";
 
 import { ONBOARDING } from "../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  priorities: Array<PriorityModel>;
+  priorities: Array<FestivalPriority>;
 }
 
 const OnBoardingPriorities: FC<Props> = ({ priorities }) => {
@@ -23,7 +23,7 @@ const OnBoardingPriorities: FC<Props> = ({ priorities }) => {
 
   const handlePriorityToggle = (
     isSelected: boolean,
-    priorityItem: PriorityModel,
+    priorityItem: FestivalPriority,
   ) => {
     isSelected
       ? replace(fields.filter((v) => v.priorityId !== priorityItem.priorityId))

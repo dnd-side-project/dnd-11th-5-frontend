@@ -3,24 +3,27 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
 import { CheckCircleIcon } from "@/components/icons";
-import { CompanyModel, OnboardingModel } from "@/model/onboarding";
+import { FestivalCompanion, OnboardingModel } from "@/model/onboarding";
 import { cn } from "@/utils/cn";
 
 import { ONBOARDING } from "../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  companies: Array<CompanyModel>;
+  companies: Array<FestivalCompanion>;
 }
 
-const OnBoardingCategories: FC<Props> = ({ companies }) => {
+const OnBoardingCompanions: FC<Props> = ({ companies }) => {
   const { control } = useFormContext<OnboardingModel>();
   const { fields, replace, append, remove } = useFieldArray({
     control: control,
     name: "companies",
   });
 
-  const handleMoodToggle = (isSelected: boolean, company: CompanyModel) => {
+  const handleMoodToggle = (
+    isSelected: boolean,
+    company: FestivalCompanion,
+  ) => {
     isSelected
       ? replace(
           fields.filter((v) => v.companionTypeId !== company.companionTypeId),
@@ -94,4 +97,4 @@ const OnBoardingCategories: FC<Props> = ({ companies }) => {
   );
 };
 
-export default OnBoardingCategories;
+export default OnBoardingCompanions;

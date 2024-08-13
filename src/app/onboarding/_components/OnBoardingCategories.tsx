@@ -2,13 +2,13 @@ import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 import { SquareTabButton } from "@/components/core/Button";
-import { CategoryModel, OnboardingModel } from "@/model/onboarding";
+import { FestivalCategory, OnboardingModel } from "@/model/onboarding";
 
 import { ONBOARDING } from "../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  categories: Array<CategoryModel>;
+  categories: Array<FestivalCategory>;
 }
 
 const OnBoardingCategories: FC<Props> = ({ categories }) => {
@@ -20,7 +20,7 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
 
   const handleCategoryToggle = (
     isSelected: boolean,
-    category: CategoryModel,
+    category: FestivalCategory,
   ) => {
     if (isSelected) {
       replace(fields.filter((v) => v.categoryId !== category.categoryId));
@@ -38,7 +38,7 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
         />
 
         <section className="grid h-auto w-full grid-cols-3 gap-x-[18px] gap-y-[20px]">
-          {categories.map(({ categoryId, category }) => {
+          {categories.map(({ categoryId, category, categoryEmoji }) => {
             const isSelected = fields.some((c) => c.categoryId === categoryId);
             return (
               <SquareTabButton
@@ -48,7 +48,11 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
                 active={isSelected}
                 disabled={fields.length === 2 && !isSelected}
                 onClick={() =>
-                  handleCategoryToggle(isSelected, { categoryId, category })
+                  handleCategoryToggle(isSelected, {
+                    categoryId,
+                    category,
+                    categoryEmoji,
+                  })
                 }
               />
             );

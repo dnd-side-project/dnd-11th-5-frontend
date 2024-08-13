@@ -2,13 +2,13 @@ import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 import BasicChip from "@/components/core/Chip/BasicChip/BasicChip";
-import { MoodModel, OnboardingModel } from "@/model/onboarding";
+import { FestivalMood, OnboardingModel } from "@/model/onboarding";
 
 import { ONBOARDING } from "../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  moods: Array<MoodModel>;
+  moods: Array<FestivalMood>;
 }
 
 const OnBoardingCategories: FC<Props> = ({ moods }) => {
@@ -18,7 +18,7 @@ const OnBoardingCategories: FC<Props> = ({ moods }) => {
     name: "moods",
   });
 
-  const handleMoodToggle = (isSelected: boolean, moodItem: MoodModel) => {
+  const handleMoodToggle = (isSelected: boolean, moodItem: FestivalMood) => {
     isSelected
       ? replace(fields.filter((v) => v.moodId !== moodItem.moodId))
       : append(moodItem);

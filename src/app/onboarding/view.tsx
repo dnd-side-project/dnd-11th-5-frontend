@@ -7,11 +7,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import { ProgressBar } from "@/components/core/Progress";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import {
-  CategoryModel,
-  CompanyModel,
-  MoodModel,
+  FestivalCategory,
+  FestivalCompanion,
+  FestivalMood,
+  FestivalPriority,
   OnboardingModel,
-  PriorityModel,
 } from "@/model/onboarding";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
@@ -25,10 +25,10 @@ import {
 import { ONBOARDING } from "./_constants";
 
 interface Props {
-  categories: Array<CategoryModel>;
-  companies: Array<CompanyModel>;
-  priorities: Array<PriorityModel>;
-  moods: Array<MoodModel>;
+  categories: Array<FestivalCategory>;
+  companies: Array<FestivalCompanion>;
+  priorities: Array<FestivalPriority>;
+  moods: Array<FestivalMood>;
 }
 
 const OnBoardingView: FC<Props> = ({
