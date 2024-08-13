@@ -3,7 +3,6 @@
 // ? Reference - https://codevoweb.com/how-to-set-up-and-use-react-query-in-next-js-14/
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PropsWithChildren, useState } from "react";
 
 function ReactQueryProvider({ children }: PropsWithChildren) {
@@ -12,7 +11,7 @@ function ReactQueryProvider({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={client}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }
