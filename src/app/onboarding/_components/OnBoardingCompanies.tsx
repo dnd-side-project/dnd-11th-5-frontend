@@ -25,9 +25,7 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
     company: FestivalCompanion,
   ) => {
     isSelected
-      ? replace(
-          fields.filter((v) => v.companionTypeId !== company.companionTypeId),
-        )
+      ? replace(fields.filter((v) => v.companionId !== company.companionId))
       : append(company);
   };
 
@@ -76,18 +74,19 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
               </span>
             </button>
           </div>
-          {companies.map((companyItem) => {
-            const { companionTypeId, companionType } = companyItem;
+          {companies.map(({ companionId, companionType }) => {
             const isSelected = fields.some(
-              (c) => c.companionTypeId === companionTypeId,
+              (c) => c.companionId === companionId,
             );
             return (
               <BasicTile
-                key={companionTypeId}
+                key={companionType}
                 type="button"
                 label={companionType}
                 active={isSelected}
-                onClick={() => handleMoodToggle(isSelected, companyItem)}
+                onClick={() =>
+                  handleMoodToggle(isSelected, { companionId, companionType })
+                }
               />
             );
           })}

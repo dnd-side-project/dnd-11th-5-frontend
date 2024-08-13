@@ -11,7 +11,7 @@ const PrioritySchema = z.object({
 });
 
 const CompanySchema = z.object({
-  companionTypeId: z.number(),
+  companionId: z.number(),
   companionType: z.string(),
 });
 

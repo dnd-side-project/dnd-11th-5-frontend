@@ -46,6 +46,7 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
                 type="button"
                 label={category}
                 active={isSelected}
+                emoji={categoryEmoji}
                 disabled={fields.length === 2 && !isSelected}
                 onClick={() =>
                   handleCategoryToggle(isSelected, {

@@ -4,7 +4,7 @@ export type FestivalMood = {
 };
 
 export type FestivalCompanion = {
-  companionTypeId: number;
+  companionId: number;
   companionType: string;
 };
 
