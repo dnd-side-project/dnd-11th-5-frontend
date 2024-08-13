@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import dynamic from "next/dynamic";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -13,6 +14,7 @@ import {
   FestivalPriority,
   OnboardingModel,
 } from "@/model/onboarding";
+import { delay } from "@/utils/delay";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
 import {
@@ -23,6 +25,10 @@ import {
   OnBoardingPriorities,
 } from "./_components";
 import { ONBOARDING } from "./_constants";
+
+const OnBoardingLoading = dynamic(
+  () => import("./_components/OnBoardingLoading"),
+);
 
 interface Props {
   categories: Array<FestivalCategory>;
@@ -51,7 +57,11 @@ const OnBoardingView: FC<Props> = ({
     resolver: zodResolver(OnBoardingSchema),
   });
 
-  const { trigger, handleSubmit } = methods;
+  const {
+    trigger,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
 
   // * 첫 렌더링에 유효성 검사 1회 실행
   useEffect(() => {
@@ -68,8 +78,9 @@ const OnBoardingView: FC<Props> = ({
   const handlePrevStep = () => handleStepChange(-1);
   const handleNextStep = () => handleStepChange(1);
 
-  const onSubmit = (data: OnboardingModel) => {
-    console.log(data);
+  const onSubmit = async (data: OnboardingModel) => {
+    await delay(5000);
+    console.log("🚀 ~ onSubmit ~ data:", data);
   };
 
   const renderCurrentStep: {
@@ -80,6 +91,10 @@ const OnBoardingView: FC<Props> = ({
     3: <OnBoardingCompanies companies={companies} />,
     4: <OnBoardingPriorities priorities={priorities} />,
   };
+
+  if (isSubmitting) {
+    return <OnBoardingLoading />;
+  }
 
   return (
     <main className="mt-[92px] w-full">
