@@ -18,7 +18,7 @@ const SquareTabButton: FC<Props> = ({
   return (
     <button
       className={cn(
-        "size-[108px] duration-300 rounded-[8px] py-[20px]",
+        "size-[108px] duration-300 rounded-[8px]",
         "flex flex-col items-center justify-center gap-[12px] mx-auto",
         active
           ? "bg-primary-05 border-[1px] border-primary-01"
