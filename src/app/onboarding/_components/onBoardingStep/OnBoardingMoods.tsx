@@ -4,14 +4,14 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import BasicChip from "@/components/core/Chip/BasicChip/BasicChip";
 import { FestivalMood, OnboardingModel } from "@/model/onboarding";
 
-import { ONBOARDING } from "../_constants";
+import { ONBOARDING } from "../../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
   moods: Array<FestivalMood>;
 }
 
-const OnBoardingCategories: FC<Props> = ({ moods }) => {
+const OnBoardingMoods: FC<Props> = ({ moods }) => {
   const { control } = useFormContext<OnboardingModel>();
   const { fields, replace, append } = useFieldArray({
     control: control,
@@ -53,4 +53,4 @@ const OnBoardingCategories: FC<Props> = ({ moods }) => {
   );
 };
 
-export default OnBoardingCategories;
+export default OnBoardingMoods;

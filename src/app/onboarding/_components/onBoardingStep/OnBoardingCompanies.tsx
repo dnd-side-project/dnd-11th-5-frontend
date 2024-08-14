@@ -6,7 +6,7 @@ import { CheckCircleIcon } from "@/components/icons";
 import { FestivalCompanion, OnboardingModel } from "@/model/onboarding";
 import { cn } from "@/utils/cn";
 
-import { ONBOARDING } from "../_constants";
+import { ONBOARDING } from "../../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {

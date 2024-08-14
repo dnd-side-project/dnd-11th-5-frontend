@@ -4,7 +4,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { SquareTabButton } from "@/components/core/Button";
 import { FestivalCategory, OnboardingModel } from "@/model/onboarding";
 
-import { ONBOARDING } from "../_constants";
+import { ONBOARDING } from "../../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
