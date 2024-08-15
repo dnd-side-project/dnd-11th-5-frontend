@@ -42,11 +42,30 @@ export class UserError extends FiestaError {
     super(statusCode, code, message);
   }
 }
+// 리뷰 에러 클래스
+export class ReviewError extends FiestaError {
+  constructor(statusCode: number, code: string, message: string) {
+    super(statusCode, code, message);
+  }
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createFiestaError(error: any) {
+function isFiestaError(error: unknown): error is FiestaError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    "message" in error &&
+    "statusCode" in error
+  );
+}
+
+export function createFiestaError(error: unknown) {
+  if (!isFiestaError(error)) {
+    return new Error(`Unknown Error: ${JSON.stringify(error)}`);
+  }
+
   const { code, message, statusCode } = error;
-  const initial = error.code.charAt(0);
+  const initial = code.charAt(0);
 
   if (initial === "S") {
     return new ServerError(code, message);
@@ -63,6 +82,9 @@ export function createFiestaError(error: any) {
   if (initial === "U") {
     return new ClientError(statusCode, code, message);
   }
+  if (initial === "R") {
+    return new ReviewError(statusCode, code, message);
+  }
 
-  return new Error("Something went wrong");
+  return new Error(`Something went wrong: ${JSON.stringify(error)}`);
 }

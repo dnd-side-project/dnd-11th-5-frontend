@@ -5,6 +5,7 @@ import {
   createFiestaError,
   FestivalError,
   LogsError,
+  ReviewError,
   ServerError,
   UserError,
 } from "./error";
@@ -25,7 +26,7 @@ const fiestaFetch = async (
 ) => {
   const baseUrl = env.NEXT_PUBLIC_BASE_URL;
 
-  const _defaultOptions: RequestInit = {
+  const defaultOptions: RequestInit = {
     headers: {
       "Content-Type": "application/json",
     },
@@ -33,10 +34,10 @@ const fiestaFetch = async (
 
   const finalOptions = {
     method,
-    ..._defaultOptions,
+    ...defaultOptions,
     ...options,
     headers: {
-      ..._defaultOptions.headers,
+      ...defaultOptions.headers,
       ...options?.headers,
     },
   };
@@ -70,6 +71,10 @@ const fiestaFetch = async (
     }
     if (error instanceof UserError) {
       // TODO: User Error
+      throw error;
+    }
+    if (error instanceof ReviewError) {
+      // TODO: Review Error
       throw error;
     }
 
