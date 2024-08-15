@@ -39,4 +39,6 @@ next-env.d.ts
 storybook-static
 
 .env.local
+.env.test
+
 

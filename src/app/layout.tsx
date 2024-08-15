@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
+import { MSWProvider } from "@/lib/MSWProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 import { cn } from "@/utils/cn";
 
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="ko" className={Pretendard.variable}>
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
-        <ReactQueryProvider>
-          <MobileLayout>{children}</MobileLayout>
-        </ReactQueryProvider>
+        <MSWProvider>
+          <ReactQueryProvider>
+            <MobileLayout>{children}</MobileLayout>
+          </ReactQueryProvider>
+        </MSWProvider>
       </body>
     </html>
   );
