@@ -49,18 +49,22 @@ export class ReviewError extends FiestaError {
   }
 }
 
+function isFiestaError(error: unknown): error is FiestaError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    "message" in error &&
+    "statusCode" in error
+  );
+}
+
 export function createFiestaError(error: unknown) {
-  if (
-    typeof error !== "object" ||
-    error === null ||
-    !("code" in error) ||
-    !("message" in error) ||
-    !("statusCode" in error)
-  ) {
+  if (!isFiestaError(error)) {
     return new Error(`Unknown Error: ${JSON.stringify(error)}`);
   }
 
-  const { code, message, statusCode } = error as FiestaError;
+  const { code, message, statusCode } = error;
   const initial = code.charAt(0);
 
   if (initial === "S") {
