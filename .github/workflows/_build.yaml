@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up environment variables
+        run: echo "${{ secrets.NEXT_PUBLIC_BASE_URL }}" > .env
+
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
