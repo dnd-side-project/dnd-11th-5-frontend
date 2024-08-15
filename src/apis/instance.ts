@@ -6,6 +6,7 @@ import {
   FestivalError,
   LogsError,
   ServerError,
+  UserError,
 } from "./error";
 
 export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -65,6 +66,10 @@ const fiestaFetch = async (
     }
     if (error instanceof LogsError) {
       // TODO: Logs Error
+      throw error;
+    }
+    if (error instanceof UserError) {
+      // TODO: User Error
       throw error;
     }
 

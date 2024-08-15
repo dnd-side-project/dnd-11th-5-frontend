@@ -36,6 +36,13 @@ export class LogsError extends FiestaError {
   }
 }
 
+// 유저 에러 클래스
+export class UserError extends FiestaError {
+  constructor(statusCode: number, code: string, message: string) {
+    super(statusCode, code, message);
+  }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createFiestaError(error: any) {
   const { code, message, statusCode } = error;
@@ -51,6 +58,9 @@ export function createFiestaError(error: any) {
     return new FestivalError(statusCode, code, message);
   }
   if (initial === "L") {
+    return new ClientError(statusCode, code, message);
+  }
+  if (initial === "U") {
     return new ClientError(statusCode, code, message);
   }
 
