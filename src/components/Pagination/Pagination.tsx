@@ -1,15 +1,15 @@
 import Link from "next/link";
 
 import { ArrowLeftSmallIcon, ArrowRightSmallIcon } from "@/components/icons";
-import { FIESTA_ENDPOINTS } from "@/config";
 import { serialize } from "@/lib/searchParams";
 import { cn } from "@/utils";
 
 type PaginationControlsProps = {
   currentPage: number;
+  currentPath: string;
 };
 
-function Pagination({ currentPage }: PaginationControlsProps) {
+function Pagination({ currentPage, currentPath }: PaginationControlsProps) {
   const getPageNumbers = (): number[] => {
     if (currentPage <= 1) {
       return [1, 2, 3];
@@ -18,7 +18,7 @@ function Pagination({ currentPage }: PaginationControlsProps) {
   };
 
   const pageURL = (page: number) => {
-    return serialize(FIESTA_ENDPOINTS.festivals.mostlike, {
+    return serialize(currentPath, {
       page,
       size: 6,
     });

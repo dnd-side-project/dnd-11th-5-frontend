@@ -2,6 +2,7 @@ import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
 import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
 import Pagination from "@/components/Pagination/Pagination";
+import { FIESTA_ENDPOINTS } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
 import TrendTestView from "./view";
@@ -23,7 +24,10 @@ export default async function TrendPage({ searchParams }: TrendPageProps) {
     <div className="relative mb-[60px] mt-[44px]">
       <DefaultHeader href="/" label="HOT 페스티벌" />
       <TrendTestView festivals={festivals} />
-      <Pagination currentPage={parsedParams.page} />
+      <Pagination
+        currentPath={FIESTA_ENDPOINTS.festivals.mostlike}
+        currentPage={parsedParams.page}
+      />
     </div>
   );
 }
