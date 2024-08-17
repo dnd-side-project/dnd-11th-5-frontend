@@ -9,6 +9,18 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 jiti("./src/env");
 
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "placehold.co",
+      },
+    ],
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   experimental: { instrumentationHook: true },
   webpack(config) {
     // SVG 가져오기를 처리하는 기존 규칙을 가져옵니다.
