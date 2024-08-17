@@ -6,7 +6,7 @@ import CalendarView from "./view";
 export default function Calendar() {
   return (
     <div className="mb-[60px] mt-[44px]">
-      <DefaultHeader label="Calendar" />
+      <DefaultHeader href="/" label="Calendar" />
       <CalendarView />
       <NavigationBar />
     </div>
