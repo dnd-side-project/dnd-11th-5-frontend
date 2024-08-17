@@ -14,7 +14,7 @@ const DefaultHeader: FC<Props> = ({
   ...props
 }) => {
   return (
-    <header className="fixed top-0 z-[999] flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
+    <header className="fixed top-0 z-[999] flex h-[44px] w-full max-w-none items-center justify-between px-[10px] text-gray-900 lg:max-w-[450px]">
       {showBackButton && (
         <Link {...props}>
           <ArrowLeftSmallIcon width={24} height={24} />

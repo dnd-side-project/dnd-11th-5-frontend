@@ -20,7 +20,7 @@ const DateTag: FC<Props> = ({ label, className, ...props }) => {
       className={cn(
         className,
         "w-auto h-[26px] duration-300 rounded-[6px] py-[6px] px-[12px]",
-        "flex items-center justify-center",
+        "flex items-center justify-center whitespace-nowrap",
         "bg-primary-01 text-caption1-medium text-gray-scale-0",
       )}
       {...props}

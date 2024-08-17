@@ -18,8 +18,9 @@ const TrendFestivalCard: FC<TrendFestivalCardProps> = ({
 
   return (
     <Link
-      type="button"
-      className={"flex h-auto w-full flex-col gap-[12px] rounded-t-[8px]"}
+      className={
+        "flex h-auto w-full max-w-[200px] flex-col gap-[12px] rounded-t-[8px]"
+      }
       {...props}
     >
       <div className="relative h-[136px] w-full rounded-[8px]">
