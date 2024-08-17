@@ -1,4 +1,4 @@
-import { getHotFestival } from "@/apis/festivals/hotFestival";
+import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
 import { HomeHeader } from "@/layout/Mobile/MobileHeader";
 import NavigationBar from "@/layout/Mobile/NavigationBar";
 

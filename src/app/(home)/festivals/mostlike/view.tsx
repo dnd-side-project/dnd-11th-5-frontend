@@ -1,4 +1,4 @@
-import { HostFestivalData } from "@/apis/festivals/types/hotFestival";
+import { HostFestivalData } from "@/apis/festivals/hotFestival/types/hotFestival";
 import { TrendFestivalCard } from "@/components/core/Card";
 
 interface Props {

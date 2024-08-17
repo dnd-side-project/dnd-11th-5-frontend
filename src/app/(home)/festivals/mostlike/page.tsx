@@ -1,6 +1,6 @@
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
-import { getHotFestival } from "@/apis/festivals/hotFestival";
+import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
 import Pagination from "@/components/Pagination/Pagination";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
