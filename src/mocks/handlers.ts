@@ -9,7 +9,9 @@ export const handlers = [
   http.get(
     "https://odiga.shop/api/v1/festivals/mostlike",
 
-    ({ request }) => {
+    async ({ request }) => {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       const url = new URL(request.url);
       const page = url.searchParams.get("page");
 
