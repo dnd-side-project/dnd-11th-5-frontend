@@ -1,0 +1,68 @@
+{
+  "statusCode": 200,
+  "status": "OK",
+  "message": "스크랩 다건 조회 성공",
+  "data": {
+    "content": [
+      {
+        "festivalId": 13,
+        "name": "청주 국제 공예 비엔날레",
+        "sido": "충북",
+        "sigungu": "청주시",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-09-10",
+        "endDate": "2024-09-15"
+      },
+      {
+        "festivalId": 14,
+        "name": "인천 펜타포트 락 페스티벌",
+        "sido": "인천",
+        "sigungu": "연수구",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-08-02",
+        "endDate": "2024-08-04"
+      },
+      {
+        "festivalId": 15,
+        "name": "춘천 마임 축제",
+        "sido": "강원",
+        "sigungu": "춘천시",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-05-25",
+        "endDate": "2024-05-29"
+      },
+      {
+        "festivalId": 16,
+        "name": "수원 화성 문화제",
+        "sido": "경기",
+        "sigungu": "수원시",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-10-12",
+        "endDate": "2024-10-15"
+      },
+      {
+        "festivalId": 17,
+        "name": "고양 국제 꽃박람회",
+        "sido": "경기",
+        "sigungu": "고양시",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-04-27",
+        "endDate": "2024-05-03"
+      },
+      {
+        "festivalId": 18,
+        "name": "남이섬 겨울 연가 축제",
+        "sido": "강원",
+        "sigungu": "춘천시",
+        "thumbnailImage": "https://placehold.co/400.png",
+        "startDate": "2024-12-10",
+        "endDate": "2024-12-15"
+      }
+    ],
+    "offset": 12,
+    "pageNumber": 2,
+    "pageSize": 6,
+    "totalElements": 43,
+    "totalPages": 8
+  }
+}

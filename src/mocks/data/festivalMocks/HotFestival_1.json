@@ -1,0 +1,69 @@
+{
+    "statusCode": 200,
+    "status": "OK",
+    "message": "스크랩 다건 조회 성공",
+    "data": {
+        "content" : [
+          {
+              "festivalId" : 1,
+              "name" : "한강 페스티벌",
+              "sido" : "서울",
+              "sigungu" : "광진구",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-10-04",
+              "endDate" : "2024-10-10"
+            },
+            {
+              "festivalId" : 2, 
+              "name" : "쉬어강서",
+              "sido" : "서울",
+              "sigungu" : "광서구",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-10-04",
+              "endDate" : "2024-10-10"
+            },
+            {
+              "festivalId" : 3, 
+              "name" : "부산 국제 영화제",
+              "sido" : "부산",
+              "sigungu" : "해운대구",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-11-01",
+              "endDate" : "2024-11-07"
+            },
+            {
+              "festivalId" : 4, 
+              "name" : "전주 한옥마을 축제",
+              "sido" : "전북",
+              "sigungu" : "전주시",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-09-15",
+              "endDate" : "2024-09-20"
+            },
+            {
+              "festivalId" : 5, 
+              "name" : "속초 국제 불꽃 축제",
+              "sido" : "강원",
+              "sigungu" : "속초시",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-12-24",
+              "endDate" : "2024-12-26"
+            },
+            {
+              "festivalId" : 6, 
+              "name" : "제주 감귤 축제",
+              "sido" : "제주",
+              "sigungu" : "제주시",
+              "thumbnailImage" : "https://placehold.co/400.png",
+              "startDate" : "2024-11-15",
+              "endDate" : "2024-11-20"
+            }
+          ],
+         "offset": 12,
+        "pageNumber": 0,
+        "pageSize": 6,
+        "totalElements": 43,
+        "totalPages": 8
+     }
+  }
+  
