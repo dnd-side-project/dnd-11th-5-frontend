@@ -1,9 +1,9 @@
 import { http, HttpResponse } from "msw";
 
-import HotFestival from "./festivalMocks/HotFestival.json";
-import HotFestivalPage1 from "./festivalMocks/HotFestival_1.json";
-import HotFestivalPage2 from "./festivalMocks/HotFestival_2.json";
-import HotFestivalPage3 from "./festivalMocks/HotFestival_3.json";
+import HotFestival from "./data/festivalMocks/HotFestival.json";
+import HotFestivalPage1 from "./data/festivalMocks/HotFestival_1.json";
+import HotFestivalPage2 from "./data/festivalMocks/HotFestival_2.json";
+import HotFestivalPage3 from "./data/festivalMocks/HotFestival_3.json";
 
 export const handlers = [
   http.get(
