@@ -1,5 +1,6 @@
-import { generateQueryString } from "@/utils/generateQueryString";
 import { isEmpty } from "@/utils/isEmpty";
+
+import { generateQueryString } from "./generateQueryString";
 
 export function generateUrlWithParams(
   baseURL: string,
