@@ -5,7 +5,7 @@ interface Props {
   festivals: HostFestivalData;
 }
 
-const TrendTestView = ({ festivals }: Props) => {
+const HotFestivalView = ({ festivals }: Props) => {
   return (
     <div className="h-full w-full p-[16px]">
       <div className="grid w-full grid-cols-2 gap-[16px]">
@@ -21,4 +21,4 @@ const TrendTestView = ({ festivals }: Props) => {
   );
 };
 
-export default TrendTestView;
+export default HotFestivalView;
