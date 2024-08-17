@@ -6,6 +6,7 @@
     "dev": "next dev",
     "dev:mock": "NODE_ENV=test next dev",
     "build": "next build",
+    "build:mock": "NODE_ENV=test next build",
     "start": "next start",
     "prepare": "husky",
     "cz": "cz",
