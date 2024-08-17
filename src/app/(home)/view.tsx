@@ -1,4 +1,4 @@
-import { HostFestivalData } from "@/apis/festivals/hotFestival/types/hotFestival";
+import { HostFestivalData } from "@/apis/festivals/hotFestival/hotFestivalType";
 
 import FestivalHot from "./_components/FestivalHot";
 

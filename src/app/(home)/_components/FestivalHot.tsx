@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 
-import { HostFestivalData } from "@/apis/festivals/hotFestival/types/hotFestival";
+import { HostFestivalData } from "@/apis/festivals/hotFestival/hotFestivalType";
 import { TrendFestivalCard } from "@/components/core/Card";
 import { ArrowRightSmallIcon } from "@/components/icons";
 import { FIESTA_ENDPOINTS } from "@/config";

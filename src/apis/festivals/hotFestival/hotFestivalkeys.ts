@@ -1,4 +1,4 @@
-import { PaginationParamter } from "./types/hotFestival";
+import { PaginationParamter } from "./hotFestivalType";
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
 
 export const hotFestivalKeys = {

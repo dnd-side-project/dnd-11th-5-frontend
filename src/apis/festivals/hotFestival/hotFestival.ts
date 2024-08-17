@@ -1,11 +1,11 @@
 "use server";
 
+import instance from "@/apis/instance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
-import instance from "../instance";
 import { hotFestivalKeys } from "./hotFestivalkeys";
-import { HostFestivalData, PaginationParamter } from "./types/hotFestival";
+import { HostFestivalData, PaginationParamter } from "./hotFestivalType";
 
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
 const ENDPOINT = FIESTA_ENDPOINTS.festivals;
