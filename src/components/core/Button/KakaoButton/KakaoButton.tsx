@@ -21,7 +21,7 @@ const KakaoButton: FC<Props> = ({ label, ...props }) => {
     >
       <KakaoIcon width={18} height={18} />
       <div className="min-w-[260px] truncate text-button1-semi">
-        {label ?? "카카오로그인"}
+        {label ?? "카카오 로그인"}
       </div>
     </button>
   );

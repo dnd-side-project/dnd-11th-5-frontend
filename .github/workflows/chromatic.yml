@@ -4,6 +4,7 @@ run-name: Storybook deployment by ${{ github.actor }}
 
 on:
   pull_request:
+    types: [opened, ready_for_review]
     branches:
       - develop
 

@@ -1,17 +1,21 @@
 // https://env.t3.gg/docs/nextjs
 
 import { createEnv } from "@t3-oss/env-nextjs";
-import { ZodError } from "zod";
+import { z, ZodError } from "zod";
+
+import { VALIDATION_ERROR_MESSAGES } from "../config/validationError";
 
 export const env = createEnv({
   server: {},
 
   client: {
-    // NEXT_PUBLIC_twitterUrl: z.string().min(1),
+    NEXT_PUBLIC_BASE_URL: z.string({
+      message: VALIDATION_ERROR_MESSAGES.required,
+    }),
   },
 
   runtimeEnv: {
-    // NEXT_PUBLIC_twitterUrl: process.env.twitterUrl,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
 
   onValidationError: (error: ZodError) => {
@@ -19,7 +23,7 @@ export const env = createEnv({
       "❌ 유효하지 않은 환경변수들 입니다:",
       error.flatten().fieldErrors,
     );
-    throw new Error("Invalid environment variables");
+    throw new Error("환경변수가 유효하지 않습니다.");
   },
   // Called when server variables are accessed on the client.
   onInvalidAccess: (_variable: string) => {
