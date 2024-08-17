@@ -12,7 +12,7 @@ on:
 
 jobs:
   chromatic:
-    if: github.event.pull_request.labels.*.name != 'skip-build'
+    if: ${{ github.event.pull_request.labels.*.name != 'skip-build' }}
     name: Run Chromatic Deployment
     # Operating System
     runs-on: ubuntu-latest
