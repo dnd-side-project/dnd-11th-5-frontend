@@ -1,4 +1,4 @@
-export const VALIDATION_ERROR_MESSAGES = {
+const VALIDATION_ERROR_MESSAGES = {
   required: "이 필드는 필수입니다.",
   minLength: (min: number) => `최소 ${min}자 이상 입력해야 합니다.`,
   maxLength: (max: number) => `최대 ${max}자까지 입력할 수 있습니다.`,
@@ -11,3 +11,5 @@ export const VALIDATION_ERROR_MESSAGES = {
   max: (max: number) => `${max} 이하의 값을 입력해주세요.`,
   match: "입력한 값이 일치하지 않습니다.",
 };
+
+export default VALIDATION_ERROR_MESSAGES;
