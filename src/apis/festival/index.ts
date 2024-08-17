@@ -1,15 +1,17 @@
-"use server";
-
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
 import instance from "../instance";
-import { PagenationParamter } from "./festival";
+import { HotFestivalResponse, PagenationParamter } from "./festival";
 
-const getTrendFestival = async (
-  params: PagenationParamter = { page: 0, size: 6 },
-) => {
-  const baseUrl = "/api/v1/festivals/mostlike";
-  return await instance.get(generateUrlWithParams(baseUrl, params));
+const getHotFestival = async (
+  params?: PagenationParamter,
+): Promise<HotFestivalResponse> => {
+  const baseUrl = "/festivals/mostlike";
+  const response = await instance.get<HotFestivalResponse>(
+    generateUrlWithParams(baseUrl, params),
+  );
+
+  return response.data;
 };
 
-export { getTrendFestival };
+export { getHotFestival };

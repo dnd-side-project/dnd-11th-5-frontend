@@ -7,6 +7,8 @@ on:
     types: [opened, ready_for_review]
     branches:
       - develop
+    paths:
+      - '**/*.stories.tsx'
 
 jobs:
   chromatic:
