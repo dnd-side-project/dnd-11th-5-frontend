@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:mock": "NODE_ENV=test next dev",
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
+    "@faker-js/faker": "^8.4.1",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
@@ -72,6 +74,7 @@
     "eslint-plugin-unused-imports": "^3.2.0",
     "husky": "^9.0.11",
     "jiti": "^1.21.6",
+    "msw": "^2.3.5",
     "postcss": "^8",
     "prettier": "^3.3.2",
     "storybook": "^8.2.6",
@@ -91,6 +94,11 @@
     "*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write '**/*.{ts,tsx}' --ignore-unknown"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
     ]
   }
 }
