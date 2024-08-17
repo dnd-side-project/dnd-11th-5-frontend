@@ -11,8 +11,6 @@ interface Props {
 }
 
 const FestivalHot: FC<Props> = ({ hotFestivals }) => {
-  console.log("server Componet");
-
   return (
     <section className="flex w-full flex-col gap-[12px]">
       <div className="flex w-full justify-between">
