@@ -3,16 +3,12 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  push:
-    branches-ignore:
-      - main
-
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
 jobs:
   Deploy-Preview:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-build') && !contains(github.event.head_commit.message, '[skip-build]') }}
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-build') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
