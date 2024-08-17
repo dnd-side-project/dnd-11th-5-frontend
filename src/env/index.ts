@@ -12,9 +12,13 @@ export const env = createEnv({
     NEXT_PUBLIC_BASE_URL: z.string({
       message: VALIDATION_ERROR_MESSAGES.required,
     }),
+    NEXT_PUBLIC_STAGE: z.string({
+      message: VALIDATION_ERROR_MESSAGES.required,
+    }),
   },
 
   runtimeEnv: {
+    NEXT_PUBLIC_STAGE: process.env.NEXT_PUBLIC_STAGE,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
 

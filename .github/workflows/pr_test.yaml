@@ -10,3 +10,4 @@ jobs:
     uses: ./.github/workflows/_build.yaml
     with:
       NODE_VERSION: 20.x
+      NEXT_PUBLIC_STAGE: development
