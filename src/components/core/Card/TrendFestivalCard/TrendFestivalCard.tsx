@@ -1,10 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { FC } from "react";
 
-import { FestivalListModel } from "@/apis/festival/festival";
+import { FestivalListModel } from "@/apis/festivals/types/hotFestival";
 import { DateTag } from "@/components/core/Tag";
 import useDayjs from "@/hooks/useDayjs";
 
