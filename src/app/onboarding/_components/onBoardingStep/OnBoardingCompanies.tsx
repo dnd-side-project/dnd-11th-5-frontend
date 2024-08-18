@@ -39,7 +39,7 @@ const OnBoardingCompanions: FC<Props> = ({ companions }) => {
   const handleCheckAllToggle = () => {
     remove(fields.map((_, index) => index));
 
-    if (fields.length < 5) {
+    if (fields.length < companions.length) {
       companions.forEach((companyItem) => append(companyItem));
     }
   };
@@ -64,7 +64,7 @@ const OnBoardingCompanions: FC<Props> = ({ companions }) => {
                 width={18}
                 height={18}
                 className={cn(
-                  fields.length === 5
+                  fields.length === companions.length
                     ? "text-primary-01"
                     : "text-gray-scale-300",
                 )}
@@ -72,7 +72,7 @@ const OnBoardingCompanions: FC<Props> = ({ companions }) => {
               <span
                 className={cn(
                   "text-caption2-medium text-gray-700",
-                  fields.length === 5
+                  fields.length === companions.length
                     ? "text-primary-01"
                     : "text-gray-scale-700",
                 )}

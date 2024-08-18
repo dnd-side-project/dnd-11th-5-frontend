@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { ONBOARDING_SETTING } from "@/config";
+
 const MoodSchema = z.object({
   moodId: z.number(),
   name: z.string(),
@@ -21,10 +23,16 @@ const CategorySchema = z.object({
   name: z.string(),
 });
 
-const MoodsSchema = z.array(MoodSchema).min(3, "at least three items");
-const PrioritiesSchema = z.array(PrioritySchema).min(3, "at least one item");
+const MoodsSchema = z
+  .array(MoodSchema)
+  .min(ONBOARDING_SETTING.MOOD_MIN, "at least three items");
+const PrioritiesSchema = z
+  .array(PrioritySchema)
+  .min(ONBOARDING_SETTING.PRIORITY_MIN, "at least one item");
 const companionsSchema = z.array(CompanySchema).min(1, "at least one item");
-const CategoriesSchema = z.array(CategorySchema).min(2, "at least two items");
+const CategoriesSchema = z
+  .array(CategorySchema)
+  .min(ONBOARDING_SETTING.CATEGORY_MIN, "at least two items");
 
 export const OnBoardingSchema = z.object({
   categories: CategoriesSchema,

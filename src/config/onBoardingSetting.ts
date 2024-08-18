@@ -1,6 +1,9 @@
 const ONBOARDING_SETTING = Object.freeze({
   INITIAL_STEP: 1,
   TOTAL_STEP: 4,
+  CATEGORY_MIN: 2,
+  MOOD_MIN: 3,
+  PRIORITY_MIN: 3,
   CATEGORY_TITLE: "관심있는 페스티벌을 알려주세요!",
   CATEGORY_SUBTITLE: "관심 분야 2가지를 선택해주세요",
   MOOD_TITLE: "선호하는 페스티벌 분위기를 알려주세요!",

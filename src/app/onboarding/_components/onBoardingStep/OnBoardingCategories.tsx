@@ -56,7 +56,10 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
                 label={name}
                 active={isSelected}
                 emoji={emoji}
-                disabled={fields.length === 2 && !isSelected}
+                disabled={
+                  fields.length === ONBOARDING_SETTING.CATEGORY_MIN &&
+                  !isSelected
+                }
                 onClick={() =>
                   handleCategoryToggle(isSelected, {
                     categoryId,

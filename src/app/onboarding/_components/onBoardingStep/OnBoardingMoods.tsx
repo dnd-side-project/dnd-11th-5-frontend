@@ -49,7 +49,9 @@ const OnBoardingMoods: FC<Props> = ({ moods }) => {
                 type="button"
                 label={name}
                 active={isSelected}
-                disabled={fields.length === 3 && !isSelected}
+                disabled={
+                  fields.length === ONBOARDING_SETTING.MOOD_MIN && !isSelected
+                }
                 onClick={() => handleMoodToggle(isSelected, moodItem)}
               />
             );
