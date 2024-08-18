@@ -5,9 +5,7 @@ import DescriptionInput from "./DescriptionInput";
 const meta: Meta<typeof DescriptionInput> = {
   title: "Core/Input/DescriptionInput",
   component: DescriptionInput,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     maxlength: {

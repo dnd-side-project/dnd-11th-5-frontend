@@ -5,9 +5,7 @@ import RecommedFestivalTag from "./RecommedFestivalTag";
 const meta: Meta<typeof RecommedFestivalTag> = {
   title: "Core/Tag/RecommedFestivalTag",
   component: RecommedFestivalTag,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

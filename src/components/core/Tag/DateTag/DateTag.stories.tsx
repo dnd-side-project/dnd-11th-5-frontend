@@ -5,9 +5,7 @@ import DateTag from "./DateTag";
 const meta: Meta<typeof DateTag> = {
   title: "Core/Tag/DateTag",
   component: DateTag,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

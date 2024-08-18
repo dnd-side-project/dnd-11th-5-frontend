@@ -7,9 +7,7 @@ import IconButton from "./IconButton";
 const meta: Meta<typeof IconButton> = {
   title: "Core/Button/IconButton",
   component: IconButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {

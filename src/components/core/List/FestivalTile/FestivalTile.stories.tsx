@@ -7,7 +7,6 @@ const meta: Meta<typeof FestivalTile> = {
   title: "List/FestivalTile",
   component: FestivalTile,
   parameters: {
-    layout: "centered",
     controls: { include: ["festival"] },
   },
 

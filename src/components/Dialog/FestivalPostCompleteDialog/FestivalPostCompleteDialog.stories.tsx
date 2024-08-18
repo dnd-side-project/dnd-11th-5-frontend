@@ -5,9 +5,7 @@ import FestivalPostCompleteDialog from "./FestivalPostCompleteDialog";
 const meta: Meta<typeof FestivalPostCompleteDialog> = {
   title: "Dialog/FestivalPostCompleteDialog",
   component: FestivalPostCompleteDialog,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     open: {

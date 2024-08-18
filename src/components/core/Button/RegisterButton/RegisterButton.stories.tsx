@@ -5,9 +5,7 @@ import RegisterButton from "./RegisterButton";
 const meta: Meta<typeof RegisterButton> = {
   title: "Core/Button/RegisterButton",
   component: RegisterButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

@@ -5,9 +5,7 @@ import ReviewTag from "./ReviewTag";
 const meta: Meta<typeof ReviewTag> = {
   title: "Core/Tag/ReviewTag",
   component: ReviewTag,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

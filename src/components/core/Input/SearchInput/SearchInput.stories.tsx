@@ -5,9 +5,7 @@ import SearchInput from "./SearchInput";
 const meta: Meta<typeof SearchInput> = {
   title: "Core/Input/SearchInput",
   component: SearchInput,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

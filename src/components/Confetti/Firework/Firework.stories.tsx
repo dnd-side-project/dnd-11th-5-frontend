@@ -5,9 +5,7 @@ import FireworkAnimation from "./";
 const meta: Meta<typeof FireworkAnimation> = {
   title: "Confetti/FireworkAnimation",
   component: FireworkAnimation,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

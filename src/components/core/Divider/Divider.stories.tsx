@@ -5,9 +5,7 @@ import Divider from "./Divider";
 const meta: Meta<typeof Divider> = {
   title: "Core/Divider/Divider",
   component: Divider,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

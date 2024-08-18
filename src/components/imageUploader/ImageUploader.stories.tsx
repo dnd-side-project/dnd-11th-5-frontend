@@ -5,9 +5,7 @@ import ImageUploader from "./ImageUploader";
 const meta: Meta<typeof ImageUploader> = {
   title: "ImageUploader",
   component: ImageUploader,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

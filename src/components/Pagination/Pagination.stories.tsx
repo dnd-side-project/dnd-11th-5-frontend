@@ -7,7 +7,6 @@ const meta: Meta<typeof Pagination> = {
   title: "Pagination/Pagination",
   component: Pagination,
   parameters: {
-    layout: "centered",
     controls: { include: ["currentPage"] },
   },
   argTypes: {

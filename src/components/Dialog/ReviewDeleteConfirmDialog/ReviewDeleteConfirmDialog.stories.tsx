@@ -5,9 +5,7 @@ import ReviewDeleteConfirmDialog from "./ReviewDeleteConfirmDialog";
 const meta: Meta<typeof ReviewDeleteConfirmDialog> = {
   title: "Dialog/ReviewDeleteConfirmDialog",
   component: ReviewDeleteConfirmDialog,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     open: {

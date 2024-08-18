@@ -6,9 +6,7 @@ import DefaultHeader from "./DefaultHeader";
 const meta: Meta<typeof DefaultHeader> = {
   title: "Header/DefaultHeader",
   component: DefaultHeader,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {
