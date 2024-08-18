@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { ONBOARDING } from "@/app/onboarding/_constants";
+import { ONBOARDING_SETTING } from "@/config";
 
 export const useOnBoardingStep = () => {
-  const { INITIAL_STEP, TOTAL_STEP } = ONBOARDING;
+  const { INITIAL_STEP, TOTAL_STEP } = ONBOARDING_SETTING;
   const [currentStep, setCurrentStep] = useState<number>(INITIAL_STEP);
 
   const handleStepChange = (stepChange: number) => {
@@ -22,6 +22,5 @@ export const useOnBoardingStep = () => {
     handleNextStep,
     INITIAL_STEP,
     TOTAL_STEP,
-    ONBOARDING,
   };
 };
