@@ -8,10 +8,11 @@ on:
     branches:
       - develop
     paths:
-      - '**/*.stories.tsx'
+      - "**/*.stories.tsx"
 
 jobs:
   chromatic:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-build') }}
     name: Run Chromatic Deployment
     # Operating System
     runs-on: ubuntu-latest

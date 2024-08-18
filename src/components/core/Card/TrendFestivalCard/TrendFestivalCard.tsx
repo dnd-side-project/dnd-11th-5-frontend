@@ -4,7 +4,7 @@ import { FC } from "react";
 
 import { FestivalListModel } from "@/apis/festivals/hotFestival/hotFestivalType";
 import { DateTag } from "@/components/core/Tag";
-import useDayjs from "@/hooks/useDayjs";
+import { formatToKoreanDate, getDday } from "@/lib/dayjs";
 
 export interface TrendFestivalCardProps extends LinkProps {
   festival: FestivalListModel;
@@ -14,8 +14,6 @@ const TrendFestivalCard: FC<TrendFestivalCardProps> = ({
   festival,
   ...props
 }) => {
-  const { getDday, formatToKoreanDate } = useDayjs();
-
   return (
     <Link
       className={
@@ -31,7 +29,7 @@ const TrendFestivalCard: FC<TrendFestivalCardProps> = ({
           className="rounded-[8px]"
         />
         <DateTag
-          label={`D-${getDday(festival.startDate)}`}
+          label={getDday(festival.startDate, festival.endDate)}
           className="absolute left-[14px] top-[12px]"
         />
       </div>

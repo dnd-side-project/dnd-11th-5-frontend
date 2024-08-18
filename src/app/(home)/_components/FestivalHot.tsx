@@ -29,11 +29,11 @@ const FestivalHot: FC<Props> = ({ hotFestivals }) => {
       </div>
 
       <div className="flex w-full gap-[16px]">
-        {hotFestivals.content.splice(0, 2).map((v) => (
+        {hotFestivals.content.splice(0, 2).map((festival) => (
           <TrendFestivalCard
-            key={v.festivalId}
-            href={`/featival/${v.festivalId}`}
-            festival={v}
+            key={festival.festivalId}
+            href={`/featival/${festival.festivalId}`}
+            festival={festival}
           />
         ))}
       </div>

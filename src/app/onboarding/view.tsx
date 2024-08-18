@@ -86,7 +86,6 @@ const OnBoardingView: FC<Props> = ({
       <DefaultHeader
         href="/"
         showBackButton={currentStep !== ONBOARDING.INITIAL_STEP}
-        onClick={handlePrevStep}
       />
       <ProgressBar
         totalSteps={ONBOARDING.TOTAL_STEP}

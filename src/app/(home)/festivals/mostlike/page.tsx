@@ -12,11 +12,13 @@ const searchParamsCache = createSearchParamsCache({
   size: parseAsInteger.withDefault(6),
 });
 
-interface TrendPageProps {
+interface HotFestivalPageProps {
   searchParams: Record<string, string>;
 }
 
-export default async function TrendPage({ searchParams }: TrendPageProps) {
+export default async function HotFestivalPage({
+  searchParams,
+}: HotFestivalPageProps) {
   const parsedParams = searchParamsCache.parse(searchParams);
   const festivals = await getHotFestival(parsedParams);
 

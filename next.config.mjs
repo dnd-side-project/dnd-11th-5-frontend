@@ -14,6 +14,15 @@ const nextConfig = {
       {
         hostname: "placehold.co",
       },
+      {
+        hostname: "kfescdn.visitkorea.or.kr",
+      },
+      {
+        hostname: "tong.visitkorea.or.kr",
+      },
+      {
+        hostname: "fiesta-image.s3.ap-northeast-2.amazonaws.com",
+      },
     ],
   },
   logging: {
