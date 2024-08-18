@@ -4,6 +4,10 @@ on:
       NODE_VERSION:
         required: true
         type: string
+      NEXT_PUBLIC_STAGE:
+        required: true
+        type: string
+      
 
 jobs:
   build:
@@ -12,8 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Set up environment variables
+        run: |
+          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
+        env:
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_STAGE: ${{ inputs.NEXT_PUBLIC_STAGE }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 9
           run_install: false
@@ -23,11 +35,9 @@ jobs:
         with:
           node-version: ${{ inputs.NODE_VERSION }}
           cache: "pnpm"
-          cache-dependency-path: '**/pnpm-lock.yaml'
+          cache-dependency-path: "**/pnpm-lock.yaml"
 
       - name: Install dependencies
-        run: |
-          pnpm install
+        run: pnpm install
       - name: build
-        run: |
-          pnpm run build
+        run: pnpm run build

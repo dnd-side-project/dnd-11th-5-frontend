@@ -3,16 +3,21 @@
 // ? Reference - https://codevoweb.com/how-to-set-up-and-use-react-query-in-next-js-14/
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { PropsWithChildren } from "react";
 
-function ReactQueryProvider({ children }: React.PropsWithChildren) {
-  const [client] = useState(new QueryClient());
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
+function ReactQueryProvider({ children }: PropsWithChildren) {
   return (
-    <QueryClientProvider client={client}>
+    <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

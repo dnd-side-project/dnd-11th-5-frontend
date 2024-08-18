@@ -19,9 +19,17 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/auth": ["./auth.ts"]
+      "@/auth": ["./auth.ts"],
+      "@font": ["./src/app/fonts/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "./types/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "include",
+    ".storybook/*.{tsx, ts}"
+  ],
   "exclude": ["node_modules"]
 }

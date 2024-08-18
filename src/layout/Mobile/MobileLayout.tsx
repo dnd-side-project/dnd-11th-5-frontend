@@ -1,13 +1,21 @@
-import MobileBottomNavBar from "./MobileBottomNavBar";
+import { ButtonHTMLAttributes, FC } from "react";
 
-const MobileLayout = ({ children }: { children: React.ReactNode }) => {
+import { cn } from "@/utils/cn";
+
+interface Props extends ButtonHTMLAttributes<HTMLDivElement> {}
+
+const MobileLayout: FC<Props> = ({ ...props }) => {
   return (
-    <main className="relative flex  min-h-screen w-screen justify-center bg-white">
-      <section className="relative mb-btm-nav-bar min-h-screen w-full max-w-screen-m-lg shadow-lg">
-        {children}
-        <MobileBottomNavBar />
-      </section>
-    </main>
+    <div className="relative flex  min-h-screen w-screen justify-center bg-gray-scale-0">
+      <div
+        className={cn(
+          "relative min-h-screen w-full shadow-lg lg:max-w-screen-lg",
+          props.className,
+        )}
+      >
+        {props.children}
+      </div>
+    </div>
   );
 };
 

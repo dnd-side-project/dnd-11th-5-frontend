@@ -1,13 +1,15 @@
-import "../styles/reset.css";
 import "../styles/globals.css";
+import "../styles/reset.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ReactNode } from "react";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
+import { MSWProvider } from "@/lib/MSWProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
+import { cn } from "@/utils/cn";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Pretendard } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +19,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`${inter.className}`} suppressHydrationWarning>
-        <ReactQueryProvider>
-          <MobileLayout>{children}</MobileLayout>
-        </ReactQueryProvider>
+    <html lang="ko" className={Pretendard.variable}>
+      <body className={cn(Pretendard.className)} suppressHydrationWarning>
+        <MSWProvider>
+          <ReactQueryProvider>
+            <MobileLayout>{children}</MobileLayout>
+          </ReactQueryProvider>
+        </MSWProvider>
       </body>
     </html>
   );
