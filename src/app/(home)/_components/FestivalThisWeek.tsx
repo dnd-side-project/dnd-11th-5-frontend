@@ -1,18 +1,14 @@
 import Link from "next/link";
-import { FC } from "react";
 
-import { ThisWeekFestivalData } from "@/apis/festivals/thisweek/thisWeekFestivalType";
+import { getThisWeekFestival } from "@/apis/festivals/thisweek/thisWeekFestival";
 import { FestivalTile } from "@/components/core/List";
 import { DateTag } from "@/components/core/Tag";
 import { ArrowRightSmallIcon } from "@/components/icons";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { getDday } from "@/lib/dayjs";
 
-interface Props {
-  thisWeekFestivals: ThisWeekFestivalData;
-}
-
-const FestivalThisWeek: FC<Props> = ({ thisWeekFestivals }) => {
+const FestivalThisWeek = async () => {
+  const thisWeekFestivals = await getThisWeekFestival();
   return (
     <section className="flex w-full flex-col gap-[12px]">
       <div className="flex w-full justify-between">

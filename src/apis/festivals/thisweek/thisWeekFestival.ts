@@ -17,7 +17,6 @@ export async function getThisWeekFestival(
   params: PaginationParamter = defaultParams,
 ) {
   const endpoint = ENDPOINT.thisWeek;
-
   const { data } = await instance.get<ThisWeekFestivalData>(
     generateUrlWithParams(endpoint, params),
     {

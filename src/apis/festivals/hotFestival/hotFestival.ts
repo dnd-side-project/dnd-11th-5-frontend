@@ -15,7 +15,6 @@ export async function getHotFestival(
   params: PaginationParamter = defaultParams,
 ) {
   const endpoint = ENDPOINT.mostlike;
-
   const { data } = await instance.get<HostFestivalData>(
     generateUrlWithParams(endpoint, params),
     {

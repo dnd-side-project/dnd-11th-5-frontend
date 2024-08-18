@@ -1,20 +1,17 @@
-import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
-import { getThisWeekFestival } from "@/apis/festivals/thisweek/thisWeekFestival";
 import { HomeHeader } from "@/layout/Mobile/MobileHeader";
 import NavigationBar from "@/layout/Mobile/NavigationBar";
 
-import HomeView from "./view";
+import FestivalHot from "./_components/FestivalHot";
+import FestivalThisWeek from "./_components/FestivalThisWeek";
 
 export default async function Home() {
-  const hotFestivals = await getHotFestival();
-  const thisWeekFestivals = await getThisWeekFestival();
   return (
     <div className="mb-[60px] mt-[44px]">
       <HomeHeader />
-      <HomeView
-        hotFestivals={hotFestivals}
-        thisWeekFestivals={thisWeekFestivals}
-      />
+      <main className="flex flex-wrap gap-4 px-[16px]">
+        <FestivalHot />
+        <FestivalThisWeek />
+      </main>
       <NavigationBar />
     </div>
   );
