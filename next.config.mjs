@@ -14,6 +14,12 @@ const nextConfig = {
       {
         hostname: "placehold.co",
       },
+      {
+        hostname: "kfescdn.visitkorea.or.kr",
+      },
+      {
+        hostname: "tong.visitkorea.or.kr",
+      },
     ],
   },
   logging: {
