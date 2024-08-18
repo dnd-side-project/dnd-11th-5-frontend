@@ -28,6 +28,7 @@ export default async function TrendPage({ searchParams }: TrendPageProps) {
         currentPath={FIESTA_ENDPOINTS.festivals.thisWeek}
         currentPage={parsedParams.page}
         totalPage={festivals.totalPages}
+        size={parsedParams.size}
       />
     </div>
   );

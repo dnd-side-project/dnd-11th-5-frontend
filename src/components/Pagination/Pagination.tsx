@@ -11,12 +11,14 @@ type PaginationControlsProps = {
   currentPage: number;
   totalPage: number;
   currentPath: string;
+  size?: number;
 };
 
 function Pagination({
   currentPage,
   currentPath,
   totalPage,
+  size,
 }: PaginationControlsProps) {
   const getPageNumbers = (): number[] => {
     if (totalPage < MAX_PAGE_COUNT) {
@@ -24,22 +26,22 @@ function Pagination({
     }
 
     if (currentPage < MAX_PAGE_COUNT) {
-      return [1, 2, 3];
+      return Array.from({ length: MAX_PAGE_COUNT }, (_, index) => index + 1);
     }
     return [currentPage - 1, currentPage, currentPage + 1];
   };
 
-  const pageURL = (page: number) => {
+  const pageURL = (page: number, size?: number) => {
     return serialize(currentPath, {
       page,
-      size: DEFAULT_SIZE,
+      size: size ?? DEFAULT_SIZE,
     });
   };
 
   return (
     <div className="fixed bottom-0 mb-[40px] flex w-full max-w-[450px] items-center justify-center gap-[16px]">
       <Link
-        href={pageURL(currentPage - 1)}
+        href={pageURL(currentPage - 1, size)}
         className={cn(
           "size-[32px] rounded-[8px] p-[8px] bg-gray-scale-100",
           "flex justify-center items-center",
@@ -57,7 +59,7 @@ function Pagination({
         {getPageNumbers().map((page) => (
           <Link
             key={page}
-            href={pageURL(page - 1)}
+            href={pageURL(page - 1, size)}
             className={cn(
               "size-[32px] rounded-[8px] p-[8px] bg-gray-scale-100",
               "flex justify-center items-center",
@@ -72,7 +74,7 @@ function Pagination({
       </div>
 
       <Link
-        href={pageURL(currentPage + 1)}
+        href={pageURL(currentPage + 1, size)}
         className={cn(
           "size-[32px] rounded-[8px] p-[8px] bg-gray-scale-100",
           "flex justify-center items-center",
