@@ -5,9 +5,7 @@ import SquareTabButton from "./SquareTabButton";
 const meta: Meta<typeof SquareTabButton> = {
   title: "Core/Button/SquareTabButton",
   component: SquareTabButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {

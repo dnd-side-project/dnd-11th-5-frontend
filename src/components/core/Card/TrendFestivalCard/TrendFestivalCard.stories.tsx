@@ -6,7 +6,6 @@ const meta: Meta<typeof TrendFestivalCard> = {
   title: "Card/TrendFestivalCard",
   component: TrendFestivalCard,
   parameters: {
-    layout: "centered",
     controls: { include: ["festival"] },
   },
   argTypes: {

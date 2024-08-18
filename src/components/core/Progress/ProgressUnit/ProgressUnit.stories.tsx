@@ -5,9 +5,7 @@ import ProgressUnit from "./ProgressUnit";
 const meta: Meta<typeof ProgressUnit> = {
   title: "Core/Progress/ProgressUnit",
   component: ProgressUnit,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {

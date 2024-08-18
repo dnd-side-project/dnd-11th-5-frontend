@@ -5,9 +5,7 @@ import KakaoButton from "./KakaoButton";
 const meta: Meta<typeof KakaoButton> = {
   title: "Core/Button/KakaoButton",
   component: KakaoButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

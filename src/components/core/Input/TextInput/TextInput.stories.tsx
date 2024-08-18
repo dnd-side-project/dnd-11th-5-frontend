@@ -5,9 +5,7 @@ import TextInput from "./TextInput";
 const meta: Meta<typeof TextInput> = {
   title: "Core/Input/TextInput",
   component: TextInput,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     maxlength: {

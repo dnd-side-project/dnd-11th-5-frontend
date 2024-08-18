@@ -5,9 +5,7 @@ import Ratings from "./Ratings";
 const meta: Meta<typeof Ratings> = {
   title: "Ratings",
   component: Ratings,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     rating: {

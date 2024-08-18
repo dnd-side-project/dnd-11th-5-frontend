@@ -5,9 +5,7 @@ import ProgressBar from "./ProgressBar";
 const meta: Meta<typeof ProgressBar> = {
   title: "Core/Progress/ProgressBar",
   component: ProgressBar,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     totalSteps: {

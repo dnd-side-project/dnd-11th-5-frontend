@@ -1,33 +1,31 @@
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
-import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
+import { getThisWeekFestival } from "@/apis/festivals/thisweek/thisWeekFestival";
 import Pagination from "@/components/Pagination/Pagination";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
-import TrendTestView from "./view";
+import ThisWeekFestivalView from "./view";
 
 const searchParamsCache = createSearchParamsCache({
   page: parseAsInteger.withDefault(0),
   size: parseAsInteger.withDefault(6),
 });
 
-interface HotFestivalPageProps {
+interface TrendPageProps {
   searchParams: Record<string, string>;
 }
 
-export default async function HotFestivalPage({
-  searchParams,
-}: HotFestivalPageProps) {
+export default async function TrendPage({ searchParams }: TrendPageProps) {
   const parsedParams = searchParamsCache.parse(searchParams);
-  const festivals = await getHotFestival(parsedParams);
+  const festivals = await getThisWeekFestival(parsedParams);
 
   return (
     <div className="relative mb-[60px] mt-[44px]">
-      <DefaultHeader href="/" label="HOT 페스티벌" />
-      <TrendTestView festivals={festivals} />
+      <DefaultHeader href="/" label="이번주 페스티벌" />
+      <ThisWeekFestivalView festivals={festivals} />
       <Pagination
-        currentPath={FIESTA_ENDPOINTS.festivals.mostlike}
+        currentPath={FIESTA_ENDPOINTS.festivals.thisWeek}
         currentPage={parsedParams.page}
         totalPage={festivals.totalPages}
         size={parsedParams.size}

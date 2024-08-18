@@ -5,9 +5,7 @@ import RoundButton from "./RoundButton";
 const meta: Meta<typeof RoundButton> = {
   title: "Core/Button/RoundButton",
   component: RoundButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

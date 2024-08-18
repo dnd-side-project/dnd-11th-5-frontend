@@ -5,9 +5,7 @@ import BasicChip from "./BasicChip";
 const meta: Meta<typeof BasicChip> = {
   title: "Core/Chip/BasicChip",
   component: BasicChip,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {

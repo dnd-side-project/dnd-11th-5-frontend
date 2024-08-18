@@ -5,9 +5,7 @@ import CalendarDialog from "./CalendarDialog";
 const meta: Meta<typeof CalendarDialog> = {
   title: "Dialog/CalendarDialog",
   component: CalendarDialog,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     open: {

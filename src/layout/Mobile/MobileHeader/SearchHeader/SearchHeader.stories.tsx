@@ -6,9 +6,7 @@ import SearchHeader from "./SearchHeader";
 const meta: Meta<typeof SearchHeader> = {
   title: "Header/SearchHeader",
   component: SearchHeader,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

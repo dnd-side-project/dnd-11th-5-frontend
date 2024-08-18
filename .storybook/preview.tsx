@@ -11,6 +11,8 @@ const preview: Preview = {
     backgrounds: {
       default: "dark",
     },
+    layout: "centered",
+
     controls: {
       matchers: {
         color: /(background|color)$/i,

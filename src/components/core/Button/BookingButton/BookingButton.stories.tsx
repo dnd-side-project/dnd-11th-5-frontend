@@ -6,9 +6,7 @@ import BookingButton from "./BookingButton";
 const meta: Meta<typeof BookingButton> = {
   title: "Core/Button/BookingButton",
   component: BookingButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {
