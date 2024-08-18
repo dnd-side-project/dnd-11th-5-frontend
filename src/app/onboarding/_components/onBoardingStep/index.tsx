@@ -2,16 +2,17 @@ import { useRouter } from "next/navigation";
 import { FC, ReactElement, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-import { ProgressBar } from "@/components/core/Progress";
-import { useOnBoardingStep } from "@/hooks/useOnBoardingStep";
-import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import {
   FestivalCategory,
   FestivalCompanion,
   FestivalMood,
   FestivalPriority,
   OnboardingModel,
-} from "@/model/onboarding";
+} from "@/apis/onboarding/onboardingType";
+import { ProgressBar } from "@/components/core/Progress";
+import { ONBOARDING_SETTING } from "@/config";
+import { useOnBoardingStep } from "@/hooks/useOnBoardingStep";
+import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import { delay } from "@/utils/delay";
 
 import OnBoardingButton from "./OnBoardingButton";
@@ -22,21 +23,20 @@ import OnBoardingPriorities from "./OnBoardingPriorities";
 
 interface Props {
   categories: Array<FestivalCategory>;
-  companies: Array<FestivalCompanion>;
+  companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
 }
 
 const OnBoardingContainer: FC<Props> = ({
   categories,
-  companies,
+  companions,
   priorities,
   moods,
 }) => {
   const router = useRouter();
 
-  const { currentStep, handleNextStep, handlePrevStep, ONBOARDING } =
-    useOnBoardingStep();
+  const { currentStep, handleNextStep, handlePrevStep } = useOnBoardingStep();
   const { trigger, handleSubmit } = useFormContext<OnboardingModel>();
 
   // * 첫 렌더링에 유효성 검사 1회 실행
@@ -46,7 +46,6 @@ const OnBoardingContainer: FC<Props> = ({
 
   const onSubmit = async (data: OnboardingModel) => {
     await delay(5000);
-    console.log("🚀 ~ onSubmit ~ data:", data);
     router.replace("/onboarding/complete");
   };
 
@@ -55,18 +54,18 @@ const OnBoardingContainer: FC<Props> = ({
   } = {
     1: <OnBoardingCategories categories={categories} />,
     2: <OnBoardingMoods moods={moods} />,
-    3: <OnBoardingCompanies companies={companies} />,
+    3: <OnBoardingCompanies companions={companions} />,
     4: <OnBoardingPriorities priorities={priorities} />,
   };
 
   return (
     <main className="mt-[92px] w-full">
       <DefaultHeader
-        showBackButton={currentStep !== ONBOARDING.INITIAL_STEP}
         onClick={handlePrevStep}
+        showBackButton={currentStep !== ONBOARDING_SETTING.INITIAL_STEP}
       />
       <ProgressBar
-        totalSteps={ONBOARDING.TOTAL_STEP}
+        totalSteps={ONBOARDING_SETTING.TOTAL_STEP}
         currentStep={currentStep}
         className="fixed top-0 mt-[44px] flex h-[8px] w-full max-w-none gap-[6px] bg-gray-scale-0 p-[20px] lg:max-w-[450px]"
       />
@@ -76,7 +75,7 @@ const OnBoardingContainer: FC<Props> = ({
       >
         <>{renderCurrentStep[currentStep]}</>
         <OnBoardingButton
-          totalStep={ONBOARDING.TOTAL_STEP}
+          totalStep={ONBOARDING_SETTING.TOTAL_STEP}
           currentStep={currentStep}
           onNext={handleNextStep}
         />

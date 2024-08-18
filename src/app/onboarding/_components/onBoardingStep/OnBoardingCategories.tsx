@@ -1,10 +1,13 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
+import {
+  FestivalCategory,
+  OnboardingModel,
+} from "@/apis/onboarding/onboardingType";
 import { SquareTabButton } from "@/components/core/Button";
-import { FestivalCategory, OnboardingModel } from "@/model/onboarding";
+import { ONBOARDING_SETTING } from "@/config";
 
-import { ONBOARDING } from "../../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
@@ -23,7 +26,11 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
     category: FestivalCategory,
   ) => {
     if (isSelected) {
-      replace(fields.filter((v) => v.categoryId !== category.categoryId));
+      replace(
+        fields.filter(
+          (festival) => festival.categoryId !== category.categoryId,
+        ),
+      );
       return;
     }
     append(category);
@@ -33,26 +40,28 @@ const OnBoardingCategories: FC<Props> = ({ categories }) => {
     <>
       <div className="flex h-auto w-full flex-col gap-[32px] ">
         <OnBoardingTitle
-          title={ONBOARDING.CATEGORY_TITLE}
-          subtitle={ONBOARDING.CATEGORY_SUBTITLE}
+          title={ONBOARDING_SETTING.CATEGORY_TITLE}
+          subtitle={ONBOARDING_SETTING.CATEGORY_SUBTITLE}
         />
 
         <section className="grid h-auto w-full grid-cols-3 gap-x-[18px] gap-y-[20px]">
-          {categories.map(({ categoryId, category, categoryEmoji }) => {
-            const isSelected = fields.some((c) => c.categoryId === categoryId);
+          {categories.map(({ categoryId, name, emoji }) => {
+            const isSelected = fields.some(
+              (festival) => festival.categoryId === categoryId,
+            );
             return (
               <SquareTabButton
                 key={categoryId}
                 type="button"
-                label={category}
+                label={name}
                 active={isSelected}
-                emoji={categoryEmoji}
+                emoji={emoji}
                 disabled={fields.length === 2 && !isSelected}
                 onClick={() =>
                   handleCategoryToggle(isSelected, {
                     categoryId,
-                    category,
-                    categoryEmoji,
+                    name,
+                    emoji,
                   })
                 }
               />

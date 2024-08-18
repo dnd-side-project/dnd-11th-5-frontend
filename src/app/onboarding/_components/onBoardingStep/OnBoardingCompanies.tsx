@@ -1,23 +1,26 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
+import {
+  FestivalCompanion,
+  OnboardingModel,
+} from "@/apis/onboarding/onboardingType";
 import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
 import { CheckCircleIcon } from "@/components/icons";
-import { FestivalCompanion, OnboardingModel } from "@/model/onboarding";
+import { ONBOARDING_SETTING } from "@/config";
 import { cn } from "@/utils/cn";
 
-import { ONBOARDING } from "../../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  companies: Array<FestivalCompanion>;
+  companions: Array<FestivalCompanion>;
 }
 
-const OnBoardingCompanions: FC<Props> = ({ companies }) => {
+const OnBoardingCompanions: FC<Props> = ({ companions }) => {
   const { control } = useFormContext<OnboardingModel>();
   const { fields, replace, append, remove } = useFieldArray({
     control: control,
-    name: "companies",
+    name: "companions",
   });
 
   const handleMoodToggle = (
@@ -25,7 +28,11 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
     company: FestivalCompanion,
   ) => {
     isSelected
-      ? replace(fields.filter((v) => v.companionId !== company.companionId))
+      ? replace(
+          fields.filter(
+            (festival) => festival.companionId !== company.companionId,
+          ),
+        )
       : append(company);
   };
 
@@ -33,7 +40,7 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
     remove(fields.map((_, index) => index));
 
     if (fields.length < 5) {
-      companies.forEach((companyItem) => append(companyItem));
+      companions.forEach((companyItem) => append(companyItem));
     }
   };
 
@@ -41,8 +48,8 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
     <>
       <div className="flex h-auto w-full flex-col gap-[32px] ">
         <OnBoardingTitle
-          title={ONBOARDING.COMPANY_TITLE}
-          subtitle={ONBOARDING.COMPANY_SUBTITLE}
+          title={ONBOARDING_SETTING.COMPANY_TITLE}
+          subtitle={ONBOARDING_SETTING.COMPANY_SUBTITLE}
         />
 
         <section className="flex w-auto flex-wrap justify-center gap-[12px]">
@@ -74,9 +81,9 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
               </span>
             </button>
           </div>
-          {companies.map(({ companionId, companionType }) => {
+          {companions.map(({ companionId, companionType }) => {
             const isSelected = fields.some(
-              (c) => c.companionId === companionId,
+              (festival) => festival.companionId === companionId,
             );
             return (
               <BasicTile
@@ -85,7 +92,10 @@ const OnBoardingCompanions: FC<Props> = ({ companies }) => {
                 label={companionType}
                 active={isSelected}
                 onClick={() =>
-                  handleMoodToggle(isSelected, { companionId, companionType })
+                  handleMoodToggle(isSelected, {
+                    companionId,
+                    companionType,
+                  })
                 }
               />
             );

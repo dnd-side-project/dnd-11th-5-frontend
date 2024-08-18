@@ -1,14 +1,15 @@
-import { getInitialOnboadingData } from "./action";
+import { getOnboardingData } from "@/apis/onboarding/onboarding";
+
 import OnBoardingView from "./view";
 
 export default async function OnBoarding() {
-  const { moods, categories, companies, priorities } =
-    await getInitialOnboadingData();
+  const { moods, categories, companions, priorities } =
+    await getOnboardingData();
 
   return (
     <OnBoardingView
       categories={categories}
-      companies={companies}
+      companions={companions}
       priorities={priorities}
       moods={moods}
     />

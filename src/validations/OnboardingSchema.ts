@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const MoodSchema = z.object({
   moodId: z.number(),
-  mood: z.string(),
+  name: z.string(),
 });
 
 const PrioritySchema = z.object({
@@ -17,17 +17,18 @@ const CompanySchema = z.object({
 
 const CategorySchema = z.object({
   categoryId: z.number(),
-  category: z.string(),
+  emoji: z.string(),
+  name: z.string(),
 });
 
 const MoodsSchema = z.array(MoodSchema).min(3, "at least three items");
 const PrioritiesSchema = z.array(PrioritySchema).min(3, "at least one item");
-const CompaniesSchema = z.array(CompanySchema).min(1, "at least one item");
+const companionsSchema = z.array(CompanySchema).min(1, "at least one item");
 const CategoriesSchema = z.array(CategorySchema).min(2, "at least two items");
 
 export const OnBoardingSchema = z.object({
   categories: CategoriesSchema,
   moods: MoodsSchema,
-  companies: CompaniesSchema,
+  companions: companionsSchema,
   priorities: PrioritiesSchema,
 });

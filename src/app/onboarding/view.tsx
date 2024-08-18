@@ -11,7 +11,7 @@ import {
   FestivalMood,
   FestivalPriority,
   OnboardingModel,
-} from "@/model/onboarding";
+} from "@/apis/onboarding/onboardingType";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
 import { OnBoardingContainer } from "./_components";
@@ -22,14 +22,14 @@ const OnBoardingLoading = dynamic(
 
 interface Props {
   categories: Array<FestivalCategory>;
-  companies: Array<FestivalCompanion>;
+  companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
 }
 
 const OnBoardingView: FC<Props> = ({
   categories,
-  companies,
+  companions,
   priorities,
   moods,
 }) => {
@@ -38,7 +38,7 @@ const OnBoardingView: FC<Props> = ({
     defaultValues: {
       categories: [],
       moods: [],
-      companies: [],
+      companions: [],
       priorities: [],
     },
     resolver: zodResolver(OnBoardingSchema),
@@ -56,7 +56,7 @@ const OnBoardingView: FC<Props> = ({
     <FormProvider {...methods}>
       <OnBoardingContainer
         categories={categories}
-        companies={companies}
+        companions={companions}
         priorities={priorities}
         moods={moods}
       />
