@@ -6,14 +6,13 @@ import { FestivalTile } from "@/components/core/List";
 import { DateTag } from "@/components/core/Tag";
 import { ArrowRightSmallIcon } from "@/components/icons";
 import { FIESTA_ENDPOINTS } from "@/config";
-import useDayjs from "@/hooks/useDayjs";
+import { getDday } from "@/lib/dayjs";
 
 interface Props {
   thisWeekFestivals: ThisWeekFestivalData;
 }
 
 const FestivalThisWeek: FC<Props> = ({ thisWeekFestivals }) => {
-  const { getDday } = useDayjs();
   return (
     <section className="flex w-full flex-col gap-[12px]">
       <div className="flex w-full justify-between">
@@ -37,7 +36,7 @@ const FestivalThisWeek: FC<Props> = ({ thisWeekFestivals }) => {
             href={`/featival/${festival.festivalId}`}
             festival={festival}
           >
-            <DateTag label={`D-${getDday(festival.startDate)}`} />
+            <DateTag label={getDday(festival.startDate, festival.endDate)} />
           </FestivalTile>
         ))}
       </div>

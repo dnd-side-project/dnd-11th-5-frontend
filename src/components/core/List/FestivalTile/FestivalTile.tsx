@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { FC } from "react";
 
-import useDayjs from "@/hooks/useDayjs";
+import { formatToKoreanDate } from "@/lib/dayjs";
 import { FestivalListModel } from "@/model/festivalTypes";
 import { cn } from "@/utils/cn";
 
@@ -16,7 +16,6 @@ const FestivalTile: FC<FestivalTileProps> = ({
   children,
   ...props
 }) => {
-  const { formatToKoreanDate } = useDayjs();
   return (
     <Link
       className={cn(
