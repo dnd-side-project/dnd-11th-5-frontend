@@ -1,26 +1,28 @@
 "use server";
 
 import instance from "@/apis/instance";
-import { REVALIDATE_DURATION } from "@/config";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
-import { hotFestivalKeys } from "./hotFestivalkeys";
-import { HostFestivalData, PaginationParamter } from "./hotFestivalType";
+import { thisWeekFestivalKeys } from "./thisWeekFestivalKeys";
+import {
+  PaginationParamter,
+  ThisWeekFestivalData,
+} from "./thisWeekFestivalType";
 
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
 const ENDPOINT = FIESTA_ENDPOINTS.festivals;
 
-export async function getHotFestival(
+export async function getThisWeekFestival(
   params: PaginationParamter = defaultParams,
 ) {
-  const endpoint = ENDPOINT.mostlike;
-  const { data } = await instance.get<HostFestivalData>(
+  const endpoint = ENDPOINT.thisWeek;
+  const { data } = await instance.get<ThisWeekFestivalData>(
     generateUrlWithParams(endpoint, params),
     {
       next: {
-        revalidate: REVALIDATE_DURATION.DAY,
-        tags: hotFestivalKeys.all,
+        revalidate: 10,
+        tags: thisWeekFestivalKeys.all,
       },
     },
   );

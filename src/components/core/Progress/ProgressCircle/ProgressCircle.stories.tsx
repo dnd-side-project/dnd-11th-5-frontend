@@ -5,9 +5,7 @@ import ProgressCircle from "./ProgressCircle";
 const meta: Meta<typeof ProgressCircle> = {
   title: "Core/Progress/ProgressCircle",
   component: ProgressCircle,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

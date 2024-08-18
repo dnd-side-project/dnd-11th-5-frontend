@@ -5,9 +5,7 @@ import BasicTile from "./BasicTile";
 const meta: Meta<typeof BasicTile> = {
   title: "List/BasicTile",
   component: BasicTile,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {

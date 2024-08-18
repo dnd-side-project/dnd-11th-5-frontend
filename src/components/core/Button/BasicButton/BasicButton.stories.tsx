@@ -6,9 +6,7 @@ import BasicButton from "./BasicButton";
 const meta: Meta<typeof BasicButton> = {
   title: "Core/Button/BasicButton",
   component: BasicButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

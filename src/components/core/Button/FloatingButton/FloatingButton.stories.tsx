@@ -5,9 +5,7 @@ import FloatingButton from "./FloatingButton";
 const meta: Meta<typeof FloatingButton> = {
   title: "Core/Button/FloatingButton",
   component: FloatingButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

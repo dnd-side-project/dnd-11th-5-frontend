@@ -5,9 +5,7 @@ import AlertDialogWrapper from "./AlertDialogWrapper";
 const meta: Meta<typeof AlertDialogWrapper> = {
   title: "Dialog/AlertDialogWrapper",
   component: AlertDialogWrapper,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     open: {

@@ -1,16 +1,13 @@
 import Link from "next/link";
-import { FC } from "react";
 
-import { HostFestivalData } from "@/apis/festivals/hotFestival/hotFestivalType";
+import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
 import { TrendFestivalCard } from "@/components/core/Card";
 import { ArrowRightSmallIcon } from "@/components/icons";
 import { FIESTA_ENDPOINTS } from "@/config";
 
-interface Props {
-  hotFestivals: HostFestivalData;
-}
+const FestivalHot = async () => {
+  const hotFestivals = await getHotFestival();
 
-const FestivalHot: FC<Props> = ({ hotFestivals }) => {
   return (
     <section className="flex w-full flex-col gap-[12px]">
       <div className="flex w-full justify-between">

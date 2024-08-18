@@ -5,9 +5,7 @@ import SearchHistoryChip from "./SearchHistoryChip";
 const meta: Meta<typeof SearchHistoryChip> = {
   title: "Core/Chip/SearchHistoryChip",
   component: SearchHistoryChip,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

@@ -6,9 +6,7 @@ import EmptyFestivalCard from "./EmptyFestivalCard";
 const meta: Meta<typeof EmptyFestivalCard> = {
   title: "Card/EmptyFestivalCard",
   component: EmptyFestivalCard,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

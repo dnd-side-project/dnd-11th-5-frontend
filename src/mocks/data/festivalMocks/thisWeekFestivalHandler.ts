@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { delay, http, HttpResponse } from "msw";
 
-export const FestivalHandler = [
+export const thisWeekFestivalHandler = [
   http.get(
-    "https://odiga.shop/api/v1/festivals/mostlike",
+    "https://odiga.shop/api/v1/festivals/thisweek",
 
     async ({ request }) => {
       await delay(500);

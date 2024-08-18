@@ -6,9 +6,7 @@ import DurationInput from "./DurationInput";
 const meta: Meta<typeof DurationInput> = {
   title: "Core/Input/DurationInput",
   component: DurationInput,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

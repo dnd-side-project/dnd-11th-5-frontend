@@ -7,9 +7,7 @@ import NavigationBar from ".";
 const meta: Meta<typeof NavigationBar> = {
   title: "NavigationBar",
   component: NavigationBar,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

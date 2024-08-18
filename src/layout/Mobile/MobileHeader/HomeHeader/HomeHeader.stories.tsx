@@ -6,9 +6,7 @@ import HomeHeader from "./HomeHeader";
 const meta: Meta<typeof HomeHeader> = {
   title: "Header/HomeHeader",
   component: HomeHeader,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

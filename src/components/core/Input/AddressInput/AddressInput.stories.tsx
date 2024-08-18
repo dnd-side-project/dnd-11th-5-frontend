@@ -5,9 +5,7 @@ import AddressInput from "./AddressInput";
 const meta: Meta<typeof AddressInput> = {
   title: "Core/Input/AddressInput",
   component: AddressInput,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

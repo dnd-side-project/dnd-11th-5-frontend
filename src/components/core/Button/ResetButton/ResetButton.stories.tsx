@@ -6,9 +6,7 @@ import ResetButton from "./ResetButton";
 const meta: Meta<typeof ResetButton> = {
   title: "Core/Button/ResetButton",
   component: ResetButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     label: {

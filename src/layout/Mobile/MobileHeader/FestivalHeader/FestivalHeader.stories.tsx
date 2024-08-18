@@ -6,9 +6,7 @@ import FestivalHeader from "./FestivalHeader";
 const meta: Meta<typeof FestivalHeader> = {
   title: "Header/FestivalHeader",
   component: FestivalHeader,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {},
 };

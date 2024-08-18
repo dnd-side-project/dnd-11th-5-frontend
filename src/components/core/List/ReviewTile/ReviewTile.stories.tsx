@@ -6,9 +6,7 @@ import ReviewTile from "./ReviewTile";
 const meta: Meta<typeof ReviewTile> = {
   title: "List/ReviewTile",
   component: ReviewTile,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 };
 
 export default meta;

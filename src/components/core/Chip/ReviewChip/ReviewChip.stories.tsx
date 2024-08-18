@@ -5,10 +5,7 @@ import ReviewChip from "./ReviewChip";
 const meta: Meta<typeof ReviewChip> = {
   title: "Core/Chip/ReviewChip",
   component: ReviewChip,
-  parameters: {
-    layout: "centered",
-  },
-
+  parameters: {},
   argTypes: {
     active: {
       control: {

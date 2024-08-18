@@ -5,9 +5,7 @@ import RectangleTabButton from "./RectangleTabButton";
 const meta: Meta<typeof RectangleTabButton> = {
   title: "Core/Button/RectangleTabButton",
   component: RectangleTabButton,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: {},
 
   argTypes: {
     active: {
