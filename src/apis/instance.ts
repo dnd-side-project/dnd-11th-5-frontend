@@ -1,5 +1,3 @@
-import { env } from "@/env";
-
 import {
   ClientError,
   createFiestaError,
@@ -24,7 +22,7 @@ const fiestaFetch = async (
   method: Method,
   options: RequestInit,
 ) => {
-  const baseUrl = env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const defaultOptions: RequestInit = {
     headers: {
