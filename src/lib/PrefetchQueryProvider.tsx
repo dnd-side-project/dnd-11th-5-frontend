@@ -5,7 +5,6 @@ import {
   QueryFunction,
   QueryKey,
 } from "@tanstack/react-query";
-import React from "react";
 
 interface PrefetchQueryProviderProps {
   queryKey: QueryKey;

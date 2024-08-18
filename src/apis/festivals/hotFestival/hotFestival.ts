@@ -1,6 +1,7 @@
 "use server";
 
 import instance from "@/apis/instance";
+import { REVALIDATE_DURATION } from "@/config";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
@@ -19,7 +20,7 @@ export async function getHotFestival(
     generateUrlWithParams(endpoint, params),
     {
       next: {
-        revalidate: 85600,
+        revalidate: REVALIDATE_DURATION.DAY,
         tags: hotFestivalKeys.all,
       },
     },

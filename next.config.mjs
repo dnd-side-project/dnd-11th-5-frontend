@@ -20,6 +20,9 @@ const nextConfig = {
       {
         hostname: "tong.visitkorea.or.kr",
       },
+      {
+        hostname: "fiesta-image.s3.ap-northeast-2.amazonaws.com",
+      },
     ],
   },
   logging: {
