@@ -1,78 +1,50 @@
 import Image from "next/image";
-import { FC, HTMLAttributes } from "react";
+import Link, { LinkProps } from "next/link";
+import { FC } from "react";
 
-import { IconButton } from "@/components/core/Button";
+import { FestivalListModel } from "@/apis/festivals/hotFestival/hotFestivalType";
 import { DateTag } from "@/components/core/Tag";
-import { ScrabIcon } from "@/components/icons";
-import { cn } from "@/utils/cn";
+import { formatToKoreanDate, getDday } from "@/lib/dayjs";
 
-type FestivalModel = {
-  location: string;
-  title: string;
-  duration: string;
-  dday: string;
-  image: string;
-};
-
-interface Props extends Omit<HTMLAttributes<HTMLButtonElement>, "type"> {
-  festival: FestivalModel;
-  isScrabed?: boolean;
-  onScrab?: () => void;
-  onClick: () => void;
+export interface TrendFestivalCardProps extends LinkProps {
+  festival: FestivalListModel;
 }
 
-const TrendFestivalCard: FC<Props> = ({
+const TrendFestivalCard: FC<TrendFestivalCardProps> = ({
   festival,
-  isScrabed,
-  onClick,
-  onScrab,
   ...props
 }) => {
   return (
-    <button
+    <Link
       type="button"
-      className={cn(
-        "w-full h-auto flex flex-col gap-[12px] rounded-t-[8px] ",
-        props.className,
-      )}
-      onClick={onClick}
+      className={"flex h-auto w-full flex-col gap-[12px] rounded-t-[8px]"}
       {...props}
     >
       <div className="relative h-[136px] w-full rounded-[8px]">
-        <Image fill src={festival.image} alt="trendy" />
+        <Image
+          fill
+          src={festival.thumbnailImage}
+          alt="trendy"
+          className="rounded-[8px]"
+        />
         <DateTag
-          label={festival.dday}
+          label={getDday(festival.startDate, festival.endDate)}
           className="absolute left-[14px] top-[12px]"
         />
-        {!!onScrab && (
-          <IconButton
-            type="button"
-            className="absolute right-[14px] top-[12px] flex size-[22px] items-center justify-center rounded-full bg-gray-scale-700"
-            onClick={onScrab}
-          >
-            <ScrabIcon
-              width={14}
-              height={14}
-              className={cn(
-                isScrabed ? "text-primary-01" : "text-gray-scale-0",
-              )}
-            />
-          </IconButton>
-        )}
       </div>
 
       <div className="flex w-full flex-col items-start">
         <span className="w-full max-w-[90%] truncate text-start text-caption1-regular text-gray-scale-600">
-          {festival.location}
+          {festival.sido + festival.sigungu}
         </span>
         <span className="w-full max-w-[90%] truncate text-start text-subtitle-bold text-gray-scale-700">
-          {festival.title}
+          {festival.name}
         </span>
         <span className="text-start text-caption1-medium text-gray-scale-600">
-          {festival.duration}
+          {`${formatToKoreanDate(festival.startDate)} - ${formatToKoreanDate(festival.endDate)}`}
         </span>
       </div>
-    </button>
+    </Link>
   );
 };
 

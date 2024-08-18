@@ -4,11 +4,15 @@ run-name: Storybook deployment by ${{ github.actor }}
 
 on:
   pull_request:
+    types: [opened, ready_for_review]
     branches:
       - develop
+    paths:
+      - "**/*.stories.tsx"
 
 jobs:
   chromatic:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-build') }}
     name: Run Chromatic Deployment
     # Operating System
     runs-on: ubuntu-latest

@@ -1,0 +1,16 @@
+addReviewers: true
+
+addAssignees: author
+
+reviewers:
+  - punchdrunkard
+  - Zero-1016
+  - seokzin
+  - saseungmin
+
+numberOfReviewers: 4
+
+numberOfAssignees: 1
+
+skipKeywords:
+  - wip
