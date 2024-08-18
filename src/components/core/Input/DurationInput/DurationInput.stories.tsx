@@ -49,8 +49,6 @@ const DefaultDurationInput = () => {
   const handleConfirm = (start: string | null, end: string | null) => {
     setStartDate(start);
     setEndDate(end);
-    console.log("Start Date:", start);
-    console.log("End Date:", end);
   };
 
   return (

@@ -3,7 +3,7 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z, ZodError } from "zod";
 
-import { VALIDATION_ERROR_MESSAGES } from "../config/validationError";
+import { VALIDATION_ERROR_MESSAGES } from "../config";
 
 export const env = createEnv({
   server: {},

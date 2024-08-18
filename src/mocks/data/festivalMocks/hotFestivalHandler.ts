@@ -83,18 +83,14 @@ const GenerateHotFestivalRespone = (page: number = 0, size: number = 6) => {
     },
   ];
 
-  const startIndex = (page - 1) * size;
-  const endIndex = startIndex + size;
-  const content = festivals.slice(startIndex, endIndex);
-
   return {
     statusCode: 200,
     status: "OK",
     message: "스크랩 다건 조회 성공",
     data: {
-      content,
-      offset: startIndex + content.length,
-      pageNumber: page - 1,
+      content: festivals,
+      offset: 1,
+      pageNumber: page,
       pageSize: size,
       totalElements: festivals.length,
       totalPages: Math.ceil(festivals.length / size),

@@ -9,6 +9,27 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 jiti("./src/env");
 
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "placehold.co",
+      },
+      {
+        hostname: "kfescdn.visitkorea.or.kr",
+      },
+      {
+        hostname: "tong.visitkorea.or.kr",
+      },
+      {
+        hostname: "fiesta-image.s3.ap-northeast-2.amazonaws.com",
+      },
+    ],
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   experimental: { instrumentationHook: true },
   webpack(config) {
     // SVG 가져오기를 처리하는 기존 규칙을 가져옵니다.
