@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 
 export const FestivalHandler = [
   http.get(
     "https://odiga.shop/api/v1/festivals/mostlike",
 
     async ({ request }) => {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await delay(500);
 
       const url = new URL(request.url);
       const page = url.searchParams.get("page");

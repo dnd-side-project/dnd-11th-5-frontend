@@ -18,7 +18,7 @@ function Pagination({
   currentPage,
   currentPath,
   totalPage,
-  size,
+  size = DEFAULT_SIZE,
 }: PaginationControlsProps) {
   const getPageNumbers = (): number[] => {
     if (totalPage < MAX_PAGE_COUNT) {
@@ -34,7 +34,7 @@ function Pagination({
   const pageURL = (page: number, size?: number) => {
     return serialize(currentPath, {
       page,
-      size: size ?? DEFAULT_SIZE,
+      size,
     });
   };
 
