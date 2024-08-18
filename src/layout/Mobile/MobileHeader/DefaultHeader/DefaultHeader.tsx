@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { UrlObject } from "url";
 
-import ClientBackButton from "./ClientBackButton";
+import ClientBackButton from "./DefaultHeaderBackButton";
 
 interface Props {
   label?: string;
