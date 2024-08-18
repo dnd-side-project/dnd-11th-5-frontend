@@ -29,6 +29,7 @@ export default async function HotFestivalPage({
       <Pagination
         currentPath={FIESTA_ENDPOINTS.festivals.mostlike}
         currentPage={parsedParams.page}
+        totalPage={festivals.totalPages}
       />
     </div>
   );

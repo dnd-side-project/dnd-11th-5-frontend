@@ -4,14 +4,26 @@ import { ArrowLeftSmallIcon, ArrowRightSmallIcon } from "@/components/icons";
 import { serialize } from "@/lib/searchParams";
 import { cn } from "@/utils";
 
+const MAX_PAGE_COUNT = 3;
+const DEFAULT_SIZE = 6;
+
 type PaginationControlsProps = {
   currentPage: number;
+  totalPage: number;
   currentPath: string;
 };
 
-function Pagination({ currentPage, currentPath }: PaginationControlsProps) {
+function Pagination({
+  currentPage,
+  currentPath,
+  totalPage,
+}: PaginationControlsProps) {
   const getPageNumbers = (): number[] => {
-    if (currentPage <= 1) {
+    if (totalPage < MAX_PAGE_COUNT) {
+      return Array.from({ length: totalPage }, (_, index) => index + 1);
+    }
+
+    if (currentPage < MAX_PAGE_COUNT) {
       return [1, 2, 3];
     }
     return [currentPage - 1, currentPage, currentPage + 1];
@@ -20,7 +32,7 @@ function Pagination({ currentPage, currentPath }: PaginationControlsProps) {
   const pageURL = (page: number) => {
     return serialize(currentPath, {
       page,
-      size: 6,
+      size: DEFAULT_SIZE,
     });
   };
 
@@ -64,7 +76,7 @@ function Pagination({ currentPage, currentPath }: PaginationControlsProps) {
         className={cn(
           "size-[32px] rounded-[8px] p-[8px] bg-gray-scale-100",
           "flex justify-center items-center",
-          currentPage + 1 === 8 ? "pointer-events-none opacity-50" : "",
+          currentPage + 1 === totalPage ? "pointer-events-none opacity-50" : "",
         )}
       >
         <ArrowRightSmallIcon

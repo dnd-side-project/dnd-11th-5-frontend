@@ -27,6 +27,7 @@ export default async function TrendPage({ searchParams }: TrendPageProps) {
       <Pagination
         currentPath={FIESTA_ENDPOINTS.festivals.thisWeek}
         currentPage={parsedParams.page}
+        totalPage={festivals.totalPages}
       />
     </div>
   );

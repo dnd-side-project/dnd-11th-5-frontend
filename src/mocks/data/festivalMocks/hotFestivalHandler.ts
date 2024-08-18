@@ -93,7 +93,7 @@ const GenerateHotFestivalRespone = (page: number = 0, size: number = 6) => {
       pageNumber: page,
       pageSize: size,
       totalElements: festivals.length,
-      totalPages: Math.ceil(festivals.length / size),
+      totalPages: 8,
     },
   };
 };
