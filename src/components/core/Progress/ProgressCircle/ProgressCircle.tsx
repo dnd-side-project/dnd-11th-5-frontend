@@ -28,7 +28,7 @@ const ProgressCircle: FC<Props> = ({ className }) => {
           fill="currentFill"
         />
       </svg>
-      <span className="sr-only">Loading...</span>s
+      <span className="sr-only">Loading...</span>
     </div>
   );
 };

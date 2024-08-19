@@ -1,14 +1,17 @@
 import { FC } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
+import {
+  FestivalPriority,
+  OnboardingModel,
+} from "@/apis/onboarding/onboardingType";
 import BasicTile from "@/components/core/List/BasicTitle/BasicTile";
-import { OnboardingModel, PriorityModel } from "@/model/onboarding";
+import { ONBOARDING_SETTING } from "@/config";
 
-import { ONBOARDING } from "../_constants";
 import OnBoardingTitle from "./OnBoardingTitle";
 
 interface Props {
-  priorities: Array<PriorityModel>;
+  priorities: Array<FestivalPriority>;
 }
 
 const OnBoardingPriorities: FC<Props> = ({ priorities }) => {
@@ -23,10 +26,14 @@ const OnBoardingPriorities: FC<Props> = ({ priorities }) => {
 
   const handlePriorityToggle = (
     isSelected: boolean,
-    priorityItem: PriorityModel,
+    priorityItem: FestivalPriority,
   ) => {
     isSelected
-      ? replace(fields.filter((v) => v.priorityId !== priorityItem.priorityId))
+      ? replace(
+          fields.filter(
+            (festival) => festival.priorityId !== priorityItem.priorityId,
+          ),
+        )
       : append(priorityItem);
   };
 
@@ -34,14 +41,16 @@ const OnBoardingPriorities: FC<Props> = ({ priorities }) => {
     <>
       <div className="flex h-auto w-full flex-col gap-[32px] ">
         <OnBoardingTitle
-          title={ONBOARDING.PRIORITY_TITLE}
-          subtitle={ONBOARDING.PRIORITY_SUBTITLE}
+          title={ONBOARDING_SETTING.PRIORITY_TITLE}
+          subtitle={ONBOARDING_SETTING.PRIORITY_SUBTITLE}
         />
 
         <section className="grid h-auto w-full grid-cols-2 gap-x-[18px] gap-y-[20px]">
           {priorities.map((priorityItem) => {
             const { priorityId, priority } = priorityItem;
-            const isSelected = fields.some((c) => c.priorityId === priorityId);
+            const isSelected = fields.some(
+              (festival) => festival.priorityId === priorityId,
+            );
             return (
               <BasicTile
                 key={priorityId}

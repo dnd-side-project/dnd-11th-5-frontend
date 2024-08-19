@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 
+import { OnboardingModel } from "@/apis/onboarding/onboardingType";
 import { BasicButton } from "@/components/core/Button";
-import { OnboardingModel } from "@/model/onboarding";
+import { ONBOARDING_SETTING } from "@/config";
 import { checkNumber } from "@/utils/checkNumber";
 
 interface Props {
@@ -23,19 +24,19 @@ const OnBoardingButton: FC<Props> = ({ currentStep, totalStep, onNext }) => {
       [key: number]: { label: string; isError: boolean };
     } = {
       1: {
-        label: `다음 (${checkNumber(fields.categories?.length)}/2)`,
+        label: `다음 (${checkNumber(fields.categories?.length)}/${ONBOARDING_SETTING.CATEGORY_MIN})`,
         isError: !!errors.categories,
       },
       2: {
-        label: `다음 (${checkNumber(fields.moods?.length)}/3)`,
+        label: `다음 (${checkNumber(fields.moods?.length)}/${ONBOARDING_SETTING.MOOD_MIN})`,
         isError: !!errors.moods,
       },
       3: {
         label: `다음`,
-        isError: !!errors.companies,
+        isError: !!errors.companions,
       },
       4: {
-        label: `다음 (${checkNumber(fields.priorities?.length)}/3)`,
+        label: `다음 (${checkNumber(fields.priorities?.length)}/${ONBOARDING_SETTING.PRIORITY_MIN})`,
         isError: !!errors.priorities,
       },
     };

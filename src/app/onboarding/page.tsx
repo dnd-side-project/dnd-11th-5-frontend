@@ -1,16 +1,17 @@
-import { CATEGORIES, COMPANIES, MOODS, PRIORITIES } from "@/model/onboarding";
+import { getOnboardingData } from "@/apis/onboarding/onboarding";
 
 import OnBoardingView from "./view";
 
 export default async function OnBoarding() {
-  // TODO: server side fetching
+  const { moods, categories, companions, priorities } =
+    await getOnboardingData();
 
   return (
     <OnBoardingView
-      categories={CATEGORIES}
-      companies={COMPANIES}
-      priorities={PRIORITIES}
-      moods={MOODS}
+      categories={categories}
+      companions={companions}
+      priorities={priorities}
+      moods={moods}
     />
   );
 }
