@@ -1,15 +1,10 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props
-  extends Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "children" | "className"
-  > {
+export interface Props extends ComponentPropsWithoutRef<"button"> {
   active: boolean;
   label: string;
-  className?: string;
 }
 
 const BasicTile: FC<Props> = ({ active, label, className, ...props }) => {

@@ -5,7 +5,7 @@ import { cn } from "@/utils/cn";
 export interface Props
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   emoji: string;
-  active: boolean;
+  active?: boolean;
   label: string;
 }
 
