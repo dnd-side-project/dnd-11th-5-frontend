@@ -40,6 +40,7 @@ const config = {
     jwt: async ({
       token,
       account,
+      user,
     }: {
       token: JWT;
       user?: User | AdapterUser;
