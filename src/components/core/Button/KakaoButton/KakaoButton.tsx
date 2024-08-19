@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonHTMLAttributes, FC } from "react";
 
 import { KakaoIcon } from "@/components/icons";
@@ -11,6 +13,7 @@ export interface Props
 const KakaoButton: FC<Props> = ({ label, ...props }) => {
   return (
     <button
+      type="submit"
       className={cn(
         "w-full h-[48px] duration-300 rounded-[8px] px-[14px]",
         "flex items-center justify-center",
