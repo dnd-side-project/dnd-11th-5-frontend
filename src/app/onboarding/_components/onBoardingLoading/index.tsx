@@ -6,7 +6,7 @@ import { ProgressCircle } from "@/components/core/Progress";
 import { CheckIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-const strings = [
+const ONBOARDING_LOADING_MESSAGES = [
   "페스티벌 관심사 파악 완료!",
   "페스티벌 무드 파악 완료!",
   "페스티벌 일행 파악 완료!",
@@ -19,10 +19,10 @@ const OnBoardingLoading = () => {
       <div className="flex w-full flex-col items-center">
         <h1 className="max-w-[250px] break-words text-center text-title-bold">
           페스티벌 유형 프로필을
-        </h1>
-        <h1 className="max-w-[250px] break-words text-center text-title-bold">
+          <br />
           설정하는 중이예요
         </h1>
+        <h1 className=""></h1>
         <h2 className="mt-[10px] text-caption2-medium">
           잠시만 기다려주세요...
         </h2>
@@ -42,7 +42,7 @@ const OnBoardingLoading = () => {
 
       <div className="flex h-auto w-full flex-col gap-[12px]">
         <AnimatePresence>
-          {strings.map((str, idx) => (
+          {ONBOARDING_LOADING_MESSAGES.map((str, idx) => (
             <motion.div
               key={str}
               initial={{ opacity: 0, y: -20 }}

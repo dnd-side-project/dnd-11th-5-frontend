@@ -60,7 +60,6 @@ const OnBoardingView: FC<Props> = ({
         priorities={priorities}
         moods={moods}
       />
-      ;
     </FormProvider>
   );
 };

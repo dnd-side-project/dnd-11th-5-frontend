@@ -2,10 +2,10 @@ import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props
+interface Props
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   emoji: string;
-  active: boolean;
+  active?: boolean;
   label: string;
 }
 

@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
 }
 

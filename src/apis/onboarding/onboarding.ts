@@ -1,5 +1,6 @@
 "use server";
 import { FIESTA_ENDPOINTS } from "@/config";
+import { getSettledValue } from "@/utils";
 
 import instance from "../instance";
 import { festivalOnBoarding } from "./onboardingKeys";
@@ -41,6 +42,7 @@ export const getCompanions = async () => {
 
   return data;
 };
+
 export const getPriority = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.priorities;
   const { data } = await instance.get<Array<FestivalPriority>>(endpoint, {
@@ -61,13 +63,10 @@ export const getOnboardingData = async (): Promise<OnboardingModel> => {
       getPriority(),
     ]);
 
-  const moods = moodsPromise.status === "fulfilled" ? moodsPromise.value : [];
-  const companions =
-    companionsPromise.status === "fulfilled" ? companionsPromise.value : [];
-  const priorities =
-    priorityPromise.status === "fulfilled" ? priorityPromise.value : [];
-  const categories =
-    categoriesPromise.status === "fulfilled" ? categoriesPromise.value : [];
+  const moods = getSettledValue(moodsPromise, []);
+  const categories = getSettledValue(categoriesPromise, []);
+  const companions = getSettledValue(companionsPromise, []);
+  const priorities = getSettledValue(priorityPromise, []);
 
   return {
     moods,

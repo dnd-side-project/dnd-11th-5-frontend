@@ -33,6 +33,7 @@ export const HomeFestivalTile: Story = {
     </div>
   ),
   args: {
+    href: "/",
     festival: {
       festivalId: 1,
       name: "한강 페스티벌",
