@@ -23,6 +23,9 @@ const SearchFestival = () => {
     }
   }, [data]);
 
+  const isQueryStringEmpty = query?.length === 0;
+  const HasNoData = !data || data?.length === 0;
+
   if (isLoading) {
     return (
       <div className="flex h-[400px] w-full items-center justify-center">
@@ -31,11 +34,11 @@ const SearchFestival = () => {
     );
   }
 
-  if (query?.length === 0) {
+  if (isQueryStringEmpty) {
     return null;
   }
 
-  if (data?.length === 0) {
+  if (HasNoData) {
     return (
       <div className="flex h-[400px] w-full items-center justify-center">
         <SearchFestivalFallback />
@@ -45,7 +48,7 @@ const SearchFestival = () => {
 
   return (
     <div className="flex w-full flex-col gap-[4px] rounded-[8px] p-[12px]">
-      {data?.map((festival) => {
+      {data.map((festival) => {
         return (
           <FestivalSearchTile key={festival.festivalId} festival={festival} />
         );

@@ -15,8 +15,7 @@ interface FestivalReview {
   rating: number;
 }
 
-export interface Props
-  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   festivalReview: FestivalReview;
 }
 

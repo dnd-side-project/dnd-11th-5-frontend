@@ -4,7 +4,7 @@ import { FC, ReactElement } from "react";
 import { PlusIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-export interface Props extends Pick<LinkProps, "href"> {
+interface Props extends Pick<LinkProps, "href"> {
   label: string;
   icon?: ReactElement;
   className?: string;

@@ -4,7 +4,7 @@ import { FC } from "react";
 // import { X_ICON } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-export interface Props
+interface Props
   extends Omit<
     ButtonHTMLAttributes<HTMLButtonElement>,
     "children" | "className"

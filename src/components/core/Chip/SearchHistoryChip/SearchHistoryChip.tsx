@@ -11,7 +11,7 @@ interface Props
 }
 
 const SearchHistoryChip: FC<Props> = ({ text, className, onClick }) => {
-  const [mounted, setMounted] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);

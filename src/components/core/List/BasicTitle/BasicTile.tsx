@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface Props extends ComponentPropsWithoutRef<"button"> {
+interface Props extends ComponentPropsWithoutRef<"button"> {
   active: boolean;
   label: string;
 }
