@@ -7,20 +7,12 @@ const meta: Meta<typeof SearchHistoryChip> = {
   component: SearchHistoryChip,
   parameters: {},
 
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SearchHistory: Story = {
-  args: {
-    label: "인천 락 페스티벌",
-  },
+  args: {},
 };

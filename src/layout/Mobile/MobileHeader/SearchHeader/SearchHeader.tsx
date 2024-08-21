@@ -15,7 +15,7 @@ const SearchHeader: FC<Props> = ({}) => {
         <ArrowLeftSmallIcon width={24} height={24} />
       </Link>
 
-      <SearchInput onClick={() => {}} />
+      <SearchInput href="/search" />
     </header>
   );
 };

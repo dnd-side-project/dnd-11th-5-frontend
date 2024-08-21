@@ -4,7 +4,7 @@ import { IconButton } from "@/components/core/Button";
 import { PencilIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-export interface Props
+interface Props
   extends Omit<
     ButtonHTMLAttributes<HTMLButtonElement>,
     "children" | "label" | "className"

@@ -39,6 +39,14 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "**/pnpm-lock.yaml"
 
+      - name: Set up environment variables
+        run: |
+          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
+        env:
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_STAGE: ${{ inputs.NEXT_PUBLIC_STAGE }}
+
       - name: Install dependencies
         run: pnpm install
 
