@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { signIn } from "@/auth";
+import { signInWithKakao } from "@/apis/auth/auth";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
 
@@ -65,10 +65,7 @@ const SignIn = () => {
         </div>
 
         <form
-          action={async () => {
-            "use server";
-            await signIn("kakao");
-          }}
+          action={signInWithKakao}
           className="flex w-full flex-col items-center gap-[11px] px-[16px]"
         >
           <KakaoButton />
