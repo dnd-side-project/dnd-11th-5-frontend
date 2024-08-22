@@ -14,7 +14,7 @@ const TrendingFestival = () => {
     queryFn: getTrendingFestival,
   });
 
-  const [query, setQuery] = useQueryState("query", { shallow: true });
+  const [query] = useQueryState("query", { shallow: true });
 
   if (query) {
     return null;

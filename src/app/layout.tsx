@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 import MobileLayout from "@/layout/Mobile/MobileLayout";
-import KakaoInit from "@/lib/KakaoInit";
 import { MSWProvider } from "@/lib/MSWProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 import { cn } from "@/utils/cn";
@@ -27,11 +26,7 @@ export default function RootLayout({
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
         <MSWProvider>
           <ReactQueryProvider>
-            <MobileLayout>
-              {children}
-
-              <KakaoInit />
-            </MobileLayout>
+            <MobileLayout>{children}</MobileLayout>
           </ReactQueryProvider>
         </MSWProvider>
       </body>

@@ -7,9 +7,9 @@ import { useSearchHistory } from "@/hooks/useSearchHistory";
 import { useSwipingContainer } from "@/hooks/useSwipingContainer";
 
 const SearchHistory = () => {
-  const [query, setQuery] = useQueryState("query", { shallow: true });
+  const [query] = useQueryState("query", { shallow: true });
   const { containerRef, mouseDownHandler } = useSwipingContainer();
-  const { get, set, del, reset } = useSearchHistory();
+  const { get, del, reset } = useSearchHistory();
 
   if (query) {
     return null;

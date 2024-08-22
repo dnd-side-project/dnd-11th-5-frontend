@@ -4,13 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 import {
   FestivalCategory,
   FestivalCompanion,
   FestivalMood,
   FestivalPriority,
-  OnboardingModel,
 } from "@/apis/onboarding/onboardingType";
 import { OnBoardingSchema } from "@/validations/OnboardingSchema";
 
@@ -33,7 +33,7 @@ const OnBoardingView: FC<Props> = ({
   priorities,
   moods,
 }) => {
-  const methods = useForm<OnboardingModel>({
+  const methods = useForm<z.output<typeof OnBoardingSchema>>({
     mode: "onChange",
     defaultValues: {
       categories: [],
