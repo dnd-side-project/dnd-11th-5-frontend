@@ -1,4 +1,7 @@
+import { getSession } from "next-auth/react";
+
 import { env } from "../env";
+import { getServierSideSession } from "./auth/auth";
 import {
   ClientError,
   createFiestaError,
@@ -18,90 +21,124 @@ export interface FiestaResponse<T> {
   data: T;
 }
 
-const fiestaFetch = async (
-  url: string,
-  method: Method,
-  options: RequestInit,
-) => {
-  const baseUrl = env.NEXT_PUBLIC_BASE_URL;
+export async function getUserClientSession() {
+  const session = await getSession();
+  return session;
+}
 
-  const defaultOptions: RequestInit = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+type FiestaFetchOptions = Omit<RequestInit, "body">;
 
-  const finalOptions = {
-    method,
-    ...defaultOptions,
-    ...options,
-    headers: {
-      ...defaultOptions.headers,
-      ...options?.headers,
-    },
-  };
+export class CreateFiestaFetch {
+  private baseUrl: string;
+  private authEnabled: boolean;
 
-  try {
-    const response = await fetch(baseUrl + url, finalOptions);
-    if (!response.ok) {
-      const errorData = await response.json();
-      const fiestaError = createFiestaError(errorData);
-      throw fiestaError;
-    }
-    return await response.json();
-  } catch (error: unknown) {
-    console.error(error);
-
-    if (error instanceof ServerError) {
-      // TODO: Server Error
-      throw error;
-    }
-    if (error instanceof ClientError) {
-      // TODO: Client Error
-      throw error;
-    }
-    if (error instanceof FestivalError) {
-      // TODO: Festival Error
-      throw error;
-    }
-    if (error instanceof LogsError) {
-      // TODO: Logs Error
-      throw error;
-    }
-    if (error instanceof UserError) {
-      // TODO: User Error
-      throw error;
-    }
-    if (error instanceof ReviewError) {
-      // TODO: Review Error
-      throw error;
-    }
-
-    throw error;
+  constructor(baseUrl: string, authEnabled: boolean = false) {
+    this.baseUrl = baseUrl;
+    this.authEnabled = authEnabled;
   }
-};
 
-const instance = {
-  get: async <T>(
+  private async fetch(url: string, method: Method, options: RequestInit) {
+    const defaultOptions: RequestInit = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const finalOptions = {
+        method,
+        ...defaultOptions,
+        ...options,
+        headers: {
+          ...defaultOptions.headers,
+          ...options.headers,
+        },
+      };
+
+      if (this.authEnabled) {
+        const userSession = await this.getUserSession();
+        if (!!userSession && !!userSession.accessToken) {
+          finalOptions.headers = {
+            ...finalOptions.headers,
+            Authorization: `Bearer ${userSession.accessToken}`,
+          };
+        }
+      }
+
+      const response = await fetch(this.baseUrl + url, finalOptions);
+      if (!response.ok) {
+        const errorData = await response.json();
+        const fiestaError = createFiestaError(errorData);
+        throw fiestaError;
+      }
+      return await response.json();
+    } catch (error: unknown) {
+      console.error(error);
+
+      if (error instanceof ServerError) {
+        // TODO: Server Error
+        throw error;
+      }
+      if (error instanceof ClientError) {
+        // TODO: Client Error
+        throw error;
+      }
+      if (error instanceof FestivalError) {
+        // TODO: Festival Error
+        throw error;
+      }
+      if (error instanceof LogsError) {
+        // TODO: Logs Error
+        throw error;
+      }
+      if (error instanceof UserError) {
+        throw error;
+      }
+      if (error instanceof ReviewError) {
+        // TODO: Review Error
+        throw error;
+      }
+
+      throw error;
+    }
+  }
+
+  private async getUserSession() {
+    const isServer = typeof window === "undefined";
+
+    const userSession = isServer
+      ? await getServierSideSession()
+      : await getUserClientSession();
+
+    return userSession;
+  }
+
+  public get = async <T>(
     url: string,
-    options: Omit<RequestInit, "body"> = {},
-  ): Promise<FiestaResponse<T>> => fiestaFetch(url, "GET", options),
-  post: async <T>(
+    options: FiestaFetchOptions,
+  ): Promise<FiestaResponse<T>> => this.fetch(url, "GET", options);
+
+  public post = async <T>(
     url: string,
     body = {},
-    options: Omit<RequestInit, "body"> = {},
+    options: FiestaFetchOptions = {},
   ): Promise<FiestaResponse<T>> =>
-    fiestaFetch(url, "POST", { body: JSON.stringify(body), ...options }),
-  put: async <T>(
+    this.fetch(url, "POST", { body: JSON.stringify(body), ...options });
+
+  public put = async <T>(
     url: string,
     body = {},
-    options: Omit<RequestInit, "body"> = {},
+    options: FiestaFetchOptions = {},
   ): Promise<FiestaResponse<T>> =>
-    fiestaFetch(url, "PUT", { body: JSON.stringify(body), ...options }),
-  delete: async <T>(
-    url: string,
-    options: Omit<RequestInit, "body"> = {},
-  ): Promise<FiestaResponse<T>> => fiestaFetch(url, "DELETE", { ...options }),
-};
+    this.fetch(url, "PUT", { body: JSON.stringify(body), ...options });
 
-export default instance;
+  public delete = async <T>(
+    url: string,
+    options: FiestaFetchOptions = {},
+  ): Promise<FiestaResponse<T>> => this.fetch(url, "DELETE", { ...options });
+}
+
+const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, true);
+const staticInstance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, false);
+
+export { instance, staticInstance };
