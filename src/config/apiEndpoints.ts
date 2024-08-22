@@ -6,7 +6,7 @@ const FIESTA_ENDPOINTS = {
     reissue: "/users/reissue",
     logout: "/users/logout",
     unlink: "/users/unlink",
-    login: "/users/login",
+    login: "/users/oauth/login",
     me: "/users/me",
   },
   festivals: {
