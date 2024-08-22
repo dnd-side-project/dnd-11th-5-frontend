@@ -1,6 +1,6 @@
 "use server";
 
-import { staticInstance } from "@/apis/instance";
+import instance from "@/apis/instance";
 import { REVALIDATE_DURATION } from "@/config";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
@@ -15,7 +15,7 @@ export async function getHotFestival(
   params: PaginationParamter = defaultParams,
 ) {
   const endpoint = ENDPOINT.mostlike;
-  const { data } = await staticInstance.get<HostFestivalData>(
+  const { data } = await instance.get<HostFestivalData>(
     generateUrlWithParams(endpoint, params),
     {
       next: {

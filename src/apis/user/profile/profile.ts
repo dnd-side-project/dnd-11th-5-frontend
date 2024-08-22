@@ -1,4 +1,4 @@
-import { instance } from "@/apis/instance";
+import instance from "@/apis/instance";
 import { FIESTA_ENDPOINTS } from "@/config";
 
 import { UserProfileRequest, UserProfileResponse } from "./profileType";

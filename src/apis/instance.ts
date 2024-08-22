@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 
 import { env } from "../env";
@@ -44,6 +45,11 @@ export class CreateFiestaFetch {
       },
     };
 
+    let userSession: Session | null = null;
+    if (this.authEnabled) {
+      userSession = await this.getUserSession();
+    }
+
     try {
       const finalOptions = {
         method,
@@ -55,14 +61,11 @@ export class CreateFiestaFetch {
         },
       };
 
-      if (this.authEnabled) {
-        const userSession = await this.getUserSession();
-        if (!!userSession && !!userSession.accessToken) {
-          finalOptions.headers = {
-            ...finalOptions.headers,
-            Authorization: `Bearer ${userSession.accessToken}`,
-          };
-        }
+      if (!!userSession && !!userSession.accessToken) {
+        finalOptions.headers = {
+          ...finalOptions.headers,
+          Authorization: `Bearer ${userSession.accessToken}`,
+        };
       }
 
       const response = await fetch(this.baseUrl + url, finalOptions);
@@ -139,6 +142,5 @@ export class CreateFiestaFetch {
 }
 
 const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, true);
-const staticInstance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, false);
 
-export { instance, staticInstance };
+export default instance;

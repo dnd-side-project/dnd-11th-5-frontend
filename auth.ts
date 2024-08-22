@@ -28,9 +28,6 @@ const config = {
     // * protected page 설정
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl;
-      if (isMatchPath(pathname, ["/onboarding"])) {
-        return !auth?.isProfileRegistered;
-      }
 
       if (isMatchPath(pathname, AuthRequiredPage)) {
         return !!auth;

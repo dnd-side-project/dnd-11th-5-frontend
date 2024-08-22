@@ -1,6 +1,6 @@
 "use server";
 
-import { instance } from "@/apis/instance";
+import instance from "@/apis/instance";
 import { auth, signIn, signOut } from "@/auth";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 

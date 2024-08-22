@@ -1,6 +1,6 @@
 "use server";
 
-import { staticInstance } from "@/apis/instance";
+import instance from "@/apis/instance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
@@ -17,7 +17,7 @@ export async function getThisWeekFestival(
   params: PaginationParamter = defaultParams,
 ) {
   const endpoint = ENDPOINT.thisWeek;
-  const { data } = await staticInstance.get<ThisWeekFestivalData>(
+  const { data } = await instance.get<ThisWeekFestivalData>(
     generateUrlWithParams(endpoint, params),
     {
       next: {
