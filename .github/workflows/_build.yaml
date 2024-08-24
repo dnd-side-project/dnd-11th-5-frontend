@@ -7,7 +7,6 @@ on:
       NEXT_PUBLIC_STAGE:
         required: true
         type: string
-      
 
 jobs:
   build:
@@ -20,9 +19,15 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
           echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
+          echo "AUTH_SECRET=$AUTH_SECRET" >> .env
+          echo "AUTH_KAKAO_ID=$AUTH_KAKAO_ID" >> .env
+          echo "AUTH_KAKAO_SECRET=$AUTH_KAKAO_SECRET" >> .env
         env:
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
           NEXT_PUBLIC_STAGE: ${{ inputs.NEXT_PUBLIC_STAGE }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_KAKAO_ID: ${{ secrets.AUTH_KAKAO_ID }}
+          AUTH_KAKAO_SECRET: ${{ secrets.AUTH_KAKAO_SECRET }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

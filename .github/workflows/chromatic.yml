@@ -43,7 +43,7 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
           echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
-          echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
+          echo "AUTH_SECRET=$AUTH_SECRET" >> .env
           echo "AUTH_KAKAO_ID=$AUTH_KAKAO_ID" >> .env
           echo "AUTH_KAKAO_SECRET=$AUTH_KAKAO_SECRET" >> .env
         env:
