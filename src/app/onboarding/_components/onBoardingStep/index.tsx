@@ -14,7 +14,7 @@ import {
 import { postProfile } from "@/apis/user/profile/profile";
 import { ProgressBar } from "@/components/core/Progress";
 import { ONBOARDING_SETTING } from "@/config";
-import { useOnBoardingStep } from "@/hooks/useOnBoardingStep";
+import useStep from "@/hooks/useStep";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import { extractKeyFromArray, generateUrlWithParams } from "@/utils";
 import { delay } from "@/utils/delay";
@@ -40,7 +40,10 @@ const OnBoardingContainer: FC<Props> = ({
 }) => {
   const router = useRouter();
 
-  const { currentStep, handleNextStep, handlePrevStep } = useOnBoardingStep();
+  const { currentStep, handleNextStep, handlePrevStep } = useStep(
+    ONBOARDING_SETTING.INITIAL_STEP,
+    ONBOARDING_SETTING.TOTAL_STEP,
+  );
   const { trigger, handleSubmit } = useFormContext<OnboardingModel>();
 
   // * 첫 렌더링에 유효성 검사 1회 실행
