@@ -13,7 +13,7 @@ export interface FestivalTileProps {
   festival: SearchFestival;
 }
 
-const FestivalSearchTile: FC<FestivalTileProps> = ({ festival, ...props }) => {
+const FestivalSearchTile: FC<FestivalTileProps> = ({ festival }) => {
   return (
     <div
       className={cn(

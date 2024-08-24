@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { signInWithKakao } from "@/apis/auth/auth";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
 
@@ -63,12 +64,15 @@ const SignIn = () => {
           />
         </div>
 
-        <div className="flex w-full flex-col items-center gap-[11px] px-[16px]">
+        <form
+          action={signInWithKakao}
+          className="flex w-full flex-col items-center gap-[11px] px-[16px]"
+        >
           <KakaoButton />
           <Link href="/" className="text-caption1-medium text-gray-scale-300">
             비회원으로 둘러보기
           </Link>
-        </div>
+        </form>
       </main>
       <FireworkAnimation />
     </>

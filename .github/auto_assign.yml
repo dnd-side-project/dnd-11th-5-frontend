@@ -4,9 +4,9 @@ addAssignees: author
 
 reviewers:
   - punchdrunkard
-  - Zero-1016
-  - seokzin
-  - saseungmin
+  # - Zero-1016
+  # - seokzin
+  # - saseungmin
 
 numberOfReviewers: 4
 

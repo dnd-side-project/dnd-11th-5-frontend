@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { FC, ReactElement, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
@@ -9,10 +11,12 @@ import {
   FestivalPriority,
   OnboardingModel,
 } from "@/apis/onboarding/onboardingType";
+import { postProfile } from "@/apis/user/profile/profile";
 import { ProgressBar } from "@/components/core/Progress";
 import { ONBOARDING_SETTING } from "@/config";
 import { useOnBoardingStep } from "@/hooks/useOnBoardingStep";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
+import { extractKeyFromArray, generateUrlWithParams } from "@/utils";
 import { delay } from "@/utils/delay";
 
 import OnBoardingButton from "./OnBoardingButton";
@@ -45,8 +49,15 @@ const OnBoardingContainer: FC<Props> = ({
   }, []);
 
   const onSubmit = async (data: OnboardingModel) => {
-    await delay(5000);
-    router.replace("/onboarding/complete");
+    const payload = {
+      category: extractKeyFromArray(data.categories, "categoryId"),
+      mood: extractKeyFromArray(data.moods, "moodId"),
+      companion: extractKeyFromArray(data.companions, "companionId"),
+      priority: extractKeyFromArray(data.priorities, "priorityId"),
+    };
+
+    const [profile] = await Promise.all([postProfile(payload), delay(5000)]);
+    router.replace(generateUrlWithParams("/onboarding/complete", profile));
   };
 
   const renderCurrentStep: {

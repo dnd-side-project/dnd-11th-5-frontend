@@ -13,7 +13,7 @@ import { useSearchHistory } from "@/hooks/useSearchHistory";
 import SearchFestivalFallback from "./SearchFestivalFallback";
 
 const SearchFestival = () => {
-  const [query, setQuery] = useQueryState("query", { shallow: true });
+  const [query] = useQueryState("query", { shallow: true });
   const { data, isLoading } = useGetSearchFestival(query ?? "", 300);
   const { set } = useSearchHistory();
 
@@ -21,7 +21,7 @@ const SearchFestival = () => {
     if (isString(query) && !isEmpty(query)) {
       set(query);
     }
-  }, [data]);
+  }, [data, query]);
 
   const isQueryStringEmpty = query?.length === 0;
   const HasNoData = !data || data?.length === 0;

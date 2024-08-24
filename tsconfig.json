@@ -19,6 +19,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@/auth": ["./auth.ts"],
       "@font": ["./src/app/fonts/index.ts"]
     }
   },

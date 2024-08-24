@@ -6,7 +6,11 @@ import { z, ZodError } from "zod";
 import { VALIDATION_ERROR_MESSAGES } from "../config";
 
 export const env = createEnv({
-  server: {},
+  server: {
+    AUTH_SECRET: z.string().base64("AUTH_SECRET should be base64"),
+    AUTH_KAKAO_ID: z.string(),
+    AUTH_KAKAO_SECRET: z.string().base64("AUTH_KAKAO_SECRET should be base64"),
+  },
 
   client: {
     NEXT_PUBLIC_BASE_URL: z.string({
@@ -18,8 +22,11 @@ export const env = createEnv({
   },
 
   runtimeEnv: {
-    NEXT_PUBLIC_STAGE: process.env.NEXT_PUBLIC_STAGE,
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    AUTH_KAKAO_ID: process.env.AUTH_KAKAO_ID,
+    AUTH_KAKAO_SECRET: process.env.AUTH_KAKAO_SECRET,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    NEXT_PUBLIC_STAGE: process.env.NEXT_PUBLIC_STAGE,
   },
 
   onValidationError: (error: ZodError) => {
