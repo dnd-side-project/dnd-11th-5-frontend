@@ -10,7 +10,7 @@ import Kakao from "next-auth/providers/kakao";
 
 import {
   getRefreshToken,
-  getServierSideSession,
+  getServerSideSession,
   postOauthLogin,
 } from "@/apis/auth/auth";
 import { SocialLoginRequest } from "@/apis/auth/authType";
@@ -42,7 +42,7 @@ const config = {
         const { search, origin } = new URL(url);
         const callbackUrl = new URLSearchParams(search).get("callbackUrl");
         if (callbackUrl) {
-          const session = await getServierSideSession();
+          const session = await getServerSideSession();
 
           // 프로필 등록안했으면 onboarding으로
           if (!session?.isProfileRegistered) {

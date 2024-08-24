@@ -11,10 +11,10 @@ export { auth as middleware } from "@/auth";
 // const matchersForSignIn = ["/auth/sign-in"];
 
 // export async function middleware(request: NextRequest) {
-//   const session = await getServierSideSession();
+//   const session = await getServerSideSession();
 
 //   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
-//     return (await getServierSideSession()) // 세션 정보 확인
+//     return (await getServerSideSession()) // 세션 정보 확인
 //       ? NextResponse.next()
 //       : NextResponse.redirect(new URL("/auth/sign-in", request.url));
 //   }

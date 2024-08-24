@@ -40,7 +40,7 @@ export const getRefreshToken = async (refreshToken: string) => {
     .then((res) => res.data);
 };
 
-export const getServierSideSession = async () => {
+export const getServerSideSession = async () => {
   const session = await auth();
   return session;
 };

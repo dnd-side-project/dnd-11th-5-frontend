@@ -2,7 +2,7 @@ import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 
 import { env } from "../env";
-import { getServierSideSession } from "./auth/auth";
+import { getServerSideSession } from "./auth/auth";
 import {
   ClientError,
   createFiestaError,
@@ -110,7 +110,7 @@ export class CreateFiestaFetch {
     const isServer = typeof window === "undefined";
 
     const userSession = isServer
-      ? await getServierSideSession()
+      ? await getServerSideSession()
       : await getUserClientSession();
 
     return userSession;
