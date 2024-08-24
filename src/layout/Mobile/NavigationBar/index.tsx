@@ -36,7 +36,7 @@ const NavigationBar = () => {
     <NM.Root
       className={cn(
         "w-full h-[60px] px-[26px] py-[12px] rounded-t-[24px] max-w-none lg:max-w-[450px]",
-        "fixed bottom-0",
+        "fixed bottom-0 shadow-t-2xl",
         "bg-gray-scale-0",
       )}
     >

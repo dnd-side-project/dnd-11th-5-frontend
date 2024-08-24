@@ -8,7 +8,7 @@ interface Props {}
 
 const HomeHeader: FC<Props> = ({}) => {
   return (
-    <header className="fixed top-0 flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[16px] text-gray-900 lg:max-w-[450px]">
+    <header className="fixed top-0 z-[10] flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[16px] text-gray-900 lg:max-w-[450px]">
       <Link href="/">
         <Image
           width={84}
