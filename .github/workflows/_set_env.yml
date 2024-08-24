@@ -1,0 +1,38 @@
+name: Set Environment Variables
+
+on:
+  workflow_call:
+    inputs:
+      NEXT_PUBLIC_STAGE:
+        required: true
+        type: string
+      NEXT_PUBLIC_BASE_URL:
+        required: true
+        type: string
+      AUTH_SECRET:
+        required: true
+        type: string
+      AUTH_KAKAO_ID:
+        required: true
+        type: string
+      AUTH_KAKAO_SECRET:
+        required: true
+        type: string
+
+jobs:
+  set-env-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up environment variables
+        run: |
+          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
+          echo "AUTH_SECRET=$AUTH_SECRET" >> .env
+          echo "AUTH_KAKAO_ID=$AUTH_KAKAO_ID" >> .env
+          echo "AUTH_KAKAO_SECRET=$AUTH_KAKAO_SECRET" >> .env
+        env:
+          NEXT_PUBLIC_BASE_URL: ${{ inputs.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_STAGE: ${{ inputs.NEXT_PUBLIC_STAGE }}
+          AUTH_SECRET: ${{ inputs.AUTH_SECRET }}
+          AUTH_KAKAO_ID: ${{ inputs.AUTH_KAKAO_ID }}
+          AUTH_KAKAO_SECRET: ${{ inputs.AUTH_KAKAO_SECRET }}
