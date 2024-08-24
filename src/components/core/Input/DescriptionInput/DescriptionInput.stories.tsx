@@ -8,7 +8,7 @@ const meta: Meta<typeof DescriptionInput> = {
   parameters: {},
 
   argTypes: {
-    maxlength: {
+    maxLength: {
       control: {
         type: "number",
       },
@@ -46,7 +46,7 @@ export const Default: Story = {
     </div>
   ),
   args: {
-    maxlength: 300,
+    maxLength: 300,
     currentLength: 0,
     label: "상세설명",
     placeholder: "상세설명을 입력해주세요.",
@@ -60,7 +60,7 @@ export const Error: Story = {
     </div>
   ),
   args: {
-    maxlength: 300,
+    maxLength: 300,
     currentLength: 0,
     label: "상세설명",
     placeholder: "상세설명을 입력해주세요.",

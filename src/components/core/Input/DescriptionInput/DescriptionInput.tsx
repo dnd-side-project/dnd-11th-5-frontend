@@ -6,10 +6,10 @@ import { cn } from "@/utils/cn";
 interface Props
   extends Omit<
     InputHTMLAttributes<HTMLTextAreaElement>,
-    "type" | "maxlength" | "className"
+    "type" | "maxlength" | "className" | "maxLength"
   > {
   label: string;
-  maxlength?: number;
+  maxLength?: number;
   currentLength?: number;
   className?: string;
   error?: string;
@@ -17,7 +17,7 @@ interface Props
 
 const DescriptionInput: FC<Props> = ({
   label,
-  maxlength,
+  maxLength,
   currentLength = 0,
   className,
   error,
@@ -53,7 +53,9 @@ const DescriptionInput: FC<Props> = ({
             <span className="text-caption1-regular text-error">{error}</span>
           </div>
         )}
-        <span className="w-full text-right text-caption1-medium text-gray-500">{`${currentLength}/${maxlength}`}</span>
+        {!!maxLength && (
+          <span className="w-full text-right text-caption1-medium text-gray-500">{`${currentLength}/${maxLength}`}</span>
+        )}
       </div>
     </div>
   );
