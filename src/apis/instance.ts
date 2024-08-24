@@ -22,7 +22,7 @@ export interface FiestaResponse<T> {
   data: T;
 }
 
-export async function getUserClientSession() {
+export async function getClientSideSession() {
   const session = await getSession();
   return session;
 }
@@ -111,14 +111,14 @@ export class CreateFiestaFetch {
 
     const userSession = isServer
       ? await getServerSideSession()
-      : await getUserClientSession();
+      : await getClientSideSession();
 
     return userSession;
   }
 
   public get = async <T>(
     url: string,
-    options: FiestaFetchOptions,
+    options: FiestaFetchOptions = {},
   ): Promise<FiestaResponse<T>> => this.fetch(url, "GET", options);
 
   public post = async <T>(
@@ -138,7 +138,7 @@ export class CreateFiestaFetch {
   public delete = async <T>(
     url: string,
     options: FiestaFetchOptions = {},
-  ): Promise<FiestaResponse<T>> => this.fetch(url, "DELETE", { ...options });
+  ): Promise<FiestaResponse<T>> => this.fetch(url, "DELETE", options);
 }
 
 const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, true);
