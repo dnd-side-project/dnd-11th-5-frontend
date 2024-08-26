@@ -101,8 +101,8 @@ const Calendar: FC<Props> = ({ onConfirm, startDay, endDay }) => {
 
   const handleOnConfirm = () => {
     onConfirm(
-      !startDate ? null : (startDate as Dayjs).format("YYYY/MM/DD"),
-      !endDate ? null : (endDate as Dayjs).format("YYYY/MM/DD"),
+      !startDate ? null : (startDate as Dayjs).format("YYYY-MM-DD"),
+      !endDate ? null : (endDate as Dayjs).format("YYYY-MM-DD"),
     );
   };
 

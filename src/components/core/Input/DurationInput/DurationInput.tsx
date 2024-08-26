@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, FC, useState } from "react";
 
 import { CalendarDialog } from "@/components/Dialog";
-import { CalendarIcon } from "@/components/icons";
+import { CalendarIcon, ErrorIcon } from "@/components/icons";
 import { dayjsWithExt } from "@/lib/dayjs";
 import { cn } from "@/utils/cn";
 
@@ -10,6 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   start: string | null;
   end: string | null;
+  error?: string;
   onConfirm: (_startDate: string | null, _endDate: string | null) => void;
 }
 
@@ -19,6 +20,7 @@ const DurationInput: FC<Props> = ({
   onConfirm,
   start,
   end,
+  error,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +29,9 @@ const DurationInput: FC<Props> = ({
 
   const handleConfirm = (startDate: string | null, endDate: string | null) => {
     const start = dayjsWithExt(startDate).isValid() ? startDate : null;
+    console.log("🚀 ~ handleConfirm ~ start:", start);
     const end = dayjsWithExt(endDate).isValid() ? endDate : null;
+    console.log("🚀 ~ handleConfirm ~ end:", end);
 
     if (!start && end) {
       onConfirm(end, end);
@@ -71,6 +75,7 @@ const DurationInput: FC<Props> = ({
           "border-[1px] border-gray-scale-200",
           "placeholder:text-caption2-medium placeholder:text-gray-400 text-gray-scale-700",
           "flex gap-[8px] justify-start items-center",
+          error ? "border-error" : "border-gray-scale-200",
           className,
         )}
         {...props}
@@ -89,6 +94,19 @@ const DurationInput: FC<Props> = ({
           {generateDateString()}
         </span>
       </button>
+      <div
+        className={cn(
+          "w-full flex min-h-[14px]",
+          error ? "justify-between" : "justify-end",
+        )}
+      >
+        {!!error && (
+          <div className="flex h-auto w-full items-center justify-start gap-[2px]">
+            <ErrorIcon width={14} height={14} className="text-error" />
+            <span className="text-caption1-regular text-error">{error}</span>
+          </div>
+        )}
+      </div>
       {isOpen && (
         <CalendarDialog
           title="페스티벌 기간 등록"

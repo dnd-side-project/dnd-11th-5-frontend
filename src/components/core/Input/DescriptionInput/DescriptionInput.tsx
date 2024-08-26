@@ -43,7 +43,7 @@ const DescriptionInput: FC<Props> = ({
       />
       <div
         className={cn(
-          "w-full flex ",
+          "w-full flex min-h-[14px]",
           error ? "justify-between" : "justify-end",
         )}
       >

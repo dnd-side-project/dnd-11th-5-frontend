@@ -7,14 +7,15 @@ import {
   useState,
 } from "react";
 
-import { ClockIcon } from "@/components/icons";
+import { ClockIcon, ErrorIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
 interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
   label?: string;
   className?: string;
   value: string;
-  onChange: (time: string) => void;
+  onChange: (_time: string) => void;
+  error?: string;
 }
 
 const TimeInput: FC<Props> = ({
@@ -22,6 +23,7 @@ const TimeInput: FC<Props> = ({
   className,
   value,
   onChange,
+  error,
   ...props
 }) => {
   const startTimeRef = useRef<HTMLInputElement>(null);
@@ -73,6 +75,7 @@ const TimeInput: FC<Props> = ({
           "border-[1px] border-gray-scale-200",
           "placeholder:text-caption2-medium placeholder:text-gray-400 text-gray-scale-700",
           "flex gap-[8px] justify-start items-center",
+          error ? "border-error" : "border-gray-scale-200",
           className,
         )}
         {...props}
@@ -116,19 +119,19 @@ const TimeInput: FC<Props> = ({
             onChange={handleEndTImeChange}
           />
         </div>
-
-        {/* {isTimeEmpty && (
-          <button
-            className={cn(
-              "!text-caption2-medium max-w-[90%] text-ellipsis line-clamp-1",
-              isFilled ? "text-gary-scale-700" : "text-gray-400",
-            )}
-            onClick={handleSetStartTime}
-          >
-            {!!value ? value : "페스티벌 시간을 입력해주세요."}
-          </button>
+      </div>
+      <div
+        className={cn(
+          "w-full flex min-h-[14px]",
+          error ? "justify-between" : "justify-end",
         )}
-        <input ref={startDateRef} type="time" className="hidden" /> */}
+      >
+        {!!error && (
+          <div className="flex h-auto w-full items-center justify-start gap-[2px]">
+            <ErrorIcon width={14} height={14} className="text-error" />
+            <span className="text-caption1-regular text-error">{error}</span>
+          </div>
+        )}
       </div>
     </div>
   );
