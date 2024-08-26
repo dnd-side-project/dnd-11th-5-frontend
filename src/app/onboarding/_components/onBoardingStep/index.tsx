@@ -39,14 +39,13 @@ const OnBoardingContainer: FC<Props> = ({
   moods,
 }) => {
   const router = useRouter();
+  const { trigger, handleSubmit } = useFormContext<OnboardingModel>();
 
   const { currentStep, handleNextStep, handlePrevStep } = useStep(
     ONBOARDING_SETTING.INITIAL_STEP,
     ONBOARDING_SETTING.TOTAL_STEP,
   );
-  const { trigger, handleSubmit } = useFormContext<OnboardingModel>();
 
-  // * 첫 렌더링에 유효성 검사 1회 실행
   useEffect(() => {
     trigger();
   }, []);

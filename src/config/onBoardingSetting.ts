@@ -1,4 +1,8 @@
-const ONBOARDING_SETTING = Object.freeze({
+import { FieldPath } from "react-hook-form";
+
+import { OnboardingModel } from "@/apis/onboarding/onboardingType";
+
+export const ONBOARDING_SETTING = Object.freeze({
   INITIAL_STEP: 1,
   TOTAL_STEP: 4,
   CATEGORY_MIN: 2,
@@ -14,4 +18,12 @@ const ONBOARDING_SETTING = Object.freeze({
   PRIORITY_SUBTITLE: "중요 요소 3가지를 선택해주세요",
 });
 
-export default ONBOARDING_SETTING;
+export const ONBOARDING_VALIDATION_FIELDS: Record<
+  number,
+  Array<FieldPath<OnboardingModel>>
+> = {
+  1: ["categories"],
+  2: ["moods"],
+  3: ["companions"],
+  4: ["priorities"],
+};
