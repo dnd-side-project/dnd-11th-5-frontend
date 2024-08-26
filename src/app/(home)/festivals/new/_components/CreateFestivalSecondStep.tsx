@@ -38,28 +38,59 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
     setValue("endDate", end ?? "", { shouldValidate: true });
   };
 
-  const handleAddress = (address: string, sido: string, sigungu: string) => {
+  const handleAddress = (
+    address: string,
+    sido: string,
+    sigungu: string,
+    latitude: string,
+    longitude: string,
+  ) => {
     setValue("address", address ?? "", { shouldValidate: true });
     setValue("sido", sido ?? "", { shouldValidate: true });
     setValue("sigungu", sigungu ?? "", { shouldValidate: true });
+    setValue("latitude", latitude ?? "", { shouldValidate: true });
+    setValue("longitude", longitude ?? "", { shouldValidate: true });
   };
 
   const handleTimeChange = (time: string) => {
     setValue("playtime", time, { shouldValidate: true });
   };
 
+  const handleGetError = (name: keyof CreateFestivalType) => {
+    if (submitCount < 2) {
+      return undefined;
+    }
+
+    const errorMessage = errors[name]?.message ?? undefined;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return undefined;
+  };
+
   return (
-    <section className="flex w-full flex-col gap-[32px]">
+    <section className="flex w-full flex-col gap-[18px]">
       <DurationInput
         label="페스티벌 기간"
         start={startDate}
         end={endDate}
+        error={handleGetError("startDate") || handleGetError("endDate")}
         onConfirm={handleCalendarConfirm}
       />
 
-      <AddressInput value={null} onChange={handleAddress} />
+      <AddressInput
+        value={null}
+        onChange={handleAddress}
+        error={handleGetError("address")}
+      />
 
-      <TimeInput value={time} onChange={handleTimeChange} />
+      <TimeInput
+        value={time}
+        onChange={handleTimeChange}
+        error={handleGetError("playtime")}
+      />
 
       <label className="text-subtitle-medium text-gray-scale-900">URL</label>
 
@@ -67,27 +98,29 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
         label="공식홈페이지"
         isSubInput
         placeholder="공식홈페이지 주소를 입력해주세요."
-        error={submitCount > 1 ? errors.homepageUrl?.message : undefined}
+        error={handleGetError("homepageUrl")}
         {...register("homepageUrl")}
       />
       <TextInput
         label="인스타그램 계정"
         isSubInput
         placeholder="인스타그램 계정을 입력해주세요."
-        error={submitCount > 1 ? errors.instagramUrl?.message : undefined}
+        error={handleGetError("instagramUrl")}
         {...register("instagramUrl")}
       />
       <TextInput
         label="페스티벌 예매"
         isSubInput
         placeholder="페스티벌 예매를 위한 주소를 입력해주세요."
-        error={submitCount > 1 ? errors.ticketLink?.message : undefined}
+        error={handleGetError("ticketLink")}
         {...register("ticketLink")}
       />
 
       <TextInput
         label="페스티벌 비용"
         placeholder="페스티벌 비용을 입력해주세요."
+        error={handleGetError("fee")}
+        {...register("fee")}
       />
 
       <label className="text-subtitle-medium text-gray-scale-900">
