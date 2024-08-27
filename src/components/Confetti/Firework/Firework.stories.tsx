@@ -6,7 +6,6 @@ const meta: Meta<typeof FireworkAnimation> = {
   title: "Confetti/FireworkAnimation",
   component: FireworkAnimation,
   parameters: {},
-
   argTypes: {},
 };
 

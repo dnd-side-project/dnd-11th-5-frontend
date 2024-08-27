@@ -5,30 +5,10 @@ import AddressInput from "./AddressInput";
 const meta: Meta<typeof AddressInput> = {
   title: "Core/Input/AddressInput",
   component: AddressInput,
-  parameters: {},
-
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-    className: {
-      table: {
-        disable: true,
-      },
-    },
-    value: {
-      table: {
-        disable: true,
-      },
-    },
-    onChange: {
-      table: {
-        disable: true,
-      },
-    },
+  parameters: {
+    controls: { include: ["label"] },
   },
+  argTypes: {},
 };
 
 export default meta;
@@ -42,5 +22,7 @@ export const Default: Story = {
   ),
   args: {
     label: "페스티벌 명",
+    value: "",
+    onChange: () => {},
   },
 };

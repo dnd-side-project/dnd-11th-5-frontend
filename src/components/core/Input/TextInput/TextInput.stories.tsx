@@ -6,7 +6,6 @@ const meta: Meta<typeof TextInput> = {
   title: "Core/Input/TextInput",
   component: TextInput,
   parameters: {},
-
   argTypes: {
     maxLength: {
       control: {

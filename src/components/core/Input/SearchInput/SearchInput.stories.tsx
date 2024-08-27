@@ -6,7 +6,6 @@ const meta: Meta<typeof SearchInput> = {
   title: "Core/Input/SearchInput",
   component: SearchInput,
   parameters: {},
-
   argTypes: {},
 };
 
