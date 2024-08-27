@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldPath, FieldValues, UseFormTrigger } from "react-hook-form";
 
@@ -9,9 +10,14 @@ const useStep = <T extends FieldValues>(
   stepValidations?: Record<number, Array<FieldPath<T>>>,
   trigger?: UseFormTrigger<T>,
 ) => {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState<number>(initialStep);
 
   const handlePrevStep = () => {
+    if (currentStep === initialStep) {
+      router.push("/");
+    }
+
     setCurrentStep((prev) => {
       const newStep = prev + -1;
       return newStep >= initialStep && newStep <= totalStep ? newStep : prev;

@@ -56,7 +56,7 @@ const CreateFestivalSchema = z.object({
     .array(z.number())
     .min(1, VALIDATION_ERROR_MESSAGES.min(1))
     .max(2, VALIDATION_ERROR_MESSAGES.min(2)),
-  tip: z.string(),
+  tip: z.string().min(1, VALIDATION_ERROR_MESSAGES.min(1)),
 });
 
 export type CreateFestivalType = z.output<typeof CreateFestivalSchema>;
