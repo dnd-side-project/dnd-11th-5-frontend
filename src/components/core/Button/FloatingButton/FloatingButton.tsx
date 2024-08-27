@@ -1,13 +1,20 @@
 import Link from "next/link";
+import { Session } from "next-auth";
 import { ComponentPropsWithoutRef, FC } from "react";
 
 import { IconButton } from "@/components/core/Button";
 import { PencilIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-interface Props extends ComponentPropsWithoutRef<"button"> {}
+interface Props extends ComponentPropsWithoutRef<"button"> {
+  session: Session | null;
+}
 
-const FloatingButton: FC<Props> = ({ className }) => {
+const FloatingButton: FC<Props> = ({ className, session }) => {
+  if (!session) {
+    return null;
+  }
+
   return (
     <Link href="/festivals/new">
       <IconButton

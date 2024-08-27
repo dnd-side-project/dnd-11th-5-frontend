@@ -1,9 +1,11 @@
+import { getServerSideSession } from "@/apis/auth/auth";
 import { FloatingButton } from "@/components/core/Button";
 import { HomeHeader } from "@/layout/Mobile/MobileHeader";
 import NavigationBar from "@/layout/Mobile/NavigationBar";
 
 import { FestivalHot, FestivalThisWeek, TopReviews } from "./_components";
 export default async function Home() {
+  const session = await getServerSideSession();
   return (
     <div className="mb-[60px] mt-[44px]">
       <HomeHeader />
@@ -12,7 +14,7 @@ export default async function Home() {
         <FestivalThisWeek />
         <TopReviews />
       </main>
-      <FloatingButton />
+      <FloatingButton session={session} />
       <NavigationBar />
     </div>
   );
