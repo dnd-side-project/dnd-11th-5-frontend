@@ -19,32 +19,54 @@ export const Default: Story = {
     </div>
   ),
   args: {
-    festivalReview: {
-      src: "/images/festivalReview.png",
-      title: "서울 치맥 페스티벌",
-      content:
-        "완전 더워요... 선크림 필수.. 빨간 트럭에서파는 치킨 추천합니당 바삭하고 맛있어요. 바삭하고 맛있어요. 바삭하고 맛있어요.",
-      duration: "8월 1일 ~ 8월 4일",
+    review: {
+      reviewId: 6532,
+      festivalId: 123,
+      festivalName: "2024 팔레트 뮤직 페스티벌",
+      content: "음악 듣기 정말 좋은 페스티벌인 것 같아요. 진짜 힐링 그 자체~",
       rating: 4,
-      keywords: ["✨쾌적해요", "✨쾌적해요"],
+      images: {
+        imageId: 145156,
+        imageUrl: "/images/festivalReview.png",
+      },
+      keywords: [
+        {
+          keywordId: 12,
+          keyword: "✨쾌적해요",
+        },
+        {
+          keywordId: 12,
+          keyword: "✨쾌적해요",
+        },
+      ],
     },
   },
 };
 
-export const WithOutPhoto: Story = {
+export const NoPhoto: Story = {
   render: (args) => (
     <div className="w-[360px]">
       <ReviewTile {...args} />
     </div>
   ),
   args: {
-    festivalReview: {
-      title: "서울 치맥 페스티벌",
+    review: {
+      reviewId: 6532,
+      festivalId: 123,
+      festivalName: "2024 팔레트 뮤직 페스티벌",
       content:
-        "완전 더워요... 선크림 필수.. 빨간 트럭에서파는 치킨 추천합니당 바삭하고 맛있어요. 바삭하고 맛있어요. 바삭하고 맛있어요.",
-      duration: "8월 1일 ~ 8월 4일",
+        "완전 더워요... 그냥 더워 죽어요... ㅜㅜ 시원하게 입고가세요... 물이랑 손풍기 필수",
       rating: 4,
-      keywords: ["✨쾌적해요", "✨쾌적해요"],
+      keywords: [
+        {
+          keywordId: 12,
+          keyword: "✨쾌적해요",
+        },
+        {
+          keywordId: 12,
+          keyword: "✨쾌적해요",
+        },
+      ],
     },
   },
 };

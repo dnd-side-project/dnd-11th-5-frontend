@@ -7,7 +7,6 @@ on:
       NEXT_PUBLIC_STAGE:
         required: true
         type: string
-      
 
 jobs:
   build:
@@ -16,13 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up environment variables
-        run: |
-          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env
-          echo "NEXT_PUBLIC_STAGE=$NEXT_PUBLIC_STAGE" >> .env
-        env:
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-          NEXT_PUBLIC_STAGE: ${{ inputs.NEXT_PUBLIC_STAGE }}
+      - name: Set up Environment Variable for build
+        uses: ./.github/workflows/_set_env.yaml
+        with:
+          NODE_VERSION: 20.x
+          NEXT_PUBLIC_STAGE: development
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

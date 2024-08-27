@@ -1,58 +1,53 @@
+import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
-import { FC, HTMLAttributes } from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 
+import { TopReview } from "@/apis/review/topReviews/topReviewsType";
 import Ratings from "@/components/rating/Ratings";
 import { cn } from "@/utils/cn";
 
-import ReviewTag from "../../Tag/ReviewTag/ReviewTag";
+import { ReviewTag } from "../../Tag";
 
-interface FestivalReview {
-  src?: string;
-  title: string;
-  content: string;
-  duration: string;
-  keywords: string[];
-  rating: number;
+interface Props extends Omit<ComponentPropsWithoutRef<"div">, "children"> {
+  review: TopReview;
 }
 
-interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
-  festivalReview: FestivalReview;
-}
-
-const ReviewTile: FC<Props> = ({ festivalReview, ...props }) => {
-  const firstTwoKeywords = festivalReview.keywords.slice(0, 2);
-
+const ReviewTile: FC<Props> = ({ review, className }) => {
   return (
     <div
       className={cn(
         "w-full h-full duration-300 rounded-[8px] p-[16px]",
         "flex items-start justify-between gap-[12px]",
         "bg-gray-scale-0",
-        props.className,
+        className,
       )}
-      {...props}
     >
-      {!!festivalReview.src && (
+      {!isEmpty(review.images) && (
         <div className="relative h-[104px] min-w-[80px]">
-          <Image src={festivalReview.src} alt={festivalReview.title} fill />
+          <Image
+            src={review.images.imageUrl}
+            alt={review.festivalName}
+            fill
+            className=" rounded-[8px]"
+          />
         </div>
       )}
 
       <div className="flex h-full w-full flex-col items-start justify-between gap-[8px] py-[4px]">
-        <div className="flex h-full  w-full flex-col items-start gap-[6px]">
-          <div className="flex h-full w-full  items-center justify-between">
+        <div className="flex h-full  w-full flex-col items-start justify-between gap-[8px]">
+          <div className="flex h-auto w-full  items-center justify-between">
             <span className="line-clamp-1 text-body2-bold text-gray-scale-700">
-              {festivalReview.title}
+              {review.festivalName}
             </span>
-            <Ratings rating={festivalReview.rating} />
+            <Ratings rating={review.rating} />
           </div>
           <span className="line-clamp-2 text-body1-regular text-gray-scale-600">
-            {festivalReview.content}
+            {review.content}
           </span>
         </div>
         <div className="flex gap-[8px]">
-          {firstTwoKeywords.map((keyword) => (
-            <ReviewTag key={keyword} label={keyword} />
+          {review.keywords.map(({ keyword, keywordId }) => (
+            <ReviewTag key={keywordId} label={keyword} />
           ))}
         </div>
       </div>
