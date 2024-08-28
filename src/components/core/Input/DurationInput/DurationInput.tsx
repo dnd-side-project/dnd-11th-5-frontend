@@ -29,9 +29,7 @@ const DurationInput: FC<Props> = ({
 
   const handleConfirm = (startDate: string | null, endDate: string | null) => {
     const start = dayjsWithExt(startDate).isValid() ? startDate : null;
-    console.log("🚀 ~ handleConfirm ~ start:", start);
     const end = dayjsWithExt(endDate).isValid() ? endDate : null;
-    console.log("🚀 ~ handleConfirm ~ end:", end);
 
     if (!start && end) {
       onConfirm(end, end);
