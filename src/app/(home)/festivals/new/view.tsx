@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -11,14 +11,17 @@ import {
   FestivalMood,
 } from "@/apis/onboarding/onboardingType";
 import { ProgressBar } from "@/components/core/Progress";
+import FestivalPostCompleteDialog from "@/components/Dialog/FestivalPostCompleteDialog/FestivalPostCompleteDialog";
 import {
   CREATE_FESTIVAL_SETTING,
   CREATE_FESTIVAL_VALIDATION_FIELDS,
 } from "@/config";
 import useStep from "@/hooks/useStep";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
-import CreateFestivalSchema from "@/validations/CreateFestivalSchema";
-import { CreateFestivalType } from "@/validations/CreateFestivalSchema";
+import { errorLog } from "@/utils";
+import CreateFestivalSchema, {
+  CreateFestivalType,
+} from "@/validations/CreateFestivalSchema";
 
 import {
   CreateFestivalButton,
@@ -34,8 +37,14 @@ interface Props {
 }
 
 const CreateFestivalView: FC<Props> = ({ moods, categories }) => {
+  const [isCreated, setIsCreated] = useState(false);
   const onSubmit = async (data: CreateFestivalType) => {
-    const response = await createFestival(data);
+    try {
+      await createFestival(data);
+      setIsCreated(true);
+    } catch (error) {
+      errorLog(error);
+    }
   };
 
   const renderCurrentStep: {
@@ -47,20 +56,20 @@ const CreateFestivalView: FC<Props> = ({ moods, categories }) => {
 
   const methods = useForm<z.output<typeof CreateFestivalSchema>>({
     defaultValues: {
-      name: undefined,
-      description: undefined,
+      name: "",
+      description: "",
       startDate: "",
       endDate: "",
-      latitude: undefined,
-      longitude: undefined,
-      address: undefined,
-      sido: undefined,
-      sigungu: undefined,
+      latitude: "",
+      longitude: "",
+      address: "",
+      sido: "",
+      sigungu: "",
       playtime: "",
-      homepageUrl: undefined,
-      instagramUrl: undefined,
-      ticketLink: undefined,
-      fee: undefined,
+      homepageUrl: "",
+      instagramUrl: "",
+      ticketLink: "",
+      fee: "",
       categoryIds: [],
       moodIds: [],
       tip: "",
@@ -100,6 +109,7 @@ const CreateFestivalView: FC<Props> = ({ moods, categories }) => {
           />
         </form>
       </section>
+      {isCreated && <FestivalPostCompleteDialog open={isCreated} />}
     </FormProvider>
   );
 };
