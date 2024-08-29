@@ -78,7 +78,11 @@ const CreateFestivalView: FC<Props> = ({ moods, categories }) => {
     resolver: zodResolver(CreateFestivalSchema),
   });
 
-  const { trigger, handleSubmit } = methods;
+  const {
+    trigger,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
 
   const { currentStep, handleNextStep, handlePrevStep } =
     useStep<CreateFestivalType>(
@@ -106,6 +110,7 @@ const CreateFestivalView: FC<Props> = ({ moods, categories }) => {
             totalStep={TOTAL_STEP}
             currentStep={currentStep}
             onNext={handleNextStep}
+            disabled={isSubmitting}
           />
         </form>
       </section>
