@@ -4,10 +4,7 @@ export interface TopReview {
   festivalName: string;
   content: string;
   rating: number;
-  images?: {
-    imageId: number;
-    imageUrl: string;
-  };
+  thumbnailImage?: string;
   keywords: {
     keywordId: number;
     keyword: string;

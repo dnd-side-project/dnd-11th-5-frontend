@@ -5,17 +5,13 @@ import CalendarDialog from "./CalendarDialog";
 const meta: Meta<typeof CalendarDialog> = {
   title: "Dialog/CalendarDialog",
   component: CalendarDialog,
-  parameters: {},
-
+  parameters: {
+    controls: { include: ["label"] },
+  },
   argTypes: {
     open: {
       control: {
         type: "boolean",
-      },
-    },
-    title: {
-      table: {
-        disable: true,
       },
     },
   },

@@ -93,7 +93,11 @@ const config = {
         accessToken: account?.access_token,
       };
 
-      const response = await postOauthLogin(body);
+      let response: JWT = token;
+
+      if (!Object.hasOwn(token, "isProfileRegistered")) {
+        response = await postOauthLogin(body);
+      }
 
       token.accessToken = response?.accessToken;
       token.refreshToken = response.refreshToken;

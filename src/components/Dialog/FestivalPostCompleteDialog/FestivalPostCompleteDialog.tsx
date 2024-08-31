@@ -1,4 +1,5 @@
 import { AlertDialogProps } from "@radix-ui/react-alert-dialog";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -16,15 +17,13 @@ const FestivalPostCompleteDialog: FC<Props> = ({ open, onOpenChange }) => {
     >
       <div className="flex h-full w-full flex-col  items-center gap-[12px]">
         <div className="flex flex-col items-center gap-[16px]">
-          {/* // TODO: 브랜딩 끝나면 교체 */}
-          {/* <Image
+          <Image
             width={87}
             height={87}
-            className="bg-primary-04 rounded-full"
-            src=""
+            className="rounded-full"
+            src="/images/romantist.png"
             alt="Festival Posting Complete"
-          /> */}
-          <div className="size-[87px] rounded-full bg-primary-04" />
+          />
           <div className="flex w-full flex-col items-center gap-[6px]">
             <h1 className="text-label-semi text-gray-scale-900">
               페스티벌 등록 완료!

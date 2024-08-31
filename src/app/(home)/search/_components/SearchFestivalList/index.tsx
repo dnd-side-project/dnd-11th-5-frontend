@@ -21,7 +21,7 @@ const SearchFestival = () => {
     if (isString(query) && !isEmpty(query)) {
       set(query);
     }
-  }, [data, query]);
+  }, [data, query, set]);
 
   const isQueryStringEmpty = query?.length === 0;
   const HasNoData = !data || data?.length === 0;

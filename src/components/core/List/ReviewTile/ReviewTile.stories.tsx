@@ -25,10 +25,7 @@ export const Default: Story = {
       festivalName: "2024 팔레트 뮤직 페스티벌",
       content: "음악 듣기 정말 좋은 페스티벌인 것 같아요. 진짜 힐링 그 자체~",
       rating: 4,
-      images: {
-        imageId: 145156,
-        imageUrl: "/images/festivalReview.png",
-      },
+      thumbnailImage: "/images/festivalReview.png",
       keywords: [
         {
           keywordId: 12,

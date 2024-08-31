@@ -6,9 +6,8 @@ const meta: Meta<typeof TextInput> = {
   title: "Core/Input/TextInput",
   component: TextInput,
   parameters: {},
-
   argTypes: {
-    maxlength: {
+    maxLength: {
       control: {
         type: "number",
       },
@@ -46,7 +45,7 @@ export const Default: Story = {
     </div>
   ),
   args: {
-    maxlength: 30,
+    maxLength: 30,
     currentLength: 3,
     label: "페스티벌 명",
     placeholder: "페스티벌 명을 입력해주세요.",
@@ -60,7 +59,7 @@ export const Error: Story = {
     </div>
   ),
   args: {
-    maxlength: 30,
+    maxLength: 30,
     currentLength: 0,
     label: "페스티벌 명",
     placeholder: "페스티벌 명을 입력해주세요.",

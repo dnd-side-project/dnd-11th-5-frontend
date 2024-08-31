@@ -10,6 +10,8 @@ const VALIDATION_ERROR_MESSAGES = {
   min: (min: number) => `${min} 이상의 값을 입력해주세요.`,
   max: (max: number) => `${max} 이하의 값을 입력해주세요.`,
   match: "입력한 값이 일치하지 않습니다.",
+  maxSize: (max: number) => `${max} 이하의 값을 입력해주세요.`,
+  invalidImage: ".jpg, .jpeg, .png, .webp 포맷의 파일만 입력됩니다.",
 };
 
 export default VALIDATION_ERROR_MESSAGES;

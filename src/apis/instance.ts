@@ -31,24 +31,19 @@ type FiestaFetchOptions = Omit<RequestInit, "body">;
 
 export class CreateFiestaFetch {
   private baseUrl: string;
-  private authEnabled: boolean;
 
-  constructor(baseUrl: string, authEnabled: boolean = false) {
+  constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
-    this.authEnabled = authEnabled;
   }
 
   private async fetch(url: string, method: Method, options: RequestInit) {
     const defaultOptions: RequestInit = {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: {},
     };
 
     let userSession: Session | null = null;
-    if (this.authEnabled) {
-      userSession = await this.getUserSession();
-    }
+
+    userSession = await this.getUserSession();
 
     try {
       const finalOptions = {
@@ -125,8 +120,22 @@ export class CreateFiestaFetch {
     url: string,
     body = {},
     options: FiestaFetchOptions = {},
-  ): Promise<FiestaResponse<T>> =>
-    this.fetch(url, "POST", { body: JSON.stringify(body), ...options });
+  ): Promise<FiestaResponse<T>> => {
+    const isFormData = body instanceof FormData;
+    const finalOptions = isFormData
+      ? {
+          body,
+          ...options,
+        }
+      : {
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+    return this.fetch(url, "POST", finalOptions);
+  };
 
   public put = async <T>(
     url: string,
@@ -141,6 +150,6 @@ export class CreateFiestaFetch {
   ): Promise<FiestaResponse<T>> => this.fetch(url, "DELETE", options);
 }
 
-const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL, true);
+const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL);
 
 export default instance;

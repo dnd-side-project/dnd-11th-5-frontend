@@ -1,4 +1,3 @@
-import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { ComponentPropsWithoutRef, FC } from "react";
 
@@ -22,10 +21,10 @@ const ReviewTile: FC<Props> = ({ review, className }) => {
         className,
       )}
     >
-      {!isEmpty(review.images) && (
+      {!review.thumbnailImage && (
         <div className="relative h-[104px] min-w-[80px]">
           <Image
-            src={review.images.imageUrl}
+            src={review.thumbnailImage ?? "/images/fallbackLogo.png"}
             alt={review.festivalName}
             fill
             className=" rounded-[8px]"

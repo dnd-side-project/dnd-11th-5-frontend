@@ -6,7 +6,6 @@ const meta: Meta<typeof FestivalPostCompleteDialog> = {
   title: "Dialog/FestivalPostCompleteDialog",
   component: FestivalPostCompleteDialog,
   parameters: {},
-
   argTypes: {
     open: {
       control: {

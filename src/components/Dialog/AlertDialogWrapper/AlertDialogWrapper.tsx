@@ -19,13 +19,13 @@ const AlertDialogWrapper: FC<Props> = ({
     <AlertDialog.Root open={open} onOpenChange={onOpenChange}>
       <AlertDialog.Portal>
         <AlertDialog.Overlay
-          className="fixed inset-0 grid animate-fadeIn place-items-center overflow-y-auto bg-black/50"
+          className="fixed inset-0 z-[20] grid animate-fadeIn place-items-center overflow-y-auto bg-black/50"
           onClick={() => onOpenChange && onOpenChange(false)}
         />
         <AlertDialog.Content
           className={cn(
             "w-full h-auto max-w-none lg:max-w-[450px] p-[16px]",
-            "bg-white rounded-[12px]",
+            "bg-white rounded-[12px] z-[30]",
             "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-fadeIn",
             className,
           )}

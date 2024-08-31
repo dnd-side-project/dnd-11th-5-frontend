@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import AddressInput from "./AddressInput";
+import TimeInput from "./TimeInput";
 
-const meta: Meta<typeof AddressInput> = {
-  title: "Core/Input/AddressInput",
-  component: AddressInput,
+const meta: Meta<typeof TimeInput> = {
+  title: "Core/Input/TimeInput",
+  component: TimeInput,
   parameters: {
     controls: { include: ["label"] },
   },
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="flex w-[360px] items-center justify-center">
-      <AddressInput {...args} />
+      <TimeInput {...args} />
     </div>
   ),
   args: {

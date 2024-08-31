@@ -87,3 +87,7 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}

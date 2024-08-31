@@ -1,30 +1,32 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import Link from "next/link";
+import { Session } from "next-auth";
+import { ComponentPropsWithoutRef, FC } from "react";
 
 import { IconButton } from "@/components/core/Button";
 import { PencilIcon } from "@/components/icons";
 import { cn } from "@/utils/cn";
 
-interface Props
-  extends Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "children" | "label" | "className"
-  > {
-  className?: string;
+interface Props extends ComponentPropsWithoutRef<"button"> {
+  session: Session | null;
 }
 
-const BasicButton: FC<Props> = ({ className, ...props }) => {
-  return (
-    <IconButton
-      className={cn(
-        "w-auto h-auto p-[8px] rounded-full bg-primary-01",
+const FloatingButton: FC<Props> = ({ className, session }) => {
+  if (!session) {
+    return null;
+  }
 
-        className,
-      )}
-      {...props}
-    >
-      <PencilIcon width={32} height={32} className="text-gray-scale-0" />
-    </IconButton>
+  return (
+    <Link href="/festivals/new">
+      <IconButton
+        className={cn(
+          "w-auto h-auto p-[8px] rounded-full bg-primary-01 fixed bottom-[76px] right-[16px]",
+          className,
+        )}
+      >
+        <PencilIcon width={32} height={32} className="text-gray-scale-0" />
+      </IconButton>
+    </Link>
   );
 };
 
-export default BasicButton;
+export default FloatingButton;
