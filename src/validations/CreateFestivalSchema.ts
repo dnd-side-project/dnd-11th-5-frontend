@@ -48,14 +48,8 @@ const CreateFestivalSchema = z.object({
   instagramUrl: z.string().url(VALIDATION_ERROR_MESSAGES.url),
   ticketLink: z.string().url(VALIDATION_ERROR_MESSAGES.url),
   fee: z.string(),
-  categoryIds: z
-    .array(z.number())
-    .min(1, VALIDATION_ERROR_MESSAGES.min(1))
-    .max(2, VALIDATION_ERROR_MESSAGES.min(2)),
-  moodIds: z
-    .array(z.number())
-    .min(1, VALIDATION_ERROR_MESSAGES.min(1))
-    .max(2, VALIDATION_ERROR_MESSAGES.min(2)),
+  categoryIds: z.array(z.number()),
+  moodIds: z.array(z.number()),
   tip: z.string(),
 });
 

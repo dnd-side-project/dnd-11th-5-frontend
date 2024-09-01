@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { Controller, useFormContext, useWatch } from "react-hook-form";
+import { FC, useCallback } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 import {
   FestivalCategory,
@@ -9,12 +9,13 @@ import {
   AddressInput,
   CategoryKeywordInput,
   DescriptionInput,
-  DurationInput,
   MoodKeywordInput,
   TextInput,
   TimeInput,
 } from "@/components/core/Input";
 import { CreateFestivalType } from "@/validations/CreateFestivalSchema";
+
+import DurationFestivalInput from "./DurationFestivalInput";
 
 interface Props {
   moods: Array<FestivalMood>;
@@ -29,15 +30,6 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
     formState: { errors, submitCount },
   } = useFormContext<CreateFestivalType>();
 
-  const startDate = useWatch({ control, name: "startDate" });
-  const endDate = useWatch({ control, name: "endDate" });
-  const time = useWatch({ control, name: "playtime" });
-
-  const handleCalendarConfirm = (start: string | null, end: string | null) => {
-    setValue("startDate", start ?? "", { shouldValidate: true });
-    setValue("endDate", end ?? "", { shouldValidate: true });
-  };
-
   const handleAddress = (
     address: string,
     sido: string,
@@ -45,40 +37,33 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
     latitude: string,
     longitude: string,
   ) => {
-    setValue("address", address ?? "", { shouldValidate: true });
-    setValue("sido", sido ?? "", { shouldValidate: true });
-    setValue("sigungu", sigungu ?? "", { shouldValidate: true });
-    setValue("latitude", latitude ?? "", { shouldValidate: true });
-    setValue("longitude", longitude ?? "", { shouldValidate: true });
+    setValue("address", address ?? "");
+    setValue("sido", sido ?? "");
+    setValue("sigungu", sigungu ?? "");
+    setValue("latitude", latitude ?? "");
+    setValue("longitude", longitude ?? "");
   };
 
-  const handleTimeChange = (time: string) => {
-    setValue("playtime", time, { shouldValidate: true });
-  };
+  const handleGetError = useCallback(
+    (name: keyof CreateFestivalType) => {
+      if (submitCount < 2) {
+        return undefined;
+      }
 
-  const handleGetError = (name: keyof CreateFestivalType) => {
-    if (submitCount < 2) {
+      const errorMessage = errors[name]?.message ?? undefined;
+
+      if (typeof errorMessage === "string") {
+        return errorMessage;
+      }
+
       return undefined;
-    }
-
-    const errorMessage = errors[name]?.message ?? undefined;
-
-    if (typeof errorMessage === "string") {
-      return errorMessage;
-    }
-
-    return undefined;
-  };
+    },
+    [errors],
+  );
 
   return (
     <section className="flex w-full flex-col gap-[18px]">
-      <DurationInput
-        label="페스티벌 기간"
-        start={startDate}
-        end={endDate}
-        error={handleGetError("startDate") || handleGetError("endDate")}
-        onConfirm={handleCalendarConfirm}
-      />
+      <DurationFestivalInput handleGetError={handleGetError} />
 
       <AddressInput
         value={null}
@@ -86,10 +71,16 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
         error={handleGetError("address")}
       />
 
-      <TimeInput
-        value={time}
-        onChange={handleTimeChange}
-        error={handleGetError("playtime")}
+      <Controller
+        control={control}
+        name="playtime"
+        render={({ field: { onChange, value } }) => (
+          <TimeInput
+            value={value}
+            onChange={onChange}
+            error={handleGetError("playtime")}
+          />
+        )}
       />
 
       <label className="text-subtitle-medium text-gray-scale-900">URL</label>
