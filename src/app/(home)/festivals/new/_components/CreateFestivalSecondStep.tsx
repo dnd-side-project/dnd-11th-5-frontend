@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 import {
@@ -44,22 +44,19 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
     setValue("longitude", longitude ?? "");
   };
 
-  const handleGetError = useCallback(
-    (name: keyof CreateFestivalType) => {
-      if (submitCount < 2) {
-        return undefined;
-      }
-
-      const errorMessage = errors[name]?.message ?? undefined;
-
-      if (typeof errorMessage === "string") {
-        return errorMessage;
-      }
-
+  const handleGetError = (name: keyof CreateFestivalType) => {
+    if (submitCount < 2) {
       return undefined;
-    },
-    [errors],
-  );
+    }
+
+    const errorMessage = errors[name]?.message ?? undefined;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return undefined;
+  };
 
   return (
     <section className="flex w-full flex-col gap-[18px]">
