@@ -12,6 +12,11 @@ const config: Config = {
     "./src/layout/*.{js,ts,jsx,tsx,mdx}",
     "./src/layout/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    {
+      pattern: /.*secondary.*/,
+    },
+  ],
   theme: {
     screens: {
       sm: "320px",
