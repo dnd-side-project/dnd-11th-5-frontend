@@ -1,18 +1,13 @@
 // ? Reference https://github.dev/nextauthjs/next-auth-example/blob/main/app/api/protected/route.ts
 // ? Reference https://www.heropy.dev/p/MI1Khc
 
-import { decodeJwt } from "jose";
 import NextAuth, { Account, NextAuthConfig, Session, User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 import { ProviderType } from "next-auth/providers";
 import Kakao from "next-auth/providers/kakao";
 
-import {
-  getRefreshToken,
-  getServerSideSession,
-  postOauthLogin,
-} from "@/apis/auth/auth";
+import { getServerSideSession, postOauthLogin } from "@/apis/auth/auth";
 import { SocialLoginRequest } from "@/apis/auth/authType";
 import { isMatchPath } from "@/utils";
 
@@ -69,40 +64,40 @@ const config = {
       user?: User | AdapterUser;
       account?: Account | null;
     }) => {
-      if (token.accessToken) {
-        const decodedToken = decodeJwt(token.accessToken);
+      // ! refresh Token 로직 수정 필요
+      // if (token.accessToken) {
+      //   const decodedToken = decodeJwt(token.accessToken);
 
-        if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
-          const { accessToken, refreshToken } = await getRefreshToken(
-            token.refreshToken as string,
-          );
-          token.accessToken = accessToken;
-          token.refreshToken = refreshToken;
-          return token;
-        }
+      //   if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
+      //     const { accessToken, refreshToken } = await getRefreshToken(
+      //       token.refreshToken as string,
+      //     );
+      //     token.accessToken = accessToken;
+      //     token.refreshToken = refreshToken;
+      //     return token;
+      //   }
 
-        return token;
-      }
-
-      if (!user?.id || !user.email || !account?.access_token) {
-        throw Error("Login Failed");
-      }
-      const body: SocialLoginRequest = {
-        id: user?.id,
-        email: user?.email,
-        accessToken: account?.access_token,
-      };
+      //   return token;
+      // }
 
       let response: JWT = token;
 
-      if (!Object.hasOwn(token, "isProfileRegistered")) {
-        response = await postOauthLogin(body);
+      if (!!user && !!account) {
+        const body: SocialLoginRequest = {
+          id: user.id as string,
+          email: user.email as string,
+          accessToken: account.access_token as string,
+        };
+
+        if (!Object.hasOwn(token, "isProfileRegistered")) {
+          response = await postOauthLogin(body);
+        }
       }
 
       token.accessToken = response?.accessToken;
       token.refreshToken = response.refreshToken;
       token.isProfileRegistered = response.isProfileRegistered;
-      token.email = user.email;
+      token.email = user?.email;
 
       return token;
     },
