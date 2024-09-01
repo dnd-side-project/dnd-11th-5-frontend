@@ -3,12 +3,14 @@ export type PaginationParamter = {
   size: number;
 };
 
+export type UserType = {
+  userTypeId: number;
+  name: string;
+};
+
 export type RecommendFestivalResponse = {
   festivals: Array<RecommendFestivalModel>;
-  userType: {
-    userTypeId: number;
-    name: string;
-  };
+  userType: UserType;
 };
 
 export interface RecommendFestivalModel {

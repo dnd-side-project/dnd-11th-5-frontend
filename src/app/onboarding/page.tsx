@@ -8,7 +8,7 @@ import OnBoardingView from "./view";
 export default async function OnBoarding() {
   const session = await getServerSideSession();
 
-  if (session?.isProfileRegistered) {
+  if (!session || session?.isProfileRegistered) {
     redirect("/");
   }
 
