@@ -36,8 +36,8 @@ const CreateFestivalSchema = z.object({
         VALIDATION_ERROR_MESSAGES.invalidImage
       );
     }),
-  startDate: z.string().min(1, VALIDATION_ERROR_MESSAGES.required),
-  endDate: z.string().min(1, VALIDATION_ERROR_MESSAGES.required),
+  startDate: z.string().min(1, VALIDATION_ERROR_MESSAGES.required).nullable(),
+  endDate: z.string().min(1, VALIDATION_ERROR_MESSAGES.required).nullable(),
   latitude: z.string(),
   longitude: z.string(),
   address: z.string().min(1, VALIDATION_ERROR_MESSAGES.required),

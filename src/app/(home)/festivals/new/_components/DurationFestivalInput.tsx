@@ -15,8 +15,8 @@ const DurationFestivalInput: FC<Props> = ({ handleGetError }) => {
   const endDate = useWatch({ control, name: "endDate" });
 
   const handleCalendarConfirm = (start: string | null, end: string | null) => {
-    setValue("startDate", start ?? "");
-    setValue("endDate", end ?? "");
+    setValue("startDate", start);
+    setValue("endDate", end);
   };
   return (
     <DurationInput

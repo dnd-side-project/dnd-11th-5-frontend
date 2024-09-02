@@ -37,11 +37,11 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
     latitude: string,
     longitude: string,
   ) => {
-    setValue("address", address ?? "");
-    setValue("sido", sido ?? "");
-    setValue("sigungu", sigungu ?? "");
-    setValue("latitude", latitude ?? "");
-    setValue("longitude", longitude ?? "");
+    setValue("address", address);
+    setValue("sido", sido);
+    setValue("sigungu", sigungu);
+    setValue("latitude", latitude);
+    setValue("longitude", longitude);
   };
 
   const handleGetError = (name: keyof CreateFestivalType) => {
