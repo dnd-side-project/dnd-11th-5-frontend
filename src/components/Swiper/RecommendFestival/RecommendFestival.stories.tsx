@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import RecommendFestivalFallbackUI from "./RecommendFestivalFallbackUI";
-import RecoomendFestivalList from "./RecommendFestivalList";
+import RecommendFestivalFallbackUI from "../../../app/(home)/_components/FestivalRecommend/RecommendFestivalFallbackUI";
+import RecoomendFestivalList from "./RecommendFestival";
 
 const meta: Meta<typeof RecoomendFestivalList> = {
   title: "Swiper/RecommendFestival",
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    recommendFestivals: {
+    initialData: {
       festivals: [
         {
           festivalId: 64,
@@ -78,7 +78,7 @@ export const Default: Story = {
   },
   render: (args) => (
     <div className="h-[300px] w-[400px]">
-      <RecoomendFestivalList recommendFestivals={args.recommendFestivals} />
+      <RecoomendFestivalList initialData={args.initialData} />
     </div>
   ),
 };
