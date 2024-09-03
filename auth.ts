@@ -7,8 +7,13 @@ import { JWT } from "next-auth/jwt";
 import { ProviderType } from "next-auth/providers";
 import Kakao from "next-auth/providers/kakao";
 
-import { getServerSideSession, postOauthLogin } from "@/apis/auth/auth";
+import {
+  getRefreshToken,
+  getServerSideSession,
+  postOauthLogin,
+} from "@/apis/auth/auth";
 import { SocialLoginRequest } from "@/apis/auth/authType";
+import { decodeToken } from "@/lib/jwt";
 import { isMatchPath } from "@/utils";
 
 const AuthRequiredPage = ["/mypage"];
@@ -64,25 +69,16 @@ const config = {
       user?: User | AdapterUser;
       account?: Account | null;
     }) => {
-      // ! refresh Token 로직 수정 필요
-      // if (token.accessToken) {
-      //   const decodedToken = decodeJwt(token.accessToken);
-
-      //   if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
-      //     const { accessToken, refreshToken } = await getRefreshToken(
-      //       token.refreshToken as string,
-      //     );
-      //     token.accessToken = accessToken;
-      //     token.refreshToken = refreshToken;
-      //     return token;
-      //   }
-
-      //   return token;
-      // }
-
       let response: JWT = token;
 
-      if (!!user && !!account) {
+      // * jwt token decode
+      let jwtPayload;
+      if (token.accessToken) {
+        jwtPayload = decodeToken(token.accessToken);
+      }
+
+      // * 로그인 시 토큰 발급
+      if (account && user) {
         const body: SocialLoginRequest = {
           id: user.id as string,
           email: user.email as string,
@@ -92,12 +88,31 @@ const config = {
         if (!Object.hasOwn(token, "isProfileRegistered")) {
           response = await postOauthLogin(body);
         }
+
+        token.accessToken = response?.accessToken;
+        token.refreshToken = response.refreshToken;
+        token.isProfileRegistered = response.isProfileRegistered;
+        token.email = user?.email;
+        token.exp = response.exp;
+        token.iat = response.iat;
+        token.sub = response.sub;
+
+        return token;
       }
 
-      token.accessToken = response?.accessToken;
-      token.refreshToken = response.refreshToken;
-      token.isProfileRegistered = response.isProfileRegistered;
-      token.email = user?.email;
+      // * 토큰 재발급
+      if (
+        token.refreshToken &&
+        jwtPayload?.exp &&
+        jwtPayload.exp * 1000 < Date.now()
+      ) {
+        const { accessToken, refreshToken } = await getRefreshToken(
+          token.refreshToken,
+        );
+        token.accessToken = accessToken;
+        token.refreshToken = refreshToken;
+        return token;
+      }
 
       return token;
     },
@@ -107,6 +122,9 @@ const config = {
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
         session.isProfileRegistered = token.isProfileRegistered;
+        session.exp = token.exp;
+        session.iat = token.iat;
+        session.sub = token.sub;
       }
       return session;
     },
@@ -135,6 +153,9 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     isProfileRegistered?: boolean;
+    exp?: number;
+    iat?: number;
+    sub?: string;
   }
 }
 declare module "next-auth/jwt" {
