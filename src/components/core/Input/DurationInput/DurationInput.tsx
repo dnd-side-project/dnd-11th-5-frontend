@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, useState } from "react";
+import { ButtonHTMLAttributes, FC, memo, useState } from "react";
 
 import { CalendarDialog } from "@/components/Dialog";
 import { CalendarIcon, ErrorIcon } from "@/components/icons";
@@ -119,4 +119,4 @@ const DurationInput: FC<Props> = ({
   );
 };
 
-export default DurationInput;
+export default memo(DurationInput);

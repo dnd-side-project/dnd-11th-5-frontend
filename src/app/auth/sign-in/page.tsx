@@ -1,11 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-import { signInWithKakao } from "@/apis/auth/auth";
+import { getServerSideSession, signInWithKakao } from "@/apis/auth/auth";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
 
-const SignIn = () => {
+const SignIn = async () => {
+  const session = await getServerSideSession();
+
+  if (session?.isProfileRegistered) {
+    redirect("/");
+  }
+
   return (
     <>
       <main className="relative flex h-full w-full flex-col items-center justify-between gap-[30px] overflow-hidden bg-gray-scale-800 pb-[55px]">

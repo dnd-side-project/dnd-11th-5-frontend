@@ -40,8 +40,8 @@ jobs:
           cache-dependency-path: "**/pnpm-lock.yaml"
 
           
-      - name: Set up Environment Variable for build    
-        uses: ./.github/workflows/_set_env.yaml
+      - name: Set up Environment Variable for build
+        uses: ./.github/workflows/_set_env.yml
         with:
           NODE_VERSION: 20.x
           NEXT_PUBLIC_STAGE: development

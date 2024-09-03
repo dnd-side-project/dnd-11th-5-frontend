@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   ComponentPropsWithoutRef,
   FC,
+  memo,
   useEffect,
   useRef,
   useState,
@@ -47,12 +48,12 @@ const TimeInput: FC<Props> = ({
     onChange(`${start ?? startTime} ~ ${end ?? endTime}`);
   };
 
-  const handleStartTImeChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleStartTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const time = e.target.value;
     setStartTime(time);
     handleOnChange(time);
   };
-  const handleEndTImeChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleEndTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const time = e.target.value;
     setEndTime(time);
     handleOnChange(undefined, time);
@@ -99,7 +100,7 @@ const TimeInput: FC<Props> = ({
               !!startTime ? "text-primary-01" : "text-gray-400")
             }
             onClick={() => handleOpenPicker(startTimeRef)}
-            onChange={handleStartTImeChange}
+            onChange={handleStartTimeChange}
           />
           <strong
             className={cn(isBothSelected ? "text-primary-01" : "text-gray-400")}
@@ -116,7 +117,7 @@ const TimeInput: FC<Props> = ({
               !!endTime ? "text-primary-01" : "text-gray-400",
             )}
             onClick={() => handleOpenPicker(endTimeRef)}
-            onChange={handleEndTImeChange}
+            onChange={handleEndTimeChange}
           />
         </div>
       </div>
@@ -137,4 +138,4 @@ const TimeInput: FC<Props> = ({
   );
 };
 
-export default TimeInput;
+export default memo(TimeInput);

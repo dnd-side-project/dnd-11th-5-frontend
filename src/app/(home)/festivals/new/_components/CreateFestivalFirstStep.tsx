@@ -7,10 +7,7 @@ import { CREATE_FESTIVAL_SETTING } from "@/config";
 import { CreateFestivalType } from "@/validations/CreateFestivalSchema";
 
 const CreateFestivalFirstStep = () => {
-  const {
-    control,
-    formState: { dirtyFields },
-  } = useFormContext<CreateFestivalType>();
+  const { control } = useFormContext<CreateFestivalType>();
 
   return (
     <section className=" flex w-full flex-col gap-[32px]">

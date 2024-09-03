@@ -6,6 +6,7 @@ export * from "./extractKeyFromArray";
 export * from "./generateQueryString";
 export * from "./generateUrlWithParams";
 export * from "./getSettledValue";
+export * from "./getUserType";
 export * from "./isEmpty";
 export * from "./isMatchPath";
 export * from "./log";

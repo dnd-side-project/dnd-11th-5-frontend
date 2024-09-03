@@ -1,4 +1,4 @@
-import { FC, HtmlHTMLAttributes, useState } from "react";
+import { FC, HtmlHTMLAttributes, memo, useState } from "react";
 import { Address, useDaumPostcodePopup } from "react-daum-postcode";
 
 import { ErrorIcon, PinLocationIcon } from "@/components/icons";
@@ -132,4 +132,4 @@ const AddressInput: FC<Props> = ({
   );
 };
 
-export default AddressInput;
+export default memo(AddressInput);

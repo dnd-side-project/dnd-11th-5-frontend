@@ -1,7 +1,6 @@
 // ? Reference https://github.dev/nextauthjs/next-auth-example/blob/main/app/api/protected/route.ts
 // ? Reference https://www.heropy.dev/p/MI1Khc
 
-import { decodeJwt } from "jose";
 import NextAuth, { Account, NextAuthConfig, Session, User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
@@ -14,6 +13,7 @@ import {
   postOauthLogin,
 } from "@/apis/auth/auth";
 import { SocialLoginRequest } from "@/apis/auth/authType";
+import { decodeToken } from "@/lib/jwt";
 import { isMatchPath } from "@/utils";
 
 const AuthRequiredPage = ["/mypage"];
@@ -69,40 +69,50 @@ const config = {
       user?: User | AdapterUser;
       account?: Account | null;
     }) => {
-      if (token.accessToken) {
-        const decodedToken = decodeJwt(token.accessToken);
+      let response: JWT = token;
 
-        if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
-          const { accessToken, refreshToken } = await getRefreshToken(
-            token.refreshToken as string,
-          );
-          token.accessToken = accessToken;
-          token.refreshToken = refreshToken;
-          return token;
+      // * jwt token decode
+      let jwtPayload;
+      if (token.accessToken) {
+        jwtPayload = decodeToken(token.accessToken);
+      }
+
+      // * 로그인 시 토큰 발급
+      if (account && user) {
+        const body: SocialLoginRequest = {
+          id: user.id as string,
+          email: user.email as string,
+          accessToken: account.access_token as string,
+        };
+
+        if (!Object.hasOwn(token, "isProfileRegistered")) {
+          response = await postOauthLogin(body);
         }
+
+        token.accessToken = response?.accessToken;
+        token.refreshToken = response.refreshToken;
+        token.isProfileRegistered = response.isProfileRegistered;
+        token.email = user?.email;
+        token.exp = response.exp;
+        token.iat = response.iat;
+        token.sub = response.sub;
 
         return token;
       }
 
-      if (!user?.id || !user.email || !account?.access_token) {
-        throw Error("Login Failed");
+      // * 토큰 재발급
+      if (
+        token.refreshToken &&
+        jwtPayload?.exp &&
+        jwtPayload.exp * 1000 < Date.now()
+      ) {
+        const { accessToken, refreshToken } = await getRefreshToken(
+          token.refreshToken,
+        );
+        token.accessToken = accessToken;
+        token.refreshToken = refreshToken;
+        return token;
       }
-      const body: SocialLoginRequest = {
-        id: user?.id,
-        email: user?.email,
-        accessToken: account?.access_token,
-      };
-
-      let response: JWT = token;
-
-      if (!Object.hasOwn(token, "isProfileRegistered")) {
-        response = await postOauthLogin(body);
-      }
-
-      token.accessToken = response?.accessToken;
-      token.refreshToken = response.refreshToken;
-      token.isProfileRegistered = response.isProfileRegistered;
-      token.email = user.email;
 
       return token;
     },
@@ -112,6 +122,9 @@ const config = {
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
         session.isProfileRegistered = token.isProfileRegistered;
+        session.exp = token.exp;
+        session.iat = token.iat;
+        session.sub = token.sub;
       }
       return session;
     },
@@ -140,6 +153,9 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     isProfileRegistered?: boolean;
+    exp?: number;
+    iat?: number;
+    sub?: string;
   }
 }
 declare module "next-auth/jwt" {
