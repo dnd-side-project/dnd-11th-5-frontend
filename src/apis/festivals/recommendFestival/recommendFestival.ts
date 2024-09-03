@@ -1,5 +1,6 @@
 "use server";
 
+import { ClientError } from "@/apis/error";
 import instance from "@/apis/instance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
@@ -15,16 +16,20 @@ const ENDPOINT = FIESTA_ENDPOINTS.festivals;
 export async function getRecommendFestival(
   params: PaginationParamter = defaultParams,
 ) {
+  const endpoint = ENDPOINT.recommend;
   try {
-    const endpoint = ENDPOINT.recommend;
-    const { data } = await instance.get<RecommendFestivalResponse>(
+    const response = await instance.get<RecommendFestivalResponse>(
       generateUrlWithParams(endpoint, params),
       {
         cache: "no-store",
       },
     );
-    return data;
+
+    return response.data;
   } catch (error) {
-    return null;
+    if (error instanceof ClientError) {
+      throw new Error("Session required");
+    }
+    throw new Error("something went wrong");
   }
 }

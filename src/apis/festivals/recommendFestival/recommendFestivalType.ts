@@ -8,12 +8,12 @@ export type UserType = {
   name: string;
 };
 
-export type RecommendFestivalResponse = {
+export interface RecommendFestivalResponse {
   festivals: Array<RecommendFestivalModel>;
   userType: UserType;
-};
+}
 
-export interface RecommendFestivalModel {
+export type RecommendFestivalModel = {
   festivalId: number;
   name: string;
   sido: string;
@@ -21,4 +21,4 @@ export interface RecommendFestivalModel {
   thumbnailImage: string;
   startDate: string;
   endDate: string;
-}
+};
