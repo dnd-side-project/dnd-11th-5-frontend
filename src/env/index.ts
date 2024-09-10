@@ -19,6 +19,9 @@ export const env = createEnv({
     NEXT_PUBLIC_STAGE: z.string({
       message: VALIDATION_ERROR_MESSAGES.required,
     }),
+    NEXT_PUBLIC_KAKAO_MAP_KEY: z.string({
+      message: VALIDATION_ERROR_MESSAGES.required,
+    }),
   },
 
   runtimeEnv: {
@@ -27,6 +30,7 @@ export const env = createEnv({
     AUTH_KAKAO_SECRET: process.env.AUTH_KAKAO_SECRET,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
     NEXT_PUBLIC_STAGE: process.env.NEXT_PUBLIC_STAGE,
+    NEXT_PUBLIC_KAKAO_MAP_KEY: process.env.NEXT_PUBLIC_KAKAO_MAP_KEY,
   },
 
   onValidationError: (error: ZodError) => {
