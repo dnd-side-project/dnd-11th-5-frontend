@@ -29,7 +29,7 @@ const FestivalHot = async () => {
         {hotFestivals.content.splice(0, 2).map((festival) => (
           <TrendFestivalCard
             key={festival.festivalId}
-            href={`/featival/${festival.festivalId}`}
+            href={`/festivals/${festival.festivalId}`}
             festival={festival}
           />
         ))}

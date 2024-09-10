@@ -12,7 +12,7 @@ const HotFestivalView = ({ festivals }: Props) => {
         {festivals.content.map((festival) => (
           <TrendFestivalCard
             key={festival.festivalId}
-            href={`/featival/${festival.festivalId}`}
+            href={`/festivals/${festival.festivalId}`}
             festival={festival}
           />
         ))}

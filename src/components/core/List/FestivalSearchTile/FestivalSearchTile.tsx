@@ -21,7 +21,7 @@ const FestivalSearchTile: FC<FestivalTileProps> = ({ festival }) => {
       )}
     >
       <Link
-        href={`/featival/${festival.festivalId}`}
+        href={`/festivals/${festival.festivalId}`}
         className="flex items-start justify-between gap-[16px]"
       >
         <div className="relative h-[90px] min-w-[80px] rounded-[8px]">

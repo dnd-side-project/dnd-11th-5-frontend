@@ -14,7 +14,7 @@ const SearchFestivalFallback = () => {
         </span>
         <RegistorButton
           label="페스티벌 등록하기"
-          href="/festival/new"
+          href="/festivals/new"
           className={"w-auto"}
         />
       </div>

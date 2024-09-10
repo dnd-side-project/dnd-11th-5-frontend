@@ -14,7 +14,7 @@ const ThisWeekFestivalView = ({ festivals }: Props) => {
         {festivals.content.map((festival) => (
           <FestivalTile
             key={festival.name}
-            href={`/featival/${festival.festivalId}`}
+            href={`/festivals/${festival.festivalId}`}
             festival={festival}
           >
             <DateTag label={getDday(festival.startDate, festival.endDate)} />

@@ -33,7 +33,7 @@ const TrendingFestival = () => {
         {data.map((festival, idx, arr) => {
           return (
             <Link
-              href={`/festival/${festival.festivalId}`}
+              href={`/festivals/${festival.festivalId}`}
               key={festival.festivalId}
               className={cn(
                 "w-full",

@@ -29,7 +29,7 @@ const FestivalThisWeek = async () => {
         {thisWeekFestivals.content.splice(0, 3).map((festival) => (
           <FestivalTile
             key={festival.name}
-            href={`/featival/${festival.festivalId}`}
+            href={`/festivals/${festival.festivalId}`}
             festival={festival}
           >
             <DateTag label={getDday(festival.startDate, festival.endDate)} />
