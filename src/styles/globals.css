@@ -7,3 +7,18 @@
     text-wrap: balance;
   }
 }
+
+#FestivalDatilSwiper .swiper-pagination-bullet-active {
+  background-color: #000000;
+  opacitiy: "40%";
+}
+
+#FestivalDatilSwiper .swiper-pagination-bullet-active {
+  background-color: #8478ff;
+}
+
+.TabsTrigger[data-state="active"] {
+  color: #8478ff;
+
+  border-bottom: 2px #8478ff solid;
+}
