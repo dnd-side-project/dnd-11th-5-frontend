@@ -61,7 +61,7 @@ const DetailInfo: FC<Props> = ({ festivals }) => {
       <div className="flex gap-[18px]">
         <span className="text-body2-medium text-gray-scale-400">입장비용</span>
         <span className="text-body2-regular text-gray-scale-700">
-          입장권 {festivals.fee}원
+          {festivals.fee}
         </span>
       </div>
     </div>

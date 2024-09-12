@@ -20,8 +20,10 @@ const TopKeywordsTile: FC<Props> = ({ keyword, percentage }) => {
       <div
         className={cn(
           `absolute left-0 top-0 h-[45px] rounded-[10px] bg-primary-05`,
-          !!percentage && `w-[${percentage}%]`,
         )}
+        style={{
+          width: `${percentage}%`,
+        }}
       />
     </div>
   );

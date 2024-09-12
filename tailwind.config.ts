@@ -28,6 +28,9 @@ const config: Config = {
       "11px": "11px",
     },
     extend: {
+      boxShadow: {
+        topKeywords: "0 2px 10px rgba(0, 0, 0, 0.2)",
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },

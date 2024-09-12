@@ -34,17 +34,19 @@ const TopKeywords: FC<Props> = ({ festivalId }) => {
   }
 
   return (
-    <article className="mt-[72px]">
-      <div className="flex w-full flex-col rounded-[12px]">
-        <h1>가장 많이 선택된 키워드</h1>
-        {data.keywords.map((keyword) => (
-          <TopKeywordsTile
-            key={keyword.keywordId}
-            keyword={keyword}
-            percentage={10}
-          />
-        ))}
-      </div>
+    <article className="mt-[72px] flex w-full flex-col gap-[8px] rounded-[12px] p-[18px] shadow-topKeywords">
+      <h1 className="m-auto text-subtitle-semi text-gray-scale-600">
+        가장 많이 선택된 키워드
+      </h1>
+      {data.keywords.map((keyword) => (
+        <TopKeywordsTile
+          key={keyword.keywordId + keyword.keyword}
+          keyword={keyword}
+          percentage={Math.floor(
+            (keyword.selectionCount / data.totalCount) * 100,
+          )}
+        />
+      ))}
     </article>
   );
 };
