@@ -2,6 +2,7 @@ import {
   FestivalHandler,
   SearchFestivalHandler,
   thisWeekFestivalHandler,
+  topKeywordFestivalHandler,
   topReviewsHandler,
   trendingFestivalHandler,
 } from "./data/festivalMocks";
@@ -12,4 +13,5 @@ export const handlers = [
   ...trendingFestivalHandler,
   ...SearchFestivalHandler,
   ...topReviewsHandler,
+  ...topKeywordFestivalHandler,
 ];
