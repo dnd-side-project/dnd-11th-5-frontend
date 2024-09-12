@@ -1,5 +1,6 @@
 import {
   FestivalHandler,
+  reviewsHandler,
   SearchFestivalHandler,
   thisWeekFestivalHandler,
   topKeywordFestivalHandler,
@@ -14,4 +15,5 @@ export const handlers = [
   ...SearchFestivalHandler,
   ...topReviewsHandler,
   ...topKeywordFestivalHandler,
+  ...reviewsHandler,
 ];
