@@ -33,4 +33,9 @@ const formatToKoreanDate = (date: string) => {
   return targetDate.format("MM월 DD일");
 };
 
-export { dayjsWithExt, formatToKoreanDate, getDday };
+const formatToYYYYMMDD = (date: string) => {
+  const targetDate = dayjsWithExt(date);
+  return targetDate.format("YYYY.MM.DD");
+};
+
+export { dayjsWithExt, formatToKoreanDate, formatToYYYYMMDD, getDday };

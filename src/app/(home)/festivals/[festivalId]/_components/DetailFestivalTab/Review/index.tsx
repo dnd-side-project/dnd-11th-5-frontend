@@ -6,6 +6,7 @@ import { PencilIcon } from "@/components/icons";
 
 import TopKeywords from "./_components/TopKeywords/TopKeywords";
 import TopKeywordsSkeleton from "./_components/TopKeywords/TopKeywordsSkeleton";
+import TotalReviews from "./_components/TotalReviews/TotalReview";
 
 interface Props {
   festivals: DetailFestivalResponse;
@@ -27,6 +28,8 @@ const Review: FC<Props> = ({ festivals }) => {
       </Link>
 
       <div className="h-[11px] w-full bg-gray-scale-100" />
+
+      <TotalReviews festivals={festivals} />
     </>
   );
 };
