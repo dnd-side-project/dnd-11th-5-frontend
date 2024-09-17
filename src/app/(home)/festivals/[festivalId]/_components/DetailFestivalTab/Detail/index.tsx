@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import Link from "next/link";
 import { FC } from "react";
 import { StaticMap } from "react-kakao-maps-sdk";
@@ -21,8 +22,8 @@ const Detail: FC<Props> = ({ festivals }) => {
 
   return (
     <>
-      <p className="text-body1-regular-lh-20 text-gray-scale-700">
-        {description}
+      <p className="py-[16px] text-body1-regular-lh-20 text-gray-scale-700">
+        {parse(description)}
       </p>
 
       <div className="flex flex-col gap-[8px]">

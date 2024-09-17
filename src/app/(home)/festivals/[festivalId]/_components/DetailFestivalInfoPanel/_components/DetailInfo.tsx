@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import React, { FC } from "react";
 
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
@@ -20,7 +21,7 @@ const DetailInfo: FC<Props> = ({ festivals }) => {
       <div className="flex gap-[18px]">
         <span className="text-body2-medium text-gray-scale-400">진행시간</span>
         <span className="text-body2-regular text-gray-scale-700">
-          {festivals.playtime}
+          {parse(festivals.playtime)}
         </span>
       </div>
       <div className="flex gap-[18px] ">
@@ -61,7 +62,7 @@ const DetailInfo: FC<Props> = ({ festivals }) => {
       <div className="flex gap-[18px]">
         <span className="text-body2-medium text-gray-scale-400">입장비용</span>
         <span className="text-body2-regular text-gray-scale-700">
-          {festivals.fee}
+          {parse(festivals.fee)}
         </span>
       </div>
     </div>

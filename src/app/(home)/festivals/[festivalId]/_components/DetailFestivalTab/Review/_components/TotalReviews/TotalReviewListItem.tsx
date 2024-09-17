@@ -22,7 +22,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
         <div className="flex w-full gap-[4px] ">
           <Image
             className="rounded-full"
-            src={review.user.profileImage}
+            src={review.user.profileImage ?? "/images/fallbackLogo.png"}
             alt={review.user.nickname}
             width={33}
             height={33}
@@ -51,6 +51,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
         <div className="flex w-full gap-[8px]">
           {review.images.map((image) => (
             <Image
+              className="aspect-square"
               key={image.imageId}
               src={image.imageUrl}
               alt={`image-${image.imageId}`}
@@ -64,7 +65,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
         {review.content}
       </p>
       <div className="flex w-full justify-between">
-        <div className="flex gap-[8px]">
+        <div className="scrollbar-hide flex gap-[8px] overflow-auto">
           {review.keywords.map((keyword) => (
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
