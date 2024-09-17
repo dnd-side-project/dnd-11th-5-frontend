@@ -1,7 +1,10 @@
 import { faker } from "@faker-js/faker";
 import { http, HttpResponse } from "msw";
 
-import { FestivalReviewsResponse } from "@/apis/review/reviews/reviewsType";
+import {
+  FestivalReviewsResponse,
+  SortOption,
+} from "@/apis/review/reviews/reviewsType";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { env } from "@/env";
 
@@ -11,14 +14,18 @@ export const reviewsHandler = [
 
     async ({ request }) => {
       const url = new URL(request.url);
-      const query = url.searchParams.get("query");
+      const page = url.searchParams.get("page");
+      const size = url.searchParams.get("size");
+      const sort = url.searchParams.get("sort");
 
-      return HttpResponse.json(GenerateReviewsHandler(query));
+      return HttpResponse.json(
+        GenerateReviewsHandler(Number(page), Number(size), sort as string),
+      );
     },
   ),
 ];
 
-const GenerateReviewsHandler = (query: string | null) => {
+const GenerateReviewsHandler = (page: number, size: number, sort: string) => {
   const data: FestivalReviewsResponse = {
     content: [],
     offset: 0,
@@ -28,7 +35,7 @@ const GenerateReviewsHandler = (query: string | null) => {
     totalPages: 0,
   };
 
-  for (let i = 0; i < faker.number.int({ min: 1, max: 4 }); i++) {
+  for (let i = 0; i < faker.number.int({ min: 12, max: 18 }); i++) {
     const images = [];
     const numImages = faker.number.int({ min: 0, max: 3 });
 
@@ -70,16 +77,22 @@ const GenerateReviewsHandler = (query: string | null) => {
   }
 
   data.totalElements = data.content.length;
-  data.pageSize = 6;
-  data.totalPages = Math.round(data.content.length / 6);
-  data.pageNumber = 1;
+  data.pageSize = size;
+  data.totalPages = Math.ceil(data.totalElements / size);
+  data.pageNumber = page - 1;
 
-  if (!query) {
-    return {
-      statusCode: 200,
-      status: "OK",
-      message: "리뷰 다건 조회 성공",
-      data,
-    };
+  const startIndex = page * size;
+  const endIndex = startIndex + size;
+  data.content = data.content.slice(startIndex, endIndex);
+
+  if (sort === SortOption.likeCount) {
+    data.content.sort((a, b) => b.likeCount - a.likeCount);
   }
+
+  return {
+    statusCode: 200,
+    status: "OK",
+    message: "리뷰 다건 조회 성공",
+    data,
+  };
 };
