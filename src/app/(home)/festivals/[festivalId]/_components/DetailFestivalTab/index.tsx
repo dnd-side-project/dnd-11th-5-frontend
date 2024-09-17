@@ -6,7 +6,10 @@ import { FC } from "react";
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 
 import Detail from "./Detail";
-import Review from "./Review";
+const Review = dynamic(() => import("./Review"));
+const Around = dynamic(() => import("./Around"));
+
+import dynamic from "next/dynamic";
 
 interface Props {
   festivals: DetailFestivalResponse;
@@ -24,7 +27,7 @@ const DetailFestivalTab: FC<Props> = ({ festivals }) => {
     },
     {
       name: "주변정보",
-      contentComponent: <Detail festivals={festivals} />,
+      contentComponent: <Around festivals={festivals} />,
     },
   ];
 

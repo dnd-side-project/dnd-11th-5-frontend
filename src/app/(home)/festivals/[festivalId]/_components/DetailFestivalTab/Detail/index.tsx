@@ -1,10 +1,9 @@
 import Link from "next/link";
-import React, { FC } from "react";
-import { StaticMap, useKakaoLoader } from "react-kakao-maps-sdk";
+import { FC } from "react";
+import { StaticMap } from "react-kakao-maps-sdk";
 
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 import { PinLocationIcon } from "@/components/icons";
-import { env } from "@/env";
 
 interface Props {
   festivals: DetailFestivalResponse;
@@ -12,10 +11,6 @@ interface Props {
 
 const Detail: FC<Props> = ({ festivals }) => {
   const { description, tip, latitude, longitude, address } = festivals;
-
-  const [loading, error] = useKakaoLoader({
-    appkey: env.NEXT_PUBLIC_KAKAO_MAP_KEY,
-  });
 
   const getRedirectLink = () => {
     if (!!latitude && !!longitude) {
