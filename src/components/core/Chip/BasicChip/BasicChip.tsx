@@ -1,14 +1,20 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 
 import { cn } from "@/utils/cn";
 
-interface Props
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+interface Props extends ComponentPropsWithoutRef<"button"> {
+  className?: string;
   active?: boolean;
   label: string;
+  onClick?: () => void;
 }
 
-const BasicChip: FC<Props> = ({ active = false, label, ...props }) => {
+const BasicChip: FC<Props> = ({
+  active = false,
+  label,
+  className,
+  onClick,
+}) => {
   return (
     <button
       type="button"
@@ -18,9 +24,9 @@ const BasicChip: FC<Props> = ({ active = false, label, ...props }) => {
         active
           ? "bg-primary-05 border-primary-01 text-gray-scale-800"
           : "bg-gray-scale-50 text-gray-scale-600",
-        props.className,
+        className,
       )}
-      {...props}
+      onClick={onClick}
     >
       {label}
     </button>
