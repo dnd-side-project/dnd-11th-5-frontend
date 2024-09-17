@@ -39,7 +39,11 @@ function Pagination({
   };
 
   return (
-    <div className="fixed bottom-0 mb-[40px] flex w-full max-w-[450px] items-center justify-center gap-[16px]">
+    <div
+      className={cn(
+        "fixed bottom-0 mb-[40px] flex w-full max-w-[450px] items-center justify-center gap-[16px]",
+      )}
+    >
       <Link
         href={pageURL(currentPage - 1, size)}
         className={cn(

@@ -1,7 +1,7 @@
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
 import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
-import Pagination from "@/components/Pagination/Pagination";
+import ServerPagination from "@/components/Pagination/ServerPagination";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
@@ -26,7 +26,7 @@ export default async function HotFestivalPage({
     <div className="relative mb-[60px] mt-[44px]">
       <DefaultHeader href="/" label="HOT 페스티벌" />
       <TrendTestView festivals={festivals} />
-      <Pagination
+      <ServerPagination
         currentPath={FIESTA_ENDPOINTS.festivals.mostlike}
         currentPage={parsedParams.page}
         totalPage={festivals.totalPages}

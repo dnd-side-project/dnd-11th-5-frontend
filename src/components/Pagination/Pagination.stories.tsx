@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import Pagination from "./Pagination";
+import ServerPagination from "./ServerPagination";
 
-const meta: Meta<typeof Pagination> = {
+const meta: Meta<typeof ServerPagination> = {
   title: "Pagination/Pagination",
-  component: Pagination,
+  component: ServerPagination,
   parameters: {
     controls: { include: ["currentPage"] },
   },
@@ -28,7 +28,7 @@ export const Default: Story = {
   render: (args) => {
     return (
       <div className="flex h-auto w-[500px] justify-center">
-        <Pagination {...args} totalPage={3} currentPath="/" />
+        <ServerPagination {...args} totalPage={3} currentPath="/" />
       </div>
     );
   },
