@@ -21,8 +21,7 @@
       "@/*": ["./src/*"],
       "@/auth": ["./auth.ts"],
       "@font": ["./src/app/fonts/index.ts"]
-    },
-    "types": ["kakao.maps.d.ts"]
+    }
   },
   "include": [
     "./types/*.d.ts",
