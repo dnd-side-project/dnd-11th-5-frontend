@@ -1,7 +1,7 @@
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
 import { getThisWeekFestival } from "@/apis/festivals/thisweek/thisWeekFestival";
-import Pagination from "@/components/Pagination/Pagination";
+import ServerPagination from "@/components/Pagination/ServerPagination";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
@@ -24,7 +24,7 @@ export default async function TrendPage({ searchParams }: TrendPageProps) {
     <div className="relative mb-[60px] mt-[44px]">
       <DefaultHeader href="/" label="이번주 페스티벌" />
       <ThisWeekFestivalView festivals={festivals} />
-      <Pagination
+      <ServerPagination
         currentPath={FIESTA_ENDPOINTS.festivals.thisWeek}
         currentPage={parsedParams.page}
         totalPage={festivals.totalPages}
