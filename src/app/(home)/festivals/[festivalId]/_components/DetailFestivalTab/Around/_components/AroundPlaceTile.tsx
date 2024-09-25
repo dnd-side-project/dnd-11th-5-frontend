@@ -17,7 +17,7 @@ const AroundPlaceTile: FC<Props> = ({ place }) => {
           </span>
         </div>
         <div className="h-full w-auto text-body2-regular text-gray-400">
-          {`${distance}m`}
+          {`${(Number(distance) / 1000).toFixed(1)} km`}
         </div>
       </div>
     </Link>
