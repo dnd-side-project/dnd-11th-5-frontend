@@ -1,46 +1,72 @@
-import { FC } from "react";
+import Link from "next/link";
+import { Session } from "next-auth";
+import { FC, useMemo } from "react";
 
-import { ScrabIcon } from "@/components/icons";
+import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 import { cn } from "@/utils/cn";
 
 import BasicButton from "../BasicButton/BasicButton";
+import ScrabButton from "./ScrabButton";
 
 interface Props {
   label?: string;
   className?: string;
-  isScrabed?: boolean;
-  scrabCount?: number;
-  disabled?: boolean;
+  festival: DetailFestivalResponse;
+  session: Session | null;
 }
 
 const BookingButton: FC<Props> = ({
   className,
   label = "예매하기",
-  isScrabed = false,
-  scrabCount = 0,
-  disabled = true,
+  festival,
+  session,
 }) => {
+  const linkInfo = useMemo(() => {
+    const { homepageUrl, ticketLink, instagramUrl } = festival;
+
+    if (homepageUrl) {
+      return {
+        label: "홈페이지 바로가기",
+        url: homepageUrl,
+      };
+    }
+    if (ticketLink) {
+      return {
+        label: "예매링크 바로가기",
+        url: ticketLink,
+      };
+    }
+    if (instagramUrl) {
+      return {
+        label: "인스타그램 바로가기",
+        url: instagramUrl,
+      };
+    }
+    return {
+      label: "정보가 없습니다.",
+      url: "",
+    };
+  }, [festival]);
+
   return (
     <div
       className={cn(
-        "w-full h-[98px] p-[24px]",
+        "fixed bottom-0 z-[10] h-[98px] w-full max-w-none lg:max-w-[450px] px-[24px]",
         "flex justify-between items-center gap-[11px]",
         "border-[1px] border-gray-scale-100",
         "bg-gray-scale-0",
         className,
       )}
     >
-      <BasicButton type="button" label={label} disabled={disabled} />
-      <button className="flex flex-col items-center">
-        <ScrabIcon
-          width={30}
-          height={30}
-          className={isScrabed ? "text-gray-scale-700" : "text-gray-scale-200"}
-        />
-        <span className="h-auto w-auto text-caption1-medium text-gray-700">
-          {scrabCount}
-        </span>
-      </button>
+      <Link
+        href={linkInfo.url}
+        className="w-full"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <BasicButton type="button" label={linkInfo.label} />
+      </Link>
+      <ScrabButton festival={festival} session={session} />
     </div>
   );
 };

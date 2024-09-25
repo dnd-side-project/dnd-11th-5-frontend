@@ -24,7 +24,7 @@ const FIESTA_ENDPOINTS = {
     detail: (festivalId: string) => `/festivals/${festivalId}`,
     trending: "/festivals/trending",
     search: "/festivals/search",
-    bookmark: (festivalId: string) => `/festivals/${festivalId}/bookmark`,
+    bookmark: (festivalId: number) => `/festivals/${festivalId}/bookmark`,
   },
   admin: {
     festivals: "/admin/festivals",

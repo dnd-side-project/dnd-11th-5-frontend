@@ -32,7 +32,7 @@ export type DetailFestivalResponse = {
   latitude: number;
   longitude: number;
   bookmarkCount: number;
-  isBookmarked: boolean;
+  isBookmarked?: boolean;
   categories: Category[];
   moods: Mood[];
   images: Image[];

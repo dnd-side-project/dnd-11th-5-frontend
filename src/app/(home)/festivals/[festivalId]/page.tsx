@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 
+import { getServerSideSession } from "@/apis/auth/auth";
 import { getDetailFestival } from "@/apis/festivals/detailFestival/detailFestival";
+import BookingButton from "@/components/core/Button/BookingButton/BookingButton";
 import { FestivalHeader } from "@/layout/Mobile/MobileHeader";
 
 import DetailFestivalView from "./view";
@@ -17,13 +19,14 @@ export default async function Home({
   if (!params.festivalId) {
     redirect("/");
   }
-
+  const session = await getServerSideSession();
   const festivalDetail = await getDetailFestival(params?.festivalId);
 
   return (
-    <div className="mb-[60px]">
+    <div className="mb-[110px]">
       <FestivalHeader />
       <DetailFestivalView festivals={festivalDetail} />
+      <BookingButton festival={festivalDetail} session={session} />
     </div>
   );
 }

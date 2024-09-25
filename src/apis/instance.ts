@@ -144,6 +144,13 @@ export class CreateFiestaFetch {
   ): Promise<FiestaResponse<T>> =>
     this.fetch(url, "PUT", { body: JSON.stringify(body), ...options });
 
+  public patch = async <T>(
+    url: string,
+    body = {},
+    options: FiestaFetchOptions = {},
+  ): Promise<FiestaResponse<T>> =>
+    this.fetch(url, "PATCH", { body: JSON.stringify(body), ...options });
+
   public delete = async <T>(
     url: string,
     options: FiestaFetchOptions = {},
