@@ -46,7 +46,7 @@ const Around: FC<Props> = ({ festivals }) => {
       <div
         ref={containerRef}
         onMouseDown={mouseDownHandler}
-        className="flex w-full gap-[8px] overflow-auto"
+        className="flex w-full gap-[8px] overflow-auto scrollbar-hide"
       >
         {CATEGORIES.map(({ category, code }) => (
           <BasicChip

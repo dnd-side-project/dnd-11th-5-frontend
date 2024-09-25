@@ -197,6 +197,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix")],
+  plugins: [require("tailwindcss-radix"), require("tailwind-scrollbar-hide")],
 };
 export default config;
