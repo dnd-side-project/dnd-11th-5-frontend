@@ -2,6 +2,8 @@ import { Session } from "next-auth";
 import { Suspense } from "react";
 
 import { getRecommendFestival } from "@/apis/festivals/recommendFestival/recommendFestival";
+import { getMe } from "@/apis/user/me/me";
+import UserInitializer from "@/lib/UserInitializer";
 
 import RecommendFestivalList from "../../../../components/Swiper/RecommendFestival/RecommendFestival";
 import RecommendFestivalFallbackUI from "./RecommendFestivalFallbackUI";
@@ -13,11 +15,14 @@ const RecommendFestival = async ({ session }: { session: Session | null }) => {
   }
 
   const festivals = await getRecommendFestival();
+  const user = session && (await getMe());
 
   return (
-    <Suspense fallback={<RecommendFestivalSkeleton />}>
-      <RecommendFestivalList initialData={festivals} />
-    </Suspense>
+    <UserInitializer user={user}>
+      <Suspense fallback={<RecommendFestivalSkeleton />}>
+        <RecommendFestivalList initialData={festivals} />
+      </Suspense>
+    </UserInitializer>
   );
 };
 
