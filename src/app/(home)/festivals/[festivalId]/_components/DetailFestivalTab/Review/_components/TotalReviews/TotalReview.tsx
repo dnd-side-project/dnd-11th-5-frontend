@@ -43,6 +43,7 @@ const TotalReviews: FC<Props> = ({ festivals }) => {
   const { data } = useSuspenseQuery({
     queryKey: reviewsKeys.list(params),
     queryFn: () => getReviews(params),
+    refetchOnMount: true,
   });
 
   return (

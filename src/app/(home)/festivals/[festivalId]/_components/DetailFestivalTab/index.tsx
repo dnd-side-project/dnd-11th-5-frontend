@@ -10,12 +10,14 @@ const Review = dynamic(() => import("./Review"));
 const Around = dynamic(() => import("./Around"));
 
 import dynamic from "next/dynamic";
+import { Session } from "next-auth";
 
 interface Props {
   festivals: DetailFestivalResponse;
+  session: Session | null;
 }
 
-const DetailFestivalTab: FC<Props> = ({ festivals }) => {
+const DetailFestivalTab: FC<Props> = ({ festivals, session }) => {
   const TabList = [
     {
       name: "상세내용",
@@ -23,7 +25,7 @@ const DetailFestivalTab: FC<Props> = ({ festivals }) => {
     },
     {
       name: "리뷰",
-      contentComponent: <Review festivals={festivals} />,
+      contentComponent: <Review festivals={festivals} session={session} />,
     },
     {
       name: "주변정보",

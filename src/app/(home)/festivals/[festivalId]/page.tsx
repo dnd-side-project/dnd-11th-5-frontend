@@ -25,7 +25,7 @@ export default async function Home({
   return (
     <div className="mb-[110px]">
       <FestivalHeader />
-      <DetailFestivalView festivals={festivalDetail} />
+      <DetailFestivalView festivals={festivalDetail} session={session} />
       <BookingButton festival={festivalDetail} session={session} />
     </div>
   );

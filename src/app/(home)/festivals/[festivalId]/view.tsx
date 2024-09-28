@@ -1,5 +1,7 @@
 "use client";
 
+import { Session } from "next-auth";
+
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 
 import {
@@ -10,9 +12,10 @@ import {
 
 interface Props {
   festivals: DetailFestivalResponse;
+  session: Session | null;
 }
 
-const DetailFestivalView = ({ festivals }: Props) => {
+const DetailFestivalView = ({ festivals, session }: Props) => {
   return (
     <>
       <DetailFestivalCarousel festivals={festivals} />
@@ -20,7 +23,7 @@ const DetailFestivalView = ({ festivals }: Props) => {
 
       <div className="h-[12px] w-full bg-gray-scale-100" />
 
-      <DetailFestivalTab festivals={festivals} />
+      <DetailFestivalTab festivals={festivals} session={session} />
     </>
   );
 };
