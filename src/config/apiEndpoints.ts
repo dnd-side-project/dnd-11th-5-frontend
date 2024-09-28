@@ -39,6 +39,7 @@ const FIESTA_ENDPOINTS = {
     detail: (reviewId: string) => `/reviews/${reviewId}`,
     like: (reviewId: string) => `/reviews/${reviewId}/like`,
     mostlike: "/reviews/mostlike",
+    keywords: "/reviews/keywords",
   },
   logs: {
     userLogs: (userId: string) => `/users/${userId}/logs`,

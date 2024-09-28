@@ -48,3 +48,7 @@ export enum SortOption {
   createdAt = "createdAt",
   likeCount = "likeCount",
 }
+
+export type PostReviewResponse = {
+  reviewId: number;
+};
