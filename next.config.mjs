@@ -8,6 +8,12 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 // 빌드 중에 검증을 위해 여기에서 env를 가져옵니다. jiti를 사용하여 .ts 파일을 가져올 수 있습니다 :)
 jiti("./src/env");
 
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -30,6 +36,8 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  reactStrictMode: true,
+
   experimental: { instrumentationHook: true },
   webpack(config) {
     // SVG 가져오기를 처리하는 기존 규칙을 가져옵니다.
@@ -66,4 +74,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default bundleAnalyzer(nextConfig);
