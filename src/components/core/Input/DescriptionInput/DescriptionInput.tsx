@@ -8,7 +8,7 @@ interface Props
     InputHTMLAttributes<HTMLTextAreaElement>,
     "type" | "maxlength" | "className" | "maxLength"
   > {
-  label: string;
+  label?: string;
   maxLength?: number;
   currentLength?: number;
   className?: string;

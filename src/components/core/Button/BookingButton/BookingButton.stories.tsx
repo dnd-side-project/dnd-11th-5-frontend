@@ -21,10 +21,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BookingUnavailable: Story = {
-  args: {
-    scrabCount: 210,
-    disabled: true,
-  },
+  args: {},
   decorators: [
     (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
@@ -35,7 +32,7 @@ export const BookingUnavailable: Story = {
 };
 
 export const BookingAvailable: Story = {
-  args: { scrabCount: 210, disabled: false },
+  args: {},
   decorators: [
     (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
@@ -46,7 +43,7 @@ export const BookingAvailable: Story = {
 };
 
 export const isScrabed: Story = {
-  args: { scrabCount: 210, disabled: false, isScrabed: true },
+  args: {},
   decorators: [
     (Story: ComponentType) => (
       <div style={{ width: "400px" }}>
