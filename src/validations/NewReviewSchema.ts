@@ -22,8 +22,9 @@ const NewReviewSchema = z.object({
     ),
   images: z
     .any()
+    .nullable()
     .refine((files) => {
-      const fileSize = files?.[0]?.size;
+      const fileSize = files?.[0]?.size ?? 0;
       return fileSize <= CREATE_FESTIVAL_SETTING.MAX_FILE_SIZE;
     }, VALIDATION_ERROR_MESSAGES.maxSize(10))
     .refine((files) => {

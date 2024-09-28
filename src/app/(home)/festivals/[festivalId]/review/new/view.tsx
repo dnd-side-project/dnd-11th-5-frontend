@@ -1,11 +1,13 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
 import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
+import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
 import { postReviews } from "@/apis/review/reviews/reviews";
 import { BasicButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
@@ -14,6 +16,7 @@ import { ProgressCircle } from "@/components/core/Progress";
 import ImageUploader from "@/components/imageUploader/ImageUploader";
 import { CREATE_FESTIVAL_SETTING } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
+import { log } from "@/utils";
 import NewReviewSchema, {
   NewReviewSchemaType,
 } from "@/validations/NewReviewSchema";
@@ -27,6 +30,7 @@ interface Props {
 
 const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const methods = useForm<NewReviewSchemaType>({
     defaultValues: {
       festivalId,
@@ -45,12 +49,12 @@ const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
   } = methods;
 
   const onSubmit = async (data: NewReviewSchemaType) => {
-    console.log("🚀 ~ onSubmit ~ data:", data);
     try {
+      await queryClient.invalidateQueries({ queryKey: reviewsKeys.all });
       await postReviews(data);
       router.back();
     } catch (error) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      log("🚀 ~ onSubmit ~ error:", error);
     }
   };
 
@@ -58,7 +62,7 @@ const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
     <FormProvider {...methods}>
       <DefaultHeader label="리뷰 작성" />
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, (err) => console.log(err))}
         className="flex flex-col gap-[34px] p-4"
       >
         <Controller

@@ -18,7 +18,6 @@ const ReviewKeywordInput: FC<Props> = ({
   selectedkeywordId,
   onChange,
 }) => {
-  console.log("🚀 ~ selectedkeywordId:", selectedkeywordId);
   const handleHandleToggle = (isSelected: boolean, id: number) => {
     if (isSelected) {
       const filteredList = selectedkeywordId.filter(
