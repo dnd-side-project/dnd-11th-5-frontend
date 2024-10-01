@@ -24,7 +24,7 @@ export const Default: Story = {
   render: (args) => <FestivalRequstDialog {...args} />,
   args: {
     open: false,
-    label: "라벨",
+    title: "라벨",
     placeholder: "컨텐츠를 적어주세요.",
   },
 };

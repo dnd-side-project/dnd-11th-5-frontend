@@ -8,11 +8,11 @@ import { BasicButton, IconButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
 import { XIcon } from "@/components/icons";
 import { VALIDATION_ERROR_MESSAGES } from "@/config";
+import { log } from "@/utils";
 
 import AlertDialogWrapper from "../AlertDialogWrapper/AlertDialogWrapper";
 
 interface Props extends Omit<AlertDialogProps, "onOpenChange"> {
-  label: string;
   title: string;
   onConfirm: (content: string) => Promise<void>;
   onOpenChange: (open: boolean) => void;
@@ -24,7 +24,6 @@ const FestivalRequestSchema = z.object({
 });
 
 const FestivalRequstDialog: FC<Props> = ({
-  label,
   open,
   onOpenChange,
   onConfirm,
@@ -39,8 +38,13 @@ const FestivalRequstDialog: FC<Props> = ({
   });
 
   const onSubmit = async (data: { content: string }) => {
-    await onConfirm(data.content);
-    onOpenChange(false);
+    try {
+      await onConfirm(data.content);
+    } catch (error) {
+      log(error);
+    } finally {
+      onOpenChange(false);
+    }
   };
 
   return (
@@ -56,7 +60,7 @@ const FestivalRequstDialog: FC<Props> = ({
       >
         <div className="flex w-full justify-between">
           <h1 className="text-center text-title-bold text-gray-scale-700">
-            {label}
+            {title}
           </h1>
           <IconButton onClick={() => onOpenChange(false)}>
             <XIcon width="24px" height="24px" className="text-gray-scale-900" />
