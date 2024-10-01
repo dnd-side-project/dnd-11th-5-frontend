@@ -1,18 +1,73 @@
+"use client";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useMemo, useState } from "react";
 
+import { deleteReview } from "@/apis/review/reviewDelete/reviewDelete";
+import { postReviewReport } from "@/apis/review/reviewReport/reviewReport";
+import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
 import { Review } from "@/apis/review/reviews/reviewsType";
 import { BasicChip } from "@/components/core/Chip";
-import { DotsIcon } from "@/components/icons";
+import { DropdownMenu, DropdownOption } from "@/components/core/Dropdown";
+import { ProgressCircle } from "@/components/core/Progress";
+import { FestivalRequstDialog } from "@/components/Dialog";
 import Ratings from "@/components/rating/Ratings";
 import { formatToYYYYMMDD } from "@/lib/dayjs";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   review: Review;
 }
 
 const TotalReviewListItem: FC<Props> = ({ review }) => {
+  const user = useUserStore((state) => state.user);
+  const [isOpenReportDialog, setIsOpenReportDialog] = useState<boolean>(false);
+
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteReviewMutate, isPending: isDeleting } = useMutation({
+    mutationFn: async (reviewId: number) => await deleteReview(reviewId),
+    onSuccess: (data) =>
+      queryClient.invalidateQueries({
+        queryKey: reviewsKeys.list({ festivalId: review.festivalId }),
+      }),
+  });
+
+  const { mutate: postReviewMutate, isPending: isReporting } = useMutation({
+    mutationFn: async (body: { reviewId: number; description: string }) =>
+      await postReviewReport(body),
+  });
+
+  const handleDelete = (reviewId: number) => {
+    deleteReviewMutate(reviewId);
+  };
+
+  const myReviewOptions: Array<DropdownOption> = [
+    {
+      label: "수정하기",
+      onClick: () => {},
+    },
+    {
+      label: "삭제하기",
+      onClick: () => handleDelete(review.reviewId),
+    },
+  ];
+
+  const othersReviewOptions: Array<DropdownOption> = [
+    {
+      label: "신고하기",
+      onClick: () => setIsOpenReportDialog(true),
+    },
+  ];
+
+  const isMyReviewOptions = useMemo(() => {
+    return user?.userId === review.user.userId
+      ? myReviewOptions
+      : othersReviewOptions;
+  }, [review]);
+
   return (
     <div
       key={review.reviewId}
@@ -23,7 +78,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
           <Image
             className="rounded-full"
             src={review.user.profileImage ?? "/images/fallbackLogo.png"}
-            alt={review.user.nickname}
+            alt={review.user.nickname ?? `${review.reviewId}-image`}
             width={33}
             height={33}
           />
@@ -39,13 +94,8 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
             <Ratings rating={review.rating} />
           </div>
         </div>
-        <button>
-          <DotsIcon
-            width={24}
-            height={24}
-            className="rotate-90 text-gray-scale-400"
-          />
-        </button>
+
+        {!!user && <DropdownMenu options={isMyReviewOptions} />}
       </div>
       {!isEmpty(review.images) && (
         <div className="flex w-full gap-[8px]">
@@ -65,12 +115,27 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
         {review.content}
       </p>
       <div className="flex w-full justify-between">
-        <div className="scrollbar-hide flex gap-[8px] overflow-auto">
-          {review.keywords.map((keyword) => (
+        <div className="flex gap-[8px] overflow-auto scrollbar-hide">
+          {review.keywords.splice(0, 2).map((keyword) => (
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
         </div>
       </div>
+
+      <FestivalRequstDialog
+        title="신고하기"
+        open={isOpenReportDialog}
+        onConfirm={async (description) =>
+          postReviewMutate({ reviewId: review.reviewId, description })
+        }
+        onOpenChange={() => setIsOpenReportDialog((prev) => !prev)}
+      />
+
+      {(isDeleting || isReporting) && (
+        <div className="flex h-[400px] w-full items-center justify-center">
+          <ProgressCircle className="size-[100px]" />
+        </div>
+      )}
     </div>
   );
 };
