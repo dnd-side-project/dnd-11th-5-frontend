@@ -12,20 +12,26 @@ const DetailInfo: FC<Props> = ({ festivals }) => {
   return (
     <div className="flex w-full flex-col gap-[10px] rounded-[12px] bg-gray-scale-100 px-[16px] py-[18px]">
       <div className="flex gap-[18px]">
-        <span className="text-body2-medium text-gray-scale-400">진행기간</span>
+        <span className="whitespace-nowrap text-body2-medium text-gray-scale-400">
+          진행기간
+        </span>
         <span className="text-body2-regular text-gray-scale-700">
           {`${formatToKoreanDate(festivals.startDate)} - 
         ${formatToKoreanDate(festivals.endDate)}`}
         </span>
       </div>
       <div className="flex gap-[18px]">
-        <span className="text-body2-medium text-gray-scale-400">진행시간</span>
+        <span className="whitespace-nowrap text-body2-medium text-gray-scale-400">
+          진행시간
+        </span>
         <span className="text-body2-regular text-gray-scale-700">
           {parse(festivals.playtime)}
         </span>
       </div>
       <div className="flex gap-[18px] ">
-        <span className="text-body2-medium text-gray-scale-400">홈페이지</span>
+        <span className="whitespace-nowrap text-body2-medium text-gray-scale-400">
+          홈페이지
+        </span>
         <span className="flex gap-[4px] text-body2-regular text-gray-scale-700">
           {!!festivals.homepageUrl && (
             <a
@@ -60,7 +66,9 @@ const DetailInfo: FC<Props> = ({ festivals }) => {
         </span>
       </div>
       <div className="flex gap-[18px]">
-        <span className="text-body2-medium text-gray-scale-400">입장비용</span>
+        <span className="whitespace-nowrap text-body2-medium text-gray-scale-400">
+          입장비용
+        </span>
         <span className="text-body2-regular text-gray-scale-700">
           {parse(festivals.fee)}
         </span>
