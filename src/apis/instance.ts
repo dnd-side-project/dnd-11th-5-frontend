@@ -148,8 +148,22 @@ export class CreateFiestaFetch {
     url: string,
     body = {},
     options: FiestaFetchOptions = {},
-  ): Promise<FiestaResponse<T>> =>
-    this.fetch(url, "PATCH", { body: JSON.stringify(body), ...options });
+  ): Promise<FiestaResponse<T>> => {
+    const isFormData = body instanceof FormData;
+    const finalOptions = isFormData
+      ? {
+          body,
+          ...options,
+        }
+      : {
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+    return this.fetch(url, "PATCH", finalOptions);
+  };
 
   public delete = async <T>(
     url: string,

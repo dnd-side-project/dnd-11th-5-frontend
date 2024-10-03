@@ -1,10 +1,15 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { FC, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
 import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
+import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
+import { getReview, updateReview } from "@/apis/review/reviews/reviews";
+import { Review } from "@/apis/review/reviews/reviewsType";
 import { BasicButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
 import ReviewKeywordInput from "@/components/core/Input/KeywordInput/ReviewKeywordInput";
@@ -12,9 +17,11 @@ import { ProgressCircle } from "@/components/core/Progress";
 import ImageUploader from "@/components/imageUploader/ImageUploader";
 import { CREATE_FESTIVAL_SETTING } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
-import NewReviewSchema, {
-  NewReviewSchemaType,
-} from "@/validations/NewReviewSchema";
+import { log } from "@/utils/log";
+import { reviewEntityToFiles } from "@/utils/reviewEntityToFiles";
+import UpdateReviewSchema, {
+  UpdateReviewSchemaType,
+} from "@/validations/UpdateReviewSchema";
 
 import Input_rating from "../new/_components/Input_rating";
 
@@ -25,24 +32,74 @@ interface Props {
 }
 
 const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
-  const methods = useForm<NewReviewSchemaType>({
-    defaultValues: {
-      festivalId,
-      rating: 0,
-      content: "",
-      keywordIds: [],
-      images: [],
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const { data: review, isLoading } = useQuery({
+    queryKey: reviewsKeys.detail(reviewId),
+    queryFn: () => getReview(reviewId),
+  });
+
+  const { mutate: updateReviewMutate } = useMutation({
+    mutationFn: (payload: UpdateReviewSchemaType) => updateReview(payload),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: reviewsKeys.all });
     },
-    resolver: zodResolver(NewReviewSchema),
+    onSettled: () => router.replace(`/festivals/${festivalId}`),
+  });
+
+  const methods = useForm<UpdateReviewSchemaType>({
+    values: {
+      reviewId: reviewId,
+      rating: review?.rating ?? 0,
+      content: review?.content ?? "",
+      keywordIds: review?.keywords.map((v) => v.keywordId) ?? [],
+      images: null,
+    },
+    resolver: zodResolver(UpdateReviewSchema),
   });
 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async (data: NewReviewSchemaType) => {};
+  const handleReviewImagesToFile = async (review: Review) => {
+    const files = await reviewEntityToFiles(review.images);
+    setValue("images", files);
+  };
+
+  useEffect(() => {
+    if (review) {
+      handleReviewImagesToFile(review);
+    }
+  }, [review]);
+
+  const onSubmit = async (data: UpdateReviewSchemaType) => {
+    try {
+      const imageIds = review?.images.map((img) => String(img.imageId)) ?? [];
+
+      const imageNames = data.images
+        ? Array.from(data.images).map((file) => (file as File).name)
+        : [];
+
+      const deletedImages = imageIds
+        .filter((id) => !imageNames.includes(id))
+        .map((id) => Number(id));
+
+      const filtertedImage = (data.images as File[]).filter(
+        (img) => !imageIds.includes(img.name.split(".")[0]),
+      );
+
+      const payload = { ...data, images: filtertedImage, deletedImages };
+
+      updateReviewMutate(payload);
+    } catch (error) {
+      log(error);
+    }
+  };
 
   return (
     <FormProvider {...methods}>
@@ -79,16 +136,23 @@ const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
           <Controller
             control={control}
             name="images"
-            render={({ field: { onChange, value } }) => (
-              <ImageUploader
-                label="사진 및 리뷰"
-                value={value}
-                onChange={onChange}
-                accept={CREATE_FESTIVAL_SETTING.ACCEPTED_IMAGE_TYPES.map(
-                  (format) => "." + format,
-                ).join(", ")}
-              />
-            )}
+            render={({ field: { onChange, value } }) =>
+              value ? (
+                <ImageUploader
+                  label="사진 및 리뷰"
+                  value={value}
+                  onChange={onChange}
+                  accept={CREATE_FESTIVAL_SETTING.ACCEPTED_IMAGE_TYPES.map(
+                    (format) => "." + format,
+                  ).join(", ")}
+                />
+              ) : (
+                <div className="flex animate-pulse flex-col gap-[8px]">
+                  <div className="h-[19px] w-[50px] rounded-lg bg-gray-scale-200"></div>
+                  <div className="h-[94px] w-full rounded-lg bg-gray-scale-200"></div>
+                </div>
+              )
+            }
           />
 
           <Controller
@@ -96,6 +160,7 @@ const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
             name="content"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <DescriptionInput
+                value={value}
                 placeholder="페스티벌과 과련된 리뷰만 작성해주세요."
                 onChange={onChange}
                 currentLength={value.length}

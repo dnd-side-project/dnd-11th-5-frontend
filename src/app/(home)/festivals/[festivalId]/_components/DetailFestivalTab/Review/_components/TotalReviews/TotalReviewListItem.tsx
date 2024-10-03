@@ -3,6 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FC, useMemo, useState } from "react";
 
 import { deleteReview } from "@/apis/review/reviewDelete/reviewDelete";
@@ -23,6 +24,7 @@ interface Props {
 
 const TotalReviewListItem: FC<Props> = ({ review }) => {
   const user = useUserStore((state) => state.user);
+  const router = useRouter();
   const [isOpenReportDialog, setIsOpenReportDialog] = useState<boolean>(false);
 
   const queryClient = useQueryClient();
@@ -31,7 +33,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
     mutationFn: async (reviewId: number) => await deleteReview(reviewId),
     onSuccess: (data) =>
       queryClient.invalidateQueries({
-        queryKey: reviewsKeys.list({ festivalId: review.festivalId }),
+        queryKey: reviewsKeys.all,
       }),
   });
 
@@ -47,7 +49,10 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
   const myReviewOptions: Array<DropdownOption> = [
     {
       label: "수정하기",
-      onClick: () => {},
+      onClick: () =>
+        router.push(
+          `/festivals/${review.festivalId}/review/${review.reviewId}`,
+        ),
     },
     {
       label: "삭제하기",

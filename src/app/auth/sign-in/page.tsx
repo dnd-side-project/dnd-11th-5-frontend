@@ -1,47 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 import { signInWithKakao } from "@/apis/auth/auth";
-import { getClientSideSession } from "@/apis/instance";
-import { getMe } from "@/apis/user/me/me";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
-import { useUserStore } from "@/store/user";
-import { log } from "@/utils";
 
 const SignIn = () => {
-  const router = useRouter();
-  const setUser = useUserStore((state) => state.updateUser);
-
-  const initializeUserProfile = async () => {
-    try {
-      const session = await getClientSideSession();
-
-      if (session) {
-        const user = await getMe();
-        setUser(user);
-      }
-
-      if (session && session.isProfileRegistered) {
-        router.replace("/");
-      }
-
-      if (!session) {
-        setUser(null);
-      }
-    } catch (error) {
-      log(error);
-    }
-  };
-
-  useEffect(() => {
-    initializeUserProfile();
-  }, []);
-
   return (
     <>
       <main className="relative flex h-full w-full flex-col items-center justify-between gap-[30px] overflow-hidden bg-gray-scale-800 pb-[55px]">

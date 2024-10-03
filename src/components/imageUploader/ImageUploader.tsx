@@ -3,6 +3,7 @@ import {
   DragEvent,
   InputHTMLAttributes,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -36,6 +37,24 @@ const ImageUploader = ({ onChange, value, label }: Props) => {
     onChange(files);
     setBase64((prev) => prev.filter((_, idx) => idx !== index));
   };
+
+  useEffect(() => {
+    if (value.length > 0) {
+      const newBase64: string[] = [];
+      value.forEach((file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          newBase64.push(reader.result as string);
+          if (newBase64.length === value.length) {
+            setBase64(newBase64.slice(-MAX_COUNT));
+          }
+        };
+      });
+    } else {
+      setBase64([]);
+    }
+  }, []);
 
   const handleChange = (
     event: DragEvent<HTMLDivElement> | ChangeEvent<HTMLInputElement>,
