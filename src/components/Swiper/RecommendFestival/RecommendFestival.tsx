@@ -3,7 +3,7 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -11,25 +11,32 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { getRecommendFestival } from "@/apis/festivals/recommendFestival/recommendFestival";
 import { recommendFestivalKeys } from "@/apis/festivals/recommendFestival/recommendFestivalKeys";
-import { RecommendFestivalResponse } from "@/apis/festivals/recommendFestival/recommendFestivalType";
+import RecommendFestivalFallbackUI from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalFallbackUI";
+import RecommendFestivalSkeleton from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalSkeleton";
 import { formatToKoreanDate } from "@/lib/dayjs";
+import { useUserStore } from "@/store/user";
 
 import RecommendFestivalHeader from "../../../app/(home)/_components/FestivalRecommend/RecommendFestivalHeader";
 
-const RecommendFestival = ({
-  initialData,
-}: {
-  initialData: RecommendFestivalResponse;
-}) => {
-  const { data: recommendFestivals } = useSuspenseQuery({
+const RecommendFestivalList = () => {
+  const user = useUserStore((state) => state.user);
+
+  const { data: recommendFestivals, isLoading } = useQuery({
     queryKey: recommendFestivalKeys.all,
     queryFn: () => getRecommendFestival(),
-    initialData,
   });
+
+  if (isLoading) {
+    return <RecommendFestivalSkeleton />;
+  }
+
+  if (!user) {
+    return <RecommendFestivalFallbackUI />;
+  }
 
   return (
     <section className="relative h-full w-full px-[24px] py-[35px]">
-      <RecommendFestivalHeader userType={recommendFestivals.userType} />
+      <RecommendFestivalHeader user={user} />
       <Swiper
         autoplay={{
           delay: 3000,
@@ -54,7 +61,7 @@ const RecommendFestival = ({
         modules={[Pagination, Autoplay]}
         className="relative flex h-[289px] w-full items-center justify-center rounded-[18px]"
       >
-        {recommendFestivals.festivals.map((festival) => (
+        {recommendFestivals?.festivals.map((festival) => (
           <SwiperSlide
             key={festival.festivalId}
             className="relative flex h-[289px] w-full cursor-pointer items-center justify-center"
@@ -87,4 +94,4 @@ const RecommendFestival = ({
   );
 };
 
-export default RecommendFestival;
+export default RecommendFestivalList;
