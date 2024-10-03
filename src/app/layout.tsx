@@ -3,13 +3,13 @@ import "../styles/reset.css";
 
 import type { Metadata } from "next";
 import Script from "next/script";
-import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 
 import { env } from "@/env";
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import { MSWProvider } from "@/lib/MSWProvider";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
+import SessionProvider from "@/lib/SessionProvider";
 import { cn } from "@/utils/cn";
 
 import { Pretendard } from "./fonts";
