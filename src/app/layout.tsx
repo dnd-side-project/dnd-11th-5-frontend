@@ -3,6 +3,7 @@ import "../styles/reset.css";
 
 import type { Metadata } from "next";
 import Script from "next/script";
+import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 
 import { env } from "@/env";
@@ -26,17 +27,19 @@ export default function RootLayout({
   return (
     <html lang="ko" className={Pretendard.variable}>
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
-        <MSWProvider>
-          <ReactQueryProvider>
-            <MobileLayout>
-              <Script
-                src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${env.NEXT_PUBLIC_KAKAO_MAP_KEY}&libraries=services,clusterer&autoload=false`}
-                strategy="beforeInteractive"
-              />
-              {children}
-            </MobileLayout>
-          </ReactQueryProvider>
-        </MSWProvider>
+        <SessionProvider>
+          <MSWProvider>
+            <ReactQueryProvider>
+              <MobileLayout>
+                <Script
+                  src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${env.NEXT_PUBLIC_KAKAO_MAP_KEY}&libraries=services,clusterer&autoload=false`}
+                  strategy="beforeInteractive"
+                />
+                {children}
+              </MobileLayout>
+            </ReactQueryProvider>
+          </MSWProvider>
+        </SessionProvider>
       </body>
     </html>
   );

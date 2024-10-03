@@ -21,18 +21,19 @@ const AuthRequiredPage = ["/mypage"];
 const config = {
   providers: [Kakao],
   // ? 사용자 지정 로그인, 로그아웃 및 오류 페이지를 만들 때 사용할 URL을 지정합니다. 지정한 페이지는 해당 기본 제공 페이지를 재정의합니다.
+  debug: process.env.NODE_ENV === "development",
   pages: {
     signIn: "/auth/sign-in",
+    newUser: "/auth/sign-in",
+    signOut: "/",
   },
   callbacks: {
     // * protected page 설정
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl;
-
       if (isMatchPath(pathname, AuthRequiredPage)) {
         return !!auth;
       }
-
       return true;
     },
     // * callbackUrl이 있다면 callbackUrl로 리다이렉트

@@ -13,7 +13,7 @@ import { KakaoButton } from "@/components/core/Button";
 import { useUserStore } from "@/store/user";
 import { log } from "@/utils";
 
-const SignIn = async () => {
+const SignIn = () => {
   const router = useRouter();
   const setUser = useUserStore((state) => state.updateUser);
 
