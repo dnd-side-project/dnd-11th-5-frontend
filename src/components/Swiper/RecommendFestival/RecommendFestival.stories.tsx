@@ -78,7 +78,7 @@ export const Default: Story = {
   },
   render: (args) => (
     <div className="h-[300px] w-[400px]">
-      <RecoomendFestivalList initialData={args.initialData} />
+      <RecoomendFestivalList />
     </div>
   ),
 };

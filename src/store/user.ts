@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
   user: UserMeResponse | null;
@@ -17,7 +17,8 @@ export const useUserStore = create(
     }),
     {
       name: "user-storage",
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => localStorage),
+      skipHydration: true,
     },
   ),
 );
