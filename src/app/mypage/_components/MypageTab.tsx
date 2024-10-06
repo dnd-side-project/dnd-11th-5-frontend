@@ -3,13 +3,15 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { FC } from "react";
 
+import MypageBookmark from "./Bookmark/MyPageScrab";
+
 interface Props {}
 
 const MypageTab: FC<Props> = ({}) => {
   const TabList = [
     {
       name: "스크랩",
-      contentComponent: <h1>스크랩</h1>,
+      contentComponent: <MypageBookmark />,
     },
     {
       name: "활동뱃지",
@@ -26,11 +28,7 @@ const MypageTab: FC<Props> = ({}) => {
 
   return (
     <Tabs.Root className="w-full" defaultValue={TabList[0].name}>
-      <Tabs.List
-        id={"tab"}
-        className="flex h-[47px] w-full"
-        aria-label="Manage your account"
-      >
+      <Tabs.List id={"tab"} className="mb-[30px] flex h-[47px] w-full">
         {TabList.map(({ name }, index) => (
           <Tabs.Trigger
             key={name}

@@ -1,6 +1,6 @@
 export type FestivalReviewsParameters = {
   festivalId?: number | string;
-  sort?: "createdAt" | "likeCount";
+  sort?: SortOption;
   page?: number;
   size?: number;
 };
@@ -47,6 +47,7 @@ export interface Keyword {
 export enum SortOption {
   createdAt = "createdAt",
   likeCount = "likeCount",
+  desc = "desc",
 }
 
 export type PostReviewResponse = {
