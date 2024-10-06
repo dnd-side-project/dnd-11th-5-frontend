@@ -1,28 +1,17 @@
 "use client";
 
-import { postSignOut } from "@/apis/auth/auth";
 import { useUserStore } from "@/store/user";
 
+import MypageAvatar from "./_components/MypageAvatar";
+import MypageTab from "./_components/MypageTab";
+
 const MyPageView = () => {
-  const setUser = useUserStore((state) => state.updateUser);
-  const handleLogout = () => {
-    setUser(null);
-    postSignOut();
-  };
+  const user = useUserStore((state) => state.user);
 
   return (
-    <form className="flex flex-wrap gap-4 bg-indigo-300 text-title-bold">
-      <button type="button" onClick={handleLogout}>
-        Logout
-      </button>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
-      <div className="h-[100px] w-full bg-primary-05"></div>
+    <form className="flex flex-wrap gap-4 text-title-bold">
+      <MypageAvatar user={user} />
+      <MypageTab />
     </form>
   );
 };
