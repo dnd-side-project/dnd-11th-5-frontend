@@ -1,36 +1,35 @@
 "use client";
-
 import { FC } from "react";
 
-import { FestivalCategory } from "@/apis/onboarding/onboardingType";
+import { FestivalPriority } from "@/apis/onboarding/onboardingType";
 import { cn } from "@/utils";
 
 import { BasicChip } from "../../Chip";
 
 interface Props {
-  categories: Array<FestivalCategory>;
-  selectedCategories: Array<number>;
+  priorities: Array<FestivalPriority>;
+  selectedPriorities: Array<number>;
   onChange: (keyword: Array<number>) => void;
   maxCount?: number;
   isPrimaryLabel?: boolean;
   label?: string;
 }
 
-const CategoryKeywordInput: FC<Props> = ({
-  categories,
-  label = "주제",
-  isPrimaryLabel = false,
-  selectedCategories,
-  maxCount = 2,
+const PriorityKeywordInput: FC<Props> = ({
+  priorities,
+  selectedPriorities,
+  maxCount = 3,
   onChange,
+  isPrimaryLabel = false,
+  label = "페스티벌 우선순위",
 }) => {
   const handleHandleToggle = (isSelected: boolean, id: number) => {
     if (isSelected) {
-      onChange(selectedCategories.filter((m) => m !== id));
+      onChange(selectedPriorities.filter((m) => m !== id));
       return;
     }
 
-    onChange([...selectedCategories, id]);
+    onChange([...selectedPriorities, id]);
   };
 
   return (
@@ -46,20 +45,22 @@ const CategoryKeywordInput: FC<Props> = ({
         >
           {label}
         </label>
-        <span className="text-caption1-regular text-gray-300">최대 2개</span>
+        <span className="text-caption1-regular text-gray-300">
+          최대 {maxCount}개
+        </span>
       </div>
       <div className="flex w-full flex-wrap gap-[8px]">
-        {categories.map((mood) => {
-          const { categoryId, name } = mood;
-          const isSelected = selectedCategories.some((id) => id === categoryId);
+        {priorities.map((priorityItem) => {
+          const { priority, priorityId } = priorityItem;
+          const isSelected = selectedPriorities.some((id) => id === priorityId);
           return (
             <BasicChip
-              key={categoryId}
+              key={priorityId}
               type="button"
-              label={name}
+              label={priority}
               active={isSelected}
-              disabled={selectedCategories.length >= maxCount && !isSelected}
-              onClick={() => handleHandleToggle(isSelected, categoryId)}
+              disabled={selectedPriorities.length === maxCount && !isSelected}
+              onClick={() => handleHandleToggle(isSelected, priorityId)}
             />
           );
         })}
@@ -68,4 +69,4 @@ const CategoryKeywordInput: FC<Props> = ({
   );
 };
 
-export default CategoryKeywordInput;
+export default PriorityKeywordInput;
