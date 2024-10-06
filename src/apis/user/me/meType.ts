@@ -1,8 +1,10 @@
 type UserMeResponse = {
   userId: number;
+  email: string;
   nickname: string;
   statusMessage: string;
   profileImage: string;
+  isProfileCreated?: boolean;
   isProfileRegistered: boolean;
-  userType: number;
+  userTypeId: number;
 };

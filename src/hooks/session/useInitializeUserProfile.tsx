@@ -10,28 +10,11 @@ const useInitializeUserProfile = () => {
   const initializeUserProfile = async () => {
     try {
       const session = await getClientSideSession();
-      console.log("🚀 ~ initializeUserProfile ~ session:", session);
 
       if (session) {
-        const {
-          userId,
-          email,
-          nickname,
-          statusMessage,
-          profileImage,
-          isProfileRegistered,
-          userTypeId,
-        } = session;
+        const { user } = session;
 
-        setUser({
-          userId,
-          email: email as string,
-          nickname: nickname as string,
-          statusMessage: statusMessage as string,
-          profileImage: profileImage as string,
-          isProfileRegistered: isProfileRegistered as boolean,
-          userTypeId: userTypeId as number,
-        });
+        setUser({ ...user });
       }
     } catch (error) {
       log(error);
