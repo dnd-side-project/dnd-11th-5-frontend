@@ -3,37 +3,23 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import { User } from "next-auth";
+import { FC } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { getRecommendFestival } from "@/apis/festivals/recommendFestival/recommendFestival";
-import { recommendFestivalKeys } from "@/apis/festivals/recommendFestival/recommendFestivalKeys";
-import RecommendFestivalFallbackUI from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalFallbackUI";
-import RecommendFestivalSkeleton from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalSkeleton";
+import { RecommendFestivalResponse } from "@/apis/festivals/recommendFestival/recommendFestivalType";
+import RecommendFestivalHeader from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalHeader";
 import { formatToKoreanDate } from "@/lib/dayjs";
-import { useUserStore } from "@/store/user";
 
-import RecommendFestivalHeader from "../../../app/(home)/_components/FestivalRecommend/RecommendFestivalHeader";
+interface Props {
+  recommendFestivals?: RecommendFestivalResponse;
+  user: User & UserMeResponse;
+}
 
-const RecommendFestivalList = () => {
-  const user = useUserStore((state) => state.user);
-
-  const { data: recommendFestivals, isLoading } = useQuery({
-    queryKey: recommendFestivalKeys.all,
-    queryFn: () => getRecommendFestival(),
-  });
-
-  if (isLoading) {
-    return <RecommendFestivalSkeleton />;
-  }
-
-  if (!user) {
-    return <RecommendFestivalFallbackUI />;
-  }
-
+const RecommendFestivalList: FC<Props> = ({ recommendFestivals, user }) => {
   return (
     <section className="relative h-full w-full px-[24px] py-[35px]">
       <RecommendFestivalHeader user={user} />

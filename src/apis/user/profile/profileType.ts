@@ -1,8 +1,8 @@
 export type UserProfileRequest = {
-  category: number[];
-  mood: number[];
-  companion: number[];
-  priority: number[];
+  categoryIds: number[];
+  moodIds: number[];
+  companionIds: number[];
+  priorityIds: number[];
 };
 
 export type UserProfileResponse = {

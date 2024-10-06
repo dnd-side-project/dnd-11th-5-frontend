@@ -52,10 +52,10 @@ const OnBoardingContainer: FC<Props> = ({
 
   const onSubmit = async (data: OnboardingModel) => {
     const payload = {
-      category: extractKeyFromArray(data.categories, "categoryId"),
-      mood: extractKeyFromArray(data.moods, "moodId"),
-      companion: extractKeyFromArray(data.companions, "companionId"),
-      priority: extractKeyFromArray(data.priorities, "priorityId"),
+      categoryIds: extractKeyFromArray(data.categories, "categoryId"),
+      moodIds: extractKeyFromArray(data.moods, "moodId"),
+      companionIds: extractKeyFromArray(data.companions, "companionId"),
+      priorityIds: extractKeyFromArray(data.priorities, "priorityId"),
     };
 
     const [profile] = await Promise.all([postProfile(payload), delay(5000)]);

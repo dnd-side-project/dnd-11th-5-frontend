@@ -1,5 +1,5 @@
 export type FestivalReviewsParameters = {
-  festivalId?: number;
+  festivalId?: number | string;
   sort?: "createdAt" | "likeCount";
   page?: number;
   size?: number;
