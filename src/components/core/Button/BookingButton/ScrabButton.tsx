@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Session } from "next-auth";
 import { FC, useState } from "react";
 
@@ -8,8 +8,10 @@ import { getFestivalBookmark } from "@/apis/festivals/bookmarkCountFestival/book
 import { BookmarkCountFestivalKeys } from "@/apis/festivals/bookmarkCountFestival/bookmarkCountFestivalKeys";
 import { patchBookmarkFestival } from "@/apis/festivals/bookmarkFestival/bookmarkFestival";
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
+import { bookmarksKeys } from "@/apis/user/bookmarks/bookmarksKeys";
 import LoginRequiredDialog from "@/components/Dialog/LoginRequiredDialog/LoginRequiredDialog";
 import { ScrabIcon } from "@/components/icons";
+import { useOptimisticMutation } from "@/hooks/useOptimisticMutation";
 
 interface Props {
   festival: DetailFestivalResponse;
@@ -24,44 +26,23 @@ const ScrabButton: FC<Props> = ({ festival, session }) => {
 
   const queryClient = useQueryClient();
 
-  const { mutate: toggleScrab } = useMutation({
+  const { mutate: toggleScrab } = useOptimisticMutation({
     mutationFn: patchBookmarkFestival,
-    onMutate: async (festivalId) => {
-      await queryClient.cancelQueries({
-        queryKey: BookmarkCountFestivalKeys.byId(festival.festivalId),
-      });
-
-      const previousBookmarkData = queryClient.getQueryData(
-        BookmarkCountFestivalKeys.byId(festival.festivalId),
-      );
-
-      queryClient.setQueryData(
-        BookmarkCountFestivalKeys.byId(festival.festivalId),
-        (
-          oldQueryData: Pick<
-            DetailFestivalResponse,
-            "bookmarkCount" | "isBookmarked"
-          >,
-        ) => {
-          return {
-            isBookmarked: !oldQueryData.isBookmarked,
-            bookmarkCount: !oldQueryData.isBookmarked
-              ? oldQueryData.bookmarkCount + 1
-              : oldQueryData.bookmarkCount - 1,
-          };
-        },
-      );
-      return previousBookmarkData;
-    },
-    onError: (_error, _toggle, context) =>
-      queryClient.setQueryData(
-        BookmarkCountFestivalKeys.byId(festival.festivalId),
-        context,
-      ),
-    onSettled: () =>
+    queryKey: BookmarkCountFestivalKeys.byId(festival.festivalId),
+    setQueryData: (data) => ({
+      isBookmarked: !data.isBookmarked,
+      bookmarkCount: !data.isBookmarked
+        ? data.bookmarkCount + 1
+        : data.bookmarkCount - 1,
+    }),
+    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: BookmarkCountFestivalKeys.byId(festival.festivalId),
       }),
+        queryClient.invalidateQueries({
+          queryKey: bookmarksKeys.all,
+        });
+    },
   });
 
   const [isOpen, setIsOpen] = useState<boolean>(false);

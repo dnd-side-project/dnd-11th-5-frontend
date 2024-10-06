@@ -1,5 +1,6 @@
 import { Session } from "next-auth";
-import { getSession } from "next-auth/react";
+
+import { getClientSideSession } from "@/lib/session";
 
 import { env } from "../env";
 import { getServerSideSession } from "./auth/auth";
@@ -20,11 +21,6 @@ export interface FiestaResponse<T> {
   status: string;
   message: string;
   data: T;
-}
-
-export async function getClientSideSession() {
-  const session = await getSession();
-  return session;
 }
 
 export type FiestaFetchOptions = Omit<RequestInit, "body">;

@@ -64,6 +64,8 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       if (params.trigger === "update") {
         params.token = {
           ...params.token,
+          userTypeId: params.session.user.userTypeId,
+          isProfileRegistered: params.session.user.isProfileRegistered,
         };
       }
 

@@ -2,7 +2,10 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { match } from "path-to-regexp";
 
-import { getServerSideSession } from "./apis/auth/auth";
+import { getRefreshToken, getServerSideSession } from "./apis/auth/auth";
+import { decodeToken } from "./lib/jwt";
+import { updateAuthSession } from "./lib/updateAuthSession";
+import { log } from "./utils";
 
 const serviceReadyRoute = ["/chat", "/map", "/calander"];
 const matchersForAuth = ["/mypage"];
@@ -14,10 +17,31 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
+  const session = await getServerSideSession();
+
+  if (session) {
+    if (
+      session.refreshToken &&
+      session.exp &&
+      session.exp * 1000 < Date.now()
+    ) {
+      log("******** token Expired ....");
+      const { accessToken, refreshToken } = await getRefreshToken(
+        session.refreshToken,
+      );
+
+      const decodedJWT = decodeToken(accessToken);
+
+      session.accessToken = accessToken;
+      session.refreshToken = refreshToken;
+      session.exp = decodedJWT?.exp;
+      await updateAuthSession(session);
+      log("******** token updated ....");
+    }
+  }
+
   // * 인증이 필요한 페이지 접근 제어!
   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
-    const session = await getServerSideSession();
-
     if (!!session && !session.user.isProfileRegistered) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
