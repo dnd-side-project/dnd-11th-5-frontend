@@ -1,5 +1,3 @@
-"use server";
-
 import { ClientError } from "@/apis/error";
 import instance from "@/apis/instance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
