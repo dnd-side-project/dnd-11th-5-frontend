@@ -120,8 +120,9 @@ const CreateFestivalSecondStep: FC<Props> = ({ moods, categories }) => {
         name="categoryIds"
         render={({ field: { onChange, value } }) => (
           <CategoryKeywordInput
-            moods={categories}
-            selectedMoods={value}
+            categories={categories}
+            label="주제"
+            selectedCategories={value}
             onChange={onChange}
           />
         )}
