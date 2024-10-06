@@ -3,22 +3,40 @@
 import * as NM from "@radix-ui/react-navigation-menu";
 import NextLink, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 
-const NavLink = ({ href, ...props }: LinkProps & { children: ReactNode }) => {
+import { cn } from "@/utils";
+
+const NavigationBarButton = ({
+  href,
+  disabled = false,
+  ...props
+}: LinkProps & { children: ReactNode; disabled?: boolean }) => {
   const pathname = usePathname();
   const isActive = href === pathname;
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (disabled) {
+      event.preventDefault();
+    }
+  };
+
   return (
-    <NM.Link asChild active={isActive} className="flex flex-col">
+    <NM.Link
+      asChild
+      active={isActive}
+      className={cn("flex flex-col", disabled && "cursor-not-allowed")}
+      aria-disabled={disabled}
+    >
       <NextLink
         href={href}
         prefetch
         className={`flex flex-col items-center justify-center gap-[3px] ${isActive ? "text-gray-scale-900" : "text-gray-scale-400"}`}
+        onClick={handleClick}
         {...props}
       />
     </NM.Link>
   );
 };
 
-export default NavLink;
+export default NavigationBarButton;
