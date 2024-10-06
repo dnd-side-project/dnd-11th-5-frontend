@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
 
-    !!session
+    return !!session
       ? NextResponse.redirect(new URL("/", request.url))
       : NextResponse.next();
   }
