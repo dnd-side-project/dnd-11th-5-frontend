@@ -13,9 +13,9 @@ const useInitializeUserProfile = () => {
 
       if (session) {
         const { user } = session;
-
-        setUser({ ...user });
+        return setUser(user);
       }
+      setUser(null);
     } catch (error) {
       log(error);
     }
