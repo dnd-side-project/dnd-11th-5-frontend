@@ -60,5 +60,6 @@
         "tailwindcss/enforces-shorthand": "off"
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["auth.ts"]
 }

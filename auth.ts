@@ -1,4 +1,5 @@
 import type { User } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
 
