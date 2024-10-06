@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useMemo, useState } from "react";
 
+import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
 import { deleteReview } from "@/apis/review/reviewDelete/reviewDelete";
 import { postReviewReport } from "@/apis/review/reviewReport/reviewReport";
 import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
@@ -31,10 +32,16 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
 
   const { mutate: deleteReviewMutate, isPending: isDeleting } = useMutation({
     mutationFn: async (reviewId: number) => await deleteReview(reviewId),
-    onSuccess: (data) =>
+    onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: reviewsKeys.all,
       }),
+        queryClient.invalidateQueries({
+          queryKey: topKeywordFestivalKeys.list({
+            festivalId: review.festivalId,
+          }),
+        });
+    },
   });
 
   const { mutate: postReviewMutate, isPending: isReporting } = useMutation({

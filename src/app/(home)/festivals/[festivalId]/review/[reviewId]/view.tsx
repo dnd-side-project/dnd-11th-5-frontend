@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
+import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
 import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
 import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
 import { getReview, updateReview } from "@/apis/review/reviews/reviews";
@@ -44,6 +45,9 @@ const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
     mutationFn: (payload: UpdateReviewSchemaType) => updateReview(payload),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: reviewsKeys.all });
+      queryClient.invalidateQueries({
+        queryKey: topKeywordFestivalKeys.list({ festivalId }),
+      });
     },
     onSettled: () => router.replace(`/festivals/${festivalId}`),
   });

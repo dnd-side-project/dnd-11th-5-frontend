@@ -1,5 +1,5 @@
 export type TopKeywordParameter = {
-  festivalId: number;
+  festivalId: number | string;
   size?: number;
 };
 

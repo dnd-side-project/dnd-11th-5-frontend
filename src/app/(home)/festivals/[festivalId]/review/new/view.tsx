@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
+import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
 import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
 import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
 import { postReviews } from "@/apis/review/reviews/reviews";
@@ -35,7 +36,10 @@ const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
     mutationFn: async (data: NewReviewSchemaType) => await postReviews(data),
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: reviewsKeys.list({ festivalId: Number(festivalId) }),
+        queryKey: reviewsKeys.list({ festivalId }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: topKeywordFestivalKeys.list({ festivalId }),
       });
     },
   });

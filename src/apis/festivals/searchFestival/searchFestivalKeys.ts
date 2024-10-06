@@ -5,7 +5,7 @@ const defaultParams: SearchFestivalParameter = { query: "" };
 export const SearchFestivalKeys = {
   all: ["searchFestival"] as const,
   list: (params: SearchFestivalParameter = defaultParams) => [
-    SearchFestivalKeys.all,
+    ...SearchFestivalKeys.all,
     params,
   ],
 };
