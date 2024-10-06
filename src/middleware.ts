@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
     const session = await getServerSideSession();
 
-    if (!!session && !session.isProfileRegistered) {
+    if (!!session && !session.user.isProfileRegistered) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
 
@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
   if (matchersForSignIn.includes(request.nextUrl.pathname)) {
     const session = await getServerSideSession();
 
-    if (!!session && !session?.isProfileRegistered) {
+    if (!!session && !session?.user.isProfileRegistered) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
 

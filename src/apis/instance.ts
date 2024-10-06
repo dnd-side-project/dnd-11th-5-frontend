@@ -27,7 +27,7 @@ export async function getClientSideSession() {
   return session;
 }
 
-type FiestaFetchOptions = Omit<RequestInit, "body">;
+export type FiestaFetchOptions = Omit<RequestInit, "body">;
 
 export class CreateFiestaFetch {
   private baseUrl: string;
@@ -62,7 +62,6 @@ export class CreateFiestaFetch {
           Authorization: `Bearer ${userSession.accessToken}`,
         };
       }
-
       const response = await fetch(this.baseUrl + url, finalOptions);
       if (!response.ok) {
         const errorData = await response.json();
@@ -71,8 +70,6 @@ export class CreateFiestaFetch {
       }
       return await response.json();
     } catch (error: unknown) {
-      console.error(error);
-
       if (error instanceof ServerError) {
         // TODO: Server Error
         throw error;
