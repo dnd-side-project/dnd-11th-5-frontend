@@ -1,36 +1,33 @@
 "use client";
-
 import { FC } from "react";
 
-import { FestivalCategory } from "@/apis/onboarding/onboardingType";
+import { FestivalCompanion } from "@/apis/onboarding/onboardingType";
 import { cn } from "@/utils";
 
 import { BasicChip } from "../../Chip";
 
 interface Props {
-  categories: Array<FestivalCategory>;
-  selectedCategories: Array<number>;
-  onChange: (keyword: Array<number>) => void;
-  maxCount?: number;
+  companions: Array<FestivalCompanion>;
   isPrimaryLabel?: boolean;
+  selectedCompanions: Array<number>;
+  onChange: (keyword: Array<number>) => void;
   label?: string;
 }
 
-const CategoryKeywordInput: FC<Props> = ({
-  categories,
-  label = "주제",
+const CompanionKeywordInput: FC<Props> = ({
+  companions,
   isPrimaryLabel = false,
-  selectedCategories,
-  maxCount = 2,
+  selectedCompanions,
   onChange,
+  label = "페스티벌 일행",
 }) => {
   const handleHandleToggle = (isSelected: boolean, id: number) => {
     if (isSelected) {
-      onChange(selectedCategories.filter((m) => m !== id));
+      onChange(selectedCompanions.filter((m) => m !== id));
       return;
     }
 
-    onChange([...selectedCategories, id]);
+    onChange([...selectedCompanions, id]);
   };
 
   return (
@@ -46,20 +43,20 @@ const CategoryKeywordInput: FC<Props> = ({
         >
           {label}
         </label>
-        <span className="text-caption1-regular text-gray-300">최대 2개</span>
       </div>
       <div className="flex w-full flex-wrap gap-[8px]">
-        {categories.map((mood) => {
-          const { categoryId, name } = mood;
-          const isSelected = selectedCategories.some((id) => id === categoryId);
+        {companions.map((companion) => {
+          const { companionId, companionType } = companion;
+          const isSelected = selectedCompanions.some(
+            (id) => id === companionId,
+          );
           return (
             <BasicChip
-              key={categoryId}
+              key={companionId}
               type="button"
-              label={name}
+              label={companionType}
               active={isSelected}
-              disabled={selectedCategories.length >= maxCount && !isSelected}
-              onClick={() => handleHandleToggle(isSelected, categoryId)}
+              onClick={() => handleHandleToggle(isSelected, companionId)}
             />
           );
         })}
@@ -68,4 +65,4 @@ const CategoryKeywordInput: FC<Props> = ({
   );
 };
 
-export default CategoryKeywordInput;
+export default CompanionKeywordInput;

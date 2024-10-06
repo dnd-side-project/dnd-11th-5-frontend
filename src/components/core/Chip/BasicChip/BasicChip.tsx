@@ -7,6 +7,7 @@ interface Props extends ComponentPropsWithoutRef<"button"> {
   active?: boolean;
   label: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const BasicChip: FC<Props> = ({
@@ -14,6 +15,7 @@ const BasicChip: FC<Props> = ({
   label,
   className,
   onClick,
+  disabled,
 }) => {
   return (
     <button
@@ -27,6 +29,7 @@ const BasicChip: FC<Props> = ({
         className,
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
     </button>
