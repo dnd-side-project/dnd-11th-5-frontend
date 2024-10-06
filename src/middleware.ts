@@ -4,9 +4,16 @@ import { match } from "path-to-regexp";
 
 import { getServerSideSession } from "./apis/auth/auth";
 
+const serviceReadyRoute = ["/chat", "/map", "/calander"];
 const matchersForAuth = ["/mypage"];
 const matchersForSignIn = ["/auth/sign-in"];
+
 export async function middleware(request: NextRequest) {
+  // * 아직 서비스 준비중인 페이지
+  if (serviceReadyRoute.includes(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
   // * 인증이 필요한 페이지 접근 제어!
   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
     const session = await getServerSideSession();

@@ -12,23 +12,36 @@ import { cn } from "@/utils/cn";
 import NavigationBarButton from "./NavigationBarButton";
 
 const navigations = [
-  { name: "홈", slug: "/", icon: <HomeIcon width={20} height={20} /> },
+  {
+    name: "홈",
+    slug: "/",
+    icon: <HomeIcon width={20} height={20} />,
+    disabled: false,
+  },
   {
     name: "캘린더",
     slug: "/calendar",
     icon: <CalendarCheckIcon width={20} height={20} />,
+    disabled: true,
   },
   {
     name: "지역",
     slug: "/map",
     icon: <PinLocationIcon width={20} height={20} />,
+    disabled: true,
   },
   {
     name: "채팅",
     slug: "/chat",
     icon: <ChatBubbleDotsIcon width={20} height={20} />,
+    disabled: true,
   },
-  { name: "MY", slug: "/mypage", icon: <UserIcon width={20} height={20} /> },
+  {
+    name: "MY",
+    slug: "/mypage",
+    icon: <UserIcon width={20} height={20} />,
+    disabled: false,
+  },
 ];
 
 const NavigationBar = () => {
@@ -40,15 +53,17 @@ const NavigationBar = () => {
         "bg-gray-scale-0",
       )}
     >
-      <NM.List className="flex  h-full w-full  items-center justify-between ">
-        {navigations.map((nav) => (
+      <NM.List className="flex h-full w-full items-center justify-between">
+        {navigations.map(({ name, slug, icon, disabled }) => (
           <NM.Item
-            key={nav.name}
-            className="flex w-[36px] items-center justify-center text-caption1-medium-nav"
+            key={name}
+            className={cn(
+              `flex w-[36px] items-center justify-center text-caption1-medium-nav`,
+            )}
           >
-            <NavigationBarButton href={nav.slug}>
-              {nav.icon}
-              {nav.name}
+            <NavigationBarButton href={slug} disabled={disabled}>
+              {icon}
+              {name}
             </NavigationBarButton>
           </NM.Item>
         ))}
