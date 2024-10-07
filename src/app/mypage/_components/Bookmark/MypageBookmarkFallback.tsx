@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-const MypageFallback = () => {
+const MypageBookmarkFallback = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-[8px] rounded-[12px] border-[1px] border-gray-scale-200 bg-gray-scale-0">
+    <div className="flex h-[400px] w-full flex-col items-center justify-center gap-[8px] rounded-[12px] border-[1px] border-gray-scale-200 bg-gray-scale-0">
       <Image
         src="/images/fallbackLogo.png"
         alt="service"
@@ -16,4 +16,4 @@ const MypageFallback = () => {
   );
 };
 
-export default MypageFallback;
+export default MypageBookmarkFallback;

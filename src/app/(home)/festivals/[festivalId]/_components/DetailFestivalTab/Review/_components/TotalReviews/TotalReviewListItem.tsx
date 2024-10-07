@@ -128,7 +128,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
       </p>
       <div className="flex w-full justify-between">
         <div className="flex gap-[8px] overflow-auto scrollbar-hide">
-          {review.keywords.splice(0, 2).map((keyword) => (
+          {review.keywords.map((keyword) => (
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
         </div>

@@ -1,24 +1,17 @@
+import { Session } from "next-auth";
 import { useEffect } from "react";
 
-import { getClientSideSession } from "@/apis/instance";
 import { useUserStore } from "@/store/user";
-import { log } from "@/utils";
 
-const useInitializeUserProfile = () => {
+const useInitializeUserProfile = (session: Session | null) => {
   const setUser = useUserStore((state) => state.updateUser);
 
   const initializeUserProfile = async () => {
-    try {
-      const session = await getClientSideSession();
-
-      if (session) {
-        const { user } = session;
-        return setUser(user);
-      }
-      setUser(null);
-    } catch (error) {
-      log(error);
+    if (session) {
+      const { user } = session;
+      return setUser(user);
     }
+    setUser(null);
   };
 
   useEffect(() => {
