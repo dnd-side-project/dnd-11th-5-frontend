@@ -1,19 +1,30 @@
 "use client";
 
-import { Session } from "next-auth";
-import { SessionProvider as AuthProvider } from "next-auth/react";
-import { FC } from "react";
+import { getSession, SessionProvider as AuthProvider } from "next-auth/react";
+import { FC, useEffect } from "react";
 
-import useInitializeUserProfile from "@/hooks/session/useInitializeUserProfile";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   children: React.ReactNode;
-  session: Session | null;
 }
 
-const SessionProvider: FC<Props> = ({ children, session }) => {
-  useInitializeUserProfile(session);
-  return <AuthProvider session={session}>{children}</AuthProvider>;
+const SessionProvider: FC<Props> = ({ children }) => {
+  const setUser = useUserStore((state) => state.updateUser);
+
+  const initializeUserProfile = async () => {
+    const session = await getSession();
+    if (session) {
+      const { user } = session;
+      return setUser(user);
+    }
+    setUser(null);
+  };
+
+  useEffect(() => {
+    initializeUserProfile();
+  }, []);
+  return <AuthProvider>{children}</AuthProvider>;
 };
 
 export default SessionProvider;

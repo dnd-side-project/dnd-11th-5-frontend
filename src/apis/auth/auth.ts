@@ -34,7 +34,7 @@ export const getRefreshToken = async (refreshToken: string) => {
   return await instance
     .post<RefreshTokenResponse>(endpoint, undefined, {
       headers: {
-        refreshToken: `Bearer ${refreshToken}`,
+        refreshToken: refreshToken,
       },
     })
     .then((res) => res.data);

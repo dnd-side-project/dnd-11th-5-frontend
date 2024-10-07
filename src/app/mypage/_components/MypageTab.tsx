@@ -1,13 +1,19 @@
 "use client";
 
 import * as Tabs from "@radix-ui/react-tabs";
+import dynamic from "next/dynamic";
 import { FC } from "react";
 
+import { BadgesResponse } from "@/apis/user/badges/badgesType";
+
 import MypageBookmark from "./Bookmark/MyPageScrab";
+const MypageBadges = dynamic(() => import("./Badges/MypageBadges"));
 
-interface Props {}
+interface Props {
+  badges: BadgesResponse;
+}
 
-const MypageTab: FC<Props> = ({}) => {
+const MypageTab: FC<Props> = ({ badges }) => {
   const TabList = [
     {
       name: "스크랩",
@@ -15,7 +21,7 @@ const MypageTab: FC<Props> = ({}) => {
     },
     {
       name: "활동뱃지",
-      contentComponent: <h1>활동뱃지</h1>,
+      contentComponent: <MypageBadges badges={badges} />,
     },
   ];
 

@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { ReactNode } from "react";
 
-import { auth } from "@/auth";
 import { env } from "@/env";
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import {
@@ -27,12 +26,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const session = await auth();
-
   return (
     <html lang="ko" className={Pretendard.variable}>
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
-        <SessionProvider session={session}>
+        <SessionProvider>
           <MSWProvider>
             <ReactQueryProvider>
               <MobileLayout>
