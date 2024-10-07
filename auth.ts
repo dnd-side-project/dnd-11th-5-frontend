@@ -20,6 +20,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   pages: {
     signIn: "/auth/sign-in",
     signOut: "/auth/sign-in",
+    error: "/auth/sign-in",
   },
   callbacks: {
     async signIn() {
