@@ -16,25 +16,6 @@ export async function middleware(request: NextRequest) {
 
   const session = await getServerSideSession();
 
-  // if (session) {
-  //   if (
-  //     session.refreshToken &&
-  //     session.exp &&
-  //     session.exp * 1000 < Date.now()
-  //   ) {
-  //     const { accessToken, refreshToken } = await getRefreshToken(
-  //       session.refreshToken,
-  //     );
-
-  //     const decodedJWT = decodeToken(accessToken);
-
-  //     session.accessToken = accessToken;
-  //     session.refreshToken = refreshToken;
-  //     session.exp = decodedJWT?.exp;
-  //     await updateAuthSession(session);
-  //   }
-  // }
-
   // * 인증이 필요한 페이지 접근 제어!
   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
     if (!!session && !session.user.isProfileRegistered) {
