@@ -42,31 +42,35 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
     async jwt(params) {
       let userResponse: UserMeResponse | null = null;
 
-      // * 토큰 재발급
-      if (
-        params.token.refreshToken &&
-        params.token.exp &&
-        params.token.exp * 1000 < Date.now()
-      ) {
-        const { accessToken, refreshToken } = await getRefreshToken(
-          params.token.refreshToken,
-        );
+      // // * 토큰 재발급
 
-        const decodedJWT = decodeToken(accessToken);
+      // if (!!params.session.accessToken) {
+      //   const decodedJWT = decodeToken(params.session.accessToken);
 
-        return {
-          ...params.token,
-          accessToken,
-          refreshToken,
-          exp: decodedJWT?.exp,
-        };
-      }
+      //   if (
+      //     !!params.token.refreshToken &&
+      //     !!decodedJWT?.exp &&
+      //     decodedJWT?.exp * 1000 < Date.now()
+      //   ) {
+      //     console.log("토큰 재발급");
+      //     const { accessToken, refreshToken } = await getRefreshToken(
+      //       params.token.refreshToken,
+      //     );
+
+      //     const decodedJWT = decodeToken(accessToken);
+
+      //     return {
+      //       ...params.token,
+      //       accessToken,
+      //       refreshToken,
+      //       exp: decodedJWT?.exp,
+      //     };
+      //   }
+      // }
 
       if (params.trigger === "update") {
         params.token = {
           ...params.token,
-          userTypeId: params.session.user.userTypeId,
-          isProfileRegistered: params.session.user.isProfileRegistered,
         };
       }
 
@@ -98,6 +102,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
 
       return { ...params.token, ...params.session };
     },
+
     async session({ session, token }) {
       if (token?.accessToken) {
         const decodedJWT = decodeToken(token.accessToken ?? "");
