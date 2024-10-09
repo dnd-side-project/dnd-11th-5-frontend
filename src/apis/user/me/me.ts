@@ -1,7 +1,6 @@
 "use server";
 
 import instance, { FiestaFetchOptions } from "@/apis/instance";
-import { unstable_update } from "@/auth";
 import { FIESTA_ENDPOINTS } from "@/config";
 import { ProfileMeUpdateSchemaType } from "@/validations/ProfileUpdateMeSchema";
 
@@ -21,8 +20,6 @@ export const updateMe = async (body: ProfileMeUpdateSchemaType) => {
     endpoint,
     body,
   );
-  const user = await getMe();
-  unstable_update({ user });
 
   return data;
 };
