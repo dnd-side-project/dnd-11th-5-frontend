@@ -4,7 +4,6 @@ type UserMeResponse = {
   nickname: string;
   statusMessage: string;
   profileImage: string;
-  isProfileCreated?: boolean;
   isProfileRegistered: boolean;
   userTypeId: number;
 };
