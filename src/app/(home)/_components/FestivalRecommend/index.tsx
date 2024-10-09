@@ -1,23 +1,23 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { Session } from "next-auth";
 import { FC } from "react";
 
 import { getRecommendFestival } from "@/apis/festivals/recommendFestival/recommendFestival";
 import { recommendFestivalKeys } from "@/apis/festivals/recommendFestival/recommendFestivalKeys";
 import RecommendFestivalList from "@/components/Swiper/RecommendFestival/RecommendFestival";
+import { useUserStore } from "@/store/user";
 
 import RecommendFestivalFallbackUI from "./RecommendFestivalFallbackUI";
 import RecommendFestivalSkeleton from "./RecommendFestivalSkeleton";
 
-interface Props {
-  session: Session | null;
-}
+interface Props {}
 
-const RecommendFestival: FC<Props> = ({ session }) => {
+const RecommendFestival: FC<Props> = ({}) => {
+  const user = useUserStore((state) => state.user);
+
   const { data: recommendFestivals, isLoading } = useQuery({
-    queryKey: recommendFestivalKeys.user(session?.user.userId ?? 0),
+    queryKey: recommendFestivalKeys.user(user?.userId ?? 0),
     queryFn: () => getRecommendFestival(),
     retry: false,
   });
@@ -26,16 +26,11 @@ const RecommendFestival: FC<Props> = ({ session }) => {
     return <RecommendFestivalSkeleton />;
   }
 
-  if (!session) {
+  if (!user) {
     return <RecommendFestivalFallbackUI />;
   }
 
-  return (
-    <RecommendFestivalList
-      recommendFestivals={recommendFestivals}
-      user={session.user}
-    />
-  );
+  return <RecommendFestivalList recommendFestivals={recommendFestivals} />;
 };
 
 export default RecommendFestival;
