@@ -6,8 +6,11 @@ import { FC } from "react";
 
 import { BadgesResponse } from "@/apis/user/badges/badgesType";
 
+import RecommendFestivalSkeleton from "./Badges/MypageBadgeSkeleton";
 import MypageBookmark from "./Bookmark/MyPageScrab";
-const MypageBadges = dynamic(() => import("./Badges/MypageBadges"));
+const MypageBadges = dynamic(() => import("./Badges/MypageBadges"), {
+  loading: () => <RecommendFestivalSkeleton />,
+});
 
 interface Props {
   badges: BadgesResponse;

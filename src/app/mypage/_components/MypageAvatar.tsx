@@ -1,5 +1,4 @@
 import * as Avatar from "@radix-ui/react-avatar";
-import Image from "next/image";
 import { User } from "next-auth";
 import React, { FC } from "react";
 
@@ -34,7 +33,7 @@ const MypageAvatar: FC<Props> = ({ user }) => {
           alt={user?.nickname ?? "피에스타"}
         />
         <Avatar.Fallback className="AvatarFallback">
-          <Image
+          <Avatar.Image
             width={76}
             height={76}
             src={"/images/fiestaLogo.png"}

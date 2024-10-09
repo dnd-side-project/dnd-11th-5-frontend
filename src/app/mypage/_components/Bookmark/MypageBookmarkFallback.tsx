@@ -8,6 +8,7 @@ const MypageBookmarkFallback = () => {
         alt="service"
         width={76}
         height={76}
+        priority
       />
       <span className="text-body2-medium text-gray-scale-600">
         아직 스크랩한 페스티벌이 없어요!

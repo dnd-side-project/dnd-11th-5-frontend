@@ -1,20 +1,34 @@
 "use client";
 
-import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 
+import { getMe, updateMe } from "@/apis/user/me/me";
 import { BasicButton } from "@/components/core/Button";
 import { TextInput } from "@/components/core/Input";
+import { useUserStore } from "@/store/user";
+import {
+  ProfileMeUpdateSchema,
+  ProfileMeUpdateSchemaType,
+} from "@/validations/ProfileUpdateMeSchema";
 
 const MypageSettingsProfile = () => {
-  const { control, handleSubmit } = useForm({
+  const updateUser = useUserStore((state) => state.updateUser);
+  const user = useUserStore((state) => state.user);
+
+  const { control, handleSubmit } = useForm<ProfileMeUpdateSchemaType>({
     values: {
-      nickname: "",
-      statusMessage: "",
+      nickname: user?.nickname ?? "",
+      statusMessage: user?.statusMessage ?? "",
     },
+    resolver: zodResolver(ProfileMeUpdateSchema),
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: ProfileMeUpdateSchemaType) => {
+    await updateMe(data);
+    const userInfo = await getMe();
+    updateUser(userInfo);
+  };
 
   return (
     <form
