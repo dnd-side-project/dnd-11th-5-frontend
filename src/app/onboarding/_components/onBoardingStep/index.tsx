@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { FC, ReactElement, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -11,11 +12,13 @@ import {
   FestivalPriority,
   OnboardingModel,
 } from "@/apis/onboarding/onboardingType";
-import { postProfile } from "@/apis/user/profile/profile";
+import { getMe } from "@/apis/user/me/me";
+import { postProfile } from "@/apis/user/profile/postProfile";
 import { ProgressBar } from "@/components/core/Progress";
 import { ONBOARDING_SETTING } from "@/config";
 import useStep from "@/hooks/useStep";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
+import { useUserStore } from "@/store/user";
 import { extractKeyFromArray, generateUrlWithParams } from "@/utils";
 import { delay } from "@/utils/delay";
 
@@ -39,6 +42,8 @@ const OnBoardingContainer: FC<Props> = ({
   moods,
 }) => {
   const router = useRouter();
+  const { update } = useSession();
+  const setUser = useUserStore((state) => state.updateUser);
   const { trigger, handleSubmit } = useFormContext<OnboardingModel>();
 
   const { currentStep, handleNextStep, handlePrevStep } = useStep(
@@ -57,9 +62,15 @@ const OnBoardingContainer: FC<Props> = ({
       companionIds: extractKeyFromArray(data.companions, "companionId"),
       priorityIds: extractKeyFromArray(data.priorities, "priorityId"),
     };
+    const response = await postProfile(payload);
+    const user = await getMe();
 
-    const [profile] = await Promise.all([postProfile(payload), delay(5000)]);
-    router.replace(generateUrlWithParams("/onboarding/complete", profile));
+    await delay(5000);
+
+    setUser(user);
+    update({ user });
+
+    router.replace(generateUrlWithParams("/onboarding/complete", response));
   };
 
   const renderCurrentStep: {

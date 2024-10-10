@@ -3,6 +3,7 @@ const FIESTA_ENDPOINTS = {
     profile: "/users/profile",
     bookmarks: "/users/bookmarks",
     badges: "/users/badges",
+    onboarding_info: "/users/onboarding-info",
     reissue: "/users/reissue",
     logout: "/users/logout",
     unlink: "/users/unlink",

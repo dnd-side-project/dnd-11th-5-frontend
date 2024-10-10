@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -10,6 +11,8 @@ import {
   FestivalMood,
   FestivalPriority,
 } from "@/apis/onboarding/onboardingType";
+import { OnboardingInfoResponse } from "@/apis/user/onboarding-info/onboarding-infoType";
+import { patchProfile } from "@/apis/user/profile/patchProfile";
 import { BasicButton } from "@/components/core/Button";
 import {
   CategoryKeywordInput,
@@ -27,6 +30,7 @@ interface Props {
   companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
+  userOnboardingInfo: OnboardingInfoResponse;
 }
 
 const MypageSettingsKeywords: FC<Props> = ({
@@ -34,19 +38,22 @@ const MypageSettingsKeywords: FC<Props> = ({
   companions,
   priorities,
   moods,
+  userOnboardingInfo,
 }) => {
+  const router = useRouter();
   const { handleSubmit, control } = useForm<ProfileUpdateSchemaType>({
-    defaultValues: {
-      categoryIds: [],
-      moodIds: [],
-      companionIds: [],
-      priorityIds: [],
+    values: {
+      categoryIds: userOnboardingInfo.categoryIds,
+      moodIds: userOnboardingInfo.moodIds,
+      companionIds: userOnboardingInfo.companionIds,
+      priorityIds: userOnboardingInfo.priorityIds,
     },
     resolver: zodResolver(ProfileUpdateSchema),
   });
 
-  const onSubmit = (data: ProfileUpdateSchemaType) => {
-    console.log(data);
+  const onSubmit = async (data: ProfileUpdateSchemaType) => {
+    await patchProfile(data);
+    router.refresh();
   };
 
   return (

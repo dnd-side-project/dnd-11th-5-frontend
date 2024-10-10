@@ -1,15 +1,11 @@
-"use client";
-
 import Link from "next/link";
 
 import { BasicButton } from "@/components/core/Button";
-import useUpdateUserSession from "@/hooks/session/useUpdateUserSession";
 
 import OnboardingCompleteConfetti from "./_components/OnboardingCompleteConfetti";
 import OnboardingImageDownloadButton from "./_components/OnboardingImageDownloadButton";
 
 function OnBoardingCompleteView() {
-  useUpdateUserSession();
   return (
     <section className="relative flex h-full w-full flex-col items-center justify-between gap-[30px] px-[16px] pb-[38px]">
       <div />

@@ -12,6 +12,7 @@ const MypageBadgeItem: FC<Props> = ({ badge }) => {
   return (
     <div className="flex w-auto flex-col items-center justify-center gap-[6px]">
       <Image
+        priority
         className={isAcquired}
         src={badge.imageUrl}
         alt={badge.badgeName}

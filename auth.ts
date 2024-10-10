@@ -39,77 +39,78 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       }
       return baseUrl;
     },
-    async jwt(params) {
-      let userResponse: UserMeResponse | null = null;
+    async jwt({ token, session, user, trigger, account }) {
+      // if (!!token.accessToken) {
+      //   const decodedJWT = decodeToken(token.accessToken);
 
-      // * 토큰 재발급
-      if (
-        params.token.refreshToken &&
-        params.token.exp &&
-        params.token.exp * 1000 < Date.now()
-      ) {
-        const { accessToken, refreshToken } = await getRefreshToken(
-          params.token.refreshToken,
-        );
+      //   if (
+      //     !!token.refreshToken &&
+      //     !!decodedJWT?.exp &&
+      //     decodedJWT?.exp * 1000 < Date.now()
+      //   ) {
+      //     console.log("토큰 재발급");
+      //     const { accessToken, refreshToken } = await getRefreshToken(
+      //       token.refreshToken,
+      //     );
 
-        const decodedJWT = decodeToken(accessToken);
+      //     const decodedJWT = decodeToken(accessToken);
 
-        return {
-          ...params.token,
-          accessToken,
-          refreshToken,
-          exp: decodedJWT?.exp,
+      //     return {
+      //       ...token,
+      //       accessToken,
+      //       refreshToken,
+      //       exp: decodedJWT?.exp,
+      //     };
+      //   }
+      // }
+
+      if (trigger === "update") {
+        token.user = {
+          ...session.user,
         };
       }
 
-      if (params.trigger === "update") {
-        params.token = {
-          ...params.token,
-          userTypeId: params.session.user.userTypeId,
-          isProfileRegistered: params.session.user.isProfileRegistered,
-        };
-      }
-
-      if (params.user) {
-        if (params.account && params.account.access_token) {
+      if (user) {
+        if (account && account.access_token) {
           const body: SocialLoginRequest = {
-            id: params.user.id as string,
-            email: params.user.email as string,
-            accessToken: params.account.access_token as string,
+            id: user.id as string,
+            email: user.email as string,
+            accessToken: account.access_token as string,
           };
 
-          params.token = await postOauthLogin(body);
-          userResponse = await getMe({
+          const { accessToken, refreshToken, isProfileRegistered } =
+            await postOauthLogin(body);
+
+          const userResponse = await getMe({
             headers: {
-              Authorization: `Bearer ${params.token.accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           });
+
+          token.user = { ...user, ...userResponse };
+          token = {
+            ...token,
+            refreshToken,
+            accessToken,
+          };
         }
-
-        const decodedJWT = decodeToken(params.token.accessToken ?? "");
-
-        return {
-          ...params.user,
-          ...userResponse,
-          ...params.token,
-          exp: decodedJWT?.exp,
-        };
       }
 
-      return { ...params.token, ...params.session };
+      return token;
     },
+
     async session({ session, token }) {
       if (token?.accessToken) {
         const decodedJWT = decodeToken(token.accessToken ?? "");
         session.user = {
           ...session.user,
-          userId: token.userId as number,
-          email: token.email as string,
-          nickname: token.nickname as string,
-          statusMessage: token.statusMessage as string,
-          profileImage: token.profileImage as string,
-          userTypeId: token.userTypeId as number,
-          isProfileRegistered: token.isProfileRegistered as boolean,
+          userId: token.user.userId as number,
+          email: token.user.email as string,
+          nickname: token.user.nickname as string,
+          statusMessage: token.user.statusMessage as string,
+          profileImage: token.user.profileImage as string,
+          userTypeId: token.user.userTypeId as number,
+          isProfileRegistered: token.user.isProfileRegistered as boolean,
         };
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
@@ -117,6 +118,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
         session.iat = token.iat;
         session.sub = token.sub;
       }
+
       return session;
     },
   },
@@ -142,7 +144,6 @@ declare module "next-auth" {
     user: User & UserMeResponse;
     accessToken?: string;
     refreshToken?: string;
-    isProfileRegistered?: boolean;
     exp?: number;
     iat?: number;
     sub?: string;
@@ -150,14 +151,21 @@ declare module "next-auth" {
 }
 declare module "next-auth/jwt" {
   interface JWT {
-    userId?: number;
-    email?: string;
-    nickname?: string;
-    statusMessage?: string;
-    profileImage?: string;
-    userTypeId?: number;
+    user: {
+      userId?: number;
+      email?: string;
+      nickname?: string;
+      statusMessage?: string;
+      profileImage?: string;
+      userTypeId?: number;
+      accessToken?: string;
+      refreshToken?: string;
+      isProfileRegistered?: boolean;
+    };
     accessToken?: string;
     refreshToken?: string;
-    isProfileRegistered?: boolean;
+    exp?: number;
+    iat?: number;
+    sub?: string;
   }
 }

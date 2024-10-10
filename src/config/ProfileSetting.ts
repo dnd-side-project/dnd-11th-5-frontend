@@ -1,0 +1,4 @@
+export const PROFILE_SETTINGS = {
+  NICKNAME_MAX: 10,
+  STATUS_MESSAGE: 30,
+};

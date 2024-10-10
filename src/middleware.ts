@@ -8,6 +8,8 @@ const serviceReadyRoute = ["/chat", "/map", "/calander"];
 const matchersForAuth = ["/mypage"];
 const matchersForSignIn = ["/auth/sign-in"];
 
+const onBoardingCheck = ["/onboarding"];
+
 export async function middleware(request: NextRequest) {
   // * 아직 서비스 준비중인 페이지
   if (serviceReadyRoute.includes(request.nextUrl.pathname)) {
@@ -16,24 +18,11 @@ export async function middleware(request: NextRequest) {
 
   const session = await getServerSideSession();
 
-  // if (session) {
-  //   if (
-  //     session.refreshToken &&
-  //     session.exp &&
-  //     session.exp * 1000 < Date.now()
-  //   ) {
-  //     const { accessToken, refreshToken } = await getRefreshToken(
-  //       session.refreshToken,
-  //     );
-
-  //     const decodedJWT = decodeToken(accessToken);
-
-  //     session.accessToken = accessToken;
-  //     session.refreshToken = refreshToken;
-  //     session.exp = decodedJWT?.exp;
-  //     await updateAuthSession(session);
-  //   }
-  // }
+  if (onBoardingCheck.includes(request.nextUrl.pathname)) {
+    if (session?.user.isProfileRegistered) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 
   // * 인증이 필요한 페이지 접근 제어!
   if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
