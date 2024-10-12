@@ -40,29 +40,26 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       return baseUrl;
     },
     async jwt({ token, session, user, trigger, account }) {
-      // if (!!token.accessToken) {
-      //   const decodedJWT = decodeToken(token.accessToken);
+      if (!!token.accessToken) {
+        const decodedJWT = decodeToken(token.accessToken);
 
-      //   if (
-      //     !!token.refreshToken &&
-      //     !!decodedJWT?.exp &&
-      //     decodedJWT?.exp * 1000 < Date.now()
-      //   ) {
-      //     console.log("토큰 재발급");
-      //     const { accessToken, refreshToken } = await getRefreshToken(
-      //       token.refreshToken,
-      //     );
+        if (
+          !!token.refreshToken &&
+          !!decodedJWT?.exp &&
+          decodedJWT?.exp * 1000 < Date.now()
+        ) {
+          console.log("토큰 재발급");
+          const { accessToken, refreshToken } = await getRefreshToken(
+            token.refreshToken,
+          );
 
-      //     const decodedJWT = decodeToken(accessToken);
+          const decodedJWT = decodeToken(accessToken);
 
-      //     return {
-      //       ...token,
-      //       accessToken,
-      //       refreshToken,
-      //       exp: decodedJWT?.exp,
-      //     };
-      //   }
-      // }
+          token.accessToken = accessToken;
+          token.refreshToken = refreshToken;
+          token.exp = decodedJWT?.exp;
+        }
+      }
 
       if (trigger === "update") {
         token.user = {

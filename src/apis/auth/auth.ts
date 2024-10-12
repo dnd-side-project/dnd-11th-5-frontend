@@ -9,6 +9,7 @@ import {
   SocialLoginRequest,
   SocialLoginResponse,
 } from "./authType";
+import { env } from "@/env";
 
 const ENDPOINT = FIESTA_ENDPOINTS.users;
 
@@ -29,15 +30,20 @@ export const signInWithKakao = async () => {
   return session;
 };
 
-export const getRefreshToken = async (refreshToken: string) => {
+export const getRefreshToken = async (
+  refreshToken: string,
+): Promise<RefreshTokenResponse> => {
   const endpoint = ENDPOINT.reissue;
-  return await instance
-    .post<RefreshTokenResponse>(endpoint, undefined, {
-      headers: {
-        refreshToken: refreshToken,
-      },
-    })
-    .then((res) => res.data);
+
+  const response = await fetch(env.NEXT_PUBLIC_BASE_URL + endpoint, {
+    method: "POST",
+    headers: {
+      refreshToken,
+    },
+    cache: "no-store",
+  }).then((res) => res.json());
+
+  return response;
 };
 
 export const getServerSideSession = async () => {
