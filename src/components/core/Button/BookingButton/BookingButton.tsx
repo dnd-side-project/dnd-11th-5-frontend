@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Session } from "next-auth";
 import { FC, useMemo } from "react";
 
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
@@ -12,14 +11,12 @@ interface Props {
   label?: string;
   className?: string;
   festival: DetailFestivalResponse;
-  session: Session | null;
 }
 
 const BookingButton: FC<Props> = ({
   className,
   label = "예매하기",
   festival,
-  session,
 }) => {
   const linkInfo = useMemo(() => {
     const { homepageUrl, ticketLink, instagramUrl } = festival;
@@ -66,7 +63,7 @@ const BookingButton: FC<Props> = ({
       >
         <BasicButton type="button" label={linkInfo.label} />
       </Link>
-      <ScrabButton festival={festival} session={session} />
+      <ScrabButton festival={festival} />
     </div>
   );
 };

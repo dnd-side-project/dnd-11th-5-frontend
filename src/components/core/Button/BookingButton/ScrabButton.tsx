@@ -1,7 +1,6 @@
 "use client";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Session } from "next-auth";
 import { FC, useState } from "react";
 
 import { getFestivalBookmark } from "@/apis/festivals/bookmarkCountFestival/bookmarkCountFestival";
@@ -12,13 +11,14 @@ import { bookmarksKeys } from "@/apis/user/bookmarks/bookmarksKeys";
 import LoginRequiredDialog from "@/components/Dialog/LoginRequiredDialog/LoginRequiredDialog";
 import { ScrabIcon } from "@/components/icons";
 import { useOptimisticMutation } from "@/hooks/useOptimisticMutation";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   festival: DetailFestivalResponse;
-  session: Session | null;
 }
 
-const ScrabButton: FC<Props> = ({ festival, session }) => {
+const ScrabButton: FC<Props> = ({ festival }) => {
+  const user = useUserStore((state) => state.user);
   const { data: bookmark, isLoading } = useQuery({
     queryKey: BookmarkCountFestivalKeys.byId(festival.festivalId),
     queryFn: () => getFestivalBookmark(festival.festivalId),
@@ -54,7 +54,7 @@ const ScrabButton: FC<Props> = ({ festival, session }) => {
   // );
 
   const handleBookmarkToggle = () => {
-    if (!session) {
+    if (!user) {
       setIsOpen(true);
       return;
     }
@@ -79,7 +79,7 @@ const ScrabButton: FC<Props> = ({ festival, session }) => {
           width={30}
           height={30}
           className={
-            bookmark?.isBookmarked && session
+            bookmark?.isBookmarked && user
               ? "text-primary-01"
               : "text-gray-scale-200"
           }

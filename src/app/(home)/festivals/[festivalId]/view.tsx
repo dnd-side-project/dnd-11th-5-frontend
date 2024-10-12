@@ -1,6 +1,6 @@
 "use client";
 
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 
@@ -12,10 +12,10 @@ import {
 
 interface Props {
   festivals: DetailFestivalResponse;
-  session: Session | null;
 }
 
-const DetailFestivalView = ({ festivals, session }: Props) => {
+const DetailFestivalView = ({ festivals }: Props) => {
+  const { data: session } = useSession();
   return (
     <>
       <DetailFestivalCarousel festivals={festivals} />
