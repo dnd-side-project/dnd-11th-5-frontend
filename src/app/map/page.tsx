@@ -1,7 +1,13 @@
+import { Metadata } from "next/types";
+
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import NavigationBar from "@/layout/Mobile/NavigationBar";
 
 import MapView from "./view";
+
+export const metadata: Metadata = {
+  title: "지도",
+};
 
 export default function Map() {
   return (

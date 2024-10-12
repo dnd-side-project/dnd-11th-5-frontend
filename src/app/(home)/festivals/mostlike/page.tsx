@@ -1,3 +1,4 @@
+import { Metadata } from "next/types";
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server";
 
 import { getHotFestival } from "@/apis/festivals/hotFestival/hotFestival";
@@ -6,6 +7,10 @@ import { FIESTA_ENDPOINTS } from "@/config";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 
 import TrendTestView from "./view";
+
+export const metadata: Metadata = {
+  title: "핫 페스티벌",
+};
 
 const searchParamsCache = createSearchParamsCache({
   page: parseAsInteger.withDefault(0),

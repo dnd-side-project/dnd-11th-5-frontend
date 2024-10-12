@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next/types";
 
 import { signInWithKakao } from "@/apis/auth/auth";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
+
+export const metadata: Metadata = {
+  title: "로그인",
+};
 
 const SignIn = () => {
   return (
