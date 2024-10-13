@@ -54,6 +54,7 @@ const ImageUploader = ({ onChange, value, label }: Props) => {
     } else {
       setBase64([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (

@@ -13,19 +13,19 @@ const UserProvider: FC<Props> = ({ children }) => {
   const setUser = useUserStore((state) => state.updateUser);
   const { data: session } = useSession();
 
-  const initializeUserProfile = async () => {
-    if (session) {
-      const { user } = session;
-      return setUser(user);
-    }
-    setUser(null);
-  };
-
   useEffect(() => {
+    const initializeUserProfile = async () => {
+      if (session) {
+        const { user } = session;
+        return setUser(user);
+      }
+      setUser(null);
+    };
+
     if (session) {
       initializeUserProfile();
     }
-  }, [session]);
+  }, [session, setUser]);
   return <>{children}</>;
 };
 

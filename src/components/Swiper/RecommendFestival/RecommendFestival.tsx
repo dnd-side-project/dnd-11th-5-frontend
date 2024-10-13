@@ -10,7 +10,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { RecommendFestivalResponse } from "@/apis/festivals/recommendFestival/recommendFestivalType";
-import RecommendFestivalHeader from "@/app/(home)/_components/FestivalRecommend/RecommendFestivalHeader";
+import RecommendFestivalHeader from "@/app/(route)/(home)/_components/FestivalRecommend/RecommendFestivalHeader";
 import { formatToKoreanDate } from "@/lib/dayjs";
 
 interface Props {

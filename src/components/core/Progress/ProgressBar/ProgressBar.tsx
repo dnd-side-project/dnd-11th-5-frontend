@@ -15,7 +15,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 }) => {
   return (
     <div className={className}>
-      {[...Array(totalSteps)].map((v, index) => (
+      {[...Array(totalSteps)].map((_, index) => (
         <ProgressUnit key={index} active={currentStep >= index + 1} />
       ))}
     </div>

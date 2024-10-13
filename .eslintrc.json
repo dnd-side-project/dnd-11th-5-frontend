@@ -8,21 +8,7 @@
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { "argsIgnorePattern": "^_" }
-    ],
     "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
     "eol-last": ["error", "always"],
@@ -53,11 +39,29 @@
       "rules": {
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
-        "no-unused-vars": "warn",
-        "@typescript-eslint/no-unused-vars": "warn",
-        "tailwindcss/no-custom-classname": "warn",
+        "tailwindcss/no-custom-classname": [
+          "warn",
+          {
+            "whitelist": ["pagination_fraction"]
+          }
+        ],
         "tailwindcss/no-unnecessary-arbitrary-value": "off",
-        "tailwindcss/enforces-shorthand": "off"
+        "tailwindcss/enforces-shorthand": "off",
+
+        // ? https://velog.io/@sumi-0011/eslint%EC%9D%98-no-unused-vars-%EA%B7%9C%EC%B9%99%EA%B3%BC-typescript%EC%9D%98-interface-%EB%AC%B8%EB%B2%95-%EC%B6%A9%EB%8F%8C-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "args": "all",
+            "argsIgnorePattern": "^_",
+            "caughtErrors": "all",
+            "caughtErrorsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+          }
+        ]
       }
     }
   ],

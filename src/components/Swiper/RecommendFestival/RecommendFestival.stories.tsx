@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import RecommendFestivalFallbackUI from "../../../app/(home)/_components/FestivalRecommend/RecommendFestivalFallbackUI";
+import RecommendFestivalFallbackUI from "../../../app/(route)/(home)/_components/FestivalRecommend/RecommendFestivalFallbackUI";
 import RecoomendFestivalList from "./RecommendFestival";
 
 const meta: Meta<typeof RecoomendFestivalList> = {
@@ -17,13 +17,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-  render: (args) => (
+  render: (_args) => (
     <div className="h-[300px] w-[400px]">{/* <RecoomendFestivalList /> */}</div>
   ),
 };
 export const NoSession: Story = {
   args: {},
-  render: (args) => (
+  render: () => (
     <div className="h-[300px] w-[400px]">
       <RecommendFestivalFallbackUI />
     </div>

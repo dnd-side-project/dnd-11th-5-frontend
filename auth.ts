@@ -8,6 +8,7 @@ import { SocialLoginRequest } from "@/apis/auth/authType";
 import { getMe } from "@/apis/user/me/me";
 import { env } from "@/env";
 import { decodeToken } from "@/lib/jwt";
+import type { UserMeResponse } from "@/apis/user/me/meType";
 
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   providers: [
@@ -146,6 +147,15 @@ declare module "next-auth" {
     exp?: number;
     iat?: number;
     sub?: string;
+  }
+
+  interface User {
+    userId: number;
+    nickname: string;
+    statusMessage: string;
+    profileImage: string;
+    isProfileRegistered: boolean;
+    userTypeId: number;
   }
 }
 declare module "next-auth/jwt" {

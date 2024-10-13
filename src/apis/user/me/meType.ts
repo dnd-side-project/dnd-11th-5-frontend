@@ -1,4 +1,4 @@
-type UserMeResponse = {
+export type UserMeResponse = {
   userId: number;
   email: string;
   nickname: string;
