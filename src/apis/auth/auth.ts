@@ -1,23 +1,26 @@
 "use server";
 
-import instance from "@/apis/instance";
 import { auth, signIn, signOut } from "@/auth";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 
+import { env } from "@/env";
+import FiestaInstance from "../FiestaInstance";
 import {
   RefreshTokenResponse,
   SocialLoginRequest,
   SocialLoginResponse,
 } from "./authType";
-import { env } from "@/env";
 
 const ENDPOINT = FIESTA_ENDPOINTS.users;
 
 export async function postOauthLogin(body: SocialLoginRequest) {
   const endpoint = ENDPOINT.login;
-  const { data } = await instance.post<SocialLoginResponse>(endpoint, body);
+  const response = await FiestaInstance.post<SocialLoginResponse>(
+    endpoint,
+    body,
+  );
 
-  return data;
+  return response;
 }
 
 export const postSignOut = async () => {

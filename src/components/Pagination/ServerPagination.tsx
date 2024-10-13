@@ -32,7 +32,7 @@ function Pagination({
   };
 
   const pageURL = (page: number, size?: number) => {
-    return serialize(currentPath, {
+    return serialize(`/${currentPath}`, {
       page,
       size,
     });

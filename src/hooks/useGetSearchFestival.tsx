@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import debounce from "lodash/debounce";
+import { debounce } from "es-toolkit/function";
 import { useEffect, useState } from "react";
 
 import { getSearchFestival } from "@/apis/festivals/searchFestival/searchFestival";

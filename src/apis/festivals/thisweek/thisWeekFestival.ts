@@ -1,6 +1,6 @@
 "use server";
 
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
@@ -11,13 +11,12 @@ import {
 } from "./thisWeekFestivalType";
 
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
-const ENDPOINT = FIESTA_ENDPOINTS.festivals;
 
 export async function getThisWeekFestival(
   params: PaginationParamter = defaultParams,
 ) {
-  const endpoint = ENDPOINT.thisWeek;
-  const { data } = await instance.get<ThisWeekFestivalData>(
+  const endpoint = FIESTA_ENDPOINTS.festivals.thisWeek;
+  const response = await FiestaInstance.get<ThisWeekFestivalData>(
     generateUrlWithParams(endpoint, params),
     {
       next: {
@@ -26,5 +25,6 @@ export async function getThisWeekFestival(
       },
     },
   );
-  return data;
+
+  return response;
 }

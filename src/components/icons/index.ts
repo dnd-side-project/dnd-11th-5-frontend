@@ -23,6 +23,7 @@ export { default as HeartIcon } from "./HEART_ICON.svg";
 export { default as HomeIcon } from "./HOME_ICON.svg";
 export { default as KakaoIcon } from "./KAKAO_ICON.svg";
 export { default as LockIcon } from "./LOCK_ICON.svg";
+export { default as LogoutIcon } from "./LOGOUT.svg";
 export { default as PencilIcon } from "./PENCIL_ICON.svg";
 export { default as PictureIcon } from "./PICTURE_ICON.svg";
 export { default as PinLocationIcon } from "./PIN_LOCATION_ICON.svg";

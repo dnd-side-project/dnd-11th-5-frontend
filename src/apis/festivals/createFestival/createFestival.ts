@@ -1,4 +1,4 @@
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { CreateFestivalType } from "@/validations/CreateFestivalSchema";
 
@@ -19,10 +19,9 @@ export async function createFestival(payload: CreateFestivalType) {
     formData.append("images", image);
   });
 
-  const { data } = await instance.post<CreateFestivalResponse>(
-    ENDPOINT,
-    formData,
-  );
+  const response = await FiestaInstance.post<CreateFestivalResponse>(ENDPOINT, {
+    body: formData,
+  });
 
-  return data;
+  return response;
 }

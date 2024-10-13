@@ -1,6 +1,6 @@
 "use client";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 
@@ -8,8 +8,10 @@ import { getTrendingFestival } from "@/apis/festivals/trendingFestival/trendingF
 import { TrendingFestivalKeys } from "@/apis/festivals/trendingFestival/trendingFestivalKeys";
 import { cn } from "@/utils";
 
+import TrendingFestivalSkeleton from "./TrendingFestivalSkeleton";
+
 const TrendingFestival = () => {
-  const { data } = useSuspenseQuery({
+  const { data, isLoading } = useQuery({
     queryKey: TrendingFestivalKeys.all,
     queryFn: getTrendingFestival,
   });
@@ -18,6 +20,10 @@ const TrendingFestival = () => {
 
   if (query) {
     return null;
+  }
+
+  if (isLoading) {
+    return <TrendingFestivalSkeleton />;
   }
 
   return (
@@ -30,7 +36,7 @@ const TrendingFestival = () => {
       </div>
 
       <div className="flex w-full flex-col rounded-[8px] bg-gray-scale-50 p-[12px]">
-        {data.map((festival, idx, arr) => {
+        {data?.map((festival, idx, arr) => {
           return (
             <Link
               href={`/festivals/${festival.festivalId}`}

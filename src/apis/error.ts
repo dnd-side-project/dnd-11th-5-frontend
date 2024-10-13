@@ -49,7 +49,7 @@ export class ReviewError extends FiestaError {
   }
 }
 
-function isFiestaError(error: unknown): error is FiestaError {
+export function isFiestaError(error: unknown): error is FiestaError {
   return (
     typeof error === "object" &&
     error !== null &&
@@ -61,7 +61,7 @@ function isFiestaError(error: unknown): error is FiestaError {
 
 export function createFiestaError(error: unknown) {
   if (!isFiestaError(error)) {
-    return new Error(`Unknown Error: ${JSON.stringify(error)}`);
+    return new LogsError(500, "C000", "UnknownError");
   }
 
   const { code, message, statusCode } = error;
@@ -86,5 +86,5 @@ export function createFiestaError(error: unknown) {
     return new ReviewError(statusCode, code, message);
   }
 
-  return new Error(`Something went wrong: ${JSON.stringify(error)}`);
+  return new LogsError(500, "C000", "UnknownError");
 }

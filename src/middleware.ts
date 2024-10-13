@@ -1,8 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { match } from "path-to-regexp";
 
 import { getServerSideSession } from "./apis/auth/auth";
+import { isMatchPath } from "./utils";
 
 const serviceReadyRoute = ["/chat", "/map", "/calander"];
 const matchersForAuth = ["/mypage"];
@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // * 인증이 필요한 페이지 접근 제어!
-  if (isMatch(request.nextUrl.pathname, matchersForAuth)) {
+  if (isMatchPath(request.nextUrl.pathname, matchersForAuth)) {
     if (!!session && !session.user.isProfileRegistered) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
@@ -49,11 +49,6 @@ export async function middleware(request: NextRequest) {
       : NextResponse.next();
   }
   return NextResponse.next();
-}
-
-// * 경로 일치 확인!
-function isMatch(pathname: string, urls: string[]) {
-  return urls.some((url) => !!match(url)(pathname));
 }
 
 export const config = {

@@ -1,17 +1,17 @@
 "use server";
 
-import instance from "@/apis/instance";
-import { FIESTA_ENDPOINTS } from "@/config";
+import FiestaInstance from "@/apis/FiestaInstance";
+import { FIESTA_ENDPOINTS, REVALIDATE_DURATION } from "@/config";
 
 import { TopReview } from "./topReviewsType";
 
-const ENDPOINT = FIESTA_ENDPOINTS.reviews;
-
 export async function getTopReviews() {
-  const endpoint = ENDPOINT.mostlike;
-  const { data } = await instance.get<Array<TopReview>>(endpoint, {
-    cache: "no-store",
+  const endpoint = FIESTA_ENDPOINTS.reviews.mostlike;
+  const response = await FiestaInstance.get<Array<TopReview>>(endpoint, {
+    next: {
+      revalidate: REVALIDATE_DURATION.SECOND * 10,
+    },
   });
 
-  return data;
+  return response;
 }

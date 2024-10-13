@@ -1,15 +1,8 @@
 import Link from "next/link";
 
-import { getServerSideSession } from "@/apis/auth/auth";
 import { PencilIcon } from "@/components/icons";
 
-const FloatingButton = async () => {
-  const session = await getServerSideSession();
-
-  if (!session) {
-    return null;
-  }
-
+const FloatingButton = () => {
   return (
     <Link
       href="/festivals/new"

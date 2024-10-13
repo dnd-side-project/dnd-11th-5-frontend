@@ -5,7 +5,9 @@ export const useSearchHistory = () => {
 
   const updateHistories = (query: string) => {
     set((prev) => {
-      const updatedHistories = prev.filter((history) => history !== query);
+      const updatedHistories = prev.filter(
+        (history) => history !== query && history !== "",
+      );
       return [...updatedHistories, query];
     });
   };
