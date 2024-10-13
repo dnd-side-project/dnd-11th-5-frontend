@@ -1,7 +1,6 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useMemo, useState } from "react";
@@ -109,7 +108,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
 
         {!!user && <DropdownMenu options={isMyReviewOptions} />}
       </div>
-      {!isEmpty(review.images) && (
+      {!!review.images.length && (
         <div className="flex w-full gap-[8px]">
           {review.images.map((image) => (
             <Image

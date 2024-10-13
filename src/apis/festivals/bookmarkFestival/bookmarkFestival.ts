@@ -1,6 +1,6 @@
 "use server";
 
-import debounce from "lodash/debounce";
+import { debounce } from "es-toolkit/function";
 
 import { ClientError } from "@/apis/error";
 import instance from "@/apis/instance";
