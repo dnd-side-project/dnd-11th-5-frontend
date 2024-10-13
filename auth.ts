@@ -26,6 +26,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
     async signIn() {
       return true;
     },
+
     redirect: async ({ url, baseUrl }) => {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       if (url) {
@@ -40,27 +41,6 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       return baseUrl;
     },
     async jwt({ token, session, user, trigger, account }) {
-      if (!!token.accessToken) {
-        const decodedJWT = decodeToken(token.accessToken);
-
-        if (
-          !!token.refreshToken &&
-          !!decodedJWT?.exp &&
-          decodedJWT?.exp * 1000 < Date.now()
-        ) {
-          console.log("토큰 재발급");
-          const { accessToken, refreshToken } = await getRefreshToken(
-            token.refreshToken,
-          );
-
-          const decodedJWT = decodeToken(accessToken);
-
-          token.accessToken = accessToken;
-          token.refreshToken = refreshToken;
-          token.exp = decodedJWT?.exp;
-        }
-      }
-
       if (trigger === "update") {
         token.user = {
           ...session.user,
@@ -91,6 +71,28 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             accessToken,
           };
         }
+      }
+
+      if (!token.accessToken) {
+        return null;
+      }
+
+      const decodedJWT = decodeToken(token.accessToken);
+      if (
+        !!token.refreshToken &&
+        !!decodedJWT?.exp &&
+        decodedJWT?.exp * 1000 < Date.now()
+      ) {
+        console.log("토큰 재발급");
+        const { accessToken, refreshToken } = await getRefreshToken(
+          token.refreshToken,
+        );
+
+        const decodedJWT = decodeToken(accessToken);
+
+        token.accessToken = accessToken;
+        token.refreshToken = refreshToken;
+        token.exp = decodedJWT?.exp;
       }
 
       return token;

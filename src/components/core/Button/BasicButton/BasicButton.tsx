@@ -1,19 +1,22 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ComponentPropsWithoutRef, ElementType } from "react";
 
 import { cn } from "@/utils/cn";
 
-interface Props
-  extends Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "children" | "label" | "className"
-  > {
+interface Props<T extends ElementType> {
+  as?: T;
   label: string;
   className?: string;
 }
 
-const BasicButton: FC<Props> = ({ className, label, ...props }) => {
+const BasicButton = <T extends ElementType = "button">({
+  as,
+  className,
+  label,
+  ...props
+}: Props<T> & Omit<ComponentPropsWithoutRef<T>, keyof Props<T>>) => {
+  const Component = as || "button";
   return (
-    <button
+    <Component
       className={cn(
         "w-full h-[48px] duration-300 rounded-[12px] py-[8px] px-[12px]",
         "flex flex-col items-center justify-center gap-[12px]",
@@ -24,8 +27,8 @@ const BasicButton: FC<Props> = ({ className, label, ...props }) => {
       )}
       {...props}
     >
-      <div className="w-[90%] truncate">{label}</div>
-    </button>
+      <div className="max-w-[90%] truncate">{label}</div>
+    </Component>
   );
 };
 

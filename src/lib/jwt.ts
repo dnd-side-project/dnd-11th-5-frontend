@@ -1,6 +1,10 @@
 import { decodeJwt } from "jose";
 
-export const decodeToken = (token: string) => {
+export const decodeToken = (token?: string) => {
+  if (!token) {
+    return null;
+  }
+
   try {
     const decoded = decodeJwt(token);
     return decoded;
