@@ -12,11 +12,7 @@ interface Props {
   festival: DetailFestivalResponse;
 }
 
-const BookingButton: FC<Props> = ({
-  className,
-
-  festival,
-}) => {
+const BookingButton: FC<Props> = ({ className, festival }) => {
   const linkInfo = useMemo(() => {
     const { homepageUrl, ticketLink, instagramUrl } = festival;
 

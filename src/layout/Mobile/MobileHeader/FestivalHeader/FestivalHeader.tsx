@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FC } from "react";
 
 import { ArrowLeftSmallIcon, ShareIcon } from "@/components/icons";
@@ -8,19 +8,16 @@ import { ArrowLeftSmallIcon, ShareIcon } from "@/components/icons";
 interface Props {}
 
 const FestivalHeader: FC<Props> = ({}) => {
-  const router = useRouter();
-
-  const handleGoback = () => {
-    router.back();
+  const handleShare = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard.writeText(currentUrl);
   };
-
-  const handleShare = () => {};
 
   return (
     <header className="flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
-      <button type="button" onClick={handleGoback}>
+      <Link href="/">
         <ArrowLeftSmallIcon width={24} height={24} />
-      </button>
+      </Link>
 
       <div className="size-[44px]" />
 
