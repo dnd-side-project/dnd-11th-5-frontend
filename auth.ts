@@ -8,6 +8,7 @@ import { SocialLoginRequest } from "@/apis/auth/authType";
 import { getMe } from "@/apis/user/me/me";
 import { env } from "@/env";
 import { decodeToken } from "@/lib/jwt";
+import type { UserMeResponse } from "@/apis/user/me/meType";
 
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   providers: [
@@ -26,6 +27,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
     async signIn() {
       return true;
     },
+
     redirect: async ({ url, baseUrl }) => {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       if (url) {
@@ -40,27 +42,6 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       return baseUrl;
     },
     async jwt({ token, session, user, trigger, account }) {
-      if (!!token.accessToken) {
-        const decodedJWT = decodeToken(token.accessToken);
-
-        if (
-          !!token.refreshToken &&
-          !!decodedJWT?.exp &&
-          decodedJWT?.exp * 1000 < Date.now()
-        ) {
-          console.log("토큰 재발급");
-          const { accessToken, refreshToken } = await getRefreshToken(
-            token.refreshToken,
-          );
-
-          const decodedJWT = decodeToken(accessToken);
-
-          token.accessToken = accessToken;
-          token.refreshToken = refreshToken;
-          token.exp = decodedJWT?.exp;
-        }
-      }
-
       if (trigger === "update") {
         token.user = {
           ...session.user,
@@ -91,6 +72,28 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             accessToken,
           };
         }
+      }
+
+      if (!token.accessToken) {
+        return null;
+      }
+
+      const decodedJWT = decodeToken(token.accessToken);
+      if (
+        !!token.refreshToken &&
+        !!decodedJWT?.exp &&
+        decodedJWT?.exp * 1000 < Date.now()
+      ) {
+        console.log("토큰 재발급");
+        const { accessToken, refreshToken } = await getRefreshToken(
+          token.refreshToken,
+        );
+
+        const decodedJWT = decodeToken(accessToken);
+
+        token.accessToken = accessToken;
+        token.refreshToken = refreshToken;
+        token.exp = decodedJWT?.exp;
       }
 
       return token;
@@ -144,6 +147,15 @@ declare module "next-auth" {
     exp?: number;
     iat?: number;
     sub?: string;
+  }
+
+  interface User {
+    userId: number;
+    nickname: string;
+    statusMessage: string;
+    profileImage: string;
+    isProfileRegistered: boolean;
+    userTypeId: number;
   }
 }
 declare module "next-auth/jwt" {

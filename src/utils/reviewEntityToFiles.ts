@@ -4,7 +4,7 @@ export async function reviewEntityToFiles(urls?: Image[]): Promise<File[]> {
   if (!urls) return [];
 
   const files = await Promise.all(
-    urls.map(async ({ imageId, imageUrl }, index) => {
+    urls.map(async ({ imageId, imageUrl }) => {
       const extension = imageUrl.split(".").pop()?.toLowerCase();
       const response = await fetch(imageUrl);
       const blob = await response.blob();

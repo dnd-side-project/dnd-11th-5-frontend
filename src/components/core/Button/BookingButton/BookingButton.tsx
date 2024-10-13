@@ -8,14 +8,13 @@ import BasicButton from "../BasicButton/BasicButton";
 import ScrabButton from "./ScrabButton";
 
 interface Props {
-  label?: string;
   className?: string;
   festival: DetailFestivalResponse;
 }
 
 const BookingButton: FC<Props> = ({
   className,
-  label = "예매하기",
+
   festival,
 }) => {
   const linkInfo = useMemo(() => {

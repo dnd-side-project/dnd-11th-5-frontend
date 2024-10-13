@@ -8,13 +8,7 @@ const meta: Meta<typeof BookingButton> = {
   component: BookingButton,
   parameters: {},
 
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;

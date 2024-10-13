@@ -1,13 +1,13 @@
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
-  user: (User & UserMeResponse) | null;
+  user: User | null;
 };
 
 type Action = {
-  updateUser: (_user: (User & UserMeResponse) | null) => void;
+  updateUser: (_user: User | null) => void;
 };
 
 export const useUserStore = create(
