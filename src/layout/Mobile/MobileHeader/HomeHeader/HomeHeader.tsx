@@ -1,12 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 
 import { SearchIcon } from "@/components/icons";
 
-interface Props {}
-
-const HomeHeader: FC<Props> = ({}) => {
+const HomeHeader = ({}) => {
   return (
     <header className="fixed top-0 z-[10] flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[16px] text-gray-900 lg:max-w-[450px]">
       <Link href="/">

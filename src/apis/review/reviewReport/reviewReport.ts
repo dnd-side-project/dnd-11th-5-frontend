@@ -1,4 +1,4 @@
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import { FIESTA_ENDPOINTS } from "@/config";
 
 import { ReviewReportResponse } from "./reviewReportType";
@@ -10,7 +10,7 @@ export async function postReviewReport(body: {
   description: string;
 }) {
   const endpoint = ENDPOINT.reports(String(body.reviewId));
-  const { data } = await instance.post<ReviewReportResponse>(endpoint, {
+  const data = await FiestaInstance.post<ReviewReportResponse>(endpoint, {
     description: body.description,
   });
 

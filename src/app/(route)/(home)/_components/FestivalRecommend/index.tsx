@@ -8,7 +8,6 @@ import { recommendFestivalKeys } from "@/apis/festivals/recommendFestival/recomm
 import RecommendFestivalList from "@/components/Swiper/RecommendFestival/RecommendFestival";
 import { useUserStore } from "@/store/user";
 
-import RecommendFestivalFallbackUI from "./RecommendFestivalFallbackUI";
 import RecommendFestivalSkeleton from "./RecommendFestivalSkeleton";
 
 interface Props {}
@@ -24,10 +23,6 @@ const RecommendFestival: FC<Props> = ({}) => {
 
   if (isLoading) {
     return <RecommendFestivalSkeleton />;
-  }
-
-  if (!user) {
-    return <RecommendFestivalFallbackUI />;
   }
 
   return <RecommendFestivalList recommendFestivals={recommendFestivals} />;

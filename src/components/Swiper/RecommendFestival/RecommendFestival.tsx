@@ -26,7 +26,7 @@ const RecommendFestivalList: FC<Props> = ({ recommendFestivals }) => {
           delay: 3000,
           pauseOnMouseEnter: true,
         }}
-        loop
+        loop={!!recommendFestivals?.festivals.length}
         pagination={{
           type: "fraction",
           el: ".pagination_fraction",

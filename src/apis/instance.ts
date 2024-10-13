@@ -2,7 +2,6 @@ import { Session } from "next-auth";
 
 import { getClientSideSession } from "@/lib/session";
 
-import { env } from "../env";
 import { getServerSideSession } from "./auth/auth";
 import {
   ClientError,
@@ -164,6 +163,6 @@ export class CreateFiestaFetch {
   ): Promise<FiestaResponse<T>> => this.fetch(url, "DELETE", options);
 }
 
-const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL);
+// const instance = new CreateFiestaFetch(env.NEXT_PUBLIC_BASE_URL);
 
-export default instance;
+// export default instance;

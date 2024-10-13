@@ -1,7 +1,7 @@
 const TrendingFestivalSkeleton = () => {
   return (
     <div role="status" className="animate-pulse">
-      <div className="flex h-full w-full flex-col gap-[16px]">
+      <div className="flex h-full min-h-[319px] w-full flex-col gap-[16px]">
         <div className="h-[19px] w-[150px] rounded-md bg-gray-scale-200" />
 
         <ul className="flex w-full flex-col bg-gray-scale-50 p-[12px]">

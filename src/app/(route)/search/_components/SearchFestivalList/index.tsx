@@ -17,10 +17,10 @@ const SearchFestival = () => {
   const { set } = useSearchHistory();
 
   useEffect(() => {
-    if (isString(query) && isNotNil(query)) {
+    if (isString(query) && isNotNil(query) && query.length > 0) {
       set(query);
     }
-  }, [data, query, set]);
+  }, [data]);
 
   const isQueryStringEmpty = query?.length === 0;
   const HasNoData = !data || data?.length === 0;

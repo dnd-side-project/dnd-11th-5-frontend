@@ -3,7 +3,7 @@
 import { debounce } from "es-toolkit/function";
 
 import { ClientError } from "@/apis/error";
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 
 import { bookmarkFestivalResponse } from "./bookmarkFestivalType";
@@ -11,16 +11,18 @@ import { bookmarkFestivalResponse } from "./bookmarkFestivalType";
 const ENDPOINT = FIESTA_ENDPOINTS.festivals;
 
 export const debouncedPatchBookmarkFestival = debounce(
-  (endpoint: string) => instance.patch<bookmarkFestivalResponse>(endpoint),
+  (endpoint: string) =>
+    FiestaInstance.patch<bookmarkFestivalResponse>(endpoint),
   400,
 );
 
 export async function patchBookmarkFestival(festivalId: number) {
   const endpoint = ENDPOINT.bookmark(festivalId);
   try {
-    const response = await instance.patch<bookmarkFestivalResponse>(endpoint);
+    const response =
+      await FiestaInstance.patch<bookmarkFestivalResponse>(endpoint);
 
-    return response.data;
+    return response;
   } catch (error) {
     if (error instanceof ClientError) {
       throw new Error("Session required");

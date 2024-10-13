@@ -2,7 +2,7 @@
 import { FIESTA_ENDPOINTS } from "@/config";
 import { getSettledValue } from "@/utils";
 
-import instance from "../instance";
+import FiestaInstance from "../FiestaInstance";
 import { festivalOnBoarding } from "./onboardingKeys";
 import {
   FestivalCategory,
@@ -14,7 +14,7 @@ import {
 
 export const getMoods = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.moods;
-  const { data } = await instance.get<Array<FestivalMood>>(endpoint, {
+  const data = await FiestaInstance.get<Array<FestivalMood>>(endpoint, {
     cache: "force-cache",
     next: {
       tags: festivalOnBoarding.all,
@@ -25,7 +25,7 @@ export const getMoods = async () => {
 };
 export const getCategories = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.categories;
-  const { data } = await instance.get<Array<FestivalCategory>>(endpoint, {
+  const data = await FiestaInstance.get<Array<FestivalCategory>>(endpoint, {
     cache: "force-cache",
     next: {
       tags: festivalOnBoarding.all,
@@ -36,7 +36,7 @@ export const getCategories = async () => {
 };
 export const getCompanions = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.companions;
-  const { data } = await instance.get<Array<FestivalCompanion>>(endpoint, {
+  const data = await FiestaInstance.get<Array<FestivalCompanion>>(endpoint, {
     cache: "force-cache",
     next: {
       tags: festivalOnBoarding.all,
@@ -48,7 +48,7 @@ export const getCompanions = async () => {
 
 export const getPriority = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.priorities;
-  const { data } = await instance.get<Array<FestivalPriority>>(endpoint, {
+  const data = await FiestaInstance.get<Array<FestivalPriority>>(endpoint, {
     cache: "force-cache",
     next: {
       tags: festivalOnBoarding.all,

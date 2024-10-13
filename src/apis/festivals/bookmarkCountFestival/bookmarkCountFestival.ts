@@ -1,7 +1,7 @@
 "use server";
 
 import { ClientError } from "@/apis/error";
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 
 import { DetailFestivalResponse } from "../detailFestival/detailFestivalType";
@@ -11,13 +11,13 @@ const ENDPOINT = FIESTA_ENDPOINTS.festivals;
 export async function getFestivalBookmark(festivalId: number) {
   const endpoint = ENDPOINT.detail(String(festivalId));
   try {
-    const response = await instance.get<
+    const response = await FiestaInstance.get<
       Pick<DetailFestivalResponse, "bookmarkCount" | "isBookmarked">
     >(endpoint, {
       cache: "no-store",
     });
 
-    const { isBookmarked, bookmarkCount } = response.data;
+    const { isBookmarked, bookmarkCount } = response;
 
     return {
       isBookmarked,

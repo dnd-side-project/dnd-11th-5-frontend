@@ -1,4 +1,4 @@
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
@@ -15,11 +15,12 @@ export async function getSearchFestival(
   params: SearchFestivalParameter = defaultParams,
 ): Promise<Array<SearchFestival>> {
   const endpoint = ENDPOINT.search;
-  const { data } = await instance.get<SearchFestivalResponse>(
+  const response = await FiestaInstance.get<SearchFestivalResponse>(
     generateUrlWithParams(endpoint, params),
     {
       cache: "no-store",
     },
   );
-  return data.content;
+
+  return response.content;
 }

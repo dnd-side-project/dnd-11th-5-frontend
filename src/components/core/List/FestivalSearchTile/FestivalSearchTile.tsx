@@ -45,10 +45,7 @@ const FestivalSearchTile: FC<FestivalTileProps> = ({ festival }) => {
           </span>
         </div>
       </Link>
-      <IconButton
-        active={festival.isBookmarked}
-        onClick={() => console.log("test")}
-      >
+      <IconButton active={festival.isBookmarked}>
         <ScrabIcon width={24} height={24} />
       </IconButton>
     </div>

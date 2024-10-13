@@ -1,6 +1,6 @@
 "use client";
 
-import instance from "@/apis/instance";
+import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils";
 
@@ -13,12 +13,12 @@ export async function getFestivalTopKeywords({
   size = 5,
 }: TopKeywordParameter): Promise<TopKeywords> {
   const endpoint = ENDPOINT.topKeywords;
-  const response = await instance.get<TopKeywords>(
+  const response = await FiestaInstance.get<TopKeywords>(
     generateUrlWithParams(endpoint, { festivalId, size }),
     {
       cache: "no-store",
     },
   );
 
-  return response.data;
+  return response;
 }

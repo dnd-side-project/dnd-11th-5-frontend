@@ -1,4 +1,5 @@
 const REVALIDATE_DURATION = {
+  SECOND: 1,
   DAY: 86400,
   HOUR: 3600,
   MINUTE: 60,

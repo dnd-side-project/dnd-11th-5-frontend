@@ -7,7 +7,7 @@ export function generateUrlWithParams(
   params?: object,
 ): string {
   if (!params || isEmpty(params)) {
-    return baseURL;
+    return `${baseURL}`;
   }
 
   const queryString = generateQueryString(params);

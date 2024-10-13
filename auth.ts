@@ -71,6 +71,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             refreshToken,
             accessToken,
           };
+          return token;
         }
       }
 
