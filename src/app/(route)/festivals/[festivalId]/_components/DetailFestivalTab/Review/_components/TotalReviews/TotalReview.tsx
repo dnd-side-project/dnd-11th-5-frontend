@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { FC, useRef, useState } from "react";
+import { parseAsInteger, useQueryState } from "nuqs";
+import { FC, useMemo, useRef } from "react";
 
 import { DetailFestivalResponse } from "@/apis/festivals/detailFestival/detailFestivalType";
 import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
@@ -21,19 +22,23 @@ interface Props {
 const TotalReviews: FC<Props> = ({ festivals }) => {
   const totalReviewLabelRef = useRef<HTMLSpanElement>(null);
 
-  const [params, setParams] = useState<FestivalReviewsParameters>({
-    festivalId: festivals.festivalId,
-    sort: SortOption.createdAt,
-    page: 0,
-    size: 6,
+  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(0));
+  const [sort, setSort] = useQueryState("sort", {
+    defaultValue: SortOption.createdAt,
   });
 
-  const handleSort = (sort: SortOption) => {
-    setParams((prev) => ({ ...prev, sort }));
-  };
+  const params: FestivalReviewsParameters = useMemo(
+    () => ({
+      festivalId: festivals.festivalId,
+      sort,
+      page,
+      size: 6,
+    }),
+    [page, sort, festivals],
+  );
 
   const handlePage = (page: number) => {
-    setParams((prev) => ({ ...prev, page }));
+    setPage(page);
 
     if (totalReviewLabelRef.current) {
       totalReviewLabelRef.current.scrollIntoView({ behavior: "smooth" });
@@ -63,7 +68,7 @@ const TotalReviews: FC<Props> = ({ festivals }) => {
                 ? "text-primary-01"
                 : "text-gray-scale-400 ",
             )}
-            onClick={() => handleSort(SortOption.createdAt)}
+            onClick={() => setSort(SortOption.createdAt)}
           >
             최신순
           </button>
@@ -75,7 +80,7 @@ const TotalReviews: FC<Props> = ({ festivals }) => {
                 ? "text-primary-01"
                 : "text-gray-scale-400 ",
             )}
-            onClick={() => handleSort(SortOption.likeCount)}
+            onClick={() => setSort(SortOption.likeCount)}
           >
             추천순
           </button>

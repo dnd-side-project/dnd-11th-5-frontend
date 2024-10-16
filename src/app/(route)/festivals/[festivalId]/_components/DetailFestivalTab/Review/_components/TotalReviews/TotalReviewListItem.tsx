@@ -14,6 +14,7 @@ import { HeartIcon } from "@/components/icons";
 import Ratings from "@/components/rating/Ratings";
 import useDeleteReview from "@/hooks/review/useDeleteReview";
 import useReportReview from "@/hooks/review/useReportReview";
+import useToggleReviewLike from "@/hooks/review/useToggleReviewLike";
 import { formatToYYYYMMDD } from "@/lib/dayjs";
 import { useUserStore } from "@/store/user";
 
@@ -28,6 +29,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
 
   const { deleteReviewMutate, isDeleting } = useDeleteReview(review);
   const { reportReview, isReporting } = useReportReview();
+  const { mutate: toggleReviewLike } = useToggleReviewLike(review);
 
   const handleReport = async (description: string) => {
     reportReview({ reviewId: review.reviewId, description });
@@ -35,6 +37,10 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
 
   const handleDelete = (reviewId: number) => {
     deleteReviewMutate(reviewId);
+  };
+
+  const handleToggle = () => {
+    toggleReviewLike({ reviewId: review.reviewId });
   };
 
   const myReviewOptions = [
@@ -117,14 +123,16 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
         </div>
-        <div className="flex items-center gap-1">
-          <IconButton active={true}>
-            <HeartIcon width={20} height={20} className="gap-2" />
-          </IconButton>
-          <span className="text-caption2-regular text-gray-scale-600">
-            {review.likeCount}
-          </span>
-        </div>
+        {!!user && (
+          <div className="flex w-[30px] items-center justify-between gap-1">
+            <IconButton active={review.isLiked} onClick={handleToggle}>
+              <HeartIcon width={20} height={20} className="gap-2" />
+            </IconButton>
+            <span className="text-caption2-regular text-gray-scale-600">
+              {review.likeCount}
+            </span>
+          </div>
+        )}
       </div>
 
       <FestivalRequstDialog

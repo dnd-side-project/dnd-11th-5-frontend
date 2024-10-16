@@ -5,7 +5,7 @@ import { ReviewLikeResponse } from "./reviewLikeType";
 
 const ENDPOINT = FIESTA_ENDPOINTS.reviews;
 
-export async function postReviewReport({
+export async function patchReviewLike({
   reviewId,
 }: {
   reviewId: string | number;

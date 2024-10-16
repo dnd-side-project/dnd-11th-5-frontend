@@ -1,6 +1,6 @@
 export type FestivalReviewsParameters = {
   festivalId?: number | string;
-  sort?: SortOption;
+  sort?: SortOption | string;
   page?: number;
   size?: number;
 };
