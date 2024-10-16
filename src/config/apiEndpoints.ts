@@ -37,8 +37,8 @@ const FIESTA_ENDPOINTS = {
   reviews: {
     topKeywords: "reviews/keywords/top",
     base: "reviews",
-    detail: (reviewId: string) => `reviews/${reviewId}`,
-    like: (reviewId: string) => `reviews/${reviewId}/like`,
+    detail: (reviewId: string | number) => `reviews/${reviewId}`,
+    like: (reviewId: string | number) => `reviews/${reviewId}/like`,
     mostlike: "reviews/mostlike",
     keywords: "reviews/keywords",
     reports: (reviewId: string) => `reviews/${reviewId}/reports`,
