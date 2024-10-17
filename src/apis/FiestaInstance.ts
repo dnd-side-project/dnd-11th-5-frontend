@@ -1,5 +1,5 @@
 import type { KyRequest, NormalizedOptions } from "ky";
-import ky from "ky";
+import ky, { Options } from "ky";
 
 import { env } from "@/env";
 import { getClientSideSession } from "@/lib/session";
@@ -35,29 +35,30 @@ const createKyInstance = () => {
       methods: ["get", "post", "put", "patch", "delete"],
       statusCodes: [408, 413, 429, 500, 502, 503, 504],
     },
+    credentials: "include",
   });
 };
 
 const Instance = createKyInstance();
 
 const FiestaInstance = {
-  get: <T>(url: string, options?: RequestInit) =>
+  get: <T>(url: string, options?: Options) =>
     Instance.get(url, options)
       .json<FiestaResponse<T>>()
       .then((res) => res.data),
-  post: <T>(url: string, json?: unknown, options?: RequestInit) =>
-    Instance.post(url, { json, ...options })
+  post: <T>(url: string, options?: Options) =>
+    Instance.post(url, options)
       .json<FiestaResponse<T>>()
       .then((res) => res.data),
-  put: <T>(url: string, json?: unknown, options?: RequestInit) =>
-    Instance.put(url, { json, ...options })
+  put: <T>(url: string, options?: Options) =>
+    Instance.put(url, options)
       .json<FiestaResponse<T>>()
       .then((res) => res.data),
-  patch: <T>(url: string, json?: unknown, options?: RequestInit) =>
-    Instance.patch(url, { json, ...options })
+  patch: <T>(url: string, options?: Options) =>
+    Instance.patch(url, options)
       .json<FiestaResponse<T>>()
       .then((res) => res.data),
-  delete: <T>(url: string, options?: RequestInit) =>
+  delete: <T>(url: string, options?: Options) =>
     Instance.delete(url, options)
       .json<FiestaResponse<T>>()
       .then((res) => res.data),
