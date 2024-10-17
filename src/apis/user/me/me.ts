@@ -21,7 +21,7 @@ export const updateMe = async (body: ProfileMeUpdateSchemaType) => {
   const endpoint = FIESTA_ENDPOINTS.users.me;
   const data = await FiestaInstance.patch<Pick<UserMeResponse, "userId">>(
     endpoint,
-    body,
+    { json: body },
   );
 
   return data;

@@ -10,8 +10,11 @@ export async function postReviewReport(body: {
   description: string;
 }) {
   const endpoint = ENDPOINT.reports(String(body.reviewId));
+
   const data = await FiestaInstance.post<ReviewReportResponse>(endpoint, {
-    description: body.description,
+    json: {
+      description: body.description,
+    },
   });
 
   return data;

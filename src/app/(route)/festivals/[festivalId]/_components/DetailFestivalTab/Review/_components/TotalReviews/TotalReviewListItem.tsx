@@ -1,20 +1,20 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useMemo, useState } from "react";
 
-import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
-import { deleteReview } from "@/apis/review/reviewDelete/reviewDelete";
-import { postReviewReport } from "@/apis/review/reviewReport/reviewReport";
-import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
-import { Review } from "@/apis/review/reviews/reviewsType";
+import type { Review } from "@/apis/review/reviews/reviewsType";
+import { IconButton } from "@/components/core/Button";
 import { BasicChip } from "@/components/core/Chip";
 import { DropdownMenu } from "@/components/core/Dropdown";
 import { ProgressCircle } from "@/components/core/Progress";
 import { FestivalRequstDialog } from "@/components/Dialog";
+import { HeartIcon } from "@/components/icons";
 import Ratings from "@/components/rating/Ratings";
+import useDeleteReview from "@/hooks/review/useDeleteReview";
+import useReportReview from "@/hooks/review/useReportReview";
+import useToggleReviewLike from "@/hooks/review/useToggleReviewLike";
 import { formatToYYYYMMDD } from "@/lib/dayjs";
 import { useUserStore } from "@/store/user";
 
@@ -27,30 +27,22 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
   const router = useRouter();
   const [isOpenReportDialog, setIsOpenReportDialog] = useState<boolean>(false);
 
-  const queryClient = useQueryClient();
+  const { deleteReviewMutate, isDeleting } = useDeleteReview(review);
+  const { reportReview, isReporting } = useReportReview();
+  const { mutate: toggleReviewLike } = useToggleReviewLike(review);
 
-  const { mutate: deleteReviewMutate, isPending: isDeleting } = useMutation({
-    mutationFn: async (reviewId: number) => await deleteReview(reviewId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: reviewsKeys.all,
-      }),
-        queryClient.invalidateQueries({
-          queryKey: topKeywordFestivalKeys.list({
-            festivalId: review.festivalId,
-          }),
-        });
-    },
-  });
-
-  const { mutate: postReviewMutate, isPending: isReporting } = useMutation({
-    mutationFn: async (body: { reviewId: number; description: string }) =>
-      await postReviewReport(body),
-  });
+  const handleReport = async (description: string) => {
+    reportReview({ reviewId: review.reviewId, description });
+  };
 
   const handleDelete = (reviewId: number) => {
     deleteReviewMutate(reviewId);
   };
+
+  const handleToggle = () => {
+    toggleReviewLike({ reviewId: review.reviewId });
+  };
+
   const myReviewOptions = [
     {
       label: "수정하기",
@@ -125,20 +117,28 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
       <p className="text-body1-regular-lh-20 text-gray-scale-700">
         {review.content}
       </p>
-      <div className="flex w-full justify-between">
+      <div className="flex w-full items-center justify-between">
         <div className="flex gap-[8px] overflow-auto scrollbar-hide">
-          {review.keywords.map((keyword) => (
+          {review.keywords.slice(0, 2).map((keyword) => (
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
         </div>
+        {!!user && review.user.userId != user?.userId && (
+          <div className="flex w-[30px] items-center justify-between gap-1">
+            <IconButton active={review.isLiked} onClick={handleToggle}>
+              <HeartIcon width={20} height={20} className="gap-2" />
+            </IconButton>
+            <span className="text-caption2-regular text-gray-scale-600">
+              {review.likeCount}
+            </span>
+          </div>
+        )}
       </div>
 
       <FestivalRequstDialog
         title="신고하기"
         open={isOpenReportDialog}
-        onConfirm={async (description) =>
-          postReviewMutate({ reviewId: review.reviewId, description })
-        }
+        onConfirm={handleReport}
         onOpenChange={() => setIsOpenReportDialog((prev) => !prev)}
       />
 

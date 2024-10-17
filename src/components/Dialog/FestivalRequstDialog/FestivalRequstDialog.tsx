@@ -14,7 +14,7 @@ import AlertDialogWrapper from "../AlertDialogWrapper/AlertDialogWrapper";
 
 interface Props extends Omit<AlertDialogProps, "onOpenChange"> {
   title: string;
-  onConfirm: (content: string) => Promise<void>;
+  onConfirm: (description: string) => Promise<void>;
   onOpenChange: (open: boolean) => void;
   placeholder?: string;
 }
