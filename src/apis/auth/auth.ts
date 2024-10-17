@@ -15,10 +15,9 @@ const ENDPOINT = FIESTA_ENDPOINTS.users;
 
 export async function postOauthLogin(body: SocialLoginRequest) {
   const endpoint = ENDPOINT.login;
-  const response = await FiestaInstance.post<SocialLoginResponse>(
-    endpoint,
-    body,
-  );
+  const response = await FiestaInstance.post<SocialLoginResponse>(endpoint, {
+    json: body,
+  });
 
   return response;
 }

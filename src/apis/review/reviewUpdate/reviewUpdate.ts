@@ -8,7 +8,9 @@ const ENDPOINT = FIESTA_ENDPOINTS.reviews;
 export async function patchReview(payload: ReviewUpdateBody) {
   const { reviewId, ...body } = payload;
   const endpoint = ENDPOINT.detail(String(reviewId));
-  const data = await FiestaInstance.patch<ReviewUpdateResponse>(endpoint, body);
+  const data = await FiestaInstance.patch<ReviewUpdateResponse>(endpoint, {
+    json: body,
+  });
 
   return data;
 }

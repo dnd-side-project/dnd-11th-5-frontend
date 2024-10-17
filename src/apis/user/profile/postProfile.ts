@@ -7,7 +7,9 @@ import { UserProfileRequest, UserProfileResponse } from "./profileType";
 
 export const postProfile = async (body: UserProfileRequest) => {
   const endpoint = FIESTA_ENDPOINTS.users.profile;
-  const data = await FiestaInstance.post<UserProfileResponse>(endpoint, body);
+  const data = await FiestaInstance.post<UserProfileResponse>(endpoint, {
+    json: body,
+  });
 
   return data;
 };
