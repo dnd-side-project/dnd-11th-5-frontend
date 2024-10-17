@@ -40,7 +40,6 @@ export async function postReviews(payload: NewReviewSchemaType) {
 
   const { images, ...rest } = payload;
   const formData = new FormData();
-
   formData.append(
     "data",
     new Blob([JSON.stringify(rest)], { type: "application/json" }),
@@ -50,10 +49,9 @@ export async function postReviews(payload: NewReviewSchemaType) {
     formData.append("images", image);
   });
 
-  const data = await FiestaInstance.post<PostReviewResponse>(
-    endpoint,
-    formData,
-  );
+  const data = await FiestaInstance.post<PostReviewResponse>(endpoint, {
+    body: formData,
+  });
 
   return data;
 }
@@ -72,10 +70,9 @@ export async function updateReview(payload: UpdateReviewSchemaType) {
     formData.append("images", image);
   });
 
-  const data = await FiestaInstance.patch<PostReviewResponse>(
-    endpoint,
-    formData,
-  );
+  const data = await FiestaInstance.patch<PostReviewResponse>(endpoint, {
+    body: formData,
+  });
 
   return data;
 }

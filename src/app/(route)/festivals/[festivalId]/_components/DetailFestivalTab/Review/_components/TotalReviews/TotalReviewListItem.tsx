@@ -123,7 +123,7 @@ const TotalReviewListItem: FC<Props> = ({ review }) => {
             <BasicChip key={keyword.keywordId} label={keyword.keyword} />
           ))}
         </div>
-        {!!user && (
+        {!!user && review.user.userId != user?.userId && (
           <div className="flex w-[30px] items-center justify-between gap-1">
             <IconButton active={review.isLiked} onClick={handleToggle}>
               <HeartIcon width={20} height={20} className="gap-2" />
