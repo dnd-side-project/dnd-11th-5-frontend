@@ -14,7 +14,8 @@
     "formatting": "prettier --write '**/*.{ts,tsx}'",
     "lint": "eslint --fix .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "release": "release-it"
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",
@@ -96,6 +97,7 @@
     "msw": "^2.3.5",
     "postcss": "^8",
     "prettier": "^3.3.2",
+    "release-it": "^17.10.0",
     "storybook": "^8.2.6",
     "tailwindcss": "^3.4.6",
     "typescript": "^5"
