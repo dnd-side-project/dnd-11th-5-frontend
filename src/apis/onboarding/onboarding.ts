@@ -1,8 +1,11 @@
 "use server";
+import ky from "ky";
+
 import { FIESTA_ENDPOINTS } from "@/config";
+import { env } from "@/env";
 import { getSettledValue } from "@/utils";
 
-import FiestaInstance from "../FiestaInstance";
+import { FiestaResponse } from "../instance";
 import { festivalOnBoarding } from "./onboardingKeys";
 import {
   FestivalCategory,
@@ -14,46 +17,61 @@ import {
 
 export const getMoods = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.moods;
-  const data = await FiestaInstance.get<Array<FestivalMood>>(endpoint, {
-    cache: "force-cache",
-    next: {
-      tags: festivalOnBoarding.all,
-    },
-  });
+  const data = await ky
+    .get(`${env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+      cache: "force-cache",
+      next: {
+        tags: festivalOnBoarding.all,
+        revalidate: false,
+      },
+    })
+    .json<FiestaResponse<Array<FestivalMood>>>()
+    .then((res) => res.data);
 
   return data;
 };
 export const getCategories = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.categories;
-  const data = await FiestaInstance.get<Array<FestivalCategory>>(endpoint, {
-    cache: "force-cache",
-    next: {
-      tags: festivalOnBoarding.all,
-    },
-  });
+  const data = await ky
+    .get<Array<FestivalCategory>>(`${env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+      cache: "force-cache",
+      next: {
+        tags: festivalOnBoarding.all,
+        revalidate: false,
+      },
+    })
+    .json<FiestaResponse<Array<FestivalCategory>>>()
+    .then((res) => res.data);
 
   return data;
 };
 export const getCompanions = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.companions;
-  const data = await FiestaInstance.get<Array<FestivalCompanion>>(endpoint, {
-    cache: "force-cache",
-    next: {
-      tags: festivalOnBoarding.all,
-    },
-  });
-
+  const data = await ky
+    .get<Array<FestivalCompanion>>(`${env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+      cache: "force-cache",
+      next: {
+        tags: festivalOnBoarding.all,
+        revalidate: false,
+      },
+    })
+    .json<FiestaResponse<Array<FestivalCompanion>>>()
+    .then((res) => res.data);
   return data;
 };
 
 export const getPriority = async () => {
   const endpoint = FIESTA_ENDPOINTS.festivals.priorities;
-  const data = await FiestaInstance.get<Array<FestivalPriority>>(endpoint, {
-    cache: "force-cache",
-    next: {
-      tags: festivalOnBoarding.all,
-    },
-  });
+  const data = await ky
+    .get<Array<FestivalPriority>>(`${env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+      cache: "force-cache",
+      next: {
+        tags: festivalOnBoarding.all,
+        revalidate: false,
+      },
+    })
+    .json<FiestaResponse<Array<FestivalPriority>>>()
+    .then((res) => res.data);
 
   return data;
 };

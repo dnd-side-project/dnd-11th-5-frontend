@@ -9,7 +9,7 @@ export async function postReviewReport(body: {
   reviewId: number;
   description: string;
 }) {
-  const endpoint = ENDPOINT.reports(String(body.reviewId));
+  const endpoint = ENDPOINT.report(String(body.reviewId));
 
   const data = await FiestaInstance.post<ReviewReportResponse>(endpoint, {
     json: {

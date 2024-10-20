@@ -10,6 +10,8 @@ import {
   SocialLoginRequest,
   SocialLoginResponse,
 } from "./authType";
+import { cookies } from "next/headers";
+import { decode } from "next-auth/jwt";
 
 const ENDPOINT = FIESTA_ENDPOINTS.users;
 
@@ -37,7 +39,7 @@ export const getRefreshToken = async (
 ): Promise<RefreshTokenResponse> => {
   const endpoint = ENDPOINT.reissue;
 
-  const response = await fetch(env.NEXT_PUBLIC_BASE_URL + endpoint, {
+  const response = await fetch(`${env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
     method: "POST",
     headers: {
       refreshToken,
@@ -51,4 +53,16 @@ export const getRefreshToken = async (
 export const getServerSideSession = async () => {
   const session = await auth();
   return session;
+};
+
+export const getAccessTokenFromCookie = async () => {
+  const sessionToken = cookies().get("authjs.session-token")?.value;
+
+  const session = await decode({
+    token: sessionToken,
+    secret: env.AUTH_SECRET,
+    salt: "authjs.session-token",
+  });
+
+  return session ?? null;
 };

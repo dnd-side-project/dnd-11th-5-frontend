@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 
-import { signInWithKakao } from "@/apis/auth/auth";
+import { getServerSideSession, signInWithKakao } from "@/apis/auth/auth";
 import FireworkAnimation from "@/components/Confetti/Firework";
 import { KakaoButton } from "@/components/core/Button";
 
@@ -10,7 +11,13 @@ export const metadata: Metadata = {
   title: "로그인",
 };
 
-const SignIn = () => {
+const SignInPage = async () => {
+  const session = await getServerSideSession();
+
+  if (!!session) {
+    session?.user.isProfileRegistered ? redirect("/") : redirect("/onboarding");
+  }
+
   return (
     <>
       <main className="relative flex h-full w-full flex-col items-center justify-between gap-[30px] overflow-hidden bg-gray-scale-800 pb-[55px]">
@@ -84,4 +91,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;

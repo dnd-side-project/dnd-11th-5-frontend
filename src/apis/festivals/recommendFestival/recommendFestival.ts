@@ -1,22 +1,21 @@
+"use server";
+
 import kyInstance from "@/apis/FiestaInstance";
+import { REVALIDATE_DURATION } from "@/config";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
-import {
-  PaginationParamter,
-  RecommendFestivalResponse,
-} from "./recommendFestivalType";
+import { RecommendFestivalResponse } from "./recommendFestivalType";
 
-const defaultParams: PaginationParamter = { page: 0, size: 5 };
-
-export async function getRecommendFestival(
-  params: PaginationParamter = defaultParams,
-) {
+export async function getRecommendFestival(festivalId: number) {
   const endpoint = FIESTA_ENDPOINTS.festivals.recommend;
   const response = await kyInstance.get<RecommendFestivalResponse>(
-    generateUrlWithParams(endpoint, params),
+    generateUrlWithParams(endpoint, { page: 0, size: 5 }),
     {
-      cache: "no-store",
+      next: {
+        revalidate: REVALIDATE_DURATION.DAY,
+        tags: [FIESTA_ENDPOINTS.festivals.recommend, String(festivalId)],
+      },
     },
   );
 

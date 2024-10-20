@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 
 import Image from "next/image";
 import Link from "next/link";
+import { Session } from "next-auth";
 import { FC } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,12 +16,13 @@ import { formatToKoreanDate } from "@/lib/dayjs";
 
 interface Props {
   recommendFestivals?: RecommendFestivalResponse;
+  session: Session;
 }
 
-const RecommendFestivalList: FC<Props> = ({ recommendFestivals }) => {
+const RecommendFestivalList: FC<Props> = ({ recommendFestivals, session }) => {
   return (
     <section className="relative h-full w-full px-[24px] py-[35px]">
-      <RecommendFestivalHeader />
+      <RecommendFestivalHeader session={session} />
       <Swiper
         autoplay={{
           delay: 3000,

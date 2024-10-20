@@ -1,5 +1,5 @@
 import type { User } from "next-auth";
-import type { JWT } from "next-auth/jwt";
+import { decode, type JWT } from "next-auth/jwt";
 import NextAuth from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
 
@@ -9,6 +9,10 @@ import { getMe } from "@/apis/user/me/me";
 import { env } from "@/env";
 import { decodeToken } from "@/lib/jwt";
 import type { UserMeResponse } from "@/apis/user/me/meType";
+
+const serviceReadyRoute = ["/chat", "/map", "/calander"];
+const matchersForAuth = ["/mypage"];
+const matchersForSignIn = ["/auth/sign-in"];
 
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   providers: [
@@ -24,12 +28,16 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
     error: "/auth/sign-in",
   },
   callbacks: {
-    async signIn() {
+    authorized: async ({ request, auth }) => {
+      if (matchersForAuth.some((v) => v == request.nextUrl.pathname)) {
+        return !!auth;
+      }
+
       return true;
     },
-
     redirect: async ({ url, baseUrl }) => {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
+
       if (url) {
         const { search, origin } = new URL(url);
         const callbackUrl = new URLSearchParams(search).get("callbackUrl");
@@ -41,6 +49,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
       }
       return baseUrl;
     },
+
     async jwt({ token, session, user, trigger, account }) {
       if (trigger === "update") {
         token.user = {
@@ -56,8 +65,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             accessToken: account.access_token as string,
           };
 
-          const { accessToken, refreshToken, isProfileRegistered } =
-            await postOauthLogin(body);
+          const { accessToken, refreshToken } = await postOauthLogin(body);
 
           const userResponse = await getMe({
             headers: {
@@ -71,6 +79,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
             refreshToken,
             accessToken,
           };
+
           return token;
         }
       }
@@ -79,22 +88,25 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
         return null;
       }
 
-      const decodedJWT = decodeToken(token.accessToken);
+      if (!!token.accessToken) {
+        const decodedJWT = decodeToken(token.accessToken);
+
+        if (decodedJWT) {
+          token.exp = decodedJWT.exp;
+        }
+      }
+
       if (
         !!token.refreshToken &&
-        !!decodedJWT?.exp &&
-        decodedJWT?.exp * 1000 < Date.now()
+        token?.exp &&
+        token?.exp * 1000 < Date.now()
       ) {
-        console.log("토큰 재발급");
         const { accessToken, refreshToken } = await getRefreshToken(
           token.refreshToken,
         );
 
-        const decodedJWT = decodeToken(accessToken);
-
         token.accessToken = accessToken;
         token.refreshToken = refreshToken;
-        token.exp = decodedJWT?.exp;
       }
 
       return token;
@@ -102,7 +114,6 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
 
     async session({ session, token }) {
       if (token?.accessToken) {
-        const decodedJWT = decodeToken(token.accessToken ?? "");
         session.user = {
           ...session.user,
           userId: token.user.userId as number,
@@ -115,7 +126,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
         };
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
-        session.exp = decodedJWT?.exp;
+        session.exp = token.exp;
         session.iat = token.iat;
         session.sub = token.sub;
       }

@@ -4,7 +4,7 @@ import ky, { Options } from "ky";
 import { env } from "@/env";
 import { getClientSideSession } from "@/lib/session";
 
-import { getServerSideSession } from "./auth/auth";
+import { getAccessTokenFromCookie } from "./auth/auth";
 import { FiestaResponse } from "./instance";
 
 const addAuthTokenToHeader = async (
@@ -14,7 +14,7 @@ const addAuthTokenToHeader = async (
   const isServer = typeof window === "undefined";
 
   const session = isServer
-    ? await getServerSideSession()
+    ? await getAccessTokenFromCookie()
     : await getClientSideSession();
 
   if (session) {
