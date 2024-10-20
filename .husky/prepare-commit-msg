@@ -1,3 +1,8 @@
+# Exit if the npm lifecycle event is 'release'
+if [ "$npm_lifecycle_event" = "release" ]; then
+  exit 0
+fi
+
 # Check if the commit is being made by Commitizen
 if [ -z "$CZ_IN_PROGRESS" ]; then
   # Set an environment variable to indicate Commitizen is running
