@@ -58,6 +58,7 @@
     "@chromatic-com/storybook": "^1.6.1",
     "@faker-js/faker": "^8.4.1",
     "@next/bundle-analyzer": "^14.2.13",
+    "@release-it/conventional-changelog": "^9.0.0",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
