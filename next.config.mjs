@@ -31,13 +31,7 @@ const nextConfig = {
       },
     ],
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
   reactStrictMode: true,
-
   experimental: { instrumentationHook: true },
   webpack(config) {
     // SVG 가져오기를 처리하는 기존 규칙을 가져옵니다.

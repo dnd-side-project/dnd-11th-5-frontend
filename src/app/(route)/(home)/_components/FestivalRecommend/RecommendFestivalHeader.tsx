@@ -1,13 +1,15 @@
 import Image from "next/image";
+import { Session } from "next-auth";
 import { FC } from "react";
 
-import { useUserStore } from "@/store/user";
 import { UserTypeImage, UserTypeText } from "@/utils";
 
-interface Props {}
+interface Props {
+  session: Session;
+}
 
-const RecommendFestivalHeader: FC<Props> = ({}) => {
-  const user = useUserStore((state) => state.user);
+const RecommendFestivalHeader: FC<Props> = ({ session }) => {
+  const { user } = session;
   return (
     <div className="relative flex w-full justify-between">
       <div className="flex w-1/2 flex-wrap pb-[18px] text-title-bold">
