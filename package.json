@@ -122,5 +122,69 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "release-it": {
+    "$schema": "https://unpkg.com/release-it@17/schema/release-it.json",
+    "git": {
+      "tag": true,
+      "push": true,
+      "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "✨ feat",
+              "section": "Features"
+            },
+            {
+              "type": "🐛 fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "📝 docs",
+              "section": "Documentation"
+            },
+            {
+              "type": "💅 style",
+              "section": "Styles"
+            },
+            {
+              "type": "♻️ refactor",
+              "section": "Code Refactoring"
+            },
+            {
+              "type": "👷 cicd",
+              "section": "CI/CD"
+            },
+            {
+              "type": "⚡️ perf",
+              "section": "Performance Improvements"
+            },
+            {
+              "type": "✅ test",
+              "section": "Tests"
+            },
+            {
+              "type": "🔧 chore",
+              "section": "Chores"
+            },
+            {
+              "type": "🔨 settings",
+              "section": "Settings"
+            }
+          ]
+        }
+      }
+    }
   }
 }
