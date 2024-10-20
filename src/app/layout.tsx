@@ -4,6 +4,7 @@ import "../styles/reset.css";
 import Script from "next/script";
 import { ReactNode } from "react";
 
+import { getServerSideSession } from "@/apis/auth/auth";
 import { env } from "@/env";
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import {
@@ -20,10 +21,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const session = await getServerSideSession();
+
   return (
     <html lang="ko" className={Pretendard.variable}>
       <body className={cn(Pretendard.className)} suppressHydrationWarning>
-        <SessionProvider>
+        <SessionProvider session={session}>
           <MSWProvider>
             <ReactQueryProvider>
               <MobileLayout>
