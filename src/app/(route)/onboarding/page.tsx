@@ -1,5 +1,7 @@
+import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 
+import { getServerSideSession } from "@/apis/auth/auth";
 import { getOnboardingData } from "@/apis/onboarding/onboarding";
 
 import OnBoardingView from "./view";
@@ -9,6 +11,12 @@ export const metadata: Metadata = {
 };
 
 export default async function OnBoarding() {
+  const session = await getServerSideSession();
+
+  if (!session || session.user.isProfileRegistered) {
+    redirect("/");
+  }
+
   const { moods, categories, companions, priorities } =
     await getOnboardingData();
 
