@@ -18,43 +18,43 @@
         "name": "conventionalcommits",
         "types": [
           {
-            "type": "feat",
+            "type": "✨ feat",
             "section": "Features"
           },
           {
-            "type": "fix",
+            "type": "🐛 fix",
             "section": "Bug Fixes"
           },
           {
-            "type": "docs",
+            "type": "📝 docs",
             "section": "Documentation"
           },
           {
-            "type": "style",
+            "type": "💅 style",
             "section": "Styles"
           },
           {
-            "type": "refactor",
+            "type": "♻️ refactor",
             "section": "Code Refactoring"
           },
           {
-            "type": "cicd",
+            "type": "👷 cicd",
             "section": "CI/CD"
           },
           {
-            "type": "perf",
+            "type": "⚡️ perf",
             "section": "Performance Improvements"
           },
           {
-            "type": "test",
+            "type": "✅ test",
             "section": "Tests"
           },
           {
-            "type": "chore",
+            "type": "🔧 chore",
             "section": "Chores"
           },
           {
-            "type": "settings",
+            "type": "🔨 settings",
             "section": "Settings"
           }
         ]
