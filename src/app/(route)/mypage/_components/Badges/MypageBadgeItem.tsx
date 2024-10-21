@@ -8,12 +8,11 @@ interface Props {
 }
 
 const MypageBadgeItem: FC<Props> = ({ badge }) => {
-  const isAcquired = badge.isAquired ? "" : "grayscale";
   return (
     <div className="flex w-auto flex-col items-center justify-center gap-[6px]">
       <Image
         priority
-        className={isAcquired}
+        className={badge.isAcquired ? "" : "grayscale"}
         src={badge.imageUrl}
         alt={badge.badgeName}
         width={96}

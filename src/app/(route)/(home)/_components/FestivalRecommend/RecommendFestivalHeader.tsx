@@ -13,11 +13,12 @@ const RecommendFestivalHeader: FC<Props> = ({ session }) => {
   return (
     <div className="relative flex w-full justify-between">
       <div className="flex w-1/2 flex-wrap pb-[18px] text-title-bold">
-        <span className={UserTypeText[user?.userTypeId ?? 1]}>
-          {user?.nickname ?? "피에스타"}
+        <span>
+          <span className={UserTypeText[user?.userTypeId ?? 1]}>
+            {user?.nickname ?? "피에스타"}
+          </span>
+          들을 위한 페스티벌이에요!
         </span>
-        <span>들을</span>
-        <span>위한 페스티벌이에요!</span>
       </div>
       <Image
         className="absolute bottom-[-15px] right-[20px]"

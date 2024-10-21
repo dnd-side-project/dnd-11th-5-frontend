@@ -29,7 +29,7 @@ const TrendFestivalCard: FC<TrendFestivalCardProps> = ({
     onToggle && onToggle();
   };
   return (
-    <div className="relative h-auto w-full max-w-[200px] ">
+    <div className="relative h-auto">
       <Link
         className={"flex h-auto w-full flex-col gap-[12px] rounded-t-[8px]"}
         {...props}

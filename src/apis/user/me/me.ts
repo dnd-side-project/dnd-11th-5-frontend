@@ -1,5 +1,3 @@
-"use server";
-
 import FiestaInstance from "@/apis/FiestaInstance";
 import { FiestaFetchOptions } from "@/apis/instance";
 import { FIESTA_ENDPOINTS } from "@/config";

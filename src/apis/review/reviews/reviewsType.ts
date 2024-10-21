@@ -30,8 +30,8 @@ export interface Review {
 
 export interface User {
   userId: number;
-  profileImage: string;
-  nickname: string;
+  profileImage: string | null;
+  nickname: string | null;
 }
 
 export interface Image {

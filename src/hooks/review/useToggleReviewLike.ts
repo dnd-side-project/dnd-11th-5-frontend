@@ -22,7 +22,7 @@ const useToggleReviewLike = (review: Review) => {
 
   const params: FestivalReviewsParameters = useMemo(
     () => ({
-      festivalId: review.festivalId,
+      festivalId: review?.festivalId,
       page,
       size: 6,
       sort,
@@ -51,6 +51,7 @@ const useToggleReviewLike = (review: Review) => {
             isLiked: !review.isLiked,
           };
         }
+        return r;
       });
       queryClient.setQueryData(queryKey, { ...context, content: newContent });
       return { context };

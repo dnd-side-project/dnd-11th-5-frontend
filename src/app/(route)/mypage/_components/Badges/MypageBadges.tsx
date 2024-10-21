@@ -10,7 +10,7 @@ interface Props {
 }
 
 const MypageBadges: FC<Props> = ({ badges }) => {
-  const acquiredCount = badges.filter((badge) => badge.isAquired).length;
+  const acquiredCount = badges.filter((badge) => badge.isAcquired).length;
   return (
     <div className="flex flex-col gap-[18px]">
       <MypageBadgeCount count={acquiredCount} />

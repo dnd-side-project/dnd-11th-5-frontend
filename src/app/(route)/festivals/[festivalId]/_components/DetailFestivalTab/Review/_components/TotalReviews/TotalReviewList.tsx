@@ -13,7 +13,10 @@ const TotalReviewList: FC<Props> = ({ reviews }) => {
     <div className="flex w-full flex-col gap-[4px]">
       <div className="flex w-full flex-col">
         {reviews.map((review) => (
-          <TotalReviewListItem key={review?.reviewId} review={review} />
+          <TotalReviewListItem
+            key={review?.reviewId ?? review?.createdAt}
+            review={review}
+          />
         ))}
       </div>
     </div>

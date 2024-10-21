@@ -1,21 +1,17 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
-import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
-import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
-import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
-import { postReviews } from "@/apis/review/reviews/reviews";
+import { Keyword } from "@/apis/review/reviews/reviewsType";
 import { BasicButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
 import ReviewKeywordInput from "@/components/core/Input/KeywordInput/ReviewKeywordInput";
 import { ProgressCircle } from "@/components/core/Progress";
 import ImageUploader from "@/components/imageUploader/ImageUploader";
 import { CREATE_FESTIVAL_SETTING } from "@/config";
+import useReview from "@/hooks/review/useReview";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import { log } from "@/utils";
 import NewReviewSchema, {
@@ -25,24 +21,12 @@ import NewReviewSchema, {
 import Input_rating from "./_components/Input_rating";
 
 interface Props {
-  keywords: Array<ReviewKeyword>;
+  keywords: Array<Keyword>;
   festivalId: string;
 }
 
 const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-  const { mutate: postReviewsMutate } = useMutation({
-    mutationFn: async (data: NewReviewSchemaType) => await postReviews(data),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: reviewsKeys.list({ festivalId }),
-      });
-      queryClient.invalidateQueries({
-        queryKey: topKeywordFestivalKeys.list({ festivalId }),
-      });
-    },
-  });
+  const { postReviewsMutate } = useReview(undefined, festivalId);
   const methods = useForm<NewReviewSchemaType>({
     defaultValues: {
       festivalId,
@@ -62,9 +46,7 @@ const ReviewNewView: FC<Props> = ({ keywords, festivalId }) => {
 
   const onSubmit = async (data: NewReviewSchemaType) => {
     try {
-      await queryClient.invalidateQueries({ queryKey: reviewsKeys.all });
       postReviewsMutate(data);
-      router.back();
     } catch (error) {
       log("🚀 ~ onSubmit ~ error:", error);
     }

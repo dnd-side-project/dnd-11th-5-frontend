@@ -2,37 +2,30 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Controller, useForm } from "react-hook-form";
 
-import { getMe, updateMe } from "@/apis/user/me/me";
 import { BasicButton } from "@/components/core/Button";
 import { TextInput } from "@/components/core/Input";
-import { useUserStore } from "@/store/user";
+import { useProfile } from "@/hooks/useProfile";
 import {
   ProfileMeUpdateSchema,
   ProfileMeUpdateSchemaType,
 } from "@/validations/ProfileUpdateMeSchema";
 
 const MypageSettingsProfile = () => {
-  const updateUser = useUserStore((state) => state.updateUser);
-  const userInfo = useUserStore((state) => state.user);
-  const { update } = useSession();
+  const { user, updateUserMutate } = useProfile();
   const router = useRouter();
 
   const { control, handleSubmit } = useForm<ProfileMeUpdateSchemaType>({
     values: {
-      nickname: userInfo?.nickname ?? "",
-      statusMessage: userInfo?.statusMessage ?? "",
+      nickname: user?.nickname ?? "",
+      statusMessage: user?.statusMessage ?? "",
     },
     resolver: zodResolver(ProfileMeUpdateSchema),
   });
 
   const onSubmit = async (data: ProfileMeUpdateSchemaType) => {
-    await updateMe(data);
-    const user = await getMe();
-    updateUser(user);
-    update({ user });
+    await updateUserMutate(data);
     router.push("/mypage");
   };
 

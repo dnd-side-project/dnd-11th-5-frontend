@@ -3,7 +3,7 @@ export type Badge = {
   badgeName: string;
   description: string;
   imageUrl: string;
-  isAquired: boolean;
+  isAcquired: boolean;
 };
 
 export type BadgesResponse = Array<Badge>;

@@ -1,15 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { FC, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
-import { topKeywordFestivalKeys } from "@/apis/festivals/topKeywordFestival/topKeywordFestivalKeys";
-import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
-import { reviewsKeys } from "@/apis/review/reviews/reviewKeys";
-import { getReview, updateReview } from "@/apis/review/reviews/reviews";
 import { Review } from "@/apis/review/reviews/reviewsType";
 import { BasicButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
@@ -17,6 +11,7 @@ import ReviewKeywordInput from "@/components/core/Input/KeywordInput/ReviewKeywo
 import { ProgressCircle } from "@/components/core/Progress";
 import ImageUploader from "@/components/imageUploader/ImageUploader";
 import { CREATE_FESTIVAL_SETTING } from "@/config";
+import useUpdateReview from "@/hooks/review/useReview";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import { log } from "@/utils/log";
 import { reviewEntityToFiles } from "@/utils/reviewEntityToFiles";
@@ -27,30 +22,12 @@ import UpdateReviewSchema, {
 import Input_rating from "../new/_components/Input_rating";
 
 interface Props {
-  keywords: Array<ReviewKeyword>;
   reviewId: string;
   festivalId: string;
 }
 
-const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  const { data: review } = useQuery({
-    queryKey: reviewsKeys.detail(reviewId),
-    queryFn: () => getReview(reviewId),
-  });
-
-  const { mutate: updateReviewMutate } = useMutation({
-    mutationFn: (payload: UpdateReviewSchemaType) => updateReview(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: reviewsKeys.all });
-      queryClient.invalidateQueries({
-        queryKey: topKeywordFestivalKeys.list({ festivalId }),
-      });
-    },
-    onSettled: () => router.replace(`/festivals/${festivalId}`),
-  });
+const ReviewEditView: FC<Props> = ({ reviewId, festivalId }) => {
+  const { review, updateReviewMutate } = useUpdateReview(reviewId, festivalId);
 
   const methods = useForm<UpdateReviewSchemaType>({
     values: {
@@ -129,7 +106,7 @@ const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
           name="keywordIds"
           render={({ field: { onChange, value } }) => (
             <ReviewKeywordInput
-              keywords={keywords}
+              keywords={review?.keywords ?? []}
               selectedkeywordId={value}
               onChange={onChange}
             />
