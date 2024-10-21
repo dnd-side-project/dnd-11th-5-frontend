@@ -8,7 +8,7 @@ import { BadgesResponse } from "./badgesType";
 export const getUserBadges = async () => {
   const endpoint = FIESTA_ENDPOINTS.users.badges;
   const data = await FiestaInstance.get<BadgesResponse>(endpoint, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 0 },
   });
 
   return data;
