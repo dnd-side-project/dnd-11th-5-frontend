@@ -80,7 +80,7 @@ const MypageBookmark: FC<Props> = ({}) => {
         {data.totalElements}개의 페스티벌
       </span>
 
-      <div className="grid w-full grid-cols-2 gap-y-[24px]">
+      <div className="grid w-full grid-cols-2 gap-[24px]">
         {data.content?.map((festival, index) => (
           <TrendFestivalCard
             key={festival.festivalId + index}

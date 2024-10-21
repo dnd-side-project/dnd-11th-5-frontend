@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -11,8 +10,6 @@ import {
   FestivalMood,
   FestivalPriority,
 } from "@/apis/onboarding/onboardingType";
-import { OnboardingInfoResponse } from "@/apis/user/onboarding-info/onboarding-infoType";
-import { patchProfile } from "@/apis/user/profile/patchProfile";
 import { BasicButton } from "@/components/core/Button";
 import {
   CategoryKeywordInput,
@@ -20,6 +17,7 @@ import {
 } from "@/components/core/Input";
 import { PriorityKeywordInput } from "@/components/core/Input/KeywordInput";
 import CompanionKeywordInput from "@/components/core/Input/KeywordInput/ConpanionKeywordInput";
+import { useUserOnBoarding } from "@/hooks/useUserOnBoarding";
 import {
   ProfileUpdateSchema,
   ProfileUpdateSchemaType,
@@ -30,7 +28,6 @@ interface Props {
   companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
-  userOnboardingInfo: OnboardingInfoResponse;
 }
 
 const MypageSettingsKeywords: FC<Props> = ({
@@ -38,22 +35,22 @@ const MypageSettingsKeywords: FC<Props> = ({
   companions,
   priorities,
   moods,
-  userOnboardingInfo,
 }) => {
-  const router = useRouter();
+  const { userOnboardingInfo, updateUserOnboardingMutate } =
+    useUserOnBoarding();
+
   const { handleSubmit, control } = useForm<ProfileUpdateSchemaType>({
     values: {
-      categoryIds: userOnboardingInfo.categoryIds,
-      moodIds: userOnboardingInfo.moodIds,
-      companionIds: userOnboardingInfo.companionIds,
-      priorityIds: userOnboardingInfo.priorityIds,
+      categoryIds: userOnboardingInfo?.categoryIds ?? [],
+      moodIds: userOnboardingInfo?.moodIds ?? [],
+      companionIds: userOnboardingInfo?.companionIds ?? [],
+      priorityIds: userOnboardingInfo?.priorityIds ?? [],
     },
     resolver: zodResolver(ProfileUpdateSchema),
   });
 
   const onSubmit = async (data: ProfileUpdateSchemaType) => {
-    await patchProfile(data);
-    router.refresh();
+    await updateUserOnboardingMutate(data);
   };
 
   return (

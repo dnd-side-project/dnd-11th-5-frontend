@@ -22,7 +22,6 @@ export const getMoods = async () => {
       cache: "force-cache",
       next: {
         tags: festivalOnBoarding.all,
-        revalidate: false,
       },
     })
     .json<FiestaResponse<Array<FestivalMood>>>()
@@ -37,7 +36,6 @@ export const getCategories = async () => {
       cache: "force-cache",
       next: {
         tags: festivalOnBoarding.all,
-        revalidate: false,
       },
     })
     .json<FiestaResponse<Array<FestivalCategory>>>()
@@ -52,7 +50,6 @@ export const getCompanions = async () => {
       cache: "force-cache",
       next: {
         tags: festivalOnBoarding.all,
-        revalidate: false,
       },
     })
     .json<FiestaResponse<Array<FestivalCompanion>>>()
@@ -67,7 +64,6 @@ export const getPriority = async () => {
       cache: "force-cache",
       next: {
         tags: festivalOnBoarding.all,
-        revalidate: false,
       },
     })
     .json<FiestaResponse<Array<FestivalPriority>>>()

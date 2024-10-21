@@ -6,10 +6,10 @@ const RecommendFestivalSkeleton = () => {
       </div>
 
       <div className="grid grid-cols-3 justify-between gap-[24px]">
-        {Array.from({ length: 16 }).map((_, index) => (
+        {Array.from({ length: 15 }).map((_, index) => (
           <div
             key={index}
-            className="flex h-[134px] w-[123px] rounded-md bg-gray-scale-200"
+            className="flex h-[134px] w-[96px] rounded-md bg-gray-scale-200"
           />
         ))}
       </div>

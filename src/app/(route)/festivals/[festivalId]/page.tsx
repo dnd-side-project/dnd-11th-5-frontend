@@ -19,6 +19,7 @@ export default async function Home({
 }: {
   params: SearchParams & { festivalId?: string };
 }) {
+  console.log("🚀 ~ festivalId:", params.festivalId);
   if (!params.festivalId) {
     redirect("/");
   }

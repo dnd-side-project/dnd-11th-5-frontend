@@ -6,7 +6,6 @@ import {
   FestivalMood,
   FestivalPriority,
 } from "@/apis/onboarding/onboardingType";
-import { OnboardingInfoResponse } from "@/apis/user/onboarding-info/onboarding-infoType";
 
 import MypageSettingsTab from "./_components/MypageSettingsTab";
 
@@ -15,7 +14,6 @@ interface Props {
   companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
-  userOnboardingInfo: OnboardingInfoResponse;
 }
 
 const MypageSettingsView: FC<Props> = ({
@@ -23,7 +21,6 @@ const MypageSettingsView: FC<Props> = ({
   companions,
   priorities,
   moods,
-  userOnboardingInfo,
 }) => {
   return (
     <MypageSettingsTab
@@ -31,7 +28,6 @@ const MypageSettingsView: FC<Props> = ({
       companions={companions}
       priorities={priorities}
       moods={moods}
-      userOnboardingInfo={userOnboardingInfo}
     />
   );
 };

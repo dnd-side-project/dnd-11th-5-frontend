@@ -25,8 +25,8 @@ const FestivalHot = async () => {
         </Link>
       </div>
 
-      <div className="flex w-full gap-[16px]">
-        {hotFestivals.content.splice(0, 2).map((festival) => (
+      <div className=" grid w-full grid-cols-2 gap-[16px]">
+        {hotFestivals.content.splice(0, 4).map((festival) => (
           <TrendFestivalCard
             key={festival.festivalId}
             href={`/festivals/${festival.festivalId}`}

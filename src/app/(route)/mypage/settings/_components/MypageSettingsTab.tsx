@@ -9,7 +9,6 @@ import {
   FestivalMood,
   FestivalPriority,
 } from "@/apis/onboarding/onboardingType";
-import { OnboardingInfoResponse } from "@/apis/user/onboarding-info/onboarding-infoType";
 
 import MypageSettingsKeywords from "./MypageSettingsKeywords";
 import MypageSettingsProfile from "./MypageSettingsProfile";
@@ -19,7 +18,6 @@ interface Props {
   companions: Array<FestivalCompanion>;
   priorities: Array<FestivalPriority>;
   moods: Array<FestivalMood>;
-  userOnboardingInfo: OnboardingInfoResponse;
 }
 
 const MypageSettingsTab: FC<Props> = ({
@@ -27,7 +25,6 @@ const MypageSettingsTab: FC<Props> = ({
   companions,
   priorities,
   moods,
-  userOnboardingInfo,
 }) => {
   const TabList = [
     {
@@ -42,7 +39,6 @@ const MypageSettingsTab: FC<Props> = ({
           companions={companions}
           priorities={priorities}
           moods={moods}
-          userOnboardingInfo={userOnboardingInfo}
         />
       ),
     },

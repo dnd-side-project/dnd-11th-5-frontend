@@ -113,7 +113,6 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
     },
 
     async session({ session, token }) {
-      console.log("🚀 ~ session ~ token:", token);
       if (token?.accessToken) {
         session.user = {
           ...session.user,

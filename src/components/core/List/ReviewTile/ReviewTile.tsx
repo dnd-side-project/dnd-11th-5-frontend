@@ -44,7 +44,7 @@ const ReviewTile: FC<Props> = ({ review, className }) => {
             {review.content}
           </span>
         </div>
-        <div className="flex gap-[8px]">
+        <div className="flex w-full gap-[8px] overflow-hidden scrollbar-hide">
           {review.keywords.map(({ keyword, keywordId }) => (
             <ReviewTag key={keywordId} label={keyword} />
           ))}

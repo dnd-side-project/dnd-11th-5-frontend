@@ -1,14 +1,14 @@
 "use client";
 import { FC } from "react";
 
-import { ReviewKeyword } from "@/apis/review/reviewKeywords/reviewKeywordsType";
+import { Keyword } from "@/apis/review/reviews/reviewsType";
 
 import { BasicChip } from "../../Chip";
 
 const MAX_COUNT = 2;
 
 interface Props {
-  keywords: Array<ReviewKeyword>;
+  keywords: Array<Keyword>;
   selectedkeywordId: Array<number>;
   onChange: (_keyword: Array<number>) => void;
 }
