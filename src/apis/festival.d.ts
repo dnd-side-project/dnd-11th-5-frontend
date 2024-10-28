@@ -27,3 +27,10 @@ export type FestivalResponse<T> = {
   message: string;
   data: T;
 };
+
+export type FiestaResponse<T> = {
+  statusCode: number;
+  status: string;
+  message: string;
+  data: T;
+};

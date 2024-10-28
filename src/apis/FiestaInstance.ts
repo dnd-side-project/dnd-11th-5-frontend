@@ -5,7 +5,7 @@ import { env } from "@/env";
 import { getClientSideSession } from "@/lib/session";
 
 import { getServerSideSession } from "./auth/auth";
-import { FiestaResponse } from "./instance";
+import { FiestaResponse } from "./festival";
 
 const addAuthTokenToHeader = async (
   _request: KyRequest,
