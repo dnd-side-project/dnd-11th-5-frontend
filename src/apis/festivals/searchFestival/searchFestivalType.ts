@@ -1,4 +1,4 @@
-import { PageMetaData } from "../hotFestival/hotFestivalType";
+import type { PaginationMetaData } from "@/apis/festival";
 
 export type SearchFestivalParameter = {
   query: string;
@@ -18,6 +18,6 @@ export type SearchFestival = {
   isBookmarked: boolean;
 };
 
-export interface SearchFestivalResponse extends PageMetaData {
+export interface SearchFestivalResponse extends PaginationMetaData {
   content: Array<SearchFestival>;
 }

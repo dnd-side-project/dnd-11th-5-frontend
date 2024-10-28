@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { FC } from "react";
 
+import type { FestivalListModel } from "@/apis/festival";
 import { formatToKoreanDate } from "@/lib/dayjs";
-import { FestivalListModel } from "@/model/festivalTypes";
 import { cn } from "@/utils/cn";
 
 export interface FestivalTileProps extends LinkProps {

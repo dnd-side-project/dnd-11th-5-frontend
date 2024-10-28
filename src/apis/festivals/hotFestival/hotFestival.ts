@@ -1,12 +1,13 @@
 "use server";
 
+import type { PaginationParamter } from "@/apis/festival";
 import FiestaInstance from "@/apis/FiestaInstance";
 import { REVALIDATE_DURATION } from "@/config";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
 import { hotFestivalKeys } from "./hotFestivalkeys";
-import { HostFestivalData, PaginationParamter } from "./hotFestivalType";
+import { HostFestivalData } from "./hotFestivalType";
 
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
 

@@ -1,15 +1,4 @@
-export interface PaginationParamter {
-  page: number;
-  size: number;
-}
-
-export interface PaginationMetaData {
-  offset: number;
-  pageNumber: number;
-  pageSize: number;
-  totalElements: number;
-  totalPages: number;
-}
+import type { PaginationMetaData } from "@/apis/festival";
 
 export interface FestivalListModel {
   festivalId: number;

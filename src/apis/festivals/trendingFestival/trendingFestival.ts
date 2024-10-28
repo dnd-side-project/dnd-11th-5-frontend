@@ -1,6 +1,6 @@
+import type { PaginationParamter } from "@/apis/festival";
 import FiestaInstance from "@/apis/FiestaInstance";
 import FIESTA_ENDPOINTS from "@/config/apiEndpoints";
-import { PaginationParamter } from "@/model/festivalTypes";
 import { generateUrlWithParams } from "@/utils/generateUrlWithParams";
 
 import { TrendingFestivalResponse } from "./trendingFestivalType";

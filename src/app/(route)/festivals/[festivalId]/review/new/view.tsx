@@ -11,7 +11,7 @@ import ReviewKeywordInput from "@/components/core/Input/KeywordInput/ReviewKeywo
 import { ProgressCircle } from "@/components/core/Progress";
 import ImageUploader from "@/components/imageUploader/ImageUploader";
 import { CREATE_FESTIVAL_SETTING } from "@/config";
-import useReview from "@/hooks/review/useReview";
+import useReview from "@/hooks/useReview";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
 import { log } from "@/utils";
 import NewReviewSchema, {

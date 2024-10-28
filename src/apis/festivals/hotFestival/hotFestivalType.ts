@@ -1,7 +1,4 @@
-export type PaginationParamter = {
-  page: number;
-  size: number;
-};
+import type { PaginationMetaData } from "@/apis/festival";
 
 export type FestivalListModel = {
   festivalId: number;
@@ -20,16 +17,8 @@ export type HotFestivalResponse = {
   data: HostFestivalData;
 };
 
-export interface HostFestivalData extends HotFestivalList, PageMetaData {}
+export interface HostFestivalData extends HotFestivalList, PaginationMetaData {}
 
 export interface HotFestivalList {
   content: FestivalListModel[];
-}
-
-export interface PageMetaData {
-  offset: number;
-  pageNumber: number;
-  pageSize: number;
-  totalElements: number;
-  totalPages: number;
 }

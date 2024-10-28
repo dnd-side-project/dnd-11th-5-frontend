@@ -12,9 +12,9 @@ import { ProgressCircle } from "@/components/core/Progress";
 import { FestivalRequstDialog } from "@/components/Dialog";
 import { HeartIcon } from "@/components/icons";
 import Ratings from "@/components/rating/Ratings";
-import useReportReview from "@/hooks/review/useReportReview";
-import useReview from "@/hooks/review/useReview";
-import useToggleReviewLike from "@/hooks/review/useToggleReviewLike";
+import useReportReview from "@/hooks/useReportReview";
+import useReview from "@/hooks/useReview";
+import useToggleReviewLike from "@/hooks/useToggleReviewLike";
 import { formatToYYYYMMDD } from "@/lib/dayjs";
 import { useUserStore } from "@/store/user";
 

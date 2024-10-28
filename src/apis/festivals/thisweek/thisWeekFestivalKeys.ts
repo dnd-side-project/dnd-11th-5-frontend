@@ -1,4 +1,4 @@
-import { PaginationParamter } from "./thisWeekFestivalType";
+import type { PaginationParamter } from "@/apis/festival";
 
 const defaultParams: PaginationParamter = { page: 0, size: 6 };
 

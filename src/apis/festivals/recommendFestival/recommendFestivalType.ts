@@ -1,7 +1,4 @@
-export type PaginationParamter = {
-  page: number;
-  size: number;
-};
+import type { FestivalListModel } from "@/apis/festival";
 
 export type UserType = {
   userTypeId: number;
@@ -9,16 +6,6 @@ export type UserType = {
 };
 
 export interface RecommendFestivalResponse {
-  festivals: Array<RecommendFestivalModel>;
+  festivals: Array<FestivalListModel>;
   userType: UserType;
 }
-
-export type RecommendFestivalModel = {
-  festivalId: number;
-  name: string;
-  sido: string;
-  sigungu: string;
-  thumbnailImage: string;
-  startDate: string;
-  endDate: string;
-};
