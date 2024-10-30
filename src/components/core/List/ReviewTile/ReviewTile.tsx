@@ -16,12 +16,12 @@ const ReviewTile: FC<Props> = ({ review, className }) => {
     <div
       className={cn(
         "w-full h-full duration-300 rounded-[8px] p-[16px]",
-        "flex items-start justify-between gap-[12px]",
+        "flex items-center justify-between gap-[12px]",
         "bg-gray-scale-0",
         className,
       )}
     >
-      {!review.thumbnailImage && (
+      {!!review.thumbnailImage && (
         <div className="relative h-[104px] min-w-[80px]">
           <Image
             src={review.thumbnailImage ?? "/images/fallbackLogo.png"}
@@ -32,10 +32,10 @@ const ReviewTile: FC<Props> = ({ review, className }) => {
         </div>
       )}
 
-      <div className="flex h-full w-full flex-col items-start justify-between gap-[8px] py-[4px]">
+      <div className="flex w-full flex-col">
         <div className="flex h-full  w-full flex-col items-start justify-between gap-[8px]">
-          <div className="flex h-auto w-full  items-center justify-between">
-            <span className="line-clamp-1 text-body2-bold text-gray-scale-700">
+          <div className="flex h-auto w-full items-center justify-between">
+            <span className="line-clamp-1 w-auto text-body2-bold text-gray-scale-700">
               {review.festivalName}
             </span>
             <Ratings rating={review.rating} />
@@ -44,10 +44,17 @@ const ReviewTile: FC<Props> = ({ review, className }) => {
             {review.content}
           </span>
         </div>
+
         <div className="flex w-full gap-[8px] overflow-hidden scrollbar-hide">
-          {review.keywords.map(({ keyword, keywordId }) => (
-            <ReviewTag key={keywordId} label={keyword} />
-          ))}
+          {!!review.thumbnailImage
+            ? review.keywords
+                .splice(0, 1)
+                .map(({ keyword, keywordId }) => (
+                  <ReviewTag key={keywordId} label={keyword} />
+                ))
+            : review.keywords.map(({ keyword, keywordId }) => (
+                <ReviewTag key={keywordId} label={keyword} />
+              ))}
         </div>
       </div>
     </div>
