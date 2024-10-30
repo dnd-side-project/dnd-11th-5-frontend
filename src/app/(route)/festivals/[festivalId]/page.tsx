@@ -1,5 +1,5 @@
 import ky from "ky";
-import { Metadata } from "next/types";
+import { Metadata, ResolvingMetadata } from "next/types";
 
 import { FestivalResponse } from "@/apis/festival";
 import { getDetailFestival } from "@/apis/festivals/detailFestival/detailFestival";
@@ -9,8 +9,9 @@ import { FestivalHeader } from "@/layout/Mobile/MobileHeader";
 
 import DetailFestivalView from "./view";
 
-export const metadata: Metadata = {
-  title: "축제",
+type Props = {
+  params: { festivalId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export const dynamicParams = true;
@@ -28,6 +29,35 @@ export async function generateStaticParams() {
     console.error("Failed to fetch festival IDs:", error);
     return [];
   }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  _parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const festivalId = params.festivalId;
+  const festivalDetail = await getDetailFestival(festivalId);
+
+  return {
+    title: `${festivalDetail.name} | 피에스타`,
+    description: festivalDetail.description,
+    openGraph: {
+      title: `${festivalDetail.name} | 피에스타`,
+      description: festivalDetail.description,
+      type: "article",
+      locale: "ko_KR",
+      siteName: "피에스타",
+      images: [
+        {
+          url: festivalDetail.images[0].imageUrl,
+          alt: `${festivalDetail.name} - Image`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      url: `https://www.odiga.kr/festivals/${params.festivalId}`,
+    },
+  };
 }
 
 export default async function Home(props: {
