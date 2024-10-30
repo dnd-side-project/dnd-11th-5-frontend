@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 
-import { Review } from "@/apis/review/reviews/reviewsType";
+import { Keyword, Review } from "@/apis/review/reviews/reviewsType";
 import { BasicButton } from "@/components/core/Button";
 import { DescriptionInput } from "@/components/core/Input";
 import ReviewKeywordInput from "@/components/core/Input/KeywordInput/ReviewKeywordInput";
@@ -22,11 +22,12 @@ import UpdateReviewSchema, {
 import Input_rating from "../new/_components/Input_rating";
 
 interface Props {
+  keywords: Array<Keyword>;
   reviewId: string;
   festivalId: string;
 }
 
-const ReviewEditView: FC<Props> = ({ reviewId, festivalId }) => {
+const ReviewEditView: FC<Props> = ({ keywords, reviewId, festivalId }) => {
   const { review, updateReviewMutate } = useUpdateReview(reviewId, festivalId);
 
   const methods = useForm<UpdateReviewSchemaType>({
@@ -106,7 +107,7 @@ const ReviewEditView: FC<Props> = ({ reviewId, festivalId }) => {
           name="keywordIds"
           render={({ field: { onChange, value } }) => (
             <ReviewKeywordInput
-              keywords={review?.keywords ?? []}
+              keywords={keywords}
               selectedkeywordId={value}
               onChange={onChange}
             />
