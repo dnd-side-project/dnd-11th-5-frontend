@@ -21,6 +21,9 @@ const nextConfig = {
         hostname: "placehold.co",
       },
       {
+        hostname: "i.ibb.co",
+      },
+      {
         hostname: "kfescdn.visitkorea.or.kr",
       },
       {

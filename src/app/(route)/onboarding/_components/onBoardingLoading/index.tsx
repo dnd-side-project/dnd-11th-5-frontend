@@ -34,8 +34,9 @@ const OnBoardingLoading = () => {
           <Image
             width={180}
             height={150}
-            src={"/images/onboadingLoading.webp"}
+            src={"https://i.ibb.co/bJck6Lj/onboading-Loading.webp"}
             alt="onboading-loading"
+            priority
           />
         </div>
       </div>
