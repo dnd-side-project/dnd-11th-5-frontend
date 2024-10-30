@@ -5,12 +5,18 @@ import { FC } from "react";
 
 import { ArrowLeftSmallIcon, ShareIcon } from "@/components/icons";
 
-interface Props {}
+interface Props {
+  href?: string;
+}
 
-const FestivalHeader: FC<Props> = ({}) => {
+const FestivalHeader: FC<Props> = ({ href }) => {
   const router = useRouter();
 
   const handleGoback = () => {
+    if (!!href) {
+      router.push(href);
+    }
+
     router.back();
   };
 

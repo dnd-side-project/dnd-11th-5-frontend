@@ -68,7 +68,7 @@ export default async function Home(props: {
 
   return (
     <div className="mb-[110px]">
-      <FestivalHeader />
+      <FestivalHeader href="/" />
       <DetailFestivalView festivals={festivalDetail} />
       <BookingButton festival={festivalDetail} />
     </div>
