@@ -33,6 +33,15 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
         return !!auth;
       }
 
+      if (
+        !request.nextUrl.pathname.includes("onboarding") &&
+        !request.nextUrl.pathname.includes("sign-in") &&
+        !!auth?.accessToken &&
+        !auth?.user.isProfileRegistered
+      ) {
+        return false;
+      }
+
       return true;
     },
     redirect: async ({ url, baseUrl }) => {

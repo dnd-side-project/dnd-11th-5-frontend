@@ -69,7 +69,7 @@ const OnBoardingContainer: FC<Props> = ({
     await delay(5000);
 
     setUser(user);
-    update({ user });
+    await update({ user });
 
     router.replace(generateUrlWithParams("/onboarding/complete", response));
   };

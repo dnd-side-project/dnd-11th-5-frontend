@@ -11,6 +11,7 @@ import { useSwipingContainer } from "@/hooks/useSwipingContainer";
 import { cn } from "@/utils";
 
 import AroundPlaceTile from "./_components/AroundPlaceTile";
+import AroundSkeleton from "./_components/AroundSkeleton";
 
 interface Props {
   festivals: DetailFestivalResponse;
@@ -21,7 +22,7 @@ const Around: FC<Props> = ({ festivals }) => {
   const [selectedKeyword, setSelectedKeyword] = useState(CATEGORIES[0]);
   const { containerRef, mouseDownHandler } = useSwipingContainer();
 
-  const { data } = useQuery<kakao.maps.services.PlacesSearchResult>({
+  const { data, isLoading } = useQuery<kakao.maps.services.PlacesSearchResult>({
     queryKey: ["keyword", selectedKeyword.code],
     queryFn: () =>
       new Promise((resolve, reject) => {
@@ -75,7 +76,9 @@ const Around: FC<Props> = ({ festivals }) => {
 
       {/* 주변 장소 타일 리스트 */}
       <div className="flex flex-col gap-[16px] py-[16px]">
-        {data?.length === 0 ? (
+        {isLoading ? (
+          <AroundSkeleton />
+        ) : data?.length === 0 ? (
           <div className="flex h-[590px] w-full flex-col items-center justify-center gap-[8px] rounded-[12px] border-[1px] border-gray-scale-200 bg-gray-scale-0">
             <Image
               src="/images/fallbackLogo.png"
