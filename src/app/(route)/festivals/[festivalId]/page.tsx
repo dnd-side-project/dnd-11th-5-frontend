@@ -23,7 +23,7 @@ export async function generateStaticParams() {
       .json<FestivalResponse<string[]>>()
       .then((res) => res.data);
 
-    return festivalIds.map((id: string) => ({ festivalId: id }));
+    return festivalIds.map((id: string) => ({ festivalId: String(id) }));
   } catch (error) {
     console.error("Failed to fetch festival IDs:", error);
     return [];
@@ -31,11 +31,10 @@ export async function generateStaticParams() {
 }
 
 export default async function Home(props: {
-  params: Promise<{ festivalId: number }>;
+  params: Promise<{ festivalId: string }>;
 }) {
   const params = await props.params;
-
-  const festivalDetail = await getDetailFestival(String(params.festivalId));
+  const festivalDetail = await getDetailFestival(params.festivalId);
 
   return (
     <div className="mb-[110px]">
