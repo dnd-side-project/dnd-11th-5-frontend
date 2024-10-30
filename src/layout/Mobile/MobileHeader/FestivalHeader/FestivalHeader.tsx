@@ -14,7 +14,16 @@ const FestivalHeader: FC<Props> = ({}) => {
     router.back();
   };
 
-  const handleShare = () => {};
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "피에스타 링크 공유하기",
+          url: window.location.href,
+        })
+        .catch(console.error);
+    }
+  };
 
   return (
     <header className="flex h-[44px] w-full max-w-none items-center justify-between bg-gray-scale-0 px-[10px] text-gray-900 lg:max-w-[450px]">
