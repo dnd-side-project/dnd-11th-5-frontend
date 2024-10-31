@@ -36,9 +36,28 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        hide: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        slideIn: {
+          "0%": {
+            transform: "translateX(calc(100% + 25px))",
+          },
+          "100%": { transform: "translateX(0)" },
+        },
+        swipeOut: {
+          "0%": { transform: "translateX(300px)" },
+          "100%": {
+            transform: "translateX(calc(100% + 25px))",
+          },
+        },
       },
       animation: {
         fadeIn: "fadeIn 350ms cubic-bezier(0.16, 1, 0.3, 1)",
+        slideIn: "slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        hide: "hide 100ms ease-in",
+        swipeOut: "swipeOut 100ms ease-out",
       },
       colors: {
         "primary-01": COLORS.PRIMARY_01,
