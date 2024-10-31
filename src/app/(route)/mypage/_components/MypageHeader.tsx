@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 
 import { LogoutIcon, SettingIcon } from "@/components/icons";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 
 const MypageHeader = () => {
   const setUser = useUserStore((state) => state.updateUser);

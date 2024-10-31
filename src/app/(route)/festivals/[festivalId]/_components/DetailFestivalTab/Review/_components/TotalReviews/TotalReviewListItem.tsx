@@ -16,7 +16,7 @@ import useReportReview from "@/hooks/useReportReview";
 import useReview from "@/hooks/useReview";
 import useToggleReviewLike from "@/hooks/useToggleReviewLike";
 import { formatToYYYYMMDD } from "@/lib/dayjs";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 
 interface Props {
   review: Review;

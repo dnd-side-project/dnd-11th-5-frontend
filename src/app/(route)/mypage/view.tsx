@@ -3,7 +3,7 @@
 import { FC } from "react";
 
 import { BadgesResponse } from "@/apis/user/badges/badgesType";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 
 import MypageAvatar from "./_components/MypageAvatar";
 import MypageTab from "./_components/MypageTab";

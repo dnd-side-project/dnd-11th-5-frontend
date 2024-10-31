@@ -18,7 +18,7 @@ import { ProgressBar } from "@/components/core/Progress";
 import { ONBOARDING_SETTING } from "@/config";
 import useStep from "@/hooks/useStep";
 import { DefaultHeader } from "@/layout/Mobile/MobileHeader";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 import { extractKeyFromArray, generateUrlWithParams } from "@/utils";
 import { delay } from "@/utils/delay";
 

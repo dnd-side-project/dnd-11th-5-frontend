@@ -11,7 +11,7 @@ import { bookmarksKeys } from "@/apis/user/bookmarks/bookmarksKeys";
 import LoginRequiredDialog from "@/components/Dialog/LoginRequiredDialog/LoginRequiredDialog";
 import { ScrabIcon } from "@/components/icons";
 import { useOptimisticMutation } from "@/hooks/useOptimisticMutation";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 
 interface Props {
   festival: DetailFestivalResponse;
