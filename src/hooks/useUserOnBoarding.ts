@@ -7,7 +7,7 @@ import { getMe } from "@/apis/user/me/me";
 import { getUserOnboardingInfo } from "@/apis/user/onboarding-info/onboarding-info";
 import { onboardingInfoKeys } from "@/apis/user/onboarding-info/onboarding-infoKeys";
 import { patchProfile } from "@/apis/user/profile/patchProfile";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 import { ProfileUpdateSchemaType } from "@/validations/ProfileUpdateSchema";
 
 export const useUserOnBoarding = () => {

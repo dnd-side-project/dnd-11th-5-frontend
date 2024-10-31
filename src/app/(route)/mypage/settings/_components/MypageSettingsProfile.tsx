@@ -7,6 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { BasicButton } from "@/components/core/Button";
 import { TextInput } from "@/components/core/Input";
 import { useProfile } from "@/hooks/useProfile";
+import { useToastStore } from "@/store/toastStore";
 import {
   ProfileMeUpdateSchema,
   ProfileMeUpdateSchemaType,
@@ -14,6 +15,7 @@ import {
 
 const MypageSettingsProfile = () => {
   const { user, updateUserMutate } = useProfile();
+  const openToast = useToastStore((state) => state.openToast);
   const router = useRouter();
 
   const { control, handleSubmit } = useForm<ProfileMeUpdateSchemaType>({
@@ -25,7 +27,8 @@ const MypageSettingsProfile = () => {
   });
 
   const onSubmit = async (data: ProfileMeUpdateSchemaType) => {
-    await updateUserMutate(data);
+    updateUserMutate(data);
+    openToast({ message: "사용자 프로필을 업데이트 했습니다." });
     router.push("/mypage");
   };
 

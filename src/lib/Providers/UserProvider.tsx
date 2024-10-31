@@ -3,7 +3,7 @@
 import { Session } from "next-auth";
 import React, { FC, ReactNode, useEffect } from "react";
 
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 
 interface Props {
   children: ReactNode;

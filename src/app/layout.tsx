@@ -5,6 +5,7 @@ import Script from "next/script";
 import { ReactNode } from "react";
 
 import { getServerSideSession } from "@/apis/auth/auth";
+import ToastProvider from "@/components/Toast/Toast";
 import { env } from "@/env";
 import MobileLayout from "@/layout/Mobile/MobileLayout";
 import {
@@ -35,6 +36,7 @@ export default async function RootLayout({
                   strategy="beforeInteractive"
                 />
                 {children}
+                <ToastProvider />
               </MobileLayout>
             </ReactQueryProvider>
           </MSWProvider>

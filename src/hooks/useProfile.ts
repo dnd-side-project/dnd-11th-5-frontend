@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 
 import { getMe, updateMe } from "@/apis/user/me/me";
 import { meKeys } from "@/apis/user/me/meKeys";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/userStore";
 import { ProfileMeUpdateSchemaType } from "@/validations/ProfileUpdateMeSchema";
 
 export const useProfile = () => {

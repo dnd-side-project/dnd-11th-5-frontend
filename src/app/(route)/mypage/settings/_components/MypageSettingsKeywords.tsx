@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -18,6 +19,7 @@ import {
 import { PriorityKeywordInput } from "@/components/core/Input/KeywordInput";
 import CompanionKeywordInput from "@/components/core/Input/KeywordInput/ConpanionKeywordInput";
 import { useUserOnBoarding } from "@/hooks/useUserOnBoarding";
+import { useToastStore } from "@/store/toastStore";
 import {
   ProfileUpdateSchema,
   ProfileUpdateSchemaType,
@@ -38,6 +40,9 @@ const MypageSettingsKeywords: FC<Props> = ({
 }) => {
   const { userOnboardingInfo, updateUserOnboardingMutate } =
     useUserOnBoarding();
+  const router = useRouter();
+
+  const openModal = useToastStore((state) => state.openToast);
 
   const { handleSubmit, control } = useForm<ProfileUpdateSchemaType>({
     values: {
@@ -50,13 +55,15 @@ const MypageSettingsKeywords: FC<Props> = ({
   });
 
   const onSubmit = async (data: ProfileUpdateSchemaType) => {
-    await updateUserOnboardingMutate(data);
+    updateUserOnboardingMutate(data);
+    openModal({ message: "필터를 업데이트했습니다 !" });
+    router.push("/mypage");
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-full w-full flex-col justify-between gap-[28px]"
+      className="flex h-full w-full flex-col justify-between gap-[28px] pb-4"
     >
       <Controller
         control={control}
